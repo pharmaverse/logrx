@@ -1,0 +1,16 @@
+Package: timber
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Nathan",
+           family = "Kosiba",
+           email = "Nathan.Kosiba@atorusresearch.com",
+           role = "aut",
+           comment = c(ORCID = "0000-0001-5359-4234"))
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to
+    pick a license
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
