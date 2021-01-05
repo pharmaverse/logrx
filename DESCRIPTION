@@ -15,7 +15,7 @@ Authors@R:
            family = "Rimler",
            email = "michael.s.rimler@gsk.com",
            role = "aut")
-Description: An package to facilitate the logging and review of R programs in a clinical environment.
+Description: A package to facilitate the logging and review of R programs in a clinical environment.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to
     pick a license
 Encoding: UTF-8
