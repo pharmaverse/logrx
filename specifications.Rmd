@@ -1,0 +1,35 @@
+#' @section Last Updated By:
+
+#' Thomas Bermudez
+
+#' @section Last Update Date:
+
+#' 05/01/2021
+
++ A: Logging can be executed from RStudio console
++ B: Logging can be executed from RStudio add-in
++ C: System info can be logged
++ D: R session info can be logged
++ E: R name space can be logged
++ F: Warnings produced by executing program can be logged
++ G: Errors produced by executing program can be logged
++ H: Program execution start time can be logged
++ I: Program execution end time can be logged
++ J: Program execution run time can be logged
++ K: Program location can be logged
++ L: User that executes the program can be logged
++ M: Functions masked by program execution can be logged
++ N: Packages used by program execution can be logged
++ O: Log name can be customised
++ P: Log path can be customised
+
++ Beyond MVP scope: Functions called by program execution can be logged
++ Beyond MVP scope: Hidden dependencies (e.g., packages loaded by packages) can be logged
++ Beyond MVP scope: Output files created by the program can be logged
++ Beyond MVP scope: User created messages can be logged
++ Beyond MVP scope: Linters run on the program can be logged
++ Beyond MVP scope: Log is formatted
++ Beyond MVP scope: Logging can be executed from the command line
++ Beyond MVP scope: Logging can be batch executed
+
++ Need your help to remember what is required: Data processing steps
