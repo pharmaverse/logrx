@@ -1,5 +1,13 @@
 ### Functions to manipulate timber_log
 
+#' initialise.timber_log
+#'
+#' Initialises the timber_log object
+#'
+#' @return timber_log object as a named list
+#'
+#' @examples
+#' initialise.timber_log()
 initialise.timber_log <- function() {
    timber_log <- list(
       system_info = list(),
