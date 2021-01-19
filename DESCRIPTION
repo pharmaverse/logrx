@@ -19,7 +19,6 @@ Authors@R:
     )
 Description: A package to facilitate the logging and review of R programs in a clinical environment.
 Imports: 
-    assertthat
 License: use_mit_license()
 Encoding: UTF-8
 LazyData: true
