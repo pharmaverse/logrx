@@ -2,12 +2,15 @@
 % Please edit documentation in R/log.R
 \name{log_init}
 \alias{log_init}
-\title{Initialises the timber_log object}
+\title{Initialises the timber.log environment}
 \usage{
 log_init()
 }
+\value{
+Nothing
+}
 \description{
-Initialises the timber_log object
+Initialises the timber.log environment
 }
 \examples{
 log_init()
