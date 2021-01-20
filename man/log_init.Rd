@@ -6,9 +6,6 @@
 \usage{
 log_init()
 }
-\value{
-timber_log object as an empty named list
-}
 \description{
 Initialises the timber_log object
 }

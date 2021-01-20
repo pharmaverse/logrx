@@ -2,15 +2,12 @@
 % Please edit documentation in R/log.R
 \name{log_config}
 \alias{log_config}
-\title{Configures the timber_log object}
+\title{Configures the timber_log object within the timber.log environment}
 \usage{
 log_config()
 }
-\value{
-timber_log object as a named list of attributes
-}
 \description{
-Configures the timber_log object
+Configures the timber_log object within the timber.log environment
 }
 \examples{
 log_config()
