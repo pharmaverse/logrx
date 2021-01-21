@@ -11,6 +11,6 @@ pool:
 container: 'rocker/r-ver:latest'
 
 steps:
-  - bash : R -q -e 'install.packages("devtools"); devtools::check(cran = FALSE);'
+  - bash: R -q -e 'install.packages("devtools"); devtools::check(cran = FALSE);'
   displayName : 'Package Check'
   continueOnError: true
