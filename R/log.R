@@ -14,8 +14,6 @@ log_init <- function(){
    if(!('timber.log' %in% names(options()))) {
       options('timber.log' = timber.log)
    }
-
-   invisible()
 }
 
 #' Configures the timber.log environment
@@ -33,6 +31,7 @@ log_config <- function(){
 
    # list of attributes to add to the log
    keys <- list(
+      "metadata",
       "system_info",
       "session_info",
       "namespace",
