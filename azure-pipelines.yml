@@ -8,7 +8,7 @@ trigger: none
 pool:
   vmImage: 'ubuntu-latest'
 
-container: 'rocker/r-base:latest'
+container: 'rocker/tidyverse:latest'
 
 steps:
 - script: sudo Rscript -e 'install.packages("devtools"); devtools::check(cran = FALSE)'
