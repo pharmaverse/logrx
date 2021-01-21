@@ -11,7 +11,7 @@ pool:
 container: 'rocker/r-ver:latest'
 
 steps:
-- script: Rscript -e 'devtools::check(cran = FALSE)'
+- script: sudo Rscript -e 'devtools::check(cran = FALSE)'
   displayName: 'Package Check'
   continueOnError: true
 
