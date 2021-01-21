@@ -11,9 +11,9 @@ pool:
 container: 'rocker/r-ver:latest'
 
 steps:
-- bash: R -e 'install.packages("devtools"); devtools::check(cran = FALSE);'
+- script: Rscript -e 'install2.r devtools; devtools::check(cran = FALSE);'
   displayName : 'Package Check'
   continueOnError: true
 
-- bash: R -q -e 'sessionInfo()'
+- script: Rscript -e 'sessionInfo()'
   displayName : 'R Version'
