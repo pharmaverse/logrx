@@ -11,7 +11,7 @@ pool:
 container: 'rocker/r-ver:latest'
 
 steps:
-- script: install2.r devtools
+- script: sudo install2.r devtools
   displayName : 'devtools Install'
   continueOnError: true
 
