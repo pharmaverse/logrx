@@ -11,13 +11,13 @@ pool:
 container: 'rocker/r-ver:latest'
 
 steps:
-- script: sudo install2.r devtools
+- bash: sudo install2.r devtools
   displayName : 'devtools Install'
   continueOnError: true
 
-- script: Rscript -e 'devtools::check(cran = FALSE);'
+- bash: R -e 'devtools::check(cran = FALSE);'
   displayName : 'Package Check'
   continueOnError: true
 
-- script: Rscript -e 'sessionInfo()'
+- bash: R -e 'sessionInfo()'
   displayName : 'R Version'
