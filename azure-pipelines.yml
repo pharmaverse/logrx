@@ -11,7 +11,11 @@ pool:
 container: 'rocker/r-ver:latest'
 
 steps:
-- script: Rscript -e 'install2.r devtools; devtools::check(cran = FALSE);'
+- script: Rscript -e install2.r devtools
+  displayName : 'devtools Install'
+  continueOnError: true
+
+- script: Rscript -e 'devtools::check(cran = FALSE);'
   displayName : 'Package Check'
   continueOnError: true
 
