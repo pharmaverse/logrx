@@ -16,6 +16,7 @@ log_init <- function(){
    }
 }
 
+
 #' Configures the timber.log environment
 #'
 #' @return Nothing
@@ -84,6 +85,29 @@ set_log_element <- function(el_key, el_value){
 
    # assign element value to specified element key
    assign(el_key, el_value, envir = getOption('timber.log'))
+}
+
+
+#' Gets the value of a named element in the timber.log environment
+#'
+#' @param el_key the key of the element in timber.log to be fetched
+#'
+#' @return Value of corresponding element from timber.log environment
+#' @export
+#'
+#' @examples
+#' get_log_element("user")
+#'
+get_log_element <- function(el_key){
+   if (!(el_key %in% names(getOption('timber.log')))) {
+      stop("element key provided must already exist in timber.log")
+   }
+
+   # assign element value to specified element key
+   el_value <- getOption('timber.log')[[el_key]]
+
+   # return value to user
+   return(el_value)
 }
 
 
