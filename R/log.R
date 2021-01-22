@@ -53,7 +53,10 @@ log_config <- function(){
    }
 
    # Set some timber_log attributes
-   # TBD
+   # Metadata
+   set_log_element("metadata", get_timber_metadata())
+   # User
+   set_log_element("user", Sys.info()[["user"]])
 }
 
 
@@ -83,3 +86,24 @@ set_log_element <- function(el_key, el_value){
    assign(el_key, el_value, envir = getOption('timber.log'))
 }
 
+
+#' Returns named list of timber metadata attributes
+#'
+#' @return Named list of timber package metadata attributes
+#' @export
+#'
+#' @examples
+#' get_timber_metadata()
+#'
+get_timber_metadata <- function(){
+   session_info <- sessionInfo()
+
+   timber_metadata <- list(
+      version = session_info[["otherPkgs"]][["timber"]][["Version"]],
+      license = session_info[["otherPkgs"]][["timber"]][["License"]],
+      built = session_info[["otherPkgs"]][["timber"]][["Built"]],
+      repository_link = NULL
+   )
+
+   return(timber_metadata)
+}
