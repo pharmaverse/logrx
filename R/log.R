@@ -67,6 +67,7 @@ log_config <- function(){
 #' @export
 #'
 #' @examples
+#' log_cleanup()
 #'
 log_cleanup <- function() {
    # check the timber.log environment exists
@@ -102,6 +103,7 @@ log_cleanup <- function() {
 #' @export
 #'
 #' @examples
+#' log_config()
 #' set_log_element("user", Sys.info()[["user"]])
 #'
 set_log_element <- function(el_key, el_value){

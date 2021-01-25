@@ -15,5 +15,6 @@ Cleans up log and does checks against elements
 TODO add end time setting and runtime calculation
 }
 \examples{
+log_cleanup()
 
 }
