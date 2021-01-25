@@ -21,9 +21,9 @@ write_log_element <- function(el_key, prefix) {
    return(fmtd_el)
 }
 
-#' Format timer.log's metadata attributes for writing
+#' Format timber.log's metadata attributes for writing
 #'
-#' @return A vector of timer.log's metadata attributes
+#' @return A vector of timber.log's metadata attributes
 #' @export
 #'
 #' @examples

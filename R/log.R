@@ -94,6 +94,33 @@ log_cleanup <- function() {
 }
 
 
+#' Write the formatted timber.log to a file
+#'
+#' @param log_name Log file name
+#' @param log_path Log file path
+#'
+#' @return Nothing
+#' @export
+#'
+#' @examples
+#' log_write()
+#'
+log_write <- function(log_name = "timber_log.log", log_path = "."){
+   cleaned_log <- log_cleanup()
+   cleaned_log_vec <- c()
+
+   if ("metadata" %in% names(log_cleanup())) {
+      cleaned_log_vec <- write_metadata()
+
+      cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "metadata"]
+   }
+
+   cleaned_log_vec <- c(cleaned_log_vec, write_log_element("user", "User: "))
+
+   writeLines(cleaned_log_vec, con = paste0(log_path, "/", log_name))
+}
+
+
 #' Adds values to existing named elements in the timber.log environment
 #'
 #' @param el_key the key of the element in timber.log to be updated
