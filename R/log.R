@@ -117,7 +117,7 @@ log_write <- function(log_name = "timber_log.log", log_path = "."){
 
    cleaned_log_vec <- c(cleaned_log_vec, write_log_element("user", "User: "))
 
-   writeLines(cleaned_log_vec, con = paste0(log_path, "/", log_name))
+   writeLines(cleaned_log_vec, con = file.path(log_path, log_name))
 }
 
 
