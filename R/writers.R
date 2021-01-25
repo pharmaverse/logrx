@@ -1,6 +1,6 @@
 ### Functions to format log elements to facilitate the writing of the output log file
 
-#' Writes
+#' Generic log element writer
 #'
 #' @param el_key the key of the element in timber.log to be fetched
 #' @param prefix string to be placed before element value during formatting

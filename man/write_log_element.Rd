@@ -2,7 +2,7 @@
 % Please edit documentation in R/writers.R
 \name{write_log_element}
 \alias{write_log_element}
-\title{Writes}
+\title{Generic log element writer}
 \usage{
 write_log_element(el_key, prefix)
 }
@@ -15,7 +15,7 @@ write_log_element(el_key, prefix)
 formatted element including prefix
 }
 \description{
-Writes
+Generic log element writer
 }
 \examples{
 write_log_element(user, "user running program: ")
