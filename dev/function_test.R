@@ -9,9 +9,9 @@ user <- Sys.info()[["user"]]
 set_log_element("user", user)
 
 # do a bunch of stuff here
+for (i in 1:length(names(getOption('timber.log')))) {
+   name <- names(getOption('timber.log'))[i]
+   element <- getOption('timber.log')[[name]]
+   cat(paste0(name, ': ', element, '\n'))
+}
 
-
-
-
-
-log_write()
