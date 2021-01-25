@@ -60,6 +60,38 @@ log_config <- function(){
    set_log_element("user", Sys.info()[["user"]])
 }
 
+#' Cleans up log and does checks against elements
+#' TODO add end time setting and runtime calculation
+#'
+#' @return List of non-NA elements in timber.log environment
+#' @export
+#'
+#' @examples
+#'
+log_cleanup <- function() {
+   # check the timber.log environment exists
+   if (!('timber.log' %in% names(options()))) {
+      stop("environment timber.log must exist")
+   }
+
+   # get all names of elements in the log
+   log_env <- getOption('timber.log')
+   el_names <- names(log_env)
+
+   # check if element is not NA and add to list to return
+   el_populated <- list()
+   for (i in 1:length(el_names)) {
+      el_name <- el_names[i]
+      el_value <- get_log_element(el_names[i])
+      if (!(anyNA(el_value))) {
+         el_populated[[el_name]] <- el_value
+      }
+   }
+
+   # return list of populated elements
+   return(el_populated)
+}
+
 
 #' Adds values to existing named elements in the timber.log environment
 #'
