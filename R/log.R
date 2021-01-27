@@ -41,6 +41,7 @@ log_config <- function(){
       "start_time",
       "end_time",
       "run_time",
+      "file_name",
       "file_path",
       "user",
       "masked_functions",
