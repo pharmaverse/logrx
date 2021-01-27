@@ -2,6 +2,7 @@ Package: timber
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
+    c(
     person(given = "Thomas",
            family = "Bermudez",
            email = "thomas.a.bermudez@gsk.com",
@@ -15,9 +16,10 @@ Authors@R:
            family = "Rimler",
            email = "michael.s.rimler@gsk.com",
            role = "aut")
+    )
 Description: A package to facilitate the logging and review of R programs in a clinical environment.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+Imports: 
+License: use_mit_license()
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
