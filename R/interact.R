@@ -63,6 +63,8 @@ get_timber_metadata <- function(){
    session_info <- sessionInfo()
 
    timber_metadata <- list(
+      info = paste0("This log was generated using timber ",
+                    session_info[["otherPkgs"]][["timber"]][["Version"]]),
       version = session_info[["otherPkgs"]][["timber"]][["Version"]],
       license = session_info[["otherPkgs"]][["timber"]][["License"]],
       built = session_info[["otherPkgs"]][["timber"]][["Built"]],

@@ -32,7 +32,8 @@ write_log_element <- function(el_key, prefix) {
 write_metadata <- function(){
    metadata <- get_log_element("metadata")
 
-   metadata <- c(paste0("timber package version: ", metadata$version),
+   metadata <- c(metadata$info,
+                 paste0("timber package version: ", metadata$version),
                  paste0("timber license: ", metadata$license),
                  paste0("timber build: ", metadata$built),
                  paste0("timber link to repository: ", metadata$repository_link))
