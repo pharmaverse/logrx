@@ -1,4 +1,4 @@
-### Functions to initialise, configure, and manipulate the timber.log environment
+### Functions to initialise, configure, cleanup, and write the timber.log environment
 
 #' Initialises the timber.log environment
 #'
@@ -118,77 +118,4 @@ log_write <- function(log_name = "timber_log.log", log_path = "."){
    cleaned_log_vec <- c(cleaned_log_vec, write_log_element("user", "User: "))
 
    writeLines(cleaned_log_vec, con = file.path(log_path, log_name))
-}
-
-
-#' Adds values to existing named elements in the timber.log environment
-#'
-#' @param el_key the key of the element in timber.log to be updated
-#' @param el_value the value to be added to the timber.log element
-#'
-#' @return Nothing
-#' @export
-#'
-#' @examples
-#' log_config()
-#' set_log_element("user", Sys.info()[["user"]])
-#'
-set_log_element <- function(el_key, el_value){
-   # check if key is currently in the timber.log environment
-   if (!(el_key %in% names(getOption('timber.log')))) {
-      stop("element key provided must already exist in timber.log")
-   }
-
-   # check if element is currently not empty
-   if (!is.na(getOption('timber.log')[[el_key]])) {
-      stop("element can not already have a value")
-   }
-
-   # assign element value to specified element key
-   assign(el_key, el_value, envir = getOption('timber.log'))
-}
-
-
-#' Gets the value of a named element in the timber.log environment
-#'
-#' @param el_key the key of the element in timber.log to be fetched
-#'
-#' @return Value of corresponding element from timber.log environment
-#' @export
-#'
-#' @examples
-#' get_log_element("user")
-#'
-get_log_element <- function(el_key){
-   if (!(el_key %in% names(getOption('timber.log')))) {
-      stop("element key provided must already exist in timber.log")
-   }
-
-   # assign element value to specified element key
-   el_value <- getOption('timber.log')[[el_key]]
-
-   # return value to user
-   return(el_value)
-}
-
-
-#' Returns named list of timber metadata attributes
-#'
-#' @return Named list of timber package metadata attributes
-#' @export
-#'
-#' @examples
-#' get_timber_metadata()
-#'
-get_timber_metadata <- function(){
-   session_info <- sessionInfo()
-
-   timber_metadata <- list(
-      version = session_info[["otherPkgs"]][["timber"]][["Version"]],
-      license = session_info[["otherPkgs"]][["timber"]][["License"]],
-      built = session_info[["otherPkgs"]][["timber"]][["Built"]],
-      repository_link = NULL
-   )
-
-   return(timber_metadata)
 }
