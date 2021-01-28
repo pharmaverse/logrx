@@ -59,6 +59,8 @@ log_config <- function(){
    set_log_element("metadata", get_timber_metadata())
    # User
    set_log_element("user", Sys.info()[["user"]])
+   # Start time
+   set_log_element("start_time", Sys.time())
 }
 
 #' Cleans up log and does checks against elements
@@ -107,6 +109,11 @@ log_cleanup <- function() {
 #' log_write()
 #'
 log_write <- function(log_name = "timber_log.log", log_path = "."){
+   # Set end time and run time
+   set_log_element("end_time", Sys.time())
+   set_log_element("run_time",
+                   get_log_element("end_time") - get_log_element("start_time"))
+
    cleaned_log <- log_cleanup()
    cleaned_log_vec <- c()
 
@@ -117,6 +124,12 @@ log_write <- function(log_name = "timber_log.log", log_path = "."){
    }
 
    cleaned_log_vec <- c(cleaned_log_vec, write_log_element("user", "User: "))
+   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_log_element("start_time", "Start time: "))
+   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_log_element("end_time", "End time: "))
+   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_log_element("run_time", "Run time: "))
 
    writeLines(cleaned_log_vec, con = file.path(log_path, log_name))
 }
