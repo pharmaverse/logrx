@@ -73,3 +73,40 @@ get_timber_metadata <- function(){
 
    return(timber_metadata)
 }
+
+
+#' Set the log name and path:
+#' 1. As the name and path if specified
+#' 2. As the file name and path if specified
+#' 3. As timber_log.log and . if none of the above are specified
+#'
+#' @param log_name The log name
+#' @param log_path The log path
+#'
+#' @return Nothing
+#' @export
+#'
+#' @examples
+#' set_log_name_path()
+#'
+set_log_name_path <- function(log_name = NA, log_path = NA) {
+   if (!is.na(log_name) & !is.na(log_path)) {
+      set_log_element("log_name", log_name)
+      set_log_element("log_path", log_path)
+   } else {
+      file_name <- get_log_element("file_name")
+      file_path <- get_log_element("file_path")
+
+      if (!is.na(file_name) & !is.na(file_path)) {
+         set_log_element("log_name",
+                         sub(pattern = "(?<=\\.).*",
+                             replacement = "log",
+                             x = "test.R",
+                             perl = TRUE))
+         set_log_element("log_path", file_path)
+      } else {
+         set_log_element("log_name", "timber_log.log")
+         set_log_element("log_path", ".")
+      }
+   }
+}
