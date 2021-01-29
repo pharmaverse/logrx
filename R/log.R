@@ -108,22 +108,31 @@ log_cleanup <- function() {
 #' @examples
 #' log_write()
 #'
-log_write <- function(log_name = "timber_log.log", log_path = "."){
+log_write <- function(){
    # Set end time and run time
    set_log_element("end_time", Sys.time())
    set_log_element("run_time",
                    get_log_element("end_time") - get_log_element("start_time"))
 
+   # Set log name and path
+   set_log_name_path()
+
    cleaned_log <- log_cleanup()
    cleaned_log_vec <- c()
 
    if ("metadata" %in% names(log_cleanup())) {
-      cleaned_log_vec <- write_metadata()
+      cleaned_log_vec <- c(cleaned_log_vec, write_metadata())
 
       cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "metadata"]
    }
 
+   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_log_element("log_name", "Log name: "))
+   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_log_element("log_path", "Log path: "))
+
    cleaned_log_vec <- c(cleaned_log_vec, write_log_element("user", "User: "))
+
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_element("start_time", "Start time: "))
    cleaned_log_vec <- c(cleaned_log_vec,
@@ -131,5 +140,7 @@ log_write <- function(log_name = "timber_log.log", log_path = "."){
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_element("run_time", "Run time: "))
 
-   writeLines(cleaned_log_vec, con = file.path(log_path, log_name))
+   writeLines(cleaned_log_vec,
+              con = file.path(get_log_element("log_path"),
+                              get_log_element("log_name")))
 }
