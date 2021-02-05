@@ -57,6 +57,9 @@ log_config <- function(){
    # Set some timber_log attributes
    # Metadata
    set_log_element("metadata", get_timber_metadata())
+   # Source file path and name
+   set_log_element("file_path", dirname(get_file_path()))
+   set_log_element("file_name", basename(get_file_path()))
    # User
    set_log_element("user", Sys.info()[["user"]])
    # Start time
@@ -64,9 +67,8 @@ log_config <- function(){
 }
 
 #' Cleans up log and does checks against elements
-#' TODO add end time setting and runtime calculation
 #'
-#' @return List of non-NA elements in timber.log environment
+#' @return List of non-NA elements and their value in timber.log environment
 #' @export
 #'
 #' @examples

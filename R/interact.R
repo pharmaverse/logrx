@@ -51,30 +51,6 @@ get_log_element <- function(el_key){
 }
 
 
-#' Returns named list of timber metadata attributes
-#'
-#' @return Named list of timber package metadata attributes
-#' @export
-#'
-#' @examples
-#' get_timber_metadata()
-#'
-get_timber_metadata <- function(){
-   session_info <- sessionInfo()
-
-   timber_metadata <- list(
-      info = paste0("This log was generated using timber ",
-                    session_info[["otherPkgs"]][["timber"]][["Version"]]),
-      version = session_info[["otherPkgs"]][["timber"]][["Version"]],
-      license = session_info[["otherPkgs"]][["timber"]][["License"]],
-      built = session_info[["otherPkgs"]][["timber"]][["Built"]],
-      repository_link = NULL
-   )
-
-   return(timber_metadata)
-}
-
-
 #' Set the log name and path:
 #' 1. As the name and path if specified
 #' 2. As the file name and path if specified
@@ -101,7 +77,7 @@ set_log_name_path <- function(log_name = NA, log_path = NA) {
          set_log_element("log_name",
                          sub(pattern = "(?<=\\.).*",
                              replacement = "log",
-                             x = "test.R",
+                             x = file_name,
                              perl = TRUE))
          set_log_element("log_path", file_path)
       } else {
