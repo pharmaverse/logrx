@@ -4,7 +4,7 @@
 \alias{log_write}
 \title{Write the formatted timber.log to a file}
 \usage{
-log_write(log_name = "timber_log.log", log_path = ".")
+log_write()
 }
 \arguments{
 \item{log_name}{Log file name}

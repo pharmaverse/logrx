@@ -2,17 +2,15 @@
 % Please edit documentation in R/log.R
 \name{log_cleanup}
 \alias{log_cleanup}
-\title{Cleans up log and does checks against elements
-TODO add end time setting and runtime calculation}
+\title{Cleans up log and does checks against elements}
 \usage{
 log_cleanup()
 }
 \value{
-List of non-NA elements in timber.log environment
+List of non-NA elements and their value in timber.log environment
 }
 \description{
 Cleans up log and does checks against elements
-TODO add end time setting and runtime calculation
 }
 \examples{
 log_cleanup()
