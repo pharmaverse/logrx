@@ -4,11 +4,10 @@ library(timber)
 # configure the log
 log_config()
 
-# add user
-user <- Sys.info()[["user"]]
-set_log_element("user", user)
+# write log
+log_write()
 
-# do a bunch of stuff here
+# check the log elements
 for (i in 1:length(names(getOption('timber.log')))) {
    name <- names(getOption('timber.log'))[i]
    element <- getOption('timber.log')[[name]]
