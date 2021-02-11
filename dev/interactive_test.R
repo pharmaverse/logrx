@@ -9,5 +9,7 @@ log_config()
 dat <- group_by(mtcars, cyl) %>%
    summarise(n = n())
 
+# set_log_name_path(log_name = "test.log", log_path = "./dev")
+
 # write log
 log_write()
