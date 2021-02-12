@@ -19,13 +19,15 @@ log_init <- function(){
 
 #' Configures the timber.log environment
 #'
+#' @param file File path of file being run, optional
+#'
 #' @return Nothing
 #' @export
 #'
 #' @examples
 #' log_config()
 #'
-log_config <- function(){
+log_config <- function(file = NA){
    # Initialise timber.log environment
    # This should already be done onLoad but redundant here
    log_init()
@@ -58,8 +60,8 @@ log_config <- function(){
    # Metadata
    set_log_element("metadata", get_timber_metadata())
    # Source file path and name
-   set_log_element("file_path", dirname(get_file_path()))
-   set_log_element("file_name", basename(get_file_path()))
+   set_log_element("file_path", dirname(get_file_path(file)))
+   set_log_element("file_name", basename(get_file_path(file)))
    # User
    set_log_element("user", Sys.info()[["user"]])
    # Start time

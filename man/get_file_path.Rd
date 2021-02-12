@@ -4,7 +4,12 @@
 \alias{get_file_path}
 \title{Gets full path of file being run}
 \usage{
-get_file_path()
+get_file_path(file = NA, normalize = TRUE)
+}
+\arguments{
+\item{file}{File path of file being run, optional}
+
+\item{normalize}{If the returned path should be normalized}
 }
 \value{
 full path of file being run
