@@ -92,7 +92,7 @@ set_log_name_path <- function(log_name = NA, log_path = NA) {
    # If log_path was previously assigned, generate warning
    # else assign log_path
    log_path_value <- get_log_element("log_path")
-   if (!is.na(log_path)) {
+   if (!is.na(log_path_value)) {
       warning("log_path already assigned, will not be overwritten")
    } else {
       if (!is.na(log_path)) {

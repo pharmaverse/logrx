@@ -26,33 +26,42 @@ get_timber_metadata <- function(){
 
 #' Gets full path of file being run
 #'
+#' @param file File path of file being run, optional
+#' @param normalize If the returned path should be normalized
+#'
 #' @return full path of file being run
 #' @export
 #'
 #' @examples
 #' get_file_path()
 #'
-get_file_path <- function(){
-   # This will populate if the file is sourced
-   ofile <- sys.frame(1)$ofile
+get_file_path <- function(file = NA, normalize = TRUE){
+   if (!is.na(file)){
+      ofile <- file
+   } else {
+      # This will populate if the file is sourced
+      ofile <- sys.frame(1)$ofile
 
-   # If not, go further
-   if (is.null(ofile)){
-      # Interactively you can't be sure of location
-      if (interactive()) {
-         ofile <- NA
-      } else {
-         # If run in batch, use command line arguments
-         initial.options <- commandArgs(trailingOnly = FALSE)
-         # File command line argument to search for
-         file.arg.name <- "--file="
-         # Pick that off and remove the argument syntax
-         ofile <- sub(file.arg.name, "", initial.options[grep(file.arg.name, initial.options)])
+      # If not, go further
+      if (is.null(ofile)){
+         # Interactively you can't be sure of location
+         if (interactive()) {
+            ofile <- NA
+         } else {
+            # If run in batch, use command line arguments
+            initial.options <- commandArgs(trailingOnly = FALSE)
+            # File command line argument to search for
+            file.arg.name <- "--file="
+            # Pick that off and remove the argument syntax
+            ofile <- sub(file.arg.name, "", initial.options[grep(file.arg.name, initial.options)])
+         }
       }
    }
 
    # normalize the file path
-   ofile <- normalizePath(ofile)
+   if ((!is.null(ofile)) & (!is.na(ofile)) & normalize) {
+      ofile <- normalizePath(ofile)
+   }
 
    # return the full path
    return(ofile)
