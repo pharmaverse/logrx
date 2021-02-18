@@ -2,7 +2,7 @@
 library(timber)
 
 # test for sourcing a file
-files <- c("no_log.R", "interactive_test.R")
+files <- c("no_log.R", "no_log2.R")
 
 for (i in 1:length(files)){
    file <- files[i]
