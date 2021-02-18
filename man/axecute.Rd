@@ -19,3 +19,8 @@ Nothing
 \description{
 Create a log and run a file
 }
+\examples{
+log_init("script.R")
+log_init("script.R", log_name = "log_out", log_path = "./logs")
+
+}

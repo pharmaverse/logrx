@@ -10,6 +10,9 @@
 #' @export
 #'
 #' @examples
+#' log_init("script.R")
+#' log_init("script.R", log_name = "log_out", log_path = "./logs")
+#'
 axecute <- function(file, log_name = NA, log_path = NA){
    # initialize log
    log_config(file)
