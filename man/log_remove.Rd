@@ -2,8 +2,7 @@
 % Please edit documentation in R/log.R
 \name{log_remove}
 \alias{log_remove}
-\title{Remove the timber.log environment by setting options("timber.log") to the
-empty environment}
+\title{Remove the timber.log environment by setting options("timber.log") to NULL}
 \usage{
 log_remove()
 }
@@ -11,8 +10,7 @@ log_remove()
 Nothing
 }
 \description{
-Remove the timber.log environment by setting options("timber.log") to the
-empty environment
+Remove the timber.log environment by setting options("timber.log") to NULL
 }
 \examples{
 log_remove()

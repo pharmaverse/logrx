@@ -11,11 +11,7 @@
 log_init <- function(){
    timber.log <- new.env()
 
-   # If no timber.log environment has ever been created or if the timber.log
-   # environment is set to the empty environment, set timber.log to the new
-   # environment
-   if (is.null(getOption("timber.log")) |
-       identical(getOption("timber.log"), emptyenv())) {
+      if(!('timber.log' %in% names(options()))) {
       options('timber.log' = timber.log)
    }
 }
@@ -32,11 +28,10 @@ log_init <- function(){
 #' log_config()
 #'
 log_config <- function(file = NA){
-   # If the timber.log environment is not empty or if the timber.log environment
-   # is not set to the empty environment, warn the user
-   if (!(identical(ls(getOption("timber.log")), character(0)) |
-         identical(getOption("timber.log"), emptyenv()))) {
-      stop("a timber.log environment already exists")
+   # If the timber.log environment is not NULL or empty, warn the user
+   if (!is.null(getOption("timber.log"))) {
+      if (!(identical(ls(getOption("timber.log")), character(0)))) {
+         stop("a timber.log environment already exists")}
    }
 
    # Initialise timber.log environment
@@ -163,8 +158,7 @@ log_write <- function(){
 }
 
 
-#' Remove the timber.log environment by setting options("timber.log") to the
-#' empty environment
+#' Remove the timber.log environment by setting options("timber.log") to NULL
 #'
 #' @return Nothing
 #' @export
@@ -174,6 +168,6 @@ log_write <- function(){
 #'
 log_remove <- function() {
    if (!is.null(getOption("timber.log"))) {
-      options("timber.log" = emptyenv())
+      options("timber.log" = NULL)
    }
 }
