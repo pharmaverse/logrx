@@ -4,7 +4,10 @@
 \alias{log_config}
 \title{Configures the timber.log environment}
 \usage{
-log_config()
+log_config(file = NA)
+}
+\arguments{
+\item{file}{File path of file being run, optional}
 }
 \value{
 Nothing

@@ -1,13 +1,12 @@
 #imports
-library(evaluate)
 library(timber)
 
 # test for sourcing a file
-files <- c("interactive_test.R", "function_test.R")
+files <- c("no_log.R", "no_log2.R")
 
 for (i in 1:length(files)){
    file <- files[i]
    print(paste0("Running: ", file))
-   source(file.path("./dev", file))
+   axecute(file.path("./dev", file))
 }
 

@@ -66,23 +66,45 @@ get_log_element <- function(el_key){
 #' set_log_name_path()
 #'
 set_log_name_path <- function(log_name = NA, log_path = NA) {
-   if (!is.na(log_name) & !is.na(log_path)) {
-      set_log_element("log_name", log_name)
-      set_log_element("log_path", log_path)
+   # If log_name was previously assigned, generate warning
+   # else assign log_name
+   log_name_value <- get_log_element("log_name")
+   if (!is.na(log_name_value)) {
+      warning("log_name already assigned, will not be overwritten")
    } else {
-      file_name <- get_log_element("file_name")
-      file_path <- get_log_element("file_path")
-
-      if (!is.na(file_name) & !is.na(file_path)) {
-         set_log_element("log_name",
-                         sub(pattern = "(?<=\\.).*",
-                             replacement = "log",
-                             x = file_name,
-                             perl = TRUE))
-         set_log_element("log_path", file_path)
+      if (!is.na(log_name)) {
+         set_log_element("log_name", log_name)
       } else {
-         set_log_element("log_name", "timber_log.log")
-         set_log_element("log_path", ".")
+         file_name <- get_log_element("file_name")
+
+         if (!is.na(file_name)) {
+            set_log_element("log_name",
+                            sub(pattern = "(?<=\\.).*",
+                                replacement = "log",
+                                x = file_name,
+                                perl = TRUE))
+         } else {
+            set_log_element("log_name", "timber_log.log")
+         }
+      }
+   }
+
+   # If log_path was previously assigned, generate warning
+   # else assign log_path
+   log_path_value <- get_log_element("log_path")
+   if (!is.na(log_path_value)) {
+      warning("log_path already assigned, will not be overwritten")
+   } else {
+      if (!is.na(log_path)) {
+         set_log_element("log_path", log_path)
+      } else {
+         file_path <- get_log_element("file_path")
+
+         if (!is.na(file_path)) {
+            set_log_element("log_path", file_path)
+         } else {
+            set_log_element("log_path", ".")
+         }
       }
    }
 }

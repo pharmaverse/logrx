@@ -11,7 +11,7 @@
 log_init <- function(){
    timber.log <- new.env()
 
-   if(!('timber.log' %in% names(options()))) {
+      if(!('timber.log' %in% names(options()))) {
       options('timber.log' = timber.log)
    }
 }
@@ -19,13 +19,21 @@ log_init <- function(){
 
 #' Configures the timber.log environment
 #'
+#' @param file File path of file being run, optional
+#'
 #' @return Nothing
 #' @export
 #'
 #' @examples
 #' log_config()
 #'
-log_config <- function(){
+log_config <- function(file = NA){
+   # If the timber.log environment is not NULL or empty, warn the user
+   if (!is.null(getOption("timber.log"))) {
+      if (!(identical(ls(getOption("timber.log")), character(0)))) {
+         stop("a timber.log environment already exists")}
+   }
+
    # Initialise timber.log environment
    # This should already be done onLoad but redundant here
    log_init()
@@ -58,8 +66,8 @@ log_config <- function(){
    # Metadata
    set_log_element("metadata", get_timber_metadata())
    # Source file path and name
-   set_log_element("file_path", dirname(get_file_path()))
-   set_log_element("file_name", basename(get_file_path()))
+   set_log_element("file_path", dirname(get_file_path(file)))
+   set_log_element("file_name", basename(get_file_path(file)))
    # User
    set_log_element("user", Sys.info()[["user"]])
    # Start time
@@ -145,4 +153,21 @@ log_write <- function(){
    writeLines(cleaned_log_vec,
               con = file.path(get_log_element("log_path"),
                               get_log_element("log_name")))
+
+   log_remove()
+}
+
+
+#' Remove the timber.log environment by setting options("timber.log") to NULL
+#'
+#' @return Nothing
+#' @export
+#'
+#' @examples
+#' log_remove()
+#'
+log_remove <- function() {
+   if (!is.null(getOption("timber.log"))) {
+      options("timber.log" = NULL)
+   }
 }
