@@ -40,3 +40,29 @@ write_metadata <- function(){
 
    return(metadata)
 }
+
+#' Format masked functions attribute for writing
+#'
+#' @return A formatted vector of masked functions
+#' @export
+#'
+#' @examples
+#' write_masked_functions()
+#'
+write_masked_functions <- function(){
+   masked_functions_list <- get_log_element("masked_functions")
+
+   masked_functions <- c()
+
+   for (i in 1:length(masked_functions_list)){
+      name <- names(masked_functions_list)[[i]]
+      source <- masked_functions_list[[i]]$source
+      masks <- masked_functions_list[[i]]$masks
+      fmask <- paste(masks, collapse = ", ")
+      fmtd <- paste0("`", name, "` used from package ", source, ". Masked from Package(s): ", fmask)
+      masked_functions <- append(masked_functions, fmtd)
+   }
+
+
+   return(masked_functions)
+}

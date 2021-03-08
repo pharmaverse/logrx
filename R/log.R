@@ -65,6 +65,8 @@ log_config <- function(file = NA){
    # Set some timber_log attributes
    # Metadata
    set_log_element("metadata", get_timber_metadata())
+   # Masked Functions
+   set_log_element("masked_functions", get_masked_functions())
    # Source file path and name
    set_log_element("file_path", dirname(get_file_path(file)))
    set_log_element("file_name", basename(get_file_path(file)))
@@ -134,6 +136,12 @@ log_write <- function(){
       cleaned_log_vec <- c(cleaned_log_vec, write_metadata())
 
       cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "metadata"]
+   }
+
+   if ("masked_functions" %in% names(log_cleanup())) {
+      cleaned_log_vec <- c(cleaned_log_vec, write_masked_functions())
+
+      cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "masked_functions"]
    }
 
    cleaned_log_vec <- c(cleaned_log_vec,
