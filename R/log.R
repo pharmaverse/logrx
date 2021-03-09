@@ -149,6 +149,10 @@ log_write <- function(){
                         write_log_element("end_time", "End time: "))
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_element("run_time", "Run time: "))
+   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_log_element("warnings", "Warnings: "))
+   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_log_element("errors", "Errors: "))
 
    writeLines(cleaned_log_vec,
               con = file.path(get_log_element("log_path"),

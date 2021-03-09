@@ -108,3 +108,25 @@ set_log_name_path <- function(log_name = NA, log_path = NA) {
       }
    }
 }
+
+
+#' Safely run an R script and record results, outputs, messages, errors, warnings
+#'
+#' @param file_name Function to run
+#'
+#' @return Nothing
+#' @export
+#' @importFrom purrr quietly safely discard
+#' @importFrom stringr str_detect
+#'
+run_safely_n_quietly <- function(file_name) {
+   retfun <- purrr::quietly(purrr::safely(source, quiet = FALSE))
+   ret <- retfun(file_name, local = TRUE)
+
+   # set_log_element("results", ret$result$result)
+   # set_log_element("outputs", ret$output)
+   # set_log_element("messages", ret$messages %>%
+   #                    purrr::discard(~stringr::str_detect(., "^Error:")))
+   set_log_element("warnings", ret$warnings)
+   set_log_element("errors", ret$result$error)
+}
