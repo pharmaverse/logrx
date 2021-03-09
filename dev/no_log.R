@@ -3,6 +3,8 @@
 # imports
 library(dplyr)
 
+Sys.sleep(2)
+
 # code
 test <- "test"
 
