@@ -139,7 +139,9 @@ log_write <- function(){
    }
 
    if ("masked_functions" %in% names(log_cleanup())) {
-      cleaned_log_vec <- c(cleaned_log_vec, write_masked_functions())
+      cleaned_log_vec <- c(cleaned_log_vec,
+                           write_log_header("Masked Functions"),
+                           write_masked_functions())
 
       cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "masked_functions"]
    }

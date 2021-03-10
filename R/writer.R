@@ -6,6 +6,7 @@
 #' @param prefix string to be placed before element value during formatting
 #'
 #' @return formatted element including prefix
+#' @export
 #'
 #' @examples
 #' write_log_element(user, "user running program: ")
@@ -52,17 +53,39 @@ write_metadata <- function(){
 write_masked_functions <- function(){
    masked_functions_list <- get_log_element("masked_functions")
 
-   masked_functions <- c(paste(rep('-', 80), collapse = ""), "Masked Functions:", paste(rep('-', 80), collapse = ""))
+   masked_functions <- c()
 
    for (i in 1:length(masked_functions_list)){
       name <- names(masked_functions_list)[[i]]
       source <- masked_functions_list[[i]]$source
       masks <- masked_functions_list[[i]]$masks
       fmask <- paste(masks, collapse = ", ")
-      fmtd <- paste0("  function `", name, "` from {", fmask, "} by ", source)
+      fmtd <- paste0("function `", name, "` from {", fmask, "} by ", source)
       masked_functions <- append(masked_functions, fmtd)
    }
 
 
    return(masked_functions)
+}
+
+#' Generic function to format log section headers
+#'
+#' @param title_string string to be used as section title
+#'
+#' @return a vector with the header including title
+#' @export
+#'
+#' @examples
+#' write_log_header("timber metadata")
+#'
+write_log_header <- function(title_string){
+   # create left and right pad length
+   rpad <- ceiling((78 - nchar(title_string))/2)
+   lpad <- floor((78 - nchar(title_string))/2)
+   # make the vector
+   head_vec <- c(paste(rep('-', 80), collapse = ""),
+                 paste0('-', paste(rep(' ', lpad), collapse = ""), title_string, paste(rep(' ', rpad), collapse = ""), '-'),
+                 paste(rep('-', 80), collapse = ""))
+   # return the formatted vector
+   return(head_vec)
 }
