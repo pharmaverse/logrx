@@ -23,7 +23,7 @@ axecute <- function(file, log_name = NA, log_path = NA){
    }
 
    # run the code
-   source(file)
+   run_safely_n_quietly(file)
 
    # write log
    log_write()
