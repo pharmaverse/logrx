@@ -67,6 +67,19 @@ get_file_path <- function(file = NA, normalize = TRUE){
    return(ofile)
 }
 
+#' Returns Session Info
+#'
+#' @return Formatted Session Info
+#' @export
+#'
+#' @examples
+#' get_session_info()
+#'
+get_session_info <- function(){
+   return(capture.output(sessionInfo()))
+}
+
+
 #' Returns named list of masked functions
 #'
 #' @return Named list of masked functions, source package, and what they mask
