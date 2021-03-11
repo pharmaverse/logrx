@@ -66,3 +66,46 @@ get_file_path <- function(file = NA, normalize = TRUE){
    # return the full path
    return(ofile)
 }
+
+#' Returns Session Info
+#'
+#' @return Formatted Session Info
+#' @export
+#'
+#' @examples
+#' get_session_info()
+#'
+get_session_info <- function(){
+   return(capture.output(sessionInfo()))
+}
+
+
+#' Returns named list of masked functions
+#'
+#' @return Named list of masked functions, source package, and what they mask
+#' @export
+#'
+#' @examples
+#' get_masked_functions()
+#'
+get_masked_functions <- function(){
+   conflicts = conflicts(detail = TRUE)
+
+   conflict_list = list()
+
+   for (i in 1:length(conflicts)){
+      pkg = names(conflicts)[[i]]
+      for (j in 1:length(conflicts[[i]])){
+         funct <- conflicts[[i]][j]
+         if (funct %in% names(conflict_list)){
+            if (!(pkg %in% conflict_list[[funct]]$masks | conflict_list[[funct]]$source == pkg)) {
+               conflict_list[[funct]]$masks = append(conflict_list[[funct]]$masks, pkg)
+            }
+         }else{
+            conflict_list[[funct]] = list("source" = pkg, "masks" = c())
+         }
+      }
+   }
+
+   return(conflict_list)
+}

@@ -1,0 +1,65 @@
+--------------------------------------------------------------------------------
+-                               timber Metadata                                -
+--------------------------------------------------------------------------------
+This log was generated using timber 0.0.0.9000
+timber package version: 0.0.0.9000
+timber license: use_mit_license()
+timber build: 
+timber link to repository: 
+--------------------------------------------------------------------------------
+-                               User Information                               -
+--------------------------------------------------------------------------------
+User: nathan.kosiba
+--------------------------------------------------------------------------------
+-                             Session Information                              -
+--------------------------------------------------------------------------------
+R version 4.0.2 (2020-06-22)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 18.04.5 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
+LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.2.20.so
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8        LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8   
+ [6] LC_MESSAGES=C.UTF-8    LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C           LC_TELEPHONE=C        
+[11] LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] timber_0.0.0.9000 dplyr_1.0.2       devtools_2.3.2    usethis_2.0.0    
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.6        pillar_1.5.0      compiler_4.0.2    prettyunits_1.1.1 remotes_2.2.0     tools_4.0.2       testthat_3.0.2   
+ [8] digest_0.6.27     pkgbuild_1.2.0    pkgload_1.2.0     evaluate_0.14     tibble_3.1.0      memoise_1.1.0     lifecycle_1.0.0  
+[15] pkgconfig_2.0.3   rlang_0.4.10      cli_2.3.1         rstudioapi_0.13   commonmark_1.7    yaml_2.2.1        xfun_0.21        
+[22] withr_2.4.1       stringr_1.4.0     roxygen2_7.1.1    knitr_1.31        xml2_1.3.2        generics_0.1.0    desc_1.2.0       
+[29] fs_1.5.0          vctrs_0.3.6       tidyselect_1.1.0  rprojroot_2.0.2   prompt_1.0.0      glue_1.4.2        R6_2.5.0         
+[36] processx_3.4.5    fansi_0.4.2       rmarkdown_2.7     sessioninfo_1.1.1 callr_3.5.1       purrr_0.3.4       magrittr_2.0.1   
+[43] htmltools_0.5.1.1 ps_1.5.0          clisymbols_1.2.0  ellipsis_0.3.1    assertthat_0.2.1  utf8_1.1.4        stringi_1.5.3    
+[50] crayon_1.4.1     
+--------------------------------------------------------------------------------
+-                               Masked Functions                               -
+--------------------------------------------------------------------------------
+function `test` from {package:devtools} by .GlobalEnv
+function `system.file` from {devtools_shims, package:base} by package:timber
+function `library.dynam.unload` from {package:base} by package:timber
+function `filter` from {package:stats} by package:dplyr
+function `lag` from {package:stats} by package:dplyr
+function `intersect` from {package:base} by package:dplyr
+function `setdiff` from {package:base} by package:dplyr
+function `setequal` from {package:base} by package:dplyr
+function `union` from {package:base} by package:dplyr
+function `?` from {package:utils} by devtools_shims
+function `help` from {package:utils} by devtools_shims
+function `plot` from {package:base} by package:graphics
+function `body<-` from {package:base} by package:methods
+function `kronecker` from {package:base} by package:methods
+Start time: 2021-03-10 14:53:44
+End time: 2021-03-10 14:53:46
+Run time: 2.00970935821533
+Log name: no_log.log
+Log path: /home/nathan.kosiba/timber/dev
