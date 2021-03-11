@@ -3,8 +3,12 @@
 # imports
 library(dplyr)
 
+Sys.sleep(2)
+
 # code
 test <- "test"
+
+log(-1)
 
 test_stats <- mtcars %>%
    group_by(cyl) %>%
