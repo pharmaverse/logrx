@@ -166,9 +166,10 @@ log_write <- function(){
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_element("run_time", "Run time: "))
    cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_element("warnings", "Warnings: "))
+                        write_log_header("Errors and Warnings"),
+                        write_errors())
    cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_element("errors", "Errors: "))
+                        write_warnings())
 
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_element("log_name", "Log name: "))
