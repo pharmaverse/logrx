@@ -165,10 +165,9 @@ log_write <- function(){
 
 
    cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_element("start_time", "Start time: "))
-   cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_element("end_time", "End time: "))
-   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_log_header("Program Run Time Information"),
+                        write_log_element("start_time", "Start time: "),
+                        write_log_element("end_time", "End time: "),
                         write_log_element("run_time", "Run time: "))
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_header("Errors and Warnings"),
@@ -177,8 +176,8 @@ log_write <- function(){
                         write_warnings())
 
    cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_element("log_name", "Log name: "))
-   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_log_header("Log Output File"),
+                        write_log_element("log_name", "Log name: "),
                         write_log_element("log_path", "Log path: "))
 
    writeLines(cleaned_log_vec,
