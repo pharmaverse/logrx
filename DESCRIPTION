@@ -18,9 +18,12 @@ Authors@R:
            role = "aut")
     )
 Description: A package to facilitate the logging and review of R programs in a clinical environment.
-Imports: 
 License: use_mit_license()
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
