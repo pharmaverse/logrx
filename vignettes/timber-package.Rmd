@@ -20,6 +20,7 @@ library(timber)
 
 The purpose of the `timber` package is to generate a log upon execution of 
 an R script which enables traceability and reproducibility of the executed code. 
+![timber log](../timber_log.png)
 
 
 # Log attributes
@@ -47,7 +48,7 @@ The log can be generated according in two ways:
 
 ## `axecute()`
 `axecute()` enables the command line submission of a program. A log is 
-set-up around the program, and its code is run safely and quietly.
+set-up around the program, and its code is run safely and quietly (using `safely()` and `quietly` from the `purrr` package).
 ```{r axecute, eval = FALSE}
 axecute("my_script.R")
 ```
