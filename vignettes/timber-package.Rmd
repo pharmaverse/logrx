@@ -18,33 +18,53 @@ knitr::opts_chunk$set(
 library(timber)
 ```
 
-The purpose of the ```timber``` package is to generate a log upon execution of 
+The purpose of the `timber` package is to generate a log upon execution of 
 an R script which enables traceability and reproducibility of the executed code. 
+
+
+# Log attributes
+The following attributes are recorded in the log:
+
+* `metadata`: The timber `package` information
+* `user`: The user that generates the log
+* `session_info`: The R session information
+* `masked_functions`: The functions masked by packages
+* `used_packages`: The used packages
+* `start_time`, `end_time`, and `run_time`: The start, end, and run times
+* `errors`: The errors generated when running the R script
+* `warnings`: The warnings generated when running the R script
+* `file_name`, `file_path`: The file name and path of the R script
+* `log_name`, `log_path`: The name and path of the log
+
+
+# Generating a log
 The log can be generated according in two ways:
 
-* Using the ```axecute()``` function
+* Using the `axecute()` function
 
-* Using the ```log_*()``` functions
+* Using the `log_*()` functions
 
-# Generating a log using ```axecute()```
-```axecute()``` enables the command line submission of a program. A log is 
-set-up around the program, and its code is run safely and quitely.
+
+## `axecute()`
+`axecute()` enables the command line submission of a program. A log is 
+set-up around the program, and its code is run safely and quietly.
 ```{r axecute, eval = FALSE}
 axecute("my_script.R")
 ```
 
-# Generating a log using ```log_*()``` functions
-Use the ```log_*()``` functions:
 
-* ```log_init()``` to create the environment timber.log
+## `log_*()` functions
+Use the `log_*()` functions:
 
-* ```log_config()``` to add the core elements of the log to the environment, and 
+* `log_init()` to create the environment timber.log
+
+* `log_config()` to add the core elements of the log to the environment, and 
  basic elements that are available at the time of configuration
 
-* ```run_safely_n_quietly()``` to execute the program code, and capture errors 
+* `run_safely_n_quietly()` to execute the program code, and capture errors 
 and warnings
 
-* ```log_write()``` to generate and format the log
+* `log_write()` to generate and format the log
 ```{r log_*, eval = FALSE}
 log_config("my_script.R")
 run_safely_n_quietly("my_script.R")
