@@ -73,7 +73,7 @@ log_config <- function(file = NA){
    # User
    set_log_element("user", Sys.info()[["user"]])
    # Start time
-   set_log_element("start_time", Sys.time())
+   set_log_element("start_time", strftime(Sys.time(), usetz = TRUE))
 }
 
 #' Cleans up log and does checks against elements
@@ -122,9 +122,14 @@ log_cleanup <- function() {
 #'
 log_write <- function(){
    # Set end time and run time
-   set_log_element("end_time", Sys.time())
+   set_log_element("end_time", strftime(Sys.time(), usetz = TRUE))
    set_log_element("run_time",
-                   get_log_element("end_time") - get_log_element("start_time"))
+                   paste0(as.numeric(
+                      difftime(
+                         as.POSIXct(get_log_element("end_time")),
+                         as.POSIXct(get_log_element("start_time")),
+                         units = "secs")),
+                      " seconds"))
 
    # Set log name and path
    set_log_name_path()
@@ -160,19 +165,19 @@ log_write <- function(){
 
 
    cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_element("start_time", "Start time: "))
-   cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_element("end_time", "End time: "))
-   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_log_header("Program Run Time Information"),
+                        write_log_element("start_time", "Start time: "),
+                        write_log_element("end_time", "End time: "),
                         write_log_element("run_time", "Run time: "))
    cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_element("warnings", "Warnings: "))
+                        write_log_header("Errors and Warnings"),
+                        write_errors())
    cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_element("errors", "Errors: "))
+                        write_warnings())
 
    cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_element("log_name", "Log name: "))
-   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_log_header("Log Output File"),
+                        write_log_element("log_name", "Log name: "),
                         write_log_element("log_path", "Log path: "))
 
    writeLines(cleaned_log_vec,

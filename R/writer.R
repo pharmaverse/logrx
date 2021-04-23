@@ -89,3 +89,33 @@ write_log_header <- function(title_string){
    # return the formatted vector
    return(head_vec)
 }
+
+#' Format errors attribute for writing
+#'
+#' @return A formatted vector of errors
+#' @export
+#'
+#' @examples
+#' write_errors()
+#'
+write_errors <- function() {
+   errors <- get_log_element("errors")
+
+   paste0("errors:\n\t",
+          capture.output(errors))
+}
+
+#' Format warnings attribute for writing
+#'
+#' @return A formatted vector of warnings
+#' @export
+#'
+#' @examples
+#' write_warnings()
+#'
+write_warnings <- function() {
+   warnings <- get_log_element("warnings")
+
+   paste0("Warnings:\n\t",
+          paste0(warnings, collapse = "\n\t"))
+}
