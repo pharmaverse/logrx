@@ -48,7 +48,7 @@ The log can be generated according in two ways:
 
 ## `axecute()`
 `axecute()` enables the command line submission of a program. A log is 
-set-up around the program, and its code is run safely and quietly (using `safely()` and `quietly` from the `purrr` package).
+set-up around the program, and its code is run safely and quietly (using `safely()` and `quietly()` from the `purrr` package).
 ```{r axecute, eval = FALSE}
 axecute("my_script.R")
 ```
@@ -73,13 +73,13 @@ log_write()
 ```
 
 # Scripting with ```timber```
-While ```timber``` is built around creating a log for a program it can just as easily be used when running an entire set of programs.  The `axecute()` function has been built with both single file execution and scripted file execution in mind.  With the use of simple functions such as `lapply()` scripting is simple.  Below is some sample code of how `lapply()` can be used with `axecute()`.
+While ```timber``` is built around creating a log for a program it can just as easily be used when running an entire set of programs.  The `axecute()` function has been built with both single file execution and scripted file execution in mind.  With the use of simple functions such as `lapply()` scripting is easy.  Below is some sample code of how `lapply()` can be used with `axecute()`.
 
 ```{r scripting, eval = FALSE}
 lapply(c("file.R", "otherfile.R"), axecute)
 ```
 
-If your scripting needs to work on the contents of a directory instead of a pre-defined list functions such as `list.files` can be used to obtain a list of files to use.  Below is an example of how this can be applied in practice by getting all files ending in '.R' in the current working directory using a regular expression, and then using `lapply()` to run the files using `axecute()`
+If your scripting needs to work on the contents of a directory instead of a pre-defined list, functions such as `list.files` can be used to obtain a list of files to use.  Below is an example of how this can be applied in practice by getting all files ending in '.R' in the current working directory using a regular expression, and then using `lapply()` to run the files using `axecute()`.
 
 ```{r scripting-dir, eval = FALSE}
 r_script_list <- list.files(path = ".", pattern = "\\.R$")
