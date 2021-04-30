@@ -47,7 +47,7 @@ get_file_path <- function(file = NA, normalize = TRUE){
       # If not, go further
       if (is.null(ofile)){
          # Interactively you can't be sure of location
-         if (FALSE) {
+         if (interactive()) {
             ofile <- NA
          } else {
             # If run in batch, use command line arguments
