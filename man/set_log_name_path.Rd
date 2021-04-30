@@ -27,7 +27,3 @@ Set the log name and path:
 \item As timber_log.log and . if none of the above are specified
 }
 }
-\examples{
-set_log_name_path()
-
-}

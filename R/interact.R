@@ -8,10 +8,6 @@
 #' @return Nothing
 #' @export
 #'
-#' @examples
-#' log_config()
-#' set_log_element("user", Sys.info()[["user"]])
-#'
 set_log_element <- function(el_key, el_value){
    # check if key is currently in the timber.log environment
    if (!(el_key %in% names(getOption('timber.log')))) {
@@ -34,9 +30,6 @@ set_log_element <- function(el_key, el_value){
 #'
 #' @return Value of corresponding element from timber.log environment
 #' @export
-#'
-#' @examples
-#' get_log_element("user")
 #'
 get_log_element <- function(el_key){
    if (!(el_key %in% names(getOption('timber.log')))) {
@@ -61,9 +54,6 @@ get_log_element <- function(el_key){
 #'
 #' @return Nothing
 #' @export
-#'
-#' @examples
-#' set_log_name_path()
 #'
 set_log_name_path <- function(log_name = NA, log_path = NA) {
    # If log_name was previously assigned, generate warning

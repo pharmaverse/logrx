@@ -17,8 +17,3 @@ Nothing
 \description{
 Adds values to existing named elements in the timber.log environment
 }
-\examples{
-log_config()
-set_log_element("user", Sys.info()[["user"]])
-
-}

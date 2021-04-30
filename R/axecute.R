@@ -10,8 +10,14 @@
 #' @export
 #'
 #' @examples
-#' log_init("script.R")
-#' log_init("script.R", log_name = "log_out", log_path = "./logs")
+#'
+#' scriptPath <- tempfile()
+#' logDir <- tempdir()
+#'
+#' writeLines("print('hello timber')", con = scriptPath)
+#'
+#' axecute(scriptPath)
+#' axecute(scriptPath, log_name = "log_out", log_path = logDir)
 #'
 axecute <- function(file, log_name = NA, log_path = NA){
    # initialize log

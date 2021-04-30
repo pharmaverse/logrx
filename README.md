@@ -1,3 +1,63 @@
-# timber
 
-An R package to facilitate the logging of R programs in a clinical environment.
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# timber <img src="man/figures/logo.png" align="right" alt="" width="120" />
+
+<!-- badges: start -->
+
+[<img src="https://img.shields.io/badge/Slack-OSTCR-blue?style=flat&logo=slack">](https://ostinclinicalresearch.slack.com)
+[<img src="https://img.shields.io/badge/Slack-RValidationHub-blue?style=flat&logo=slack">](https://RValidationHub.slack.com)
+[![R build
+status](https://github.com/atorus-research/timber/workflows/R-CMD-check/badge.svg)](https://github.com/atorus-research/timber/actions?workflow=R-CMD-check)
+[<img src="https://img.shields.io/codecov/c/github/atorus-research/timber">](https://codecov.io/gh/atorus-research/tplyr)
+[<img src="https://img.shields.io/badge/License-MIT-blue.svg">](https://github.com/atorus-research/timber/blob/master/LICENSE.md)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental-1)
+<!-- badges: end -->
+
+The goal of timber is to …
+
+## Installation
+
+You can install the released version of timber from
+[CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("timber")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+``` r
+library(timber)
+## basic example code
+```
+
+What is special about using `README.Rmd` instead of just `README.md`?
+You can include R chunks like so:
+
+``` r
+summary(cars)
+#>      speed           dist       
+#>  Min.   : 4.0   Min.   :  2.00  
+#>  1st Qu.:12.0   1st Qu.: 26.00  
+#>  Median :15.0   Median : 36.00  
+#>  Mean   :15.4   Mean   : 42.98  
+#>  3rd Qu.:19.0   3rd Qu.: 56.00  
+#>  Max.   :25.0   Max.   :120.00
+```
+
+You’ll still need to render `README.Rmd` regularly, to keep `README.md`
+up-to-date. `devtools::build_readme()` is handy for this. You could also
+use GitHub Actions to re-render `README.Rmd` every time you push. An
+example workflow can be found here:
+<https://github.com/r-lib/actions/tree/master/examples>.
+
+You can also embed plots, for example:
+
+<img src="man/figures/pressure-1.png" width="100%" />
+
+In that case, don’t forget to commit and push the resulting figure
+files, so they display on GitHub and CRAN.

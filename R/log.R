@@ -5,8 +5,16 @@
 #' @return Nothing
 #' @export
 #'
+#' @rdname log_helpers
+#'
 #' @examples
+#' log_remove()
+#'
 #' log_init()
+#'
+#' log_config()
+#'
+#' log_cleanup()
 #'
 log_init <- function(){
    timber.log <- new.env()
@@ -24,9 +32,7 @@ log_init <- function(){
 #' @return Nothing
 #' @export
 #'
-#' @examples
-#' log_config()
-#'
+#' @rdname log_helpers
 log_config <- function(file = NA){
    # If the timber.log environment is not NULL or empty, warn the user
    if (!is.null(getOption("timber.log"))) {
@@ -81,9 +87,7 @@ log_config <- function(file = NA){
 #' @return List of non-NA elements and their value in timber.log environment
 #' @export
 #'
-#' @examples
-#' log_cleanup()
-#'
+#' @rdname log_helpers
 log_cleanup <- function() {
    # check the timber.log environment exists
    if (!('timber.log' %in% names(options()))) {
@@ -111,15 +115,10 @@ log_cleanup <- function() {
 
 #' Write the formatted timber.log to a file
 #'
-#' @param log_name Log file name
-#' @param log_path Log file path
-#'
 #' @return Nothing
 #' @export
 #'
-#' @examples
-#' log_write()
-#'
+#' @rdname log_helpers
 log_write <- function(){
    # Set end time and run time
    set_log_element("end_time", strftime(Sys.time(), usetz = TRUE))
@@ -193,9 +192,7 @@ log_write <- function(){
 #' @return Nothing
 #' @export
 #'
-#' @examples
-#' log_remove()
-#'
+#' @rdname log_helpers
 log_remove <- function() {
    if (!is.null(getOption("timber.log"))) {
       options("timber.log" = NULL)

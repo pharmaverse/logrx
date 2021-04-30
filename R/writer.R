@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-#' write_log_element(user, "user running program: ")
+#' write_log_element("user", "user running program: ")
 #'
 write_log_element <- function(el_key, prefix) {
    # get element from log
@@ -94,6 +94,8 @@ write_log_header <- function(title_string){
 #'
 #' @return A formatted vector of errors
 #' @export
+#'
+#' @importFrom utils capture.output
 #'
 #' @examples
 #' write_errors()
