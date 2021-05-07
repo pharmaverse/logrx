@@ -98,6 +98,14 @@ write_log_header <- function(title_string){
 #' @importFrom utils capture.output
 #'
 #' @examples
+#' scriptPath <- tempfile()
+#' logDir <- tempdir()
+#' writeLines("print('hello timber')", con = scriptPath)
+#'
+#' log_remove()
+#'
+#' log_config(scriptPath)
+#'
 #' write_errors()
 #'
 write_errors <- function() {
@@ -113,6 +121,14 @@ write_errors <- function() {
 #' @export
 #'
 #' @examples
+#' scriptPath <- tempfile()
+#' logDir <- tempdir()
+#' writeLines("print('hello timber')", con = scriptPath)
+#'
+#' log_remove()
+#'
+#' log_config(scriptPath)
+#'
 #' write_warnings()
 #'
 write_warnings <- function() {

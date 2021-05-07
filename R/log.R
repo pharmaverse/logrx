@@ -5,16 +5,20 @@
 #' @return Nothing
 #' @export
 #'
-#' @rdname log_helpers
-#'
 #' @examples
+#' scriptPath <- tempfile()
+#' logDir <- tempdir()
+#' writeLines("print('hello timber')", con = scriptPath)
+#'
 #' log_remove()
 #'
 #' log_init()
 #'
-#' log_config()
+#' log_config(scriptPath)
 #'
 #' log_cleanup()
+#'
+#' log_write()
 #'
 log_init <- function(){
    timber.log <- new.env()
@@ -32,7 +36,21 @@ log_init <- function(){
 #' @return Nothing
 #' @export
 #'
-#' @rdname log_helpers
+#' @examples
+#' scriptPath <- tempfile()
+#' logDir <- tempdir()
+#' writeLines("print('hello timber')", con = scriptPath)
+#'
+#' log_remove()
+#'
+#' log_init()
+#'
+#' log_config(scriptPath)
+#'
+#' log_cleanup()
+#'
+#' log_write()
+#'
 log_config <- function(file = NA){
    # If the timber.log environment is not NULL or empty, warn the user
    if (!is.null(getOption("timber.log"))) {
@@ -87,7 +105,21 @@ log_config <- function(file = NA){
 #' @return List of non-NA elements and their value in timber.log environment
 #' @export
 #'
-#' @rdname log_helpers
+#' @examples
+#' scriptPath <- tempfile()
+#' logDir <- tempdir()
+#' writeLines("print('hello timber')", con = scriptPath)
+#'
+#' log_remove()
+#'
+#' log_init()
+#'
+#' log_config(scriptPath)
+#'
+#' log_cleanup()
+#'
+#' log_write()
+#'
 log_cleanup <- function() {
    # check the timber.log environment exists
    if (!('timber.log' %in% names(options()))) {
@@ -118,7 +150,21 @@ log_cleanup <- function() {
 #' @return Nothing
 #' @export
 #'
-#' @rdname log_helpers
+#' @examples
+#' scriptPath <- tempfile()
+#' logDir <- tempdir()
+#' writeLines("print('hello timber')", con = scriptPath)
+#'
+#' log_remove()
+#'
+#' log_init()
+#'
+#' log_config(scriptPath)
+#'
+#' log_cleanup()
+#'
+#' log_write()
+#'
 log_write <- function(){
    # Set end time and run time
    set_log_element("end_time", strftime(Sys.time(), usetz = TRUE))
@@ -192,7 +238,21 @@ log_write <- function(){
 #' @return Nothing
 #' @export
 #'
-#' @rdname log_helpers
+#' @examples
+#' scriptPath <- tempfile()
+#' logDir <- tempdir()
+#' writeLines("print('hello timber')", con = scriptPath)
+#'
+#' log_remove()
+#'
+#' log_init()
+#'
+#' log_config(scriptPath)
+#'
+#' log_cleanup()
+#'
+#' log_write()
+#'
 log_remove <- function() {
    if (!is.null(getOption("timber.log"))) {
       options("timber.log" = NULL)
