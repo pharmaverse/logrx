@@ -6,11 +6,6 @@
 \usage{
 log_write()
 }
-\arguments{
-\item{log_name}{Log file name}
-
-\item{log_path}{Log file path}
-}
 \value{
 Nothing
 }
@@ -18,6 +13,18 @@ Nothing
 Write the formatted timber.log to a file
 }
 \examples{
+scriptPath <- tempfile()
+logDir <- tempdir()
+writeLines("print('hello timber')", con = scriptPath)
+
+log_remove()
+
+log_init()
+
+log_config(scriptPath)
+
+log_cleanup()
+
 log_write()
 
 }

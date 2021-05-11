@@ -13,6 +13,18 @@ Nothing
 Initialises the timber.log environment
 }
 \examples{
+scriptPath <- tempfile()
+logDir <- tempdir()
+writeLines("print('hello timber')", con = scriptPath)
+
+log_remove()
+
 log_init()
+
+log_config(scriptPath)
+
+log_cleanup()
+
+log_write()
 
 }

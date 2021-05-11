@@ -18,6 +18,6 @@ formatted element including prefix
 Generic function to format timber.log elements for writing
 }
 \examples{
-write_log_element(user, "user running program: ")
+write_log_element("user", "user running program: ")
 
 }

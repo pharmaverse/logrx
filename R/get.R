@@ -6,6 +6,8 @@
 #' @return Named list of timber package metadata attributes
 #' @export
 #'
+#' @importFrom utils sessionInfo
+#'
 #' @examples
 #' get_timber_metadata()
 #'
@@ -59,7 +61,10 @@ get_file_path <- function(file = NA, normalize = TRUE){
    }
 
    # normalize the file path
-   if ((!is.null(ofile)) & (!is.na(ofile)) & normalize) {
+   if (length(ofile) > 0 &&
+       (!is.null(ofile)) &&
+       (!is.na(ofile)) &&
+       normalize) {
       ofile <- normalizePath(ofile)
    }
 
