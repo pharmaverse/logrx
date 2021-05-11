@@ -5,8 +5,6 @@
 
 <!-- badges: start -->
 
-[<img src="https://img.shields.io/badge/Slack-OSTCR-blue?style=flat&logo=slack">](https://ostinclinicalresearch.slack.com)
-[<img src="https://img.shields.io/badge/Slack-RValidationHub-blue?style=flat&logo=slack">](https://RValidationHub.slack.com)
 [![R build
 status](https://github.com/atorus-research/timber/workflows/R-CMD-check/badge.svg)](https://github.com/atorus-research/timber/actions?workflow=R-CMD-check)
 [<img src="https://img.shields.io/codecov/c/github/atorus-research/timber">](https://codecov.io/gh/atorus-research/tplyr)
@@ -15,49 +13,54 @@ status](https://github.com/atorus-research/timber/workflows/R-CMD-check/badge.sv
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental-1)
 <!-- badges: end -->
 
-The goal of timber is to …
+The goal of timber is to facilitate logging in a clinical environment
+with the goal of making code easily traceable and reproducible.
 
 ## Installation
 
-You can install the released version of timber from
-[CRAN](https://CRAN.R-project.org) with:
+This package is still in development and currently is only available
+from GitHub. To install the development version run the following:
 
 ``` r
-install.packages("timber")
+# devtools::install_github("atorus-research/timber")
 ```
 
-## Example
+## What is `timber`?
 
-This is a basic example which shows you how to solve a common problem:
+While many packages to facilitate the logging of code already exist in
+the R ecosystem, it is hard to find a solution that works well for
+clinical programming applications. Many logging implementations are more
+implicit and rely on user input to create the log for the execution of a
+script. While this is useful for logging specific events of an
+application, in clinical programming a log has a set purpose.
 
-``` r
-library(timber)
-## basic example code
-```
+`timber` is built around the concept of creating a log for the execution
+of an R script that provides an overview of what happened as well as the
+environment that it happened in. We set out to create a flexible logging
+utility that could provide the necessary information to anyone reviewing
+the code execution so they can recreate the execution environment and
+run the code for themselves. `timber` is purpose-built for the needs of
+clinical programming to capture necessary elements of the environment
+and execution to be able to create a complete view of the program
+execution.
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+## Using timber
 
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
+`timber` can be used in a file or through scripting. More information on
+how to use `timber` can be found in `vignette("timber")`
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/master/examples>.
+## Future development
 
-You can also embed plots, for example:
+While this development version has been released, the development team
+is still making improvements to the package. This release is intended to
+give access to the core functionality of `timber` while it is still
+being developed. While the main functions and functionality have already
+been created, there are still many behind the scenes items that need to
+be addressed.
 
-<img src="man/figures/pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+The main item we still need to address is unit testing. While functional
+testing has been done during development, the package still lacks unit
+tests. We believe that the functions will work as intended currently, we
+will be adding unit tests in an upcoming release. We intend to not
+change the function names or functionality during this development so
+that anyone using the package can continue using it even after updates.

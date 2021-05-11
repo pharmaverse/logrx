@@ -4,19 +4,22 @@ template:
   params:
     bootswatch: yeti
 
-
 reference:
-   - title: Source a with Logging
+   - title: Source a file with Logging
      desc: Functionality for Creating logs from Scripts
    - contents:
       - axecute
       - run_safely_n_quietly
+   - title: Logging Framework Functions
+     desc: Functionality to Build The Log Manually
+   - contents:
+      - starts_with("log")
+   - title: Logging Helper Functions
+     desc: Functionality to Interact With The Log Object(s)
+   - contents:
+      - starts_with("get")
+      - starts_with("set")
    - title: Write Log
      desc: Functionality for Writing Logs to a File
    - contents:
       - starts_with("write")
-   - title: Logging Helper Functions
-   - contents:
-      - starts_with("get")
-      - starts_with("set")
-      - starts_with("log")
