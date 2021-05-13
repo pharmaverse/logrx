@@ -12,19 +12,3 @@ List of non-NA elements and their value in timber.log environment
 \description{
 Cleans up log and does checks against elements
 }
-\examples{
-scriptPath <- tempfile()
-logDir <- tempdir()
-writeLines("print('hello timber')", con = scriptPath)
-
-log_remove()
-
-log_init()
-
-log_config(scriptPath)
-
-log_cleanup()
-
-log_write()
-
-}
