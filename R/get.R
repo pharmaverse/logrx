@@ -94,20 +94,20 @@ get_session_info <- function(){
 #' get_masked_functions()
 #'
 get_masked_functions <- function(){
-   conflicts = conflicts(detail = TRUE)
+   conflicts <- conflicts(detail = TRUE)
 
-   conflict_list = list()
+   conflict_list <- list()
 
    for (i in 1:length(conflicts)){
-      pkg = names(conflicts)[[i]]
+      pkg <- names(conflicts)[[i]]
       for (j in 1:length(conflicts[[i]])){
          funct <- conflicts[[i]][j]
          if (funct %in% names(conflict_list)){
             if (!(pkg %in% conflict_list[[funct]]$masks | conflict_list[[funct]]$source == pkg)) {
-               conflict_list[[funct]]$masks = append(conflict_list[[funct]]$masks, pkg)
+               conflict_list[[funct]]$masks <- append(conflict_list[[funct]]$masks, pkg)
             }
          }else{
-            conflict_list[[funct]] = list("source" = pkg, "masks" = c())
+            conflict_list[[funct]] <- list("source" = pkg, "masks" = c())
          }
       }
    }
