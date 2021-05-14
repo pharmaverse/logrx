@@ -22,7 +22,7 @@ This package is still in development and currently is only available
 from GitHub. To install the development version run the following:
 
 ``` r
-# devtools::install_github("atorus-research/timber")
+devtools::install_github("atorus-research/timber")
 ```
 
 ## What is `timber`?

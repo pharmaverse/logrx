@@ -15,7 +15,9 @@ Authors@R:
     person(given = "Michael",
            family = "Rimler",
            email = "michael.s.rimler@gsk.com",
-           role = "aut")
+           role = "aut"),
+    person(given = "GSK/Atorus JPT",
+           role = c("cph", "fnd"))
     )
 Description: A package to facilitate the logging and review of R programs in a clinical environment.
 License: MIT + file LICENSE
