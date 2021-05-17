@@ -12,7 +12,3 @@ Nothing
 \description{
 Initialises the timber.log environment
 }
-\examples{
-log_init()
-
-}

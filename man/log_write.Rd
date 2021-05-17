@@ -6,18 +6,9 @@
 \usage{
 log_write()
 }
-\arguments{
-\item{log_name}{Log file name}
-
-\item{log_path}{Log file path}
-}
 \value{
 Nothing
 }
 \description{
 Write the formatted timber.log to a file
-}
-\examples{
-log_write()
-
 }

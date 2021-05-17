@@ -12,7 +12,3 @@ Nothing
 \description{
 Remove the timber.log environment by setting options("timber.log") to NULL
 }
-\examples{
-log_remove()
-
-}

@@ -15,7 +15,3 @@ Nothing
 \description{
 Configures the timber.log environment
 }
-\examples{
-log_config()
-
-}

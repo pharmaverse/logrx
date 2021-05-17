@@ -12,7 +12,3 @@ List of non-NA elements and their value in timber.log environment
 \description{
 Cleans up log and does checks against elements
 }
-\examples{
-log_cleanup()
-
-}

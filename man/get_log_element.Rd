@@ -15,7 +15,3 @@ Value of corresponding element from timber.log environment
 \description{
 Gets the value of a named element in the timber.log environment
 }
-\examples{
-get_log_element("user")
-
-}
