@@ -33,4 +33,4 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown
-VignetteBuilder: knitr
+VignetteBuilder: knitr, rmarkdown
