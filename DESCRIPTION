@@ -31,6 +31,8 @@ Imports:
     purrr,
     stringr
 Suggests: 
+    testthat (>= 3.0.0),
     knitr,
     rmarkdown
 VignetteBuilder: knitr, rmarkdown
+Config/testthat/edition: 3
