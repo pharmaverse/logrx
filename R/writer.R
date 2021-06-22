@@ -11,7 +11,7 @@
 #' @examples
 #' write_log_element("user", "user running program: ")
 #'
-write_log_element <- function(el_key, prefix) {
+write_log_element <- function(el_key, prefix = NULL) {
    # get element from log
    el <- get_log_element(el_key)
 

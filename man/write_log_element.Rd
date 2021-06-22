@@ -4,7 +4,7 @@
 \alias{write_log_element}
 \title{Generic function to format timber.log elements for writing}
 \usage{
-write_log_element(el_key, prefix)
+write_log_element(el_key, prefix = NULL)
 }
 \arguments{
 \item{el_key}{the key of the element in timber.log to be fetched}
