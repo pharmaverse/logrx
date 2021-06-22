@@ -21,12 +21,7 @@
 #'
 axecute <- function(file, log_name = NA, log_path = NA){
    # initialize log
-   log_config(file)
-
-   # set log_name and log_path if passed in
-   if (!is.na(log_name) | !is.na(log_path)){
-      set_log_name_path(log_name, log_path)
-   }
+   log_config(file = file, log_name = log_name, log_path = log_path)
 
    # run the code
    run_safely_n_quietly(file)

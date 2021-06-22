@@ -18,11 +18,13 @@ log_init <- function(){
 #' Configures the timber.log environment
 #'
 #' @param file File path of file being run, optional
+#' @param log_name The log name
+#' @param log_path The log path
 #'
 #' @return Nothing
 #' @export
 #'
-log_config <- function(file = NA){
+log_config <- function(file = NA, log_name = NA, log_path = NA){
    # If the timber.log environment is not NULL or empty, warn the user
    if (!is.null(getOption("timber.log"))) {
       if (!(identical(ls(getOption("timber.log")), character(0)))) {
@@ -69,6 +71,8 @@ log_config <- function(file = NA){
    set_log_element("user", Sys.info()[["user"]])
    # Start time
    set_log_element("start_time", strftime(Sys.time(), usetz = TRUE))
+   # log name and path
+   set_log_name_path(log_name, log_path)
 }
 
 #' Cleans up log and does checks against elements
@@ -116,9 +120,6 @@ log_write <- function(){
                          as.POSIXct(get_log_element("start_time")),
                          units = "secs")),
                       " seconds"))
-
-   # Set log name and path
-   set_log_name_path()
 
    cleaned_log <- log_cleanup()
    cleaned_log_vec <- c()
