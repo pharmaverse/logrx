@@ -166,6 +166,8 @@ log_write <- function(){
                         write_log_element("log_name", "Log name: "),
                         write_log_element("log_path", "Log path: "))
 
+   print(cleaned_log_vec)
+
    writeLines(cleaned_log_vec,
               con = file.path(get_log_element("log_path"),
                               get_log_element("log_name")))

@@ -95,6 +95,7 @@ get_session_info <- function(){
 #' @importFrom purrr imap
 #' @importFrom purrr map
 #' @importFrom purrr set_names
+#' @importFrom magrittr "%>%"
 #'
 #' @examples
 #' get_masked_functions()
@@ -106,7 +107,7 @@ get_masked_functions <- function(){
    items <- unname(unlist(imap(conf, ~ rep(.y, length(.x))))) %>%
       # Flatten the list of the function names and set them
       # as the names of the vector of packages
-      setNames(unname(unlist(conf)))
+      set_names(unname(unlist(conf)))
    # get keys for mapping
    keys <- unique(names(items))
    # map items to list with names corresponding to keys

@@ -55,10 +55,10 @@ write_metadata <- function(){
 write_masked_functions <- function(){
    masked_functions_list <- get_log_element("masked_functions")
 
-   masked_functions <- imap(masked_functions_list, ~
-                               paste0("function `", .y,
-                                      "` from {", paste(.x$masks, collapse = ", "),
-                                      "} by ", .x$source))
+   masked_functions <- imap(masked_functions_list, ~ paste0("function `", .y,
+      "` from {", paste(.x$masks, collapse = ", "), "} by ", .x$source)) %>%
+      unname() %>%
+      unlist()
 
 
    return(masked_functions)
