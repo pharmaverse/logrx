@@ -110,7 +110,7 @@ log_cleanup <- function() {
 #' @return Nothing
 #' @export
 #'
-log_write <- function(){
+log_write <- function(remove_log_object = TRUE){
    # Set end time and run time
    set_log_element("end_time", strftime(Sys.time(), usetz = TRUE))
    set_log_element("run_time",
@@ -170,8 +170,9 @@ log_write <- function(){
    writeLines(cleaned_log_vec,
               con = file.path(get_log_element("log_path"),
                               get_log_element("log_name")))
-
-   log_remove()
+   if (remove_log_object) {
+      log_remove()
+   }
 }
 
 
