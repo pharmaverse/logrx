@@ -1,30 +1,4 @@
 test_that("set_log_element works", {
-   # scriptPath <- tempfile()
-   # logDir <- tempdir()
-   #
-   # writeLines("print('hello timber')", con = scriptPath)
-   #
-   # log_config(file = scriptPath)
-   #
-   # # Adding a value to the timber object works
-   # testthat::expect_identical(getOption("timber.log")[["user"]],
-   #                            Sys.info()[["user"]])
-   #
-   # # Adding a list to the timber object works
-   # session_info <- sessionInfo()
-   #
-   # timber_metadata <- list(
-   #    info = paste0("This log was generated using timber ",
-   #                  session_info[["otherPkgs"]][["timber"]][["Version"]]),
-   #    version = session_info[["otherPkgs"]][["timber"]][["Version"]],
-   #    license = session_info[["otherPkgs"]][["timber"]][["License"]],
-   #    built = session_info[["otherPkgs"]][["timber"]][["Built"]],
-   #    repository_link = NULL
-   # )
-   #
-   # testthat::expect_identical(getOption("timber.log")[["metadata"]],
-   #                            timber_metadata)
-
    log_init()
 
    # list of attributes to add to the log
@@ -47,6 +21,8 @@ test_that("set_log_element works", {
 
    testthat::expect_identical(getOption("timber.log")[["list"]],
                               l)
+
+   log_remove()
 })
 
 test_that("get_log_element works", {
@@ -72,6 +48,8 @@ test_that("get_log_element works", {
 
    testthat::expect_identical(get_log_element("list"),
                               l)
+
+   log_remove()
 })
 
 test_that("setting log name works", {
@@ -95,6 +73,8 @@ test_that("setting log name works", {
    testthat::expect_identical(getOption("timber.log")[["log_name"]],
                               log_name)
    testthat::expect_warning(set_log_name_path(log_name = "test_log_name2"))
+
+   log_remove()
 })
 
 test_that("setting path name works", {
@@ -118,4 +98,23 @@ test_that("setting path name works", {
    testthat::expect_identical(getOption("timber.log")[["log_path"]],
                               log_path)
    testthat::expect_warning(set_log_name_path(log_path = "."))
+
+   log_remove()
+})
+
+test_that("run_safely_n_quietly works", {
+   scriptPath <- tempfile()
+   logDir <- tempdir()
+
+   writeLines("log(-1)
+              log(a)", con = scriptPath)
+
+   log_config(file = scriptPath)
+
+   run_safely_n_quietly(scriptPath)
+
+   testthat::expect_true(!is.null(getOption("timber.log")[["warnings"]]))
+   testthat::expect_true(!is.null(getOption("timber.log")[["errors"]]))
+
+   log_remove()
 })
