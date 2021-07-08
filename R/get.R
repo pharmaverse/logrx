@@ -20,7 +20,7 @@ get_timber_metadata <- function(){
       version = session_info[["otherPkgs"]][["timber"]][["Version"]],
       license = session_info[["otherPkgs"]][["timber"]][["License"]],
       built = session_info[["otherPkgs"]][["timber"]][["Built"]],
-      repository_link = NULL
+      repository_link = "https://github.com/atorus-research/timber"
    )
 
    return(timber_metadata)
@@ -77,6 +77,8 @@ get_file_path <- function(file = NA, normalize = TRUE){
 #' @return Formatted Session Info
 #' @export
 #'
+#' @importFrom utils sessionInfo
+#'
 #' @examples
 #' get_session_info()
 #'
@@ -90,27 +92,28 @@ get_session_info <- function(){
 #' @return Named list of masked functions, source package, and what they mask
 #' @export
 #'
+#' @importFrom purrr imap
+#' @importFrom purrr map
+#' @importFrom purrr set_names
+#' @importFrom magrittr "%>%"
+#'
 #' @examples
 #' get_masked_functions()
 #'
 get_masked_functions <- function(){
-   conflicts <- conflicts(detail = TRUE)
-
-   conflict_list <- list()
-
-   for (i in 1:length(conflicts)){
-      pkg <- names(conflicts)[[i]]
-      for (j in 1:length(conflicts[[i]])){
-         funct <- conflicts[[i]][j]
-         if (funct %in% names(conflict_list)){
-            if (!(pkg %in% conflict_list[[funct]]$masks | conflict_list[[funct]]$source == pkg)) {
-               conflict_list[[funct]]$masks <- append(conflict_list[[funct]]$masks, pkg)
-            }
-         }else{
-            conflict_list[[funct]] <- list("source" = pkg, "masks" = c())
-         }
-      }
-   }
+   # get conflicts into stable object
+   conf <- conflicts(detail = TRUE)
+   # Get the vector of package names into a vector
+   items <- unname(unlist(imap(conf, ~ rep(.y, length(.x))))) %>%
+      # Flatten the list of the function names and set them
+      # as the names of the vector of packages
+      set_names(unname(unlist(conf)))
+   # get keys for mapping
+   keys <- unique(names(items))
+   # map items to list with names corresponding to keys
+   conflict_list <- map(keys, ~ unique(unname(items[names(items) == .x]))) %>%
+      set_names(keys) %>%
+      map(~ list("source" = .x[1], "masks" = .x[2:length(.x)]))
 
    return(conflict_list)
 }
