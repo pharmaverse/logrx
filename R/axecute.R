@@ -5,6 +5,7 @@
 #' @param file File path of file to run
 #' @param log_name Name of log file
 #' @param log_path Path to output log to
+#' @param remove_log_object Should the log object be removed after writing, defaults to TRUE
 #'
 #' @return Nothing
 #' @export

@@ -4,7 +4,10 @@
 \alias{log_write}
 \title{Write the formatted timber.log to a file}
 \usage{
-log_write()
+log_write(remove_log_object = TRUE)
+}
+\arguments{
+\item{remove_log_object}{Should the log object be removed after writing, defaults to TRUE}
 }
 \value{
 Nothing

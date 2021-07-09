@@ -107,6 +107,8 @@ log_cleanup <- function() {
 
 #' Write the formatted timber.log to a file
 #'
+#' @param remove_log_object Should the log object be removed after writing, defaults to TRUE
+#'
 #' @return Nothing
 #' @export
 #'
