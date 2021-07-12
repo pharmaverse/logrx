@@ -4,7 +4,7 @@
 \alias{axecute}
 \title{Create a log and run a file}
 \usage{
-axecute(file, log_name = NA, log_path = NA)
+axecute(file, log_name = NA, log_path = NA, remove_log_object = TRUE)
 }
 \arguments{
 \item{file}{File path of file to run}
@@ -12,6 +12,8 @@ axecute(file, log_name = NA, log_path = NA)
 \item{log_name}{Name of log file}
 
 \item{log_path}{Path to output log to}
+
+\item{remove_log_object}{Should the log object be removed after writing, defaults to TRUE}
 }
 \value{
 Nothing
