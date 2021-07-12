@@ -57,10 +57,3 @@ give access to the core functionality of `timber` while it is still
 being developed. While the main functions and functionality have already
 been created, there are still many behind the scenes items that need to
 be addressed.
-
-The main item we still need to address is unit testing. While functional
-testing has been done during development, the package still lacks unit
-tests. We believe that the functions will work as intended currently, we
-will be adding unit tests in an upcoming release. We intend to not
-change the function names or functionality during this development so
-that anyone using the package can continue using it even after updates.
