@@ -11,7 +11,7 @@
 #' @examples
 #' write_log_element("user", "user running program: ")
 #'
-write_log_element <- function(el_key, prefix) {
+write_log_element <- function(el_key, prefix = NULL) {
    # get element from log
    el <- get_log_element(el_key)
 
@@ -47,22 +47,18 @@ write_metadata <- function(){
 #' @return A formatted vector of masked functions
 #' @export
 #'
+#' @importFrom purrr imap
+#'
 #' @examples
 #' write_masked_functions()
 #'
 write_masked_functions <- function(){
    masked_functions_list <- get_log_element("masked_functions")
 
-   masked_functions <- c()
-
-   for (i in 1:length(masked_functions_list)){
-      name <- names(masked_functions_list)[[i]]
-      source <- masked_functions_list[[i]]$source
-      masks <- masked_functions_list[[i]]$masks
-      fmask <- paste(masks, collapse = ", ")
-      fmtd <- paste0("function `", name, "` from {", fmask, "} by ", source)
-      masked_functions <- append(masked_functions, fmtd)
-   }
+   masked_functions <- imap(masked_functions_list, ~ paste0("function `", .y,
+      "` from {", paste(.x$masks, collapse = ", "), "} by ", .x$source)) %>%
+      unname() %>%
+      unlist()
 
 
    return(masked_functions)

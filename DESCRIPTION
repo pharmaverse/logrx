@@ -1,6 +1,6 @@
 Package: timber
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: A Logging Utility Focus on Clinical Trial Programming Workflows
+Version: 0.0.0.9001
 Authors@R: 
     c(
     person(given = "Thomas",
@@ -19,7 +19,7 @@ Authors@R:
     person(given = "GSK/Atorus JPT",
            role = c("cph", "fnd"))
     )
-Description: A package to facilitate the logging and review of R programs in a clinical environment.
+Description: A package to facilitate the logging and review of R programs in clinical trial programming workflows.
 License: MIT + file LICENSE
 URL: https://github.com/atorus-research/timber
 BugReports: https://github.com/atorus-research/timber/issues
@@ -28,9 +28,12 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports:
+    magrittr,
     purrr,
     stringr
 Suggests: 
+    testthat (>= 3.0.0),
     knitr,
     rmarkdown
 VignetteBuilder: knitr, rmarkdown
+Config/testthat/edition: 3
