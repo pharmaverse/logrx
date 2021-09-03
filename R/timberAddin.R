@@ -60,7 +60,7 @@ timberAddin <- function() {
             shiny::column(3,
                           shiny::actionButton("log_name", "Log Name")),
             shiny::column(width=8,
-                          shiny::textInput("log_nameTx", label=NULL, value = NULL,
+                          shiny::textInput("log_nameTx", label=NULL, value = NA,
                                            width = '100%'))),
          # /Added, not checked
          #location of file to run
@@ -113,8 +113,8 @@ timberAddin <- function() {
          logInfo$location <- input$log_pathTx
       })
       # Added, not checked
-      shiny::observeEvent(input$log_name, {
-         logInfo$name <- input$log_name # Should a check be run on name validity?
+      shiny::observeEvent(input$log_nameTx, {
+         logInfo$name <- input$log_nameTx # Should a check be run on name validity?
          shiny::updateTextInput(session, "log_nameTx", value= logInfo$name)
       })
       #Updates the log location when the log location is manually edited
@@ -125,9 +125,9 @@ timberAddin <- function() {
       #Updates the file location when the button is clicked
       shiny::observeEvent(input$file, {
          if (is.null(logInfo$path)) {
-            logInfo$file <- rstudioapi::selectFile(filter = "(\\.R$|\\.r$|\\.Rmd$)")
+            logInfo$file <- rstudioapi::selectFile()
          } else {
-            logInfo$file <- rstudioapi::selectFile(path = logInfo$path, filter = "(\\.R$|\\.r$|\\.Rmd$)")
+            logInfo$file <- rstudioapi::selectFile(path = logInfo$path)
          }
          shiny::updateTextInput(session, "fileTx", value= logInfo$file)
       })
@@ -137,7 +137,10 @@ timberAddin <- function() {
       })
 
       shiny::observeEvent(input$run, {
-         # if (input$addUse) {
+
+
+
+            # if (input$addUse) {
          #    log_file <- basename(logInfo$file) %>%
          #       str_remove("(?<=\\.)\\w*$") %>%
          #       paste0("log")
@@ -147,9 +150,9 @@ timberAddin <- function() {
          #    doneCheck$data <- "Select a new file, if you wish to run more"
          # } else {
             log_file <- basename(logInfo$file) %>%
-               str_remove("(?<=\\.)\\w*$") %>%
+               stringr::str_remove("(?<=\\.)\\w*$") %>%
                paste0("log")
-            axecute(logInfo$file, logInfo$name, logInfo$location)
+            axecute(file = logInfo$file, log_name = logInfo$name)
             # create_log(logInfo$file, paste0(logInfo$location, "/", log_file),
             #            inc_messages = input$addMsg)
             doneCheck$data <- "Select a new file, if you wish to run more files"
