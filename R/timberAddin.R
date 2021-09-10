@@ -4,7 +4,7 @@
 #' @importFrom miniUI miniPage gadgetTitleBar miniContentPanel
 #' @importFrom shiny p textInput checkboxInput actionButton uiOutput reactiveValues observeEvent renderText stopApp runGadget conditionalPanel fluidRow column tags HTML
 #' @importFrom rstudioapi selectFile selectDirectory
-#' @importFrom stringr str_locate_all str_sub
+#' @importFrom stringr str_locate_all str_replace
 #' @export
 timberAddin <- function() {
    ui <- miniUI::miniPage(
@@ -60,7 +60,9 @@ timberAddin <- function() {
             shiny::column(3,
                           shiny::actionButton("log_name", "Log Name")),
             shiny::column(width=8,
-                          shiny::textInput("log_nameTx", label=NULL, value = NA,
+                          shiny::textInput("log_nameTx", label=NULL,
+                                           value = str_replace(basename(rstudioapi::getActiveDocumentContext()[["path"]]),
+                                                               ".R$", ".log"),
                                            width = '100%'))),
          # /Added, not checked
          #location of file to run
