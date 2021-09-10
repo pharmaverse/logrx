@@ -9,37 +9,7 @@
 timberAddin <- function() {
    ui <- miniUI::miniPage(
       #CSS sheet to color ui
-      shiny::tags$head(
-         shiny::tags$style(
-            shiny::HTML(".gadget-title {
-                        color:rgb(0,0,0);font-weight: bold;
-                        background-color:rgb(134,202,198);}
-
-                        .btn {
-                        color:rgb(0,0,0);
-                        text-align: left;
-                        background-color:rgb(255,255,255);
-                        }
-
-                        #run{
-                        background-color:rgb(213, 209, 206);
-                        color:rgb(0,0,0);
-                        }
-                        #run:focus{
-                        color:rgb(0,0,0);
-                        background-color:rgb(243, 102, 51);
-                        }
-
-                        .btn:hover{
-                        #border-color:rgb(0, 0, 0);
-                        background-color: rgb(243, 102, 51);
-                        color:   rgb(255,255,255);font-weight: bold;
-                        }
-                        .btn:focus{
-                        background-color:rgb(255, 179, 4);
-                        }
-
-                        "))),
+      shiny::includeCSS("inst/styles.css"),
       #Title for miniui
       miniUI::gadgetTitleBar("timber",
                              left = NULL,
