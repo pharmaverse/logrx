@@ -11,14 +11,13 @@ timberAddin <- function() {
       #CSS sheet to color ui
       shiny::tags$head(
          shiny::tags$style(
-            shiny::HTML(" .gadget-title {
-                        color:rgb(255,255,255);font-weight: bold;
-                        background-color:rgb(243, 102, 51);}
+            shiny::HTML(".gadget-title {
+                        color:rgb(0,0,0);font-weight: bold;
+                        background-color:rgb(134,202,198);}
 
                         .btn {
                         color:rgb(0,0,0);
                         text-align: left;
-                        #border-color:rgb(0, 0, 0);
                         background-color:rgb(255,255,255);
                         }
 
@@ -54,7 +53,6 @@ timberAddin <- function() {
             shiny::column(width=8,
                           shiny::textInput("log_pathTx", label=NULL, value = getwd(),
                                            width = '100%'))),
-         # Added, not checked
          # Log name
          shiny::fluidRow(
             shiny::column(3,
@@ -64,28 +62,24 @@ timberAddin <- function() {
                                            value = str_replace(basename(rstudioapi::getActiveDocumentContext()[["path"]]),
                                                                ".R$", ".log"),
                                            width = '100%'))),
-         # /Added, not checked
          #location of file to run
          shiny::fluidRow(
             shiny::column(3,
                           shiny::actionButton("file", "File to Run")),
             shiny::column(8,
                           shiny::textInput("fileTx", label=NULL,
-                                           value = rstudioapi::getActiveDocumentContext()[["path"]],
+                                           value = normalizePath(rstudioapi::getActiveDocumentContext()[["path"]]),
                                            width = '100%')
             )),
-         # #User name check box
-         # shiny::fluidRow(
-         #    shiny::column(
-         #       3,
-         #       shiny::checkboxInput("addUse", "Add Username into Log?", TRUE)
-         #    ),
-         #    shiny::column(3,
-         #                  shiny::checkboxInput("addMsg", "Include messages?", TRUE)
-         #    )
-         # ),
+         #User name check box
          shiny::fluidRow(
-            shiny::column(3, shiny::actionButton("run", "Run"))
+            shiny::column(
+               12,
+               shiny::checkboxInput("rmLog", "Remove the log object after axecution?", TRUE)
+            )
+         ),
+         shiny::fluidRow(
+            shiny::column(3, shiny::actionButton("axecute", "Axecute"))
          ),
          shiny::uiOutput("output")
       )
@@ -107,7 +101,7 @@ timberAddin <- function() {
 
       #Updates the log location when the button is clicked
       shiny::observeEvent(input$log_path, {
-         logInfo$location <- rstudioapi::selectDirectory()
+         logInfo$location <- normalizePath(rstudioapi::selectDirectory())
          shiny::updateTextInput(session, "log_pathTx", value= logInfo$location)
       })
       #Updates the log location when the log location is manually edited
@@ -123,42 +117,28 @@ timberAddin <- function() {
       shiny::observeEvent(input$log_pathTx, {
          logInfo$location <- input$log_pathTx
       })
-      # /Added, not checked
       #Updates the file location when the button is clicked
       shiny::observeEvent(input$file, {
          if (is.null(logInfo$path)) {
-            logInfo$file <- rstudioapi::selectFile()
+            logInfo$file <- normalizePath(rstudioapi::selectFile())
          } else {
-            logInfo$file <- rstudioapi::selectFile(path = logInfo$path)
+            logInfo$file <- normalizePath(rstudioapi::selectFile(path = logInfo$path))
          }
+         logInfo$name <- str_replace(basename(logInfo$file),".R$", ".log")
          shiny::updateTextInput(session, "fileTx", value= logInfo$file)
+         shiny::updateTextInput(session, "log_nameTx", value= logInfo$name)
       })
       #Updates the file location when manually edited
       shiny::observeEvent(input$fileTx, {
          logInfo$file <- input$fileTx
+         logInfo$name <- str_replace(basename(logInfo$file),".R$", ".log")
+         shiny::updateTextInput(session, "log_nameTx", value= logInfo$name)
       })
 
-      shiny::observeEvent(input$run, {
-
-
-
-            # if (input$addUse) {
-         #    log_file <- basename(logInfo$file) %>%
-         #       str_remove("(?<=\\.)\\w*$") %>%
-         #       paste0("log")
-         #    create_log(logInfo$file, paste0(logInfo$location, "/", log_file),
-         #               user_id = Sys.info()["user"],
-         #               inc_messages = input$addMsg)
-         #    doneCheck$data <- "Select a new file, if you wish to run more"
-         # } else {
-            log_file <- basename(logInfo$file) %>%
-               stringr::str_remove("(?<=\\.)\\w*$") %>%
-               paste0("log")
-            axecute(file = logInfo$file, log_name = logInfo$name)
-            # create_log(logInfo$file, paste0(logInfo$location, "/", log_file),
-            #            inc_messages = input$addMsg)
-            doneCheck$data <- "Select a new file, if you wish to run more files"
-         # }
+      shiny::observeEvent(input$axecute, {
+         axecute(file = logInfo$file, log_name = logInfo$name,
+                 log_path = logInfo$location, remove_log_object = input$rmLog)
+         doneCheck$data <- "Select a new file, if you wish to run more files"
       })
 
       output$output <- shiny::renderText({

@@ -1,4 +1,4 @@
-Name: Timber
+Name: timber
 Description: Inserts / updates standard GSK header at the top of the page
 Binding: timberAddin
 Interactive: true
