@@ -38,7 +38,9 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
    # list of attributes to add to the log
    keys <- list(
       "metadata",
-      "session_info",
+      "session_info_external",
+      "session_info_start",
+      "session_info_end",
       "warnings",
       "errors",
       "start_time",
@@ -61,7 +63,9 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
    # Metadata
    set_log_element("metadata", get_timber_metadata())
    # Session Info
-   set_log_element("session_info", get_session_info())
+   # set_log_element("session_info", get_session_info())
+   set_log_element("session_info_start", sessioninfo::session_info())
+
    # Masked Functions
    set_log_element("masked_functions", get_masked_functions())
    # Source file path and name
@@ -112,7 +116,7 @@ log_cleanup <- function() {
 #' @return Nothing
 #' @export
 #'
-log_write <- function(remove_log_object = TRUE){
+log_write <- function(file = NA, remove_log_object = TRUE){
    # Set end time and run time
    set_log_element("end_time", strftime(Sys.time(), usetz = TRUE))
    set_log_element("run_time",
@@ -122,6 +126,14 @@ log_write <- function(remove_log_object = TRUE){
                          as.POSIXct(get_log_element("start_time")),
                          units = "secs")),
                       " seconds"))
+
+
+   set_log_element("session_info_external", capture.output(sessioninfo::session_info(info = "external")))
+   set_log_element("session_info_end", sessioninfo::session_info())
+
+      # Set used libraries and functions
+   used_functions <- get_used_functions(file)
+   set_log_element("used_packages", used_functions)
 
    cleaned_log <- log_cleanup()
    cleaned_log_vec <- c()
@@ -138,10 +150,36 @@ log_write <- function(remove_log_object = TRUE){
                         write_log_header("User Information"),
                         write_log_element("user", "User: "))
 
+   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_log_header("External Session Info"),
+                        write_log_element("session_info_external"))
+
+
+
 
    cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_header("Session Information"),
-                        write_log_element("session_info", ""))
+                        write_log_header("Session Information at Start-Up"),
+                        write_log_element("session_info_start", ""))
+
+
+   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_log_header("Session Information End"),
+                        write_log_element("session_info_end", ""))
+
+
+   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_log_header("Session Difference"),
+                        capture.output(sessioninfo::session_diff(get_log_element("session_info_start"), get_log_element("session_info_end"))))
+
+
+
+   if ("used_packages" %in% names(log_cleanup())) {
+      cleaned_log_vec <- c(cleaned_log_vec,
+                           write_log_header("Used Packages and Functions"),
+                           write_used_packages())
+
+      cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "used_packages"]
+   }
 
    if ("masked_functions" %in% names(log_cleanup())) {
       cleaned_log_vec <- c(cleaned_log_vec,

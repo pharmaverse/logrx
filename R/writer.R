@@ -64,6 +64,21 @@ write_masked_functions <- function(){
    return(masked_functions)
 }
 
+#' Format used packages and functions attribute for writing
+#'
+#' @return A formatted vector of packages and functions
+#' @export
+#'
+#' @importFrom purrr imap
+#'
+#' @examples
+#' write_masked_functions()
+#'
+write_used_packages <- function(){
+   used_packages_list <- get_log_element("used_packages")
+   paste(used_packages_list$library, used_packages_list$functions, collapse = "\n")
+}
+
 #' Generic function to format log section headers
 #'
 #' @param title_string string to be used as section title
