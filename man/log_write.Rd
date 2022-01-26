@@ -4,9 +4,11 @@
 \alias{log_write}
 \title{Write the formatted timber.log to a file}
 \usage{
-log_write(remove_log_object = TRUE)
+log_write(file = NA, remove_log_object = TRUE)
 }
 \arguments{
+\item{file}{File path of file being run}
+
 \item{remove_log_object}{Should the log object be removed after writing, defaults to TRUE}
 }
 \value{

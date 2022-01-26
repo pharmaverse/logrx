@@ -64,19 +64,53 @@ write_masked_functions <- function(){
    return(masked_functions)
 }
 
-#' Format used packages and functions attribute for writing
+#' Format used functions attribute for writing
 #'
-#' @return A formatted vector of packages and functions
+#' @return A formatted vector of used functions
 #' @export
 #'
-#' @importFrom purrr imap
+#' @importFrom purrr map2
+#' @importFrom stats aggregate
 #'
 #' @examples
-#' write_masked_functions()
+#' \dontrun{
+#' write_used_functions()
+#' }
 #'
-write_used_packages <- function(){
-   used_packages_list <- get_log_element("used_packages")
-   paste(used_packages_list$library, used_packages_list$functions, collapse = "\n")
+write_used_functions <- function(){
+   used_functions_list <- get_log_element("used_packages_functions")
+
+   combined <- aggregate(function_name~library, used_functions_list, paste)
+
+   purrr::map2(combined$library, combined$function_name, ~paste(paste0("{", .x, "}"), paste0(.y, collapse = ", "))) %>%
+      unname() %>%
+      unlist()
+}
+
+#' Format unapproved functions attribute for writing
+#'
+#' @return A formatted vector of unapproved functions
+#' @export
+#'
+#' @importFrom purrr map2
+#' @importFrom stats aggregate
+#'
+#' @examples
+#' \dontrun{
+#' write_unapproved_functions()
+#' }
+write_unapproved_functions <- function(){
+   unapproved_functions_list <- get_log_element("unapproved_packages_functions")
+
+   if(nrow(unapproved_functions_list) == 0) {
+      return("No unapproved packages or functions used")
+   }
+
+   combined <- aggregate(function_name~library, unapproved_functions_list, paste)
+
+   purrr::map2(combined$library, combined$function_name, ~paste(paste0("{", .x, "}"), paste0(.y, collapse = ", "))) %>%
+      unname() %>%
+      unlist()
 }
 
 #' Generic function to format log section headers

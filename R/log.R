@@ -9,8 +9,25 @@
 log_init <- function(){
    timber.log <- new.env()
 
-      if(!('timber.log' %in% names(options()))) {
+   if(!('timber.log' %in% names(options()))) {
       options('timber.log' = timber.log)
+   }
+}
+
+#' Initialises the timber.approved option
+#'
+#' Defaults to working directory.  This should point to the location of the
+#' dataframe storing approved packages and functions.
+#'
+#' See ?approved for an example dataframe.
+#'
+#' @return Nothing
+#' @export
+#'
+#'
+approved_functions_init <- function(){
+   if(!('timber.approved' %in% names(options()))) {
+      options('timber.approved' = './approved.rds')
    }
 }
 
@@ -38,9 +55,7 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
    # list of attributes to add to the log
    keys <- list(
       "metadata",
-      "session_info_external",
-      "session_info_start",
-      "session_info_end",
+      "session_info",
       "warnings",
       "errors",
       "start_time",
@@ -50,7 +65,8 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
       "file_path",
       "user",
       "masked_functions",
-      "used_packages",
+      "used_packages_functions",
+      "unapproved_packages_functions",
       "log_name",
       "log_path")
 
@@ -63,9 +79,7 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
    # Metadata
    set_log_element("metadata", get_timber_metadata())
    # Session Info
-   # set_log_element("session_info", get_session_info())
-   set_log_element("session_info_start", sessioninfo::session_info())
-
+   set_log_element("session_info", get_session_info())
    # Masked Functions
    set_log_element("masked_functions", get_masked_functions())
    # Source file path and name
@@ -111,6 +125,7 @@ log_cleanup <- function() {
 
 #' Write the formatted timber.log to a file
 #'
+#' @param file File path of file being run
 #' @param remove_log_object Should the log object be removed after writing, defaults to TRUE
 #'
 #' @return Nothing
@@ -127,14 +142,6 @@ log_write <- function(file = NA, remove_log_object = TRUE){
                          units = "secs")),
                       " seconds"))
 
-
-   set_log_element("session_info_external", capture.output(sessioninfo::session_info(info = "external")))
-   set_log_element("session_info_end", sessioninfo::session_info())
-
-      # Set used libraries and functions
-   used_functions <- get_used_functions(file)
-   set_log_element("used_packages", used_functions)
-
    cleaned_log <- log_cleanup()
    cleaned_log_vec <- c()
 
@@ -150,36 +157,10 @@ log_write <- function(file = NA, remove_log_object = TRUE){
                         write_log_header("User Information"),
                         write_log_element("user", "User: "))
 
-   cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_header("External Session Info"),
-                        write_log_element("session_info_external"))
-
-
-
 
    cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_header("Session Information at Start-Up"),
-                        write_log_element("session_info_start", ""))
-
-
-   cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_header("Session Information End"),
-                        write_log_element("session_info_end", ""))
-
-
-   cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_header("Session Difference"),
-                        capture.output(sessioninfo::session_diff(get_log_element("session_info_start"), get_log_element("session_info_end"))))
-
-
-
-   if ("used_packages" %in% names(log_cleanup())) {
-      cleaned_log_vec <- c(cleaned_log_vec,
-                           write_log_header("Used Packages and Functions"),
-                           write_used_packages())
-
-      cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "used_packages"]
-   }
+                        write_log_header("Session Information"),
+                        write_log_element("session_info", ""))
 
    if ("masked_functions" %in% names(log_cleanup())) {
       cleaned_log_vec <- c(cleaned_log_vec,
@@ -187,6 +168,30 @@ log_write <- function(file = NA, remove_log_object = TRUE){
                            write_masked_functions())
 
       cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "masked_functions"]
+   }
+
+   used_functions <- get_used_functions(file)
+   set_log_element("used_packages_functions", used_functions)
+
+   if ("used_packages_functions" %in% names(log_cleanup())) {
+      cleaned_log_vec <- c(cleaned_log_vec,
+                           write_log_header("Used Package and Functions"),
+                           write_used_functions())
+
+      cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "used_packages_functions"]
+
+   }
+
+   if (file.exists(getOption("timber.approved"))) {
+      approved_functions <- readRDS(getOption("timber.approved"))
+      unapproved_functions <- get_unapproved_use(used_functions, approved_functions)
+      set_log_element("unapproved_packages_functions", unapproved_functions)
+
+      cleaned_log_vec <- c(cleaned_log_vec,
+                           write_log_header("Unapproved Package and Functions"),
+                           write_unapproved_functions())
+
+      cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "unapproved_packages_functions"]
    }
 
 
