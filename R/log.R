@@ -65,8 +65,10 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
    # Masked Functions
    set_log_element("masked_functions", get_masked_functions())
    # Source file path and name
-   set_log_element("file_path", dirname(get_file_path(file)))
-   set_log_element("file_name", basename(get_file_path(file)))
+   try({
+      set_log_element("file_path", dirname(get_file_path(file)))
+      set_log_element("file_name", basename(get_file_path(file)))
+      }, silent = TRUE)
    # User
    set_log_element("user", Sys.info()[["user"]])
    # Start time
