@@ -12,6 +12,10 @@ Authors@R:
            email = "Nathan.Kosiba@atorusresearch.com",
            role = "aut",
            comment = c(ORCID = "0000-0001-5359-4234")),
+    person(given = "Ben", 
+           family = "Straub",
+           email = "ben.x.straub@gsk.com", 
+           role = "aut"),
     person(given = "Michael",
            family = "Rimler",
            email = "michael.s.rimler@gsk.com",
@@ -35,6 +39,10 @@ Imports:
     stats,
     stringr,
     tidyr
+    stringr,
+    miniUI,
+    rstudioapi,
+    shiny
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
