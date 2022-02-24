@@ -37,8 +37,7 @@ Imports:
     purrr,
     rlang,
     stats,
-    stringr,
-    tidyr
+    tidyr,
     stringr,
     miniUI,
     rstudioapi,
