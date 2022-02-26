@@ -137,8 +137,10 @@ log_write <- function(remove_log_object = TRUE){
    }
 
    cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_header("User Information"),
-                        write_log_element("user", "User: "))
+                        write_log_header("User and File Information"),
+                        write_log_element("user", "User: "),
+                        write_log_element("file_name", "File Name: "),
+                        write_log_element("file_path", "File Path: "))
 
 
    cleaned_log_vec <- c(cleaned_log_vec,

@@ -37,3 +37,9 @@ rsconnect/
 .Rproj.user
 inst/doc
 docs
+timber.Rcheck/
+timber*.tar.gz
+timber*.tgz
+
+scratch.R
+scratch.log
