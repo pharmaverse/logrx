@@ -107,7 +107,7 @@ write_log_header <- function(title_string){
 write_errors <- function() {
    errors <- get_log_element("errors")
 
-   paste0("errors:\n\t",
+   paste0("Errors:\n\t",
           capture.output(errors))
 }
 
@@ -119,7 +119,7 @@ write_errors <- function() {
 write_warnings <- function() {
    warnings <- get_log_element("warnings")
 
-   paste0("Warnings:\n\t",
+   paste0("\nWarnings:\n\t",
           paste0(warnings, collapse = "\n\t"))
 }
 
@@ -155,6 +155,6 @@ write_output <- function() {
 write_result <- function() {
    result <- get_log_element("result")
 
-   paste0("Result:\n",
+   paste0("\nResult:\n",
           paste0(result, collapse = "\n\t"))
 }
