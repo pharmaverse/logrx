@@ -20,7 +20,7 @@ library(timber)
 
 The purpose of the `timber` package is to generate a log upon execution of 
 an R script which enables traceability and reproducibility of the executed code. 
-![timber log](../man/figures/timber-ex.PNG)
+![timber log](../man/figures/timber-ex.png)
 
 
 # Log attributes
