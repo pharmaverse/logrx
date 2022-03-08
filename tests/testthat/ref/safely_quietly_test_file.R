@@ -1,0 +1,6 @@
+print('log print')
+cat('log cat')
+rlang::inform('log inform')
+message('log message')
+warning("log warning")
+stop("log error")

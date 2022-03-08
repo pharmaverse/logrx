@@ -107,12 +107,15 @@ set_log_name_path <- function(log_name = NA, log_path = NA) {
 #' @return Nothing
 #' @export
 #' @importFrom purrr quietly safely discard
-#' @importFrom stringr str_detect
+#' @importFrom stringr str_starts
 #'
 run_safely_n_quietly <- function(file_name) {
    retfun <- purrr::quietly(purrr::safely(source, quiet = FALSE))
    ret <- retfun(file_name, local = TRUE)
 
+   set_log_element("messages", discard(ret$messages, ~ str_starts(.x, "Error")))
+   set_log_element("output", ret$output)
+   set_log_element("result", ret$result$result)
    set_log_element("warnings", ret$warnings)
    set_log_element("errors", ret$result$error)
 }

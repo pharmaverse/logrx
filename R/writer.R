@@ -116,20 +116,45 @@ write_errors <- function() {
 #' @return A formatted vector of warnings
 #' @export
 #'
-#' @examples
-#' scriptPath <- tempfile()
-#' logDir <- tempdir()
-#' writeLines("print('hello timber')", con = scriptPath)
-#'
-#' log_remove()
-#'
-#' log_config(scriptPath)
-#'
-#' write_warnings()
-#'
 write_warnings <- function() {
    warnings <- get_log_element("warnings")
 
    paste0("Warnings:\n\t",
           paste0(warnings, collapse = "\n\t"))
+}
+
+#' Format messages attribute for writing
+#'
+#' @return A formatted vector of messages
+#' @export
+#'
+write_messages <- function() {
+   messages <- get_log_element("messages")
+
+   paste0("Messages:\n\t",
+          paste0(messages, collapse = "\n\t"))
+}
+
+#' Format output attribute for writing
+#'
+#' @return A formatted vector of output
+#' @export
+#'
+write_output <- function() {
+   output <- get_log_element("output")
+
+   paste0("Output:\n\t",
+          paste0(output, collapse = "\n\t"))
+}
+
+#' Format result attribute for writing
+#'
+#' @return A formatted vector of results
+#' @export
+#'
+write_result <- function() {
+   result <- get_log_element("result")
+
+   paste0("Result:\n",
+          paste0(result, collapse = "\n\t"))
 }

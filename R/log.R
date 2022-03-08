@@ -41,6 +41,9 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
       "session_info",
       "warnings",
       "errors",
+      "messages",
+      "result",
+      "output",
       "start_time",
       "end_time",
       "run_time",
@@ -165,6 +168,13 @@ log_write <- function(remove_log_object = TRUE){
                         write_errors())
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_warnings())
+   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_log_header("Messages, Output, and Result"),
+                        write_messages())
+   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_output())
+   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_result())
 
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_header("Log Output File"),

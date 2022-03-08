@@ -70,8 +70,7 @@ test_that("setting log name works", {
 
    set_log_name_path(log_name = log_name)
 
-   testthat::expect_identical(getOption("timber.log")[["log_name"]],
-                              log_name)
+   testthat::expect_identical(getOption("timber.log")[["log_name"]], log_name)
    testthat::expect_warning(set_log_name_path(log_name = "test_log_name2"))
 
    log_remove()
@@ -102,19 +101,29 @@ test_that("setting path name works", {
    log_remove()
 })
 
-test_that("run_safely_n_quietly works", {
-   scriptPath <- tempfile()
-   logDir <- tempdir()
+test_that("run_safely_n_quietly works for warnings, errors, messages, and output", {
+   fp <- testthat::test_path("ref", "safely_quietly_test_file.R")
 
-   writeLines("log(-1)
-              log(a)", con = scriptPath)
+   log_config(file = fp)
 
-   log_config(file = scriptPath)
-
-   run_safely_n_quietly(scriptPath)
+   run_safely_n_quietly(fp)
 
    testthat::expect_true(!is.null(getOption("timber.log")[["warnings"]]))
    testthat::expect_true(!is.null(getOption("timber.log")[["errors"]]))
+   testthat::expect_true(!is.null(getOption("timber.log")[["messages"]]))
+   testthat::expect_true(!is.null(getOption("timber.log")[["output"]]))
+
+   log_remove()
+})
+
+test_that("run_safely_n_quietly works for result", {
+   fp <- testthat::test_path("ref", "safely_quietly_test_file_result.R")
+
+   log_config(file = fp)
+
+   run_safely_n_quietly(fp)
+
+   testthat::expect_true(!is.null(getOption("timber.log")[["result"]]))
 
    log_remove()
 })

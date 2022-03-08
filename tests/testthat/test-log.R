@@ -9,9 +9,10 @@ test_that("log_config configures the log and all the necessary elements", {
    options("timber.log" = NULL)
    log_config('./test-get.R')
    expect_setequal(names(getOption("timber.log")),
-                   c("metadata","session_info","warnings","errors","start_time",
-                     "end_time","run_time","file_name","file_path","user",
-                     "masked_functions","used_packages","log_name","log_path"))
+                   c("metadata","session_info","warnings","errors","messages",
+                     "result","output","start_time","end_time","run_time",
+                     "file_name","file_path","user","masked_functions",
+                     "used_packages","log_name","log_path"))
 
    expect_identical(getOption("timber.log")[['metadata']], get_timber_metadata())
    expect_identical(getOption("timber.log")[['session_info']], get_session_info())
