@@ -17,7 +17,3 @@ formatted element including prefix
 \description{
 Generic function to format timber.log elements for writing
 }
-\examples{
-write_log_element("user", "user running program: ")
-
-}

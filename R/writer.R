@@ -8,9 +8,6 @@
 #' @return formatted element including prefix
 #' @export
 #'
-#' @examples
-#' write_log_element("user", "user running program: ")
-#'
 write_log_element <- function(el_key, prefix = NULL) {
    # get element from log
    el <- get_log_element(el_key)
@@ -26,9 +23,6 @@ write_log_element <- function(el_key, prefix = NULL) {
 #'
 #' @return A vector of timber.log's metadata attributes
 #' @export
-#'
-#' @examples
-#' write_metadata()
 #'
 write_metadata <- function(){
    metadata <- get_log_element("metadata")
@@ -49,9 +43,6 @@ write_metadata <- function(){
 #'
 #' @importFrom purrr imap
 #'
-#' @examples
-#' write_masked_functions()
-#'
 write_masked_functions <- function(){
    masked_functions_list <- get_log_element("masked_functions")
 
@@ -70,9 +61,6 @@ write_masked_functions <- function(){
 #'
 #' @return a vector with the header including title
 #' @export
-#'
-#' @examples
-#' write_log_header("timber metadata")
 #'
 write_log_header <- function(title_string){
    # create left and right pad length

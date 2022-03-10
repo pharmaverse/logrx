@@ -15,7 +15,3 @@ a vector with the header including title
 \description{
 Generic function to format log section headers
 }
-\examples{
-write_log_header("timber metadata")
-
-}
