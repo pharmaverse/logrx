@@ -132,7 +132,7 @@ write_messages <- function() {
    messages <- get_log_element("messages")
 
    paste0("Messages:\n\t",
-          paste0(messages, collapse = "\n\t"))
+          paste0(messages, collapse = "\t"))
 }
 
 #' Format output attribute for writing
