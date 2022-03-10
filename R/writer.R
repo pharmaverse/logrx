@@ -93,17 +93,6 @@ write_log_header <- function(title_string){
 #'
 #' @importFrom utils capture.output
 #'
-#' @examples
-#' scriptPath <- tempfile()
-#' logDir <- tempdir()
-#' writeLines("print('hello timber')", con = scriptPath)
-#'
-#' log_remove()
-#'
-#' log_config(scriptPath)
-#'
-#' write_errors()
-#'
 write_errors <- function() {
    errors <- get_log_element("errors")
 
@@ -125,17 +114,23 @@ write_warnings <- function() {
 
 #' Format messages attribute for writing
 #'
+#' @importFrom purrr map
+#' @importFrom stringr str_remove_all
+#'
 #' @return A formatted vector of messages
 #' @export
 #'
 write_messages <- function() {
-   messages <- get_log_element("messages")
+   messages <- get_log_element("messages") %>%
+      map(~ str_remove_all(.x, "\n"))
 
    paste0("Messages:\n\t",
-          paste0(messages, collapse = "\t"))
+          paste0(messages, collapse = "\n\t"))
 }
 
 #' Format output attribute for writing
+#'
+#' @importFrom stringr str_replace_all
 #'
 #' @return A formatted vector of output
 #' @export
@@ -144,7 +139,7 @@ write_output <- function() {
    output <- get_log_element("output")
 
    paste0("Output:\n\t",
-          gsub("\n", "\n\t", output))
+          str_replace_all(output, "\n", "\n\t"))
 }
 
 #' Format result attribute for writing

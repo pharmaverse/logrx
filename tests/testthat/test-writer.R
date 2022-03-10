@@ -61,6 +61,8 @@ test_that("write_warnings will return a formatted log errors element", {
    log_config("./test-writer.R")
    assign('warnings', c("this is a warning"), envir = getOption('timber.log'))
    expect_identical(write_warnings(), "\nWarnings:\n\tthis is a warning")
+   log_remove()
+})
 
 test_that("write_output will return a formatted log output element", {
    fp <- testthat::test_path("ref", "safely_quietly_test_file.R")
@@ -81,8 +83,7 @@ test_that("write_messages will return a formatted log messages element", {
 
    run_safely_n_quietly(fp)
 
-   write_messages(write_messages(), "Messages:\n\tlog inform\n\tlog inform 2\n\tlog message\n\tlog message 2\n")
+   expect_identical(write_messages(), "Messages:\n\tlog inform\n\tlog inform 2\n\tlog message\n\tlog message 2")
 
    log_remove()
-})
 })
