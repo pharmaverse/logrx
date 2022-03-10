@@ -144,7 +144,7 @@ write_output <- function() {
    output <- get_log_element("output")
 
    paste0("Output:\n\t",
-          paste0(output, collapse = "\n\t"))
+          gsub("\n", "\n\t", output))
 }
 
 #' Format result attribute for writing
