@@ -23,3 +23,7 @@ reference:
      desc: Functionality for Writing Logs to a File
    - contents:
       - starts_with("write")
+   - title: RStudio addin
+     desc: RStudio addin to facilitate the execution of a log
+   - contents:
+      - timberAddin
