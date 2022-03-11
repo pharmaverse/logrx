@@ -99,23 +99,34 @@ set_log_name_path <- function(log_name = NA, log_path = NA) {
    }
 }
 
+#' Dummy function for running a file safely and quietly
+#' @noRd
+safely_quietly <- function(file) "dummy"
+
+#' Dummy function for running a file
+#' @noRd
+run_file <- function(file){
+   source(file)
+}
+
 
 #' Safely run an R script and record results, outputs, messages, errors, warnings
+#'
+#' @importFrom purrr quietly safely discard
+#' @importFrom stringr str_starts
 #'
 #' @param file_name Function to run
 #'
 #' @return Nothing
 #' @export
-#' @importFrom purrr quietly safely discard
-#' @importFrom stringr str_starts
 #'
-run_safely_n_quietly <- function(file_name) {
-   retfun <- purrr::quietly(purrr::safely(source, quiet = FALSE))
-   ret <- retfun(file_name, local = TRUE)
-
+run_safely_quietly <- function(file_name) {
+   ret <- safely_quietly(file_name)
    set_log_element("messages", discard(ret$messages, ~ str_starts(.x, "Error")))
    set_log_element("output", ret$output)
    set_log_element("result", ret$result$result)
    set_log_element("warnings", ret$warnings)
    set_log_element("errors", ret$result$error)
 }
+
+

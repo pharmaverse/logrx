@@ -101,12 +101,12 @@ test_that("setting path name works", {
    log_remove()
 })
 
-test_that("run_safely_n_quietly works for warnings, errors, messages, and output", {
+test_that("run_safely_quietly works for warnings, errors, messages, and output", {
    fp <- testthat::test_path("ref", "safely_quietly_test_file.R")
 
    log_config(file = fp)
 
-   run_safely_n_quietly(fp)
+   run_safely_quietly(fp)
 
    testthat::expect_true(!is.null(getOption("timber.log")[["warnings"]]))
    testthat::expect_true(!is.null(getOption("timber.log")[["errors"]]))
@@ -116,12 +116,12 @@ test_that("run_safely_n_quietly works for warnings, errors, messages, and output
    log_remove()
 })
 
-test_that("run_safely_n_quietly works for result", {
+test_that("run_safely_quietly works for result", {
    fp <- testthat::test_path("ref", "safely_quietly_test_file_result.R")
 
    log_config(file = fp)
 
-   run_safely_n_quietly(fp)
+   run_safely_quietly(fp)
 
    testthat::expect_true(!is.null(getOption("timber.log")[["result"]]))
 
