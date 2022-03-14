@@ -41,7 +41,8 @@ Imports:
     stringr,
     miniUI,
     rstudioapi,
-    shiny
+    shiny,
+    sessioninfo
 Suggests: 
     testthat (>= 3.0.0),
     knitr,

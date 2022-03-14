@@ -83,7 +83,7 @@ get_file_path <- function(file = NA, normalize = TRUE){
 #' get_session_info()
 #'
 get_session_info <- function(){
-   return(capture.output(sessionInfo()))
+   return(capture.output(sessioninfo::session_info()))
 }
 
 
