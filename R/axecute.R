@@ -28,5 +28,5 @@ axecute <- function(file, log_name = NA, log_path = NA, remove_log_object = TRUE
    run_safely_n_quietly(file)
 
    # write log
-   log_write(remove_log_object = remove_log_object)
+   log_write(file = file, remove_log_object = remove_log_object)
 }

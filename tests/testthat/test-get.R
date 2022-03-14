@@ -30,3 +30,81 @@ test_that("each masked function element contain source and masks elements", {
    expect_identical(unlist(unname(map(get_masked_functions(), ~ names(.x)))), rep(c("source","masks"), length(get_masked_functions())))
 })
 
+test_that("ex1.R parses correctly", {
+   filename <- testthat::test_path("ref", "ex1.R")
+   source(filename, local = TRUE)
+
+   expected <- tibble::tribble(
+      ~function_name,        ~library,
+      "library",  "package:base",
+      "%>%", "package:dplyr",
+      "group_by", "package:dplyr",
+      "summarize", "package:dplyr",
+      "mean",  "package:base",
+      "pivot_wider", "package:tidyr"
+   )
+
+   expect_identical(get_used_functions(filename), expected)
+})
+
+test_that("unapproved packages and functions found in ex2.R", {
+   filename <- testthat::test_path("ref", "ex2.R")
+   source(filename, local = TRUE)
+
+   withr::local_options(timber.approved = testthat::test_path("ref", "approved.rds"))
+
+   approved_functions <- readRDS(getOption("timber.approved"))
+
+   used_functions <- get_used_functions(filename)
+
+   expected <- tibble::tribble(
+      ~function_name,        ~library,
+      "glimpse",  "package:dplyr"
+   )
+
+   expect_identical(get_unapproved_use(used_functions, approved_functions), expected)
+})
+
+test_that("unapproved packages returns expected result when all packages and functions are approved", {
+   filename <- testthat::test_path("ref", "ex1.R")
+   source(filename, local = TRUE)
+
+   withr::local_options(timber.approved = testthat::test_path("ref", "approved.rds"))
+
+   approved_functions <- readRDS(getOption("timber.approved"))
+
+   used_functions <- tibble::tibble(
+      function_name = "mean",
+      library = "package:base"
+   )
+
+   expected <- tibble::tibble(
+      function_name = vector(mode = "character"),
+      library = vector(mode = "character")
+   )
+
+   expect_identical(get_unapproved_use(used_functions, approved_functions), expected)
+})
+
+test_that("used functions returned correctly when file doesn't contain all token types", {
+   filename <- testthat::test_path("ref", "ex3.R")
+   source(filename, local = TRUE)
+
+   expected <- tibble::tribble(
+      ~function_name,        ~library,
+      "print",  "package:base"
+   )
+
+   expect_identical(get_used_functions(filename), expected)
+})
+
+test_that("parse does not fatal error when syntax issue occurs", {
+   filename <- testthat::test_path("ref", "ex4.R")
+
+   expected <- tibble::tibble(
+         function_name = "",
+         library = "Syntax Error Found,  Package and Function Identification Stopped"
+      )
+
+   expect_identical(get_used_functions(filename), expected)
+})
