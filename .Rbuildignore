@@ -11,3 +11,4 @@
 ^timber\.Rcheck$
 ^timber.*\.tar\.gz$
 ^timber.*\.tgz$
+^data-raw$

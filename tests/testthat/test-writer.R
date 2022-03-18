@@ -68,6 +68,65 @@ test_that("write_file_name_path will return an informative message if no file_na
                       "File Path: File path not able to be determined"))
 })
 
+test_that("write_used_functions will return a formatted log of used pacakges and functions element",{
+   options("timber.log" = NULL)
+   log_config("./test-writer.R")
+   used_functions <- tibble::tribble(
+      ~function_name,        ~library,
+      "library",  "package:base",
+      "%>%", "package:dplyr",
+      "group_by", "package:dplyr",
+      "summarize", "package:dplyr",
+      "mean",  "package:base",
+      "print",  "package:base",
+      "pivot_wider", "package:tidyr"
+   )
+   assign('used_packages_functions', used_functions, envir = getOption('timber.log'))
+
+   expect_identical(write_used_functions(),
+                    c("{package:base} library, mean, print",
+                      "{package:dplyr} %>%, group_by, summarize",
+                      "{package:tidyr} pivot_wider")
+   )
+})
+
+test_that("write_unapproved_functions will return a formatted log of unapproved pacakges and functions element",{
+   options("timber.log" = NULL)
+   log_config("./test-writer.R")
+   unapproved_functions <- tibble::tribble(
+      ~function_name,        ~library,
+      "library",  "package:base",
+      "%>%", "package:dplyr",
+      "group_by", "package:dplyr",
+      "summarize", "package:dplyr",
+      "mean",  "package:base",
+      "print",  "package:base",
+      "pivot_wider", "package:tidyr"
+   )
+   assign('unapproved_packages_functions', unapproved_functions, envir = getOption('timber.log'))
+
+   expect_identical(write_unapproved_functions(),
+                    c("{package:base} library, mean, print",
+                      "{package:dplyr} %>%, group_by, summarize",
+                      "{package:tidyr} pivot_wider")
+   )
+})
+
+test_that("write_unapproved_functions will return expect results when all packages and functions are approved",{
+   options("timber.log" = NULL)
+   log_config("./test-writer.R")
+   unapproved_functions <- tibble::tibble(
+      function_name = vector(mode = "character"),
+      library = vector(mode = "character")
+   )
+   assign('unapproved_packages_functions', unapproved_functions, envir = getOption('timber.log'))
+
+   expect_identical(write_unapproved_functions(),
+                    "No unapproved packages or functions used"
+   )
+})
+
+
 test_that("write_errors will return a formatted log errors element", {
    options("timber.log" = NULL)
    log_config("./test-writer.R")
