@@ -9,8 +9,25 @@
 log_init <- function(){
    timber.log <- new.env()
 
-      if(!('timber.log' %in% names(options()))) {
+   if(!('timber.log' %in% names(options()))) {
       options('timber.log' = timber.log)
+   }
+}
+
+#' Initialises the timber.approved option
+#'
+#' Defaults to working directory.  This should point to the location of the
+#' dataframe storing approved packages and functions.
+#'
+#' See ?approved for an example dataframe.
+#'
+#' @return Nothing
+#' @export
+#'
+#'
+approved_functions_init <- function(){
+   if(!('timber.approved' %in% names(options()))) {
+      options('timber.approved' = './approved.rds')
    }
 }
 
@@ -52,7 +69,8 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
       "file_path",
       "user",
       "masked_functions",
-      "used_packages",
+      "used_packages_functions",
+      "unapproved_packages_functions",
       "log_name",
       "log_path")
 
@@ -113,12 +131,13 @@ log_cleanup <- function() {
 
 #' Write the formatted timber.log to a file
 #'
+#' @param file File path of file being run
 #' @param remove_log_object Should the log object be removed after writing, defaults to TRUE
 #'
 #' @return Nothing
 #' @export
 #'
-log_write <- function(remove_log_object = TRUE){
+log_write <- function(file = NA, remove_log_object = TRUE){
    # Set end time and run time
    set_log_element("end_time", strftime(Sys.time(), usetz = TRUE))
    set_log_element("run_time",
@@ -155,6 +174,30 @@ log_write <- function(remove_log_object = TRUE){
                            write_masked_functions())
 
       cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "masked_functions"]
+   }
+
+   used_functions <- get_used_functions(file)
+   set_log_element("used_packages_functions", used_functions)
+
+   if ("used_packages_functions" %in% names(log_cleanup())) {
+      cleaned_log_vec <- c(cleaned_log_vec,
+                           write_log_header("Used Package and Functions"),
+                           write_used_functions())
+
+      cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "used_packages_functions"]
+
+   }
+
+   if (file.exists(getOption("timber.approved"))) {
+      approved_functions <- readRDS(getOption("timber.approved"))
+      unapproved_functions <- get_unapproved_use(used_functions, approved_functions)
+      set_log_element("unapproved_packages_functions", unapproved_functions)
+
+      cleaned_log_vec <- c(cleaned_log_vec,
+                           write_log_header("Unapproved Package and Functions"),
+                           write_unapproved_functions())
+
+      cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "unapproved_packages_functions"]
    }
 
 

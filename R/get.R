@@ -117,3 +117,109 @@ get_masked_functions <- function(){
 
    return(conflict_list)
 }
+
+#' Get functions used within a file
+#'
+#' @param file File path of file to run
+#'
+#' @return tibble with `library` and `function_name`
+#' @importFrom dplyr select distinct across mutate coalesce group_by ungroup
+#' @importFrom tidyr pivot_wider complete
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' file <- "ex1.R"
+#' get_functions_used(file)
+#' }
+get_used_functions <- function(file){
+
+   # catch error
+   retfun <- purrr::safely(parse,
+                           quiet = FALSE,
+                           otherwise = "Syntax Error Found,  Package and Function Identification Stopped")
+   ret <- retfun(file, keep.source = TRUE)
+
+   if (!is.expression(ret$result)){
+      return(
+         tibble::tibble(
+            function_name = "",
+            library = ret$result
+         )
+      )
+   }
+
+   tokens <- utils::getParseData(ret$result)
+
+   # grouping and complete to ensure all three columns carry through after pivot
+   # regardless if seen in the parsed data
+   filtered_tokens <- tokens[tokens[["token"]] %in% c("SYMBOL_FUNCTION_CALL", "SPECIAL", "SYMBOL_PACKAGE"),] %>%
+      mutate(token = factor(.data$token,
+                            c("SYMBOL_FUNCTION_CALL", "SPECIAL", "SYMBOL_PACKAGE"))) %>%
+      group_by(.data$line1, .data$parent) %>%
+      complete(token = .data$token)
+
+   wide_tokens <- pivot_wider(filtered_tokens,
+                              id_cols = c(.data$line1, .data$parent),
+                              values_from = .data$text,
+                              names_from = .data$token) %>%
+      ungroup()
+
+   combine_tokens <- wide_tokens %>%
+      mutate(function_name = coalesce(.data$SYMBOL_FUNCTION_CALL, .data$SPECIAL))
+
+   get_library(combine_tokens) %>%
+      select(.data$function_name, .data$library) %>%
+      distinct(across())
+
+}
+
+
+#' Add libraries to functions
+#'
+#' Each script should be independent so we can use the search path since this
+#' would be just for this script.
+#' This must also be run after script execution.
+#'
+#' @param df dataframe containing variables `function_name` and `SYMBOL_PACKAGE`
+#' @importFrom dplyr mutate
+#' @importFrom rlang .data
+#'
+#' @return tibble that includes `library`
+get_library <- function(df){
+   search_lookup <- purrr::map(search(), objects)
+   names(search_lookup) <- search()
+   df$library <- unlist(purrr::map(df$function_name, ~get_first(., search_lookup)))
+
+   df %>%
+      mutate(library = ifelse(
+         !is.na(df$SYMBOL_PACKAGE),
+         paste0("package:", df$SYMBOL_PACKAGE),
+         .data$library)
+      )
+}
+
+
+get_first <- function(func, search_lookup){
+   flag_found <- purrr::map(search_lookup, ~ func %in% .)
+   if (any(unlist(flag_found))) {
+      names(flag_found[flag_found == TRUE][1])
+   } else {
+      NA
+   }
+}
+
+#' Get unapproved packages and functions used
+#'
+#' Compare two dataframes that contain approved and used packages and functions.
+#'
+#' @param approved_packages dataframe containing variables `function_name` and `library`
+#' @param used_packages  dataframe containing variables `function_name` and `library`
+#'
+#' @importFrom dplyr anti_join
+#' @export
+#'
+#' @return tibble that includes packages and functions used, but not approved
+get_unapproved_use <- function(approved_packages, used_packages) {
+   anti_join(approved_packages, used_packages, by = c("library", "function_name"))
+}
