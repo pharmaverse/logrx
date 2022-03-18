@@ -47,7 +47,8 @@ Suggests:
     knitr,
     rmarkdown,
     tibble,
-    withr
+    withr,
+    covr
 VignetteBuilder: knitr, rmarkdown
 Config/testthat/edition: 3
 Depends: 
