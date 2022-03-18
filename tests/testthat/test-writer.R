@@ -87,3 +87,15 @@ test_that("write_messages will return a formatted log messages element", {
 
    log_remove()
 })
+
+test_that("write_result will return a formatted log result element", {
+   fp <- testthat::test_path("ref", "safely_quietly_test_file_result.R")
+
+   log_config(file = fp)
+
+   run_safely_quietly(fp)
+
+   expect_identical(write_result(), "\nResult:\n\tc(8, 6, 7, 5, 3, 0, 9)")
+
+   log_remove()
+})

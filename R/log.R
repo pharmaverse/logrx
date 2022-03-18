@@ -44,6 +44,7 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
       "messages",
       "result",
       "output",
+      "log_stream",
       "start_time",
       "end_time",
       "run_time",
@@ -175,6 +176,9 @@ log_write <- function(remove_log_object = TRUE){
                         write_output())
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_result())
+   cleaned_log_vec <- c(cleaned_log_vec,
+                        write_log_header("Log Stream"),
+                        write_log_stream())
 
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_header("Log Output File"),

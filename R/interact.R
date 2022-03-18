@@ -106,9 +106,8 @@ safely_quietly <- function(file) "dummy"
 #' Dummy function for running a file
 #' @noRd
 run_file <- function(file){
-   source(file)
+   source(file, local = TRUE)
 }
-
 
 #' Safely run an R script and record results, outputs, messages, errors, warnings
 #'
@@ -127,6 +126,25 @@ run_safely_quietly <- function(file_name) {
    set_log_element("result", ret$result$result)
    set_log_element("warnings", ret$warnings)
    set_log_element("errors", ret$result$error)
+}
+
+#' sink_log_stream
+#'
+#' @param file
+#'
+#' @return Nothing
+#' @export
+sink_log_stream <- function(file){
+   log_stream_file <- tempfile()
+   temp_out <- file(log_stream_file, open = "w+")
+   sink(temp_out, type = "output")
+   sink(temp_out, type = "message")
+
+   try(source(file, local = TRUE))
+
+   sink()
+   sink()
+   set_log_element("log_stream", readLines(temp_out))
 }
 
 

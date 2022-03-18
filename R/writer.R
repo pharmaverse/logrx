@@ -85,7 +85,7 @@ write_errors <- function() {
    errors <- get_log_element("errors")
 
    paste0("Errors:\n\t",
-          capture.output(errors))
+          capture.output(errors$message))
 }
 
 #' Format warnings attribute for writing
@@ -138,6 +138,18 @@ write_output <- function() {
 write_result <- function() {
    result <- get_log_element("result")
 
-   paste0("\nResult:\n",
-          paste0(result, collapse = "\n\t"))
+   paste0("\nResult:\n\t",
+          paste0(result$value, collapse = "\n\t"))
+}
+
+#' Format log_stream attribute for writing
+#'
+#' @return A formatted vector of the log stream
+#' @export
+#'
+write_log_stream <- function() {
+   log_stream <- get_log_element("log_stream")
+
+   paste0("\nLog Stream:\n\t",
+          paste0(log_stream, collapse = "\n\t"))
 }
