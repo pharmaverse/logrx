@@ -19,5 +19,5 @@ axecute <- function(file, log_name = NA, log_path = NA, remove_log_object = TRUE
    sink_log_stream(file)
 
    # write log
-   log_write(remove_log_object = remove_log_object)
+   log_write(file = file, remove_log_object = remove_log_object)
 }

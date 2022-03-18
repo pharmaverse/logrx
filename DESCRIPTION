@@ -1,6 +1,6 @@
 Package: timber
 Title: A Logging Utility Focus on Clinical Trial Programming Workflows
-Version: 0.0.0.9001
+Version: 0.0.0.9002
 Authors@R: 
     c(
     person(given = "Thomas",
@@ -32,8 +32,12 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Imports:
+    dplyr,
     magrittr,
     purrr,
+    rlang,
+    stats,
+    tidyr,
     stringr,
     miniUI,
     rstudioapi,
@@ -41,6 +45,10 @@ Imports:
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
-    rmarkdown
+    rmarkdown,
+    tibble,
+    withr
 VignetteBuilder: knitr, rmarkdown
 Config/testthat/edition: 3
+Depends: 
+    R (>= 2.10)
