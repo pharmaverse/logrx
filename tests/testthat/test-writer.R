@@ -48,6 +48,26 @@ test_that("write_masked_functions will return a formatted log masked functions e
                       "function `tribble` from {package:tidyr, package:tibble} by package:dplyr"))
 })
 
+test_that("write_file_name_path will return a formatted log file name and path element", {
+   options("timber.log" = NULL)
+   log_config("./test-writer.R")
+   assign('file_name', "safely_quietly_test_file_result.R", envir = getOption('timber.log'))
+   assign('file_path', "tests/testthat/ref", envir = getOption('timber.log'))
+   expect_identical(write_file_name_path(),
+                    c("File Name: safely_quietly_test_file_result.R",
+                      "File Path: tests/testthat/ref"))
+})
+
+test_that("write_file_name_path will return an informative message if no file_name and file_path exists", {
+   options("timber.log" = NULL)
+   log_config("./test-writer.R")
+   assign('file_name', NA, envir = getOption('timber.log'))
+   assign('file_path', NA, envir = getOption('timber.log'))
+   expect_identical(write_file_name_path(),
+                    c("File Name: File name not able to be determined",
+                      "File Path: File path not able to be determined"))
+})
+
 test_that("write_errors will return a formatted log errors element", {
    options("timber.log" = NULL)
    log_config("./test-writer.R")

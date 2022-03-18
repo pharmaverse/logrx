@@ -139,8 +139,7 @@ log_write <- function(remove_log_object = TRUE){
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_header("User and File Information"),
                         write_log_element("user", "User: "),
-                        write_log_element("file_name", "File Name: "),
-                        write_log_element("file_path", "File Path: "))
+                        write_file_name_path())
 
 
    cleaned_log_vec <- c(cleaned_log_vec,
@@ -154,8 +153,6 @@ log_write <- function(remove_log_object = TRUE){
 
       cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "masked_functions"]
    }
-
-
 
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_header("Program Run Time Information"),
