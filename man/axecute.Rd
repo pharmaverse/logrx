@@ -21,14 +21,3 @@ Nothing
 \description{
 Create a log and run a file
 }
-\examples{
-
-scriptPath <- tempfile()
-logDir <- tempdir()
-
-writeLines("print('hello timber')", con = scriptPath)
-
-axecute(scriptPath)
-axecute(scriptPath, log_name = "log_out", log_path = logDir)
-
-}

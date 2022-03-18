@@ -4,10 +4,10 @@
 \alias{run_safely_quietly}
 \title{Safely run an R script and record results, outputs, messages, errors, warnings}
 \usage{
-run_safely_quietly(file_name)
+run_safely_quietly(file)
 }
 \arguments{
-\item{file_name}{Function to run}
+\item{file}{File to run}
 }
 \value{
 Nothing

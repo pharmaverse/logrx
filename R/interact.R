@@ -114,13 +114,13 @@ run_file <- function(file){
 #' @importFrom purrr quietly safely discard
 #' @importFrom stringr str_starts
 #'
-#' @param file_name Function to run
+#' @param file File to run
 #'
 #' @return Nothing
 #' @export
 #'
-run_safely_quietly <- function(file_name) {
-   ret <- safely_quietly(file_name)
+run_safely_quietly <- function(file) {
+   ret <- safely_quietly(file)
    set_log_element("messages", discard(ret$messages, ~ str_starts(.x, "Error")))
    set_log_element("output", ret$output)
    set_log_element("result", ret$result$result)
@@ -128,9 +128,9 @@ run_safely_quietly <- function(file_name) {
    set_log_element("errors", ret$result$error)
 }
 
-#' sink_log_stream
+#' Sink the log stream output to a tempfile and write to element
 #'
-#' @param file
+#' @param file File to run
 #'
 #' @return Nothing
 #' @export

@@ -51,9 +51,9 @@ test_that("write_masked_functions will return a formatted log masked functions e
 test_that("write_errors will return a formatted log errors element", {
    options("timber.log" = NULL)
    log_config("./test-writer.R")
-   errors <- list("<simpleError in eval(ei, envir): object 'a' not found>")
+   errors <- list(message = "object 'a' not found")
    assign('errors', errors, envir = getOption('timber.log'))
-   expect_identical(write_errors(), paste0("Errors:\n\t",capture.output(errors)))
+   expect_identical(write_errors(), paste0("Errors:\n\t",capture.output(errors$message)))
 })
 
 test_that("write_warnings will return a formatted log errors element", {
