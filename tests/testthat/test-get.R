@@ -1,11 +1,14 @@
 test_that("metadata elements are specified correctly and loaded into a list", {
+
+   timber_session_info <- session_info()$packages %>%
+      filter(.data$package == "timber")
+
   expect_identical(get_timber_metadata(),
                list(
                   info = paste0("This log was generated using timber ",
-                                sessionInfo()[["otherPkgs"]][["timber"]][["Version"]]),
-                  version = sessionInfo()[["otherPkgs"]][["timber"]][["Version"]],
-                  license = sessionInfo()[["otherPkgs"]][["timber"]][["License"]],
-                  built = sessionInfo()[["otherPkgs"]][["timber"]][["Built"]],
+                                timber_session_info[['loadedversion']]),
+                  version = timber_session_info[['loadedversion']],
+                  built = timber_session_info[["source"]],
                   repository_link = "https://github.com/atorus-research/timber"
                ))
 })
@@ -19,7 +22,7 @@ test_that("when given a file as an argument a non-normalized file path to that f
 })
 
 test_that("session info is captured", {
-   expect_identical(get_session_info(), capture.output(sessionInfo()))
+   expect_identical(get_session_info(), capture.output(session_info(info = c("platform", "packages", "external"))))
 })
 
 test_that("all functions that are masked are found and returned", {
