@@ -190,15 +190,3 @@ write_result <- function() {
    paste0("\nResult:\n\t",
           paste0(result$value, collapse = "\n\t"))
 }
-
-#' Format log_stream attribute for writing
-#'
-#' @return A formatted vector of the log stream
-#' @export
-#'
-write_log_stream <- function() {
-   log_stream <- get_log_element("log_stream")
-
-   paste0("\nLog Stream:\n\t",
-          paste0(log_stream, collapse = "\n\t"))
-}

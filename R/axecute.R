@@ -15,8 +15,7 @@ axecute <- function(file, log_name = NA, log_path = NA, remove_log_object = TRUE
    log_config(file = file, log_name = log_name, log_path = log_path)
 
    # run the code
-   run_safely_quietly(file)
-   sink_log_stream(file)
+   run_safely_loudly(file)
 
    # write log
    log_write(file = file, remove_log_object = remove_log_object)

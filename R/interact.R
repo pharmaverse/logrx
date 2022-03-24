@@ -99,9 +99,9 @@ set_log_name_path <- function(log_name = NA, log_path = NA) {
    }
 }
 
-#' Dummy function for running a file safely and quietly
+#' Dummy function for running a file safely
 #' @noRd
-safely_quietly <- function(file) "dummy"
+run_safely <- function(file) "dummy"
 
 #' Dummy function for running a file
 #' @noRd
@@ -111,7 +111,7 @@ run_file <- function(file){
 
 #' Safely run an R script and record results, outputs, messages, errors, warnings
 #'
-#' @importFrom purrr quietly safely discard
+#' @importFrom purrr safely discard
 #' @importFrom stringr str_starts
 #'
 #' @param file File to run
@@ -119,32 +119,12 @@ run_file <- function(file){
 #' @return Nothing
 #' @export
 #'
-run_safely_quietly <- function(file) {
-   ret <- safely_quietly(file)
+run_safely_loudly <- function(file) {
+   ret <- loudly(run_safely(file))
    set_log_element("messages", discard(ret$messages, ~ str_starts(.x, "Error")))
    set_log_element("output", ret$output)
    set_log_element("result", ret$result$result)
    set_log_element("warnings", ret$warnings)
    set_log_element("errors", ret$result$error)
 }
-
-#' Sink the log stream output to a tempfile and write to element
-#'
-#' @param file File to run
-#'
-#' @return Nothing
-#' @export
-sink_log_stream <- function(file){
-   log_stream_file <- tempfile()
-   temp_out <- file(log_stream_file, open = "w+")
-   sink(temp_out, type = "output")
-   sink(temp_out, type = "message")
-
-   try(source(file, local = TRUE))
-
-   sink()
-   sink()
-   set_log_element("log_stream", readLines(temp_out))
-}
-
 

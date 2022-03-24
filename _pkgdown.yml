@@ -9,7 +9,7 @@ reference:
      desc: Functionality for Creating logs from Scripts
    - contents:
       - axecute
-      - run_safely_quietly
+      - run_safely_loudly
    - title: Logging Framework Functions
      desc: Functionality to Build The Log Manually
    - contents:

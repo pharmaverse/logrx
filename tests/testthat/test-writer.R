@@ -124,11 +124,11 @@ test_that("write_warnings will return a formatted log errors element", {
 })
 
 test_that("write_output will return a formatted log output element", {
-   fp <- testthat::test_path("ref", "safely_quietly_test_file.R")
+   fp <- testthat::test_path("ref", "safely_loudly_test_file.R")
 
    log_config(file = fp)
 
-   run_safely_quietly(fp)
+   run_safely_loudly(fp)
 
    expect_identical(write_output(), "Output:\n\t[1] \"log print\"\n\t[1] \"log print 2\"\n\tlog catlog cat 2")
 
@@ -136,11 +136,11 @@ test_that("write_output will return a formatted log output element", {
 })
 
 test_that("write_messages will return a formatted log messages element", {
-   fp <- testthat::test_path("ref", "safely_quietly_test_file.R")
+   fp <- testthat::test_path("ref", "safely_loudly_test_file.R")
 
    log_config(file = fp)
 
-   run_safely_quietly(fp)
+   run_safely_loudly(fp)
 
    expect_identical(write_messages(), "Messages:\n\tlog inform\n\tlog inform 2\n\tlog message\n\tlog message 2")
 
@@ -148,11 +148,11 @@ test_that("write_messages will return a formatted log messages element", {
 })
 
 test_that("write_result will return a formatted log result element", {
-   fp <- testthat::test_path("ref", "safely_quietly_test_file_result.R")
+   fp <- testthat::test_path("ref", "safely_loudly_test_file_result.R")
 
    log_config(file = fp)
 
-   run_safely_quietly(fp)
+   run_safely_loudly(fp)
 
    expect_identical(write_result(), "\nResult:\n\tc(8, 6, 7, 5, 3, 0, 9)")
 
