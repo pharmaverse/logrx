@@ -15,9 +15,6 @@ test_that("log_config configures the log and all the necessary elements", {
                      "used_packages_functions", "unapproved_packages_functions",
                      "log_name","log_path"))
 
-   expect_identical(getOption("timber.log")[['metadata']], get_timber_metadata())
-   expect_identical(getOption("timber.log")[['session_info']], get_session_info())
-   expect_identical(getOption("timber.log")[['masked_functions']], get_masked_functions())
    expect_identical(getOption("timber.log")[['file_path']], dirname(get_file_path('./test-get.R')))
    expect_identical(getOption("timber.log")[['file_name']], basename(get_file_path('./test-get.R')))
    expect_identical(getOption("timber.log")[['user']], Sys.info()[["user"]])
