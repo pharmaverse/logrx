@@ -78,8 +78,6 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
    # Set some timber_log attributes
    # Metadata
    set_log_element("metadata", get_timber_metadata())
-   # Session Info
-   set_log_element("session_info", get_session_info())
    # Masked Functions
    set_log_element("masked_functions", get_masked_functions())
    # Source file path and name

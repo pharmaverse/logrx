@@ -3,8 +3,7 @@
 --------------------------------------------------------------------------------
 This log was generated using timber 0.0.0.9002
 timber package version: 0.0.0.9002
-timber license: MIT + file LICENSE
-timber build: 
+timber build: local
 timber link to repository: https://github.com/atorus-research/timber
 --------------------------------------------------------------------------------
 -                               User Information                               -
@@ -13,43 +12,97 @@ User: nmasel
 --------------------------------------------------------------------------------
 -                             Session Information                              -
 --------------------------------------------------------------------------------
-R version 4.0.3 (2020-10-10)
-Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Red Hat Enterprise Linux Server 7.9 (Maipo)
+─ Session info  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ hash: family: man, man, girl, girl, rolled-up newspaper, Ophiuchus
 
-Matrix products: default
-BLAS/LAPACK: /usr/lib64/libopenblasp-r0.3.3.so
+ setting  value
+ version  R version 4.0.3 (2020-10-10)
+ os       Red Hat Enterprise Linux Server 7.9 (Maipo)
+ system   x86_64, linux-gnu
+ ui       RStudio
+ language (EN)
+ collate  en_US.UTF-8
+ ctype    en_US.UTF-8
+ tz       America/New_York
+ date     2022-03-18
+ rstudio  1.4.1103.4 Wax Begonia (server)
+ pandoc   NA
 
-locale:
- [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
- [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8    LC_PAPER=en_US.UTF-8       LC_NAME=C                 
- [9] LC_ADDRESS=C               LC_TELEPHONE=C             LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+─ Packages ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ package     * version    date (UTC) lib source
+ assertthat    0.2.1      2019-03-21 [1] RSPM (R 4.0.5)
+ cli           3.1.0      2021-10-27 [1] CRAN (R 4.0.3)
+ crayon        1.4.2      2021-10-29 [1] CRAN (R 4.0.3)
+ DBI           1.1.2      2021-12-20 [1] RSPM (R 4.0.5)
+ digest        0.6.28     2021-09-23 [1] CRAN (R 4.0.3)
+ dplyr       * 1.0.7      2021-06-18 [1] CRAN (R 4.0.3)
+ ellipsis      0.3.2      2021-04-29 [1] CRAN (R 4.0.3)
+ fansi         0.5.0      2021-05-25 [1] CRAN (R 4.0.3)
+ fastmap       1.1.0      2021-01-25 [1] CRAN (R 4.0.3)
+ generics      0.1.1      2021-10-25 [1] CRAN (R 4.0.3)
+ glue          1.4.2      2020-08-27 [1] CRAN (R 4.0.3)
+ htmltools     0.5.2      2021-08-25 [1] CRAN (R 4.0.3)
+ httpuv        1.6.5      2022-01-05 [1] RSPM (R 4.0.5)
+ later         1.3.0      2021-08-18 [1] RSPM (R 4.0.5)
+ lifecycle     1.0.1      2021-09-24 [1] CRAN (R 4.0.3)
+ magrittr      2.0.1      2020-11-17 [1] CRAN (R 4.0.3)
+ mime          0.12       2021-09-28 [1] CRAN (R 4.0.3)
+ miniUI        0.1.1.1    2018-05-18 [1] RSPM (R 4.0.3)
+ pillar        1.6.4      2021-10-18 [1] CRAN (R 4.0.3)
+ pkgconfig     2.0.3      2019-09-22 [1] CRAN (R 4.0.3)
+ promises      1.2.0.1    2021-02-11 [1] RSPM (R 4.0.5)
+ purrr         0.3.4      2020-04-17 [1] CRAN (R 4.0.3)
+ R6            2.5.1      2021-08-19 [1] CRAN (R 4.0.3)
+ Rcpp          1.0.8      2022-01-13 [1] RSPM (R 4.0.5)
+ rlang         0.4.12     2021-10-18 [1] CRAN (R 4.0.3)
+ rstudioapi    0.13       2020-11-12 [1] CRAN (R 4.0.3)
+ sessioninfo   1.2.1      2021-11-02 [1] CRAN (R 4.0.3)
+ shiny         1.7.1      2021-10-02 [1] RSPM (R 4.0.5)
+ stringi       1.7.5      2021-10-04 [1] CRAN (R 4.0.3)
+ stringr       1.4.0      2019-02-10 [1] CRAN (R 4.0.3)
+ tibble        3.1.5      2021-09-30 [1] CRAN (R 4.0.3)
+ tidyr         1.1.4      2021-09-27 [1] CRAN (R 4.0.3)
+ tidyselect    1.1.1      2021-04-30 [1] CRAN (R 4.0.3)
+ timber      * 0.0.0.9002 2022-03-18 [1] local
+ utf8          1.2.2      2021-07-24 [1] CRAN (R 4.0.3)
+ vctrs         0.3.8      2021-04-29 [1] CRAN (R 4.0.3)
+ xtable        1.8-4      2019-04-21 [1] RSPM (R 4.0.3)
 
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
+ [1] /home/nmasel/R/x86_64-pc-linux-gnu-library/4.0
+ [2] /mnt/rstudio_idar/R/4.0.3/lib/R/library
 
-other attached packages:
-[1] timber_0.0.0.9002 testthat_3.1.0   
+─ External software ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ setting        value
+ cairo          1.15.12
+ cairoFT
+ pango          1.42.3
+ png            1.5.13
+ jpeg           6.2
+ tiff           LIBTIFF, Version 4.0.3
+ tcl            8.5.13
+ curl           7.29.0
+ zlib           1.2.7
+ bzlib          1.0.6, 6-Sept-2010
+ xz             5.2.2
+ PCRE           10.23 2017-02-14
+ ICU            50.2
+ TRE            TRE 0.8.0 R_fixes (BSD)
+ iconv          glibc 2.17
+ readline       6.2
+ BLAS           /usr/lib64/libopenblasp-r0.3.3.so
+ lapack         /usr/lib64/libopenblasp-r0.3.3.so
+ lapack_version 3.8.0
 
-loaded via a namespace (and not attached):
- [1] compiler_4.0.3    pillar_1.6.4      prettyunits_1.1.1 remotes_2.4.1     tools_4.0.3       pkgbuild_1.2.0   
- [7] pkgload_1.2.3     memoise_2.0.0     lifecycle_1.0.1   tibble_3.1.5      pkgconfig_2.0.3   rlang_0.4.12     
-[13] cli_3.1.0         rstudioapi_0.13   fastmap_1.1.0     withr_2.4.2       dplyr_1.0.7       stringr_1.4.0    
-[19] desc_1.4.0        generics_0.1.1    fs_1.5.0          vctrs_0.3.8       devtools_2.4.2    rprojroot_2.0.2  
-[25] tidyselect_1.1.1  glue_1.4.2        R6_2.5.1          processx_3.5.2    fansi_0.5.0       sessioninfo_1.2.1
-[31] callr_3.7.0       purrr_0.3.4       tidyr_1.1.4       magrittr_2.0.1    ps_1.6.0          ellipsis_0.3.2   
-[37] usethis_2.1.3     utf8_1.2.2        stringi_1.7.5     cachem_1.0.6      crayon_1.4.2     
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 --------------------------------------------------------------------------------
 -                               Masked Functions                               -
 --------------------------------------------------------------------------------
-function `system.file` from {package:timber, package:base} by devtools_shims
-function `?` from {package:utils} by devtools_shims
-function `help` from {package:utils} by devtools_shims
-function `%>%` from {package:testthat} by package:timber
-function `aggregate` from {package:stats} by package:timber
-function `capture.output` from {package:utils} by package:timber
-function `sessionInfo` from {package:utils} by package:timber
-function `library.dynam.unload` from {package:base} by package:timber
+function `filter` from {package:stats} by package:dplyr
+function `lag` from {package:stats} by package:dplyr
+function `intersect` from {package:base} by package:dplyr
+function `setdiff` from {package:base} by package:dplyr
+function `setequal` from {package:base} by package:dplyr
+function `union` from {package:base} by package:dplyr
 function `plot` from {package:base} by package:graphics
 function `body<-` from {package:base} by package:methods
 function `kronecker` from {package:base} by package:methods
@@ -60,8 +113,8 @@ function `kronecker` from {package:base} by package:methods
 --------------------------------------------------------------------------------
 -                         Program Run Time Information                         -
 --------------------------------------------------------------------------------
-Start time: 2022-01-26 11:33:48 EST
-End time: 2022-01-26 11:33:48 EST
+Start time: 2022-03-18 10:53:23 EDT
+End time: 2022-03-18 10:53:23 EDT
 Run time: 0 seconds
 --------------------------------------------------------------------------------
 -                             Errors and Warnings                              -
@@ -74,4 +127,4 @@ Warnings:
 -                               Log Output File                                -
 --------------------------------------------------------------------------------
 Log name: ex3.log
-Log path: /home/nmasel/timber/tests/testthat/ref
+Log path: /home/nmasel/timber_atorus/tests/testthat/ref

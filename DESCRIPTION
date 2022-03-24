@@ -20,6 +20,10 @@ Authors@R:
            family = "Rimler",
            email = "michael.s.rimler@gsk.com",
            role = "aut"),
+    person(given = "Nicholas",
+           family = "Masel",
+           email = "nmasel@its.jnj.com",
+           role = "aut"),
     person(given = "GSK/Atorus JPT",
            role = c("cph", "fnd"))
     )
@@ -41,13 +45,15 @@ Imports:
     stringr,
     miniUI,
     rstudioapi,
-    shiny
+    shiny,
+    sessioninfo
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
     rmarkdown,
     tibble,
-    withr
+    withr,
+    covr
 VignetteBuilder: knitr, rmarkdown
 Config/testthat/edition: 3
 Depends: 
