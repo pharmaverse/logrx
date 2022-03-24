@@ -6,20 +6,22 @@
 #' @return Named list of timber package metadata attributes
 #' @export
 #'
-#' @importFrom utils sessionInfo
+#' @importFrom sessioninfo session_info
+#' @importFrom dplyr filter
 #'
 #' @examples
 #' get_timber_metadata()
 #'
 get_timber_metadata <- function(){
-   session_info <- sessionInfo()
+
+   timber_session_info <- session_info()$packages %>%
+      filter(.data$package == "timber")
 
    timber_metadata <- list(
       info = paste0("This log was generated using timber ",
-                    session_info[["otherPkgs"]][["timber"]][["Version"]]),
-      version = session_info[["otherPkgs"]][["timber"]][["Version"]],
-      license = session_info[["otherPkgs"]][["timber"]][["License"]],
-      built = session_info[["otherPkgs"]][["timber"]][["Built"]],
+                    timber_session_info[['loadedversion']]),
+      version = timber_session_info[['loadedversion']],
+      built = timber_session_info[['source']],
       repository_link = "https://github.com/atorus-research/timber"
    )
 
@@ -77,13 +79,13 @@ get_file_path <- function(file = NA, normalize = TRUE){
 #' @return Formatted Session Info
 #' @export
 #'
-#' @importFrom utils sessionInfo
+#' @importFrom sessioninfo session_info
 #'
 #' @examples
 #' get_session_info()
 #'
 get_session_info <- function(){
-   return(capture.output(sessionInfo()))
+   return(capture.output(session_info(info = c("platform", "packages", "external"))))
 }
 
 

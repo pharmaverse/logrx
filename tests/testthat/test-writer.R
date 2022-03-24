@@ -21,17 +21,19 @@ test_that("write_log_header will return a correctly padded header", {
 test_that("write_metadata will return a formatted log metadata element",{
    options("timber.log" = NULL)
    log_config("./test-writer.R")
+
+   timber_session_info <- session_info()$packages %>%
+      filter(.data$package == "timber")
+
    metadata <- list(info = paste0("This log was generated using timber ",
-                    sessionInfo()[["otherPkgs"]][["timber"]][["Version"]]),
-               version = sessionInfo()[["otherPkgs"]][["timber"]][["Version"]],
-               license = sessionInfo()[["otherPkgs"]][["timber"]][["License"]],
-               built = sessionInfo()[["otherPkgs"]][["timber"]][["Built"]],
-               repository_link = "https://github.com/atorus-research/timber"
+                                  timber_session_info[['loadedversion']]),
+                    version = timber_session_info[['loadedversion']],
+                    built = timber_session_info[['source']],
+                    repository_link = "https://github.com/atorus-research/timber"
             )
    expect_identical(write_metadata(),
                     c(metadata$info,
                       paste0("timber package version: ", metadata$version),
-                      paste0("timber license: ", metadata$license),
                       paste0("timber build: ", metadata$built),
                       paste0("timber link to repository: ", metadata$repository_link)))
 })

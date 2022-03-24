@@ -126,5 +126,8 @@ run_safely_loudly <- function(file) {
    set_log_element("result", ret$result$result)
    set_log_element("warnings", ret$warnings)
    set_log_element("errors", ret$result$error)
+
+   # Session Info
+   set_log_element("session_info", get_session_info())
 }
 

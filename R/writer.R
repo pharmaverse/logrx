@@ -29,7 +29,6 @@ write_metadata <- function(){
 
    metadata <- c(metadata$info,
                  paste0("timber package version: ", metadata$version),
-                 paste0("timber license: ", metadata$license),
                  paste0("timber build: ", metadata$built),
                  paste0("timber link to repository: ", metadata$repository_link))
 
