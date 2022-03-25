@@ -1,4 +1,4 @@
 Name: timber
-Description: Inserts / updates standard GSK header at the top of the page
+Description: Runs a file using `axecute()`
 Binding: timberAddin
 Interactive: true

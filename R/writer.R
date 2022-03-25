@@ -8,9 +8,6 @@
 #' @return formatted element including prefix
 #' @export
 #'
-#' @examples
-#' write_log_element("user", "user running program: ")
-#'
 write_log_element <- function(el_key, prefix = NULL) {
    # get element from log
    el <- get_log_element(el_key)
@@ -26,9 +23,6 @@ write_log_element <- function(el_key, prefix = NULL) {
 #'
 #' @return A vector of timber.log's metadata attributes
 #' @export
-#'
-#' @examples
-#' write_metadata()
 #'
 write_metadata <- function(){
    metadata <- get_log_element("metadata")
@@ -66,9 +60,6 @@ write_file_name_path <- function(){
 #' @export
 #'
 #' @importFrom purrr imap
-#'
-#' @examples
-#' write_masked_functions()
 #'
 write_masked_functions <- function(){
    masked_functions_list <- get_log_element("masked_functions")
@@ -138,9 +129,6 @@ write_unapproved_functions <- function(){
 #' @return a vector with the header including title
 #' @export
 #'
-#' @examples
-#' write_log_header("timber metadata")
-#'
 write_log_header <- function(title_string){
    # create left and right pad length
    rpad <- ceiling((78 - nchar(title_string))/2)
@@ -160,22 +148,11 @@ write_log_header <- function(title_string){
 #'
 #' @importFrom utils capture.output
 #'
-#' @examples
-#' scriptPath <- tempfile()
-#' logDir <- tempdir()
-#' writeLines("print('hello timber')", con = scriptPath)
-#'
-#' log_remove()
-#'
-#' log_config(scriptPath)
-#'
-#' write_errors()
-#'
 write_errors <- function() {
    errors <- get_log_element("errors")
 
-   paste0("errors:\n\t",
-          capture.output(errors))
+   paste0("Errors:\n\t",
+          capture.output(errors$message))
 }
 
 #' Format warnings attribute for writing
@@ -183,20 +160,51 @@ write_errors <- function() {
 #' @return A formatted vector of warnings
 #' @export
 #'
-#' @examples
-#' scriptPath <- tempfile()
-#' logDir <- tempdir()
-#' writeLines("print('hello timber')", con = scriptPath)
-#'
-#' log_remove()
-#'
-#' log_config(scriptPath)
-#'
-#' write_warnings()
-#'
 write_warnings <- function() {
    warnings <- get_log_element("warnings")
 
-   paste0("Warnings:\n\t",
+   paste0("\nWarnings:\n\t",
           paste0(warnings, collapse = "\n\t"))
+}
+
+#' Format messages attribute for writing
+#'
+#' @importFrom purrr map
+#' @importFrom stringr str_remove_all
+#'
+#' @return A formatted vector of messages
+#' @export
+#'
+write_messages <- function() {
+   messages <- get_log_element("messages") %>%
+      map(~ str_remove_all(.x, "\n"))
+
+   paste0("Messages:\n\t",
+          paste0(messages, collapse = "\n\t"))
+}
+
+#' Format output attribute for writing
+#'
+#' @importFrom stringr str_replace_all
+#'
+#' @return A formatted vector of output
+#' @export
+#'
+write_output <- function() {
+   output <- get_log_element("output")
+
+   paste0("Output:\n\t",
+          str_replace_all(output, "\n", "\n\t"))
+}
+
+#' Format result attribute for writing
+#'
+#' @return A formatted vector of results
+#' @export
+#'
+write_result <- function() {
+   result <- get_log_element("result")
+
+   paste0("\nResult:\n\t",
+          paste0(result$value, collapse = "\n\t"))
 }

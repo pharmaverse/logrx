@@ -12,7 +12,3 @@ A formatted vector of masked functions
 \description{
 Format masked functions attribute for writing
 }
-\examples{
-write_masked_functions()
-
-}

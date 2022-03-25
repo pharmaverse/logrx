@@ -62,13 +62,13 @@ Use the `log_*()` functions:
 * `log_config()` to add the core elements of the log to the environment, and 
  basic elements that are available at the time of configuration
 
-* `run_safely_n_quietly()` to execute the program code, and capture errors 
+* `run_safely_loudly()` to execute the program code, and capture errors 
 and warnings
 
 * `log_write()` to generate and format the log
 ```{r log_*, eval = FALSE}
 log_config("my_script.R")
-run_safely_n_quietly("my_script.R")
+run_safely_loudly("my_script.R")
 log_write()
 ```
 
