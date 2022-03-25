@@ -1,17 +1,17 @@
 Package: timber
 Title: A Logging Utility Focus on Clinical Trial Programming Workflows
-Version: 0.0.0.9002
+Version: 0.0.1
 Authors@R: 
     c(
-    person(given = "Thomas",
-           family = "Bermudez",
-           email = "thomas.a.bermudez@gsk.com",
-           role = c("aut", "cre")),
     person(given = "Nathan",
            family = "Kosiba",
            email = "Nathan.Kosiba@atorusresearch.com",
-           role = "aut",
+           role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5359-4234")),
+    person(given = "Thomas",
+           family = "Bermudez",
+           email = "thomas.a.bermudez@gsk.com",
+           role = "aut"),
     person(given = "Ben", 
            family = "Straub",
            email = "ben.x.straub@gsk.com", 
@@ -27,7 +27,7 @@ Authors@R:
     person(given = "GSK/Atorus JPT",
            role = c("cph", "fnd"))
     )
-Description: A package to facilitate the logging and review of R programs in clinical trial programming workflows.
+Description: A utility to facilitate the logging and review of R programs in clinical trial programming workflows.
 License: MIT + file LICENSE
 URL: https://github.com/atorus-research/timber
 BugReports: https://github.com/atorus-research/timber/issues
