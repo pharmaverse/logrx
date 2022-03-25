@@ -21,7 +21,9 @@ get_timber_metadata <- function(){
       info = paste0("This log was generated using timber ",
                     timber_session_info[['loadedversion']]),
       version = timber_session_info[['loadedversion']],
-      built = timber_session_info[['source']],
+      built = ifelse(!is.na(timber_session_info[['source']]),
+                     timber_session_info[['source']],
+                     "Build not able to be determined"),
       repository_link = "https://github.com/atorus-research/timber"
    )
 
