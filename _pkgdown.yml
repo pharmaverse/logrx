@@ -19,10 +19,16 @@ reference:
    - contents:
       - starts_with("get")
       - starts_with("set")
+      - approved
+      - approved_functions_init
    - title: Write Log
      desc: Functionality for Writing Logs to a File
    - contents:
       - starts_with("write")
+   - title: Utilities
+     desc: Utility functions
+   - contents:
+      - loudly
    - title: RStudio addin
      desc: RStudio addin to facilitate the execution of a log
    - contents:
