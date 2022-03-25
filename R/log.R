@@ -154,8 +154,9 @@ log_write <- function(file = NA, remove_log_object = TRUE){
    }
 
    cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_header("User Information"),
-                        write_log_element("user", "User: "))
+                        write_log_header("User and File Information"),
+                        write_log_element("user", "User: "),
+                        write_file_name_path())
 
 
    cleaned_log_vec <- c(cleaned_log_vec,

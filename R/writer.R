@@ -41,6 +41,25 @@ write_metadata <- function(){
    return(metadata)
 }
 
+#' Format file name and path for writing
+#'
+#' @return A vector of file name and path prefixed
+#' @export
+#'
+write_file_name_path <- function(){
+   file_name <- ifelse(is.na(get_log_element("file_name")),
+                       "File name not able to be determined",
+                       get_log_element("file_name"))
+   file_path <- ifelse(is.na(get_log_element("file_path")),
+                       "File path not able to be determined",
+                       get_log_element("file_path"))
+
+   file_name_path <- c(
+      paste0("File Name: ", file_name),
+      paste0("File Path: ", file_path)
+   )
+}
+
 #' Format masked functions attribute for writing
 #'
 #' @return A formatted vector of masked functions

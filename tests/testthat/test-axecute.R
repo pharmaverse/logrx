@@ -17,7 +17,7 @@ test_that("axecute will run a file and create the necessary log", {
    # check all the elements are there
    expect_true(grepl(paste(write_log_header("timber Metadata"), collapse = ','),
                      paste(flines,collapse = ',')))
-   expect_true(grepl(paste(write_log_header("User Information"), collapse = ','),
+   expect_true(grepl(paste(write_log_header("User and File Information"), collapse = ','),
                      paste(flines,collapse = ',')))
    expect_true(grepl(paste(write_log_header("Session Information"), collapse = ','),
                      paste(flines,collapse = ',')))
