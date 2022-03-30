@@ -82,12 +82,20 @@ get_file_path <- function(file = NA, normalize = TRUE){
 #' @export
 #'
 #' @importFrom sessioninfo session_info
+#' @importFrom purrr map
+#' @importFrom stringr str_wrap
 #'
 #' @examples
 #' get_session_info()
 #'
 get_session_info <- function(){
-   return(capture.output(session_info(info = c("platform", "packages", "external"))))
+   return(capture.output(session_info(info = c("platform", "packages", "external"))) %>%
+             # remove extra dashes on title lines
+             map(~ ifelse(nchar(.x) > 80 & grepl("─────────────", .x),
+                          substring(.x, 1, 80),
+                                    .x)) %>%
+             # wrap any other elements over 80 characters
+             map(~ str_wrap(.x, exdent = 2)))
 }
 
 
