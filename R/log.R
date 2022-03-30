@@ -164,7 +164,7 @@ log_write <- function(file = NA, remove_log_object = TRUE){
 
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_header("Session Information"),
-                        write_log_element("session_info", ""))
+                        write_session_info())
 
    if ("masked_functions" %in% names(log_cleanup())) {
       cleaned_log_vec <- c(cleaned_log_vec,

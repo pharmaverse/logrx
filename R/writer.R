@@ -35,6 +35,28 @@ write_metadata <- function(){
    return(metadata)
 }
 
+
+#' Format timber.log's session info attribute for writing
+#'
+#' @importFrom purrr map_chr
+#'
+#' @return A vector of timber.log's session info attribute
+#' @export
+#'
+write_session_info <- function(){
+   session_info <- get_log_element("session_info") %>%
+      # remove extra dashes on title lines
+      map_chr(~ ifelse(nchar(.x) > 80 & grepl("─────────────", .x),
+                   substring(.x, 1, 80),
+                   .x)) %>%
+      # wrap any other elements over 80 characters
+      map_chr(~ ifelse(nchar(.x) > 80,
+                   paste0(substring(.x, 1, 80), "\n\t", substring(.x, 81)),
+                   .x))
+
+   return(session_info)
+}
+
 #' Format file name and path for writing
 #'
 #' @return A vector of file name and path prefixed
