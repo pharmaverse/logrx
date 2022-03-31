@@ -10,7 +10,7 @@ approved_functions_init()
 Nothing
 }
 \description{
-Defaults to working directory.  This should point to the location of the
+Defaults to working directory. This should point to the location of the
 dataframe storing approved packages and functions.
 }
 \details{

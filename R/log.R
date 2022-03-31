@@ -16,7 +16,7 @@ log_init <- function(){
 
 #' Initialises the timber.approved option
 #'
-#' Defaults to working directory.  This should point to the location of the
+#' Defaults to working directory. This should point to the location of the
 #' dataframe storing approved packages and functions.
 #'
 #' See ?approved for an example dataframe.

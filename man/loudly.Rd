@@ -2,19 +2,19 @@
 % Please edit documentation in R/utils-execution.R
 \name{loudly}
 \alias{loudly}
-\title{capture errors, warnings, messages, and a stream output from
+\title{Capture errors, warnings, messages, and a stream output from
 executing R code}
 \usage{
 loudly(code)
 }
 \arguments{
-\item{code}{all code to be run loudly}
+\item{code}{All code to be run loudly}
 }
 \value{
-wrapped function returns a list with components
+Wrapped function returns a list with components
 \code{result}, \code{stream}, \code{messages} and \code{warnings}.
 }
 \description{
-capture errors, warnings, messages, and a stream output from
+Capture errors, warnings, messages, and a stream output from
 executing R code
 }

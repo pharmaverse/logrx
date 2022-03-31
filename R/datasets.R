@@ -3,7 +3,7 @@
 #' @description
 #' A dataset that stores approved packages and functions for use.
 #' Each row contains a `library` and `function_name`.
-#' This dataset is use to illustrate the data format to be stored in
+#' This dataset is used to illustrate the data format to be stored in
 #' the timber.approved option.
 #'
 #' @format A tibble with 6 rows and 2 variables:

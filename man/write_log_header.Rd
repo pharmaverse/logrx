@@ -7,10 +7,10 @@
 write_log_header(title_string)
 }
 \arguments{
-\item{title_string}{string to be used as section title}
+\item{title_string}{String to be used as section title}
 }
 \value{
-a vector with the header including title
+A vector with the header including title
 }
 \description{
 Generic function to format log section headers
