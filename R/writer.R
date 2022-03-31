@@ -148,9 +148,9 @@ write_unapproved_functions <- function(){
 
 #' Generic function to format log section headers
 #'
-#' @param title_string string to be used as section title
+#' @param title_string String to be used as section title
 #'
-#' @return a vector with the header including title
+#' @return A vector with the header including title
 #' @export
 #'
 write_log_header <- function(title_string){

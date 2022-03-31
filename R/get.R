@@ -218,7 +218,7 @@ get_first <- function(func, search_lookup){
 #' Compare two dataframes that contain approved and used packages and functions.
 #'
 #' @param approved_packages dataframe containing variables `function_name` and `library`
-#' @param used_packages  dataframe containing variables `function_name` and `library`
+#' @param used_packages dataframe containing variables `function_name` and `library`
 #'
 #' @importFrom dplyr anti_join
 #' @export

@@ -34,7 +34,7 @@ The following attributes are recorded in the log:
 * `errors`: The errors generated when running the R script
 * `warnings`: The warnings generated when running the R script
 * `messages`: The messages generated when running the R script
-* `result``: The result generated when running the R script
+* `result`: The result generated when running the R script
 * `output`: The output generated when running the R script
 * `masked_functions`: The functions masked by packages
 * `used_packages_functions`: Any packages and functions used in the R script

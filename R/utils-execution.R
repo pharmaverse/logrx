@@ -1,11 +1,11 @@
-#' capture errors, warnings, messages, and a stream output from
+#' Capture errors, warnings, messages, and a stream output from
 #' executing R code
 #'
 #' @importFrom purrr as_mapper
 #'
-#' @param code all code to be run loudly
+#' @param code All code to be run loudly
 #'
-#' @return wrapped function returns a list with components
+#' @return Wrapped function returns a list with components
 #'   `result`, `stream`, `messages` and `warnings`.
 #'
 #' @export
