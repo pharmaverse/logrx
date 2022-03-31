@@ -134,10 +134,10 @@ test_that("write_errors will return a formatted log errors element", {
    log_config("./test-writer.R")
    errors <- list(message = "object 'a' not found")
    assign('errors', errors, envir = getOption('timber.log'))
-   expect_identical(write_errors(), paste0("Errors:\n\t",capture.output(errors$message)))
+   expect_identical(write_errors(), "Errors:\n\tobject 'a' not found")
 })
 
-test_that("write_warnings will return a formatted log errors element", {
+test_that("write_warnings will return a formatted log warnings element", {
    options("timber.log" = NULL)
    log_config("./test-writer.R")
    assign('warnings', c("this is a warning"), envir = getOption('timber.log'))

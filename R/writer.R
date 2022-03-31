@@ -39,6 +39,8 @@ write_metadata <- function(){
 #' Format timber.log's session info attribute for writing
 #'
 #' @importFrom purrr map_chr
+#' @importFrom stringi stri_wrap
+#' @importFrom stringr str_c
 #'
 #' @return A vector of timber.log's session info attribute
 #' @export
@@ -49,10 +51,10 @@ write_session_info <- function(){
       map_chr(~ ifelse(nchar(.x) > 80 & grepl("\u2500\u2500\u2500\u2500", .x),
                    substring(.x, 1, 80),
                    .x)) %>%
-      # wrap any other elements over 80 characters
-      map_chr(~ ifelse(nchar(.x) > 80,
-                   paste0(substring(.x, 1, 80), "\n\t", substring(.x, 81)),
-                   .x))
+      # wrap any other elements over 78 characters
+      map_chr(~ stri_wrap(.x, width = 78, exdent = 2, simplify = FALSE,
+                          normalize = FALSE, whitespace_only = TRUE) %>%
+                 map_chr(~ str_c(.x, collapse = "\n\t", character(1))))
 
    return(session_info)
 }
@@ -174,7 +176,7 @@ write_errors <- function() {
    errors <- get_log_element("errors")
 
    paste0("Errors:\n\t",
-          capture.output(errors$message))
+          str_replace_all(errors$message, "\n", "\n\t"))
 }
 
 #' Format warnings attribute for writing
