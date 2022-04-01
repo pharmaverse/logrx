@@ -12,7 +12,3 @@ A vector of timber.log's metadata attributes
 \description{
 Format timber.log's metadata attributes for writing
 }
-\examples{
-write_metadata()
-
-}

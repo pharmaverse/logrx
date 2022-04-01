@@ -12,15 +12,3 @@ A formatted vector of errors
 \description{
 Format errors attribute for writing
 }
-\examples{
-scriptPath <- tempfile()
-logDir <- tempdir()
-writeLines("print('hello timber')", con = scriptPath)
-
-log_remove()
-
-log_config(scriptPath)
-
-write_errors()
-
-}

@@ -9,7 +9,7 @@ reference:
      desc: Functionality for Creating logs from Scripts
    - contents:
       - axecute
-      - run_safely_n_quietly
+      - run_safely_loudly
    - title: Logging Framework Functions
      desc: Functionality to Build The Log Manually
    - contents:
@@ -19,7 +19,17 @@ reference:
    - contents:
       - starts_with("get")
       - starts_with("set")
+      - approved
+      - approved_functions_init
    - title: Write Log
      desc: Functionality for Writing Logs to a File
    - contents:
       - starts_with("write")
+   - title: Utilities
+     desc: Utility functions
+   - contents:
+      - loudly
+   - title: RStudio addin
+     desc: RStudio addin to facilitate the execution of a log
+   - contents:
+      - timberAddin

@@ -1,17 +1,17 @@
 Package: timber
 Title: A Logging Utility Focus on Clinical Trial Programming Workflows
-Version: 0.0.0.9001
+Version: 0.0.1
 Authors@R: 
     c(
-    person(given = "Thomas",
-           family = "Bermudez",
-           email = "thomas.a.bermudez@gsk.com",
-           role = c("aut", "cre")),
     person(given = "Nathan",
            family = "Kosiba",
            email = "Nathan.Kosiba@atorusresearch.com",
-           role = "aut",
+           role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5359-4234")),
+    person(given = "Thomas",
+           family = "Bermudez",
+           email = "thomas.a.bermudez@gsk.com",
+           role = "aut"),
     person(given = "Ben", 
            family = "Straub",
            email = "ben.x.straub@gsk.com", 
@@ -20,10 +20,14 @@ Authors@R:
            family = "Rimler",
            email = "michael.s.rimler@gsk.com",
            role = "aut"),
+    person(given = "Nicholas",
+           family = "Masel",
+           email = "nmasel@its.jnj.com",
+           role = "aut"),
     person(given = "GSK/Atorus JPT",
            role = c("cph", "fnd"))
     )
-Description: A package to facilitate the logging and review of R programs in clinical trial programming workflows.
+Description: A utility to facilitate the logging and review of R programs in clinical trial programming workflows.
 License: MIT + file LICENSE
 URL: https://github.com/atorus-research/timber
 BugReports: https://github.com/atorus-research/timber/issues
@@ -32,15 +36,26 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Imports:
+    dplyr,
     magrittr,
     purrr,
+    rlang,
+    stats,
+    tidyr,
     stringr,
     miniUI,
     rstudioapi,
-    shiny
+    shiny,
+    sessioninfo,
+    stringi
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
-    rmarkdown
+    rmarkdown,
+    tibble,
+    withr,
+    covr
 VignetteBuilder: knitr, rmarkdown
 Config/testthat/edition: 3
+Depends: 
+    R (>= 2.10)

@@ -20,22 +20,25 @@ library(timber)
 
 The purpose of the `timber` package is to generate a log upon execution of 
 an R script which enables traceability and reproducibility of the executed code. 
-![timber log](../man/figures/timber-ex.png)
 
 
 # Log attributes
 The following attributes are recorded in the log:
 
 * `metadata`: The timber `package` information
-* `user`: The user that generates the log
 * `session_info`: The R session information
-* `masked_functions`: The functions masked by packages
-* `used_packages`: The used packages
+* `user`: The user that generates the log
+* `file_name`, `file_path`: The file name and path of the R script
+* `log_name`, `log_path`: The name and path of the log
 * `start_time`, `end_time`, and `run_time`: The start, end, and run times
 * `errors`: The errors generated when running the R script
 * `warnings`: The warnings generated when running the R script
-* `file_name`, `file_path`: The file name and path of the R script
-* `log_name`, `log_path`: The name and path of the log
+* `messages`: The messages generated when running the R script
+* `result`: The result generated when running the R script
+* `output`: The output generated when running the R script
+* `masked_functions`: The functions masked by packages
+* `used_packages_functions`: Any packages and functions used in the R script
+* `unapproved_packages_functions`: Any packages and functions used in the R script that are not part of that approved packages and functions list
 
 
 # Generating a log
@@ -48,7 +51,7 @@ The log can be generated according in two ways:
 
 ## `axecute()`
 `axecute()` enables the command line submission of a program. A log is 
-set-up around the program, and its code is run safely and quietly (using `safely()` and `quietly()` from the `purrr` package).
+set-up around the program, and its code is run safely and loudly (using `safely()` from the `purrr` package).
 ```{r axecute, eval = FALSE}
 axecute("my_script.R")
 ```
@@ -62,13 +65,13 @@ Use the `log_*()` functions:
 * `log_config()` to add the core elements of the log to the environment, and 
  basic elements that are available at the time of configuration
 
-* `run_safely_n_quietly()` to execute the program code, and capture errors 
-and warnings
+* `run_safely_loudly()` to execute the program code, and capture errors, warnings,
+messages, output, and result
 
 * `log_write()` to generate and format the log
 ```{r log_*, eval = FALSE}
 log_config("my_script.R")
-run_safely_n_quietly("my_script.R")
+run_safely_loudly("my_script.R")
 log_write()
 ```
 
