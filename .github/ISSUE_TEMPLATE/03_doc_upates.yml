@@ -1,6 +1,6 @@
 name:  Updates or Enhancements for Documentation
 description: Documents out of date?  Examples need reworking? Got an idea for a new article?
-   title: "Documentation:  <Insert Issue Title Here>"
+title: "Documentation:  <Insert Issue Title Here>"
 labels: ["vignettes", "website", "documentation"]
 assignees:
    - octocat
