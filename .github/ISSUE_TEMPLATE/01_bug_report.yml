@@ -21,8 +21,8 @@ body:
      id: session-info
      attributes:
        label: Session Information
-         description: Use `sessionInfo()` in the R console to gather all the details of your environment when the bug happened.
-         placeholder: "Place the console output here"
+       description: Use `sessionInfo()` in the R console to gather all the details of your environment when the bug happened.
+       placeholder: "Place the console output here"
      validations:
          required: false
    - type: textarea
