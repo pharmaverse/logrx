@@ -54,7 +54,8 @@ Suggests:
     rmarkdown,
     tibble,
     withr,
-    covr
+    covr,
+    pkgdown
 VignetteBuilder: knitr, rmarkdown
 Config/testthat/edition: 3
 Depends: 
