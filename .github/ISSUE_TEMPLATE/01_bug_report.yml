@@ -12,18 +12,18 @@ body:
    - type: textarea
      id: what-happened
      attributes:
-      label: What happened?
-      description: Also tell us, what were you expecting to happen before the bug?
-      placeholder: "A bug happened!"
+         label: What happened?
+         description: Also tell us, what were you expecting to happen before the bug?
+         placeholder: "A bug happened!"
      validations:
-      required: true
+         required: true
    - type: textarea
      id: session-info
      attributes:
-      label: Session Information
-      description: Use `sessionInfo()` in the R console to gather all the details of your environment when the bug happened.
-      placeholder: "Place the console output here"
-      validations:
+       label: Session Information
+         description: Use `sessionInfo()` in the R console to gather all the details of your environment when the bug happened.
+         placeholder: "Place the console output here"
+     validations:
          required: false
    - type: textarea
      id: logs
