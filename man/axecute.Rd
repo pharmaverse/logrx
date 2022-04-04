@@ -16,7 +16,7 @@ axecute(file, log_name = NA, log_path = NA, remove_log_object = TRUE)
 \item{remove_log_object}{Should the log object be removed after writing, defaults to TRUE}
 }
 \value{
-Nothing
+0 if there are no errors and 1 if any error
 }
 \description{
 Create a log and run a file
