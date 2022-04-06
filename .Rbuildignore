@@ -12,3 +12,5 @@
 ^timber.*\.tar\.gz$
 ^timber.*\.tgz$
 ^data-raw$
+^doc$
+^Meta$

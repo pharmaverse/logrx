@@ -1,6 +1,6 @@
 #' timberAddin
-#' Code needed to create the miniUI for the addin
-#' @return returns mimUI Addin to batch submit r files and create logs around them
+#' Code needed to create the miniUI for the Addin
+#' @return returns miniUI Addin to batch submit r files and create logs around them
 #' @importFrom miniUI miniPage gadgetTitleBar miniContentPanel
 #' @importFrom shiny textInput checkboxInput actionButton uiOutput reactiveValues observeEvent renderText stopApp runGadget conditionalPanel fluidRow column tags HTML
 #' @importFrom rstudioapi selectFile selectDirectory
@@ -10,7 +10,7 @@ timberAddin <- function() {
    ui <- miniUI::miniPage(
       #CSS sheet to color ui
       shiny::includeCSS("inst/styles.css"),
-      #Title for miniui
+      #Title for miniUI
       miniUI::gadgetTitleBar("timber",
                              left = NULL,
                              right = miniUI::miniTitleBarButton("done", "Done", primary = TRUE)
