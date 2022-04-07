@@ -6,11 +6,12 @@
 #' @param log_name Name of log file
 #' @param log_path Path to output log to
 #' @param remove_log_object Should the log object be removed after writing, defaults to TRUE
+#' @param quit_on_error Should the session quit with status of 1 with error, defaults to TRUE
 #'
 #' @return 0 if there are no errors and 1 if any error
 #' @export
 #'
-axecute <- function(file, log_name = NA, log_path = NA, remove_log_object = TRUE){
+axecute <- function(file, log_name = NA, log_path = NA, remove_log_object = TRUE, quit_on_error = TRUE){
    # initialize log
    log_config(file = file, log_name = log_name, log_path = log_path)
 
@@ -23,11 +24,9 @@ axecute <- function(file, log_name = NA, log_path = NA, remove_log_object = TRUE
    # write log
    log_write(file = file, remove_log_object = remove_log_object)
 
-   # return 0 if no error, 1 otherwise
-   invisible(
-      if(is.null(any_errors)) {
-         return(0)
-      } else (return(1))
-   )
+   # if error, quit with status = 1 if not interactive
+   if(!interactive() & !is.null(any_errors) & quit_on_error) {
+      quit(status = 1)
+   }
 
 }

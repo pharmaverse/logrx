@@ -35,22 +35,6 @@ test_that("axecute will run a file and create the necessary log", {
 
 })
 
-test_that("axecute returns 0 when there are no errors", {
-   options("timber.log" = NULL)
-   scriptPath <- tempfile()
-   logDir <- tempdir()
-   writeLines("print('hello timber')", con = scriptPath)
-
-   rc <- axecute(scriptPath, log_name = "log_out", log_path = logDir, remove_log_object = FALSE)
-
-   expect_equal(rc , 0)
-
-   # remove all the stuff we added
-   rm(rc, scriptPath, logDir)
-
-})
-
-
 test_that("axecute returns 1 when there are errors", {
    options("timber.log" = NULL)
    scriptPath <- tempfile()
