@@ -4,7 +4,13 @@
 \alias{axecute}
 \title{Create a log and run a file}
 \usage{
-axecute(file, log_name = NA, log_path = NA, remove_log_object = TRUE)
+axecute(
+  file,
+  log_name = NA,
+  log_path = NA,
+  remove_log_object = TRUE,
+  quit_on_error = TRUE
+)
 }
 \arguments{
 \item{file}{File path of file to run}
@@ -14,6 +20,8 @@ axecute(file, log_name = NA, log_path = NA, remove_log_object = TRUE)
 \item{log_path}{Path to output log to}
 
 \item{remove_log_object}{Should the log object be removed after writing, defaults to TRUE}
+
+\item{quit_on_error}{Should the session quit with status of 1 with error, defaults to TRUE}
 }
 \value{
 0 if there are no errors and 1 if any error
