@@ -53,7 +53,13 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">axecute</span><span class="op">(</span><span class="va">file</span>, log_name <span class="op">=</span> <span class="cn">NA</span>, log_path <span class="op">=</span> <span class="cn">NA</span>, remove_log_object <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">axecute</span><span class="op">(</span>
+  <span class="va">file</span>,
+  log_name <span class="op">=</span> <span class="cn">NA</span>,
+  log_path <span class="op">=</span> <span class="cn">NA</span>,
+  remove_log_object <span class="op">=</span> <span class="cn">TRUE</span>,
+  quit_on_error <span class="op">=</span> <span class="cn">TRUE</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -66,6 +72,8 @@
 <dd><p>Path to output log to</p></dd>
 <dt>remove_log_object</dt>
 <dd><p>Should the log object be removed after writing, defaults to TRUE</p></dd>
+<dt>quit_on_error</dt>
+<dd><p>Should the session quit with status of 1 with error, defaults to TRUE</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
