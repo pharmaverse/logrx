@@ -229,6 +229,5 @@ write_output <- function() {
 write_result <- function() {
    result <- get_log_element("result")
 
-   paste0("\nResult:\n\t",
-          paste0(result$value, collapse = "\n\t"))
+   c("\nResult:", paste0("\t", capture.output(result$value)))
 }
