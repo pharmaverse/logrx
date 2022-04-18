@@ -52,7 +52,7 @@ write_session_info <- function(){
                    substring(.x, 1, 80),
                    .x)) %>%
       # wrap any other elements over 80 characters
-      map_chr(~ stri_wrap(.x, width = 80, exdent = 2, simplify = FALSE,
+      map_chr(~ stri_wrap(.x, width = 80, exdent = 2, simplify = FALSE, use_length = TRUE,
                           normalize = FALSE, whitespace_only = TRUE) %>%
                  map_chr(~ str_c(.x, collapse = "\n\t", character(1))))
 
