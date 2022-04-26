@@ -53,10 +53,10 @@ test_that("write_masked_functions will return a formatted log masked functions e
 test_that("write_file_name_path will return a formatted log file name and path element", {
    options("timber.log" = NULL)
    log_config("./test-writer.R")
-   assign('file_name', "safely_quietly_test_file_result.R", envir = getOption('timber.log'))
+   assign('file_name', "safely_loudly_test_file_result.R", envir = getOption('timber.log'))
    assign('file_path', "tests/testthat/ref", envir = getOption('timber.log'))
    expect_identical(write_file_name_path(),
-                    c("File Name: safely_quietly_test_file_result.R",
+                    c("File Name: safely_loudly_test_file_result.R",
                       "File Path: tests/testthat/ref"))
 })
 
@@ -146,7 +146,7 @@ test_that("write_warnings will return a formatted log warnings element", {
 })
 
 test_that("write_output will return a formatted log output element", {
-   fp <- testthat::test_path("ref", "safely_loudly_test_file.R")
+   fp <- test_path("ref", "safely_loudly_test_file.R")
 
    log_config(file = fp)
 
@@ -158,7 +158,7 @@ test_that("write_output will return a formatted log output element", {
 })
 
 test_that("write_messages will return a formatted log messages element", {
-   fp <- testthat::test_path("ref", "safely_loudly_test_file.R")
+   fp <- test_path("ref", "safely_loudly_test_file.R")
 
    log_config(file = fp)
 
@@ -170,13 +170,14 @@ test_that("write_messages will return a formatted log messages element", {
 })
 
 test_that("write_result will return a formatted log result element", {
-   fp <- testthat::test_path("ref", "safely_loudly_test_file_result.R")
+   fp <- test_path("ref", "safely_loudly_test_file_result.R")
 
    log_config(file = fp)
 
    run_safely_loudly(fp)
 
-   expect_identical(write_result(), "\nResult:\n\tc(8, 6, 7, 5, 3, 0, 9)")
+   expect_identical(write_result(),
+                    c("\nResult:", paste0("\t", capture.output(data.frame(test = c(8, 6, 7, 5, 3, 0, 9))))))
 
    log_remove()
 })

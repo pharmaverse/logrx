@@ -1,1 +1,1 @@
-data.frame(c(8, 6, 7, 5, 3, 0, 9))
+data.frame(test = c(8, 6, 7, 5, 3, 0, 9))

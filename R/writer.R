@@ -51,8 +51,8 @@ write_session_info <- function(){
       map_chr(~ ifelse(nchar(.x) > 80 & grepl("\u2500\u2500\u2500\u2500", .x),
                    substring(.x, 1, 80),
                    .x)) %>%
-      # wrap any other elements over 78 characters
-      map_chr(~ stri_wrap(.x, width = 78, exdent = 2, simplify = FALSE,
+      # wrap any other elements over 80 characters
+      map_chr(~ stri_wrap(.x, width = 80, exdent = 2, simplify = FALSE, use_length = TRUE,
                           normalize = FALSE, whitespace_only = TRUE) %>%
                  map_chr(~ str_c(.x, collapse = "\n\t", character(1))))
 
@@ -229,6 +229,5 @@ write_output <- function() {
 write_result <- function() {
    result <- get_log_element("result")
 
-   paste0("\nResult:\n\t",
-          paste0(result$value, collapse = "\n\t"))
+   c("\nResult:", paste0("\t", capture.output(result$value)))
 }

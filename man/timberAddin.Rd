@@ -3,14 +3,14 @@
 \name{timberAddin}
 \alias{timberAddin}
 \title{timberAddin
-Code needed to create the miniUI for the addin}
+Code needed to create the miniUI for the Addin}
 \usage{
 timberAddin()
 }
 \value{
-returns mimUI Addin to batch submit r files and create logs around them
+returns miniUI Addin to batch submit r files and create logs around them
 }
 \description{
 timberAddin
-Code needed to create the miniUI for the addin
+Code needed to create the miniUI for the Addin
 }
