@@ -176,7 +176,8 @@ test_that("write_result will return a formatted log result element", {
 
    run_safely_loudly(fp)
 
-   expect_identical(write_result(), "\nResult:\n\tc(8, 6, 7, 5, 3, 0, 9)")
+   expect_identical(write_result(),
+                    c("\nResult:", paste0("\t", capture.output(data.frame(test = c(8, 6, 7, 5, 3, 0, 9))))))
 
    log_remove()
 })
