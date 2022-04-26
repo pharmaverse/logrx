@@ -4,12 +4,20 @@
 \alias{log_write}
 \title{Write the formatted timber.log to a file}
 \usage{
-log_write(file = NA, remove_log_object = TRUE)
+log_write(
+  file = NA,
+  remove_log_object = TRUE,
+  to_report = c("messages", "output", "result")
+)
 }
 \arguments{
 \item{file}{File path of file being run}
 
-\item{remove_log_object}{Should the log object be removed after writing, defaults to TRUE}
+\item{remove_log_object}{Should the log object be removed after writing,
+defaults to TRUE}
+
+\item{to_report}{toggle for optional reporting objects, additional
+information in \code{\link{axecute}}}
 }
 \value{
 Nothing
