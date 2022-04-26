@@ -158,7 +158,7 @@ timberAddin <- function() {
 
       shiny::observeEvent(input$axecute, {
          waiter_show( # show the waiter
-            html = spin_fading_circles() # use a spinner
+            html = spin_solar() # use a spinner
          )
          axecute(file = logInfo$file, log_name = logInfo$name,
                  log_path = logInfo$location, remove_log_object = input$rmLog,
@@ -175,7 +175,7 @@ timberAddin <- function() {
          stopApp()
       })
    }
-   viewer <- shiny::dialogViewer("Run with timber", width = 800, height = 300)
+   viewer <- shiny::dialogViewer("Run with timber", width = 800, height = 400)
    shiny::runGadget(ui, server, viewer = viewer)
    }
 
