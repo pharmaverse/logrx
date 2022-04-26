@@ -9,6 +9,7 @@ axecute(
   log_name = NA,
   log_path = NA,
   remove_log_object = TRUE,
+  quit_on_error = TRUE,
   to_report = c("messages", "output", "result")
 )
 }
@@ -20,6 +21,8 @@ axecute(
 \item{log_path}{Path to output log to}
 
 \item{remove_log_object}{Should the log object be removed after writing, defaults to TRUE}
+
+\item{quit_on_error}{Should the session quit with status of 1 with error, defaults to TRUE}
 
 \item{to_report}{toggle for optional reporting objects.
 choices outlined below, may include as many as necessary
