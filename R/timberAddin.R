@@ -5,11 +5,13 @@
 #' @importFrom shiny textInput checkboxInput actionButton uiOutput reactiveValues observeEvent renderText stopApp runGadget conditionalPanel fluidRow column tags HTML
 #' @importFrom rstudioapi selectFile selectDirectory
 #' @importFrom stringr str_locate_all str_replace
+#' @importFrom waiter useWaiter waiter_show waiter_hide spin_fading_circles
 #' @export
 timberAddin <- function() {
    ui <- miniUI::miniPage(
       #CSS sheet to color ui
       shiny::includeCSS("inst/styles.css"),
+      useWaiter(), # include dependencies
       #Title for miniui
       miniUI::gadgetTitleBar("timber",
                              left = NULL,
@@ -46,6 +48,17 @@ timberAddin <- function() {
             shiny::column(
                12,
                shiny::checkboxInput("rmLog", "Remove the log object after axecution?", TRUE)
+            )
+         ),
+         shiny::fluidRow(
+            shiny::column(
+               12,
+               shiny::checkboxGroupInput("toReport", "Optional elements to report:",
+                                         c("Messages" = "messages",
+                                           "Output" = "output",
+                                           "Result" = "result"),
+                                         inline = TRUE,
+                                         selected = c("messages", "output", "result"))
             )
          ),
          shiny::fluidRow(
@@ -106,9 +119,14 @@ timberAddin <- function() {
       })
 
       shiny::observeEvent(input$axecute, {
+         waiter_show( # show the waiter
+            html = spin_fading_circles() # use a spinner
+         )
          axecute(file = logInfo$file, log_name = logInfo$name,
-                 log_path = logInfo$location, remove_log_object = input$rmLog)
+                 log_path = logInfo$location, remove_log_object = input$rmLog,
+                 to_report = input$toReport)
          doneCheck$data <- "Select a new file, if you wish to run more files"
+         waiter_hide() # hide the waiter
       })
 
       output$output <- shiny::renderText({

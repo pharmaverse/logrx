@@ -47,7 +47,8 @@ Imports:
     rstudioapi,
     shiny,
     sessioninfo,
-    stringi
+    stringi,
+    waiter
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
