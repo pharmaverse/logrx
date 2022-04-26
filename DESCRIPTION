@@ -1,6 +1,6 @@
 Package: timber
 Title: A Logging Utility Focus on Clinical Trial Programming Workflows
-Version: 0.0.1
+Version: 0.0.1.9002
 Authors@R: 
     c(
     person(given = "Nathan",
