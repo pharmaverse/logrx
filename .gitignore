@@ -43,3 +43,5 @@ timber*.tgz
 
 scratch.R
 scratch.log
+/doc/
+/Meta/
