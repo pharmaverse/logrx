@@ -19,7 +19,7 @@ library(timber)
 ## 1. Create a named list containing the functions approved for use for each package. If all functions for a package are approved for use, list "All".
 
 ```{r}
-approved_pkgs <- list(haven = "read_sas",
+approved_pkgs <- list(base = "mean",
                       dplyr = "All")
 approved_pkgs
 ```
@@ -100,9 +100,9 @@ close(fileConn)
 axecute(file.path(dir,"mpg.R"))
 ```
 
-Here we have the log. If you scroll to the "Unapproved Package and Functions" section, we will see we used `library()` and `mean()` from `package:base` and `pivot_wider` from `package:tidyr`.  We did not include any base or tidyr functions in our approved list, so this has been logged!
+Here we have the log. If you scroll to the "Unapproved Package and Functions" section, we will see we used `library()` from `package:base` and `pivot_wider` from `package:tidyr`.  We did not include any base or tidyr functions in our approved list, so this has been logged!
 
-|  {package:base} library, mean
+|  {package:base} library
 |  {package:tidyr} pivot_wider
 
 ```{r echo = FALSE}
