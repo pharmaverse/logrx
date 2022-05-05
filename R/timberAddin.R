@@ -5,7 +5,7 @@
 #' @importFrom shiny textInput checkboxInput actionButton uiOutput reactiveValues observeEvent renderText stopApp runGadget conditionalPanel fluidRow column tags HTML
 #' @importFrom rstudioapi selectFile selectDirectory
 #' @importFrom stringr str_locate_all str_replace
-#' @importFrom waiter useWaiter waiter_show waiter_hide spin_fading_circles
+#' @importFrom waiter useWaiter waiter_show waiter_hide spin_solar
 #' @export
 timberAddin <- function() {
    ui <- miniUI::miniPage(
