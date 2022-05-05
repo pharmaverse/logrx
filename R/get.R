@@ -87,7 +87,7 @@ get_file_path <- function(file = NA, normalize = TRUE){
 #' get_session_info()
 #'
 get_session_info <- function(){
-   return(capture.output(session_info(info = c("platform", "packages", "external"))))
+   return(capture.output(session_info(info = "all")))
 }
 
 
