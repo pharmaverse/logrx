@@ -56,7 +56,9 @@ Suggests:
     tibble,
     withr,
     covr,
-    pkgdown
+    pkgdown,
+    Tplyr,
+    haven
 VignetteBuilder: knitr, rmarkdown
 Config/testthat/edition: 3
 Depends: 
