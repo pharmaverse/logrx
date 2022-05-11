@@ -1,7 +1,7 @@
-name: Feature Request
-description: Enchancement to admiral functionality
-title: "Feature Request:  <Insert Issue Title Here>"
-labels: ["enhancement", "programming"]
+name: Documentation Update or Request
+description: Enchancement to timber documentation
+title: "Documentation:  <Insert Issue Title Here>"
+labels: ["documentation"]
 assignees:
   - octocat
 body:
