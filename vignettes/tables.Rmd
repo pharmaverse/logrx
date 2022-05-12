@@ -2,7 +2,7 @@
 title: "Summary Table Creation"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{approved}
+  %\VignetteIndexEntry{Summary Table Creation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -41,12 +41,12 @@ adae <- read_xpt("adae.xpt")
 ```
 
 ## 3. Build the risk-difference table
-Finally, we build the risk-difference table, using the 
-[`Typlr`](https://atorus-research.github.io/Tplyr/) package.
-```{r}
+Finally, we write a script (`risk_diff.R`) to build the risk-difference table, 
+using the [`Typlr`](https://atorus-research.github.io/Tplyr/) package.
+```{r results='hide', warning=FALSE}
 t <- tplyr_table(adae, TRTA) %>% 
   add_layer(
-    group_count(AEDECOD) %>% 
+    group_count(RACE) %>% 
       set_distinct_by(USUBJID) %>% 
       add_risk_diff(
         c("Xanomeline High Dose", "Placebo"),
@@ -54,10 +54,7 @@ t <- tplyr_table(adae, TRTA) %>%
       )
   )
 
-t
-
-suppressWarnings(build(t)) %>%
-   head()
+build(t)
 ```
 
 ```{r echo = FALSE}
@@ -65,18 +62,15 @@ suppressWarnings(build(t)) %>%
 
 text <- 't <- tplyr_table(adae, TRTA) %>% 
      add_layer(
-       group_count(AEDECOD) %>% 
+       group_count(RACE) %>% 
          set_distinct_by(USUBJID) %>% 
          add_risk_diff(
            c("Xanomeline High Dose", "Placebo"),
            c("Xanomeline Low Dose", "Placebo")
          )
      )
-   
-   t
-   
-   suppressWarnings(build(t)) %>% 
-     head()'
+
+   build(t)'
    
 dir <- tempdir()
 fileConn <- file(file.path(dir,"risk_diff.R"))
@@ -85,11 +79,13 @@ close(fileConn)
 
 ```
 
-```{r results='hide'}
+## 4. Axecute the script
+We `axecute` the script.
+```{r results='hide', warning=FALSE}
 axecute(file.path(dir,"risk_diff.R"))
 ```
 
-Below is the log.
+Below is the log. Pay special attention to the Warnings and Result sections.
 ```{r echo = FALSE}
 cat(readLines(file.path(dir, "risk_diff.log")), sep = '\n')
 ```
