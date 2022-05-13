@@ -29,6 +29,7 @@ reference:
      desc: Utility functions
    - contents:
       - loudly
+      - build_approved
    - title: RStudio addin
      desc: RStudio addin to facilitate the execution of a log
    - contents:

@@ -3,15 +3,20 @@
 #' A utility function to help you build your approve package and functions list.
 #' This can be used by timber to log unnaproved use of packages and functions.
 #'
-#' #' For more details see the help vignette:
+#' For more details see the help vignette:
+#'
 #' \code{vignette("approved", package = "timber")}
 #'
 #' @param pkg_list A named list of character vectors where the name is the
 #' package name with a chacter vector of approved functions or 'All'
-#' @param file (optional) name of file where the approved tibble will be read to.
+#' @param file Name of file where the approved tibble will be read to.
 #' If not specified, the tibble is returned.
 #'
-#' @return a tibble with two columns (library, function) and one row per function
+#' Default: NULL
+#'
+#' Permitted Files: .RDS
+#'
+#' @return A tibble with two columns (library, function) and one row per function
 #' @importFrom purrr map2_dfr
 #' @export
 #'

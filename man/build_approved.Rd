@@ -7,21 +7,26 @@
 build_approved(pkg_list, file = NULL)
 }
 \arguments{
-\item{pkg_list}{a named list of character vectors where the name is the
+\item{pkg_list}{A named list of character vectors where the name is the
 package name with a chacter vector of approved functions or 'All'}
 
-\item{file}{(optional) name of file where the approved tibble will be read to.
-If not specified, the tibble is returned.}
+\item{file}{Name of file where the approved tibble will be read to.
+If not specified, the tibble is returned.
+
+Default: NULL
+
+Permitted Files: .RDS}
 }
 \value{
-a tibble with two columns (library, function) and one row per function
+A tibble with two columns (library, function) and one row per function
 }
 \description{
 A utility function to help you build your approve package and functions list.
-This can be used by timber to log unnaproved use.
+This can be used by timber to log unnaproved use of packages and functions.
 }
 \details{
-#' For more details see the help vignette:
+For more details see the help vignette:
+
 \code{vignette("approved", package = "timber")}
 }
 \examples{
