@@ -6,7 +6,7 @@
 #' #' For more details see the help vignette:
 #' \code{vignette("approved", package = "timber")}
 #'
-#' @param pkg_list a named list of character vectors where the name is the
+#' @param pkg_list A named list of character vectors where the name is the
 #' package name with a chacter vector of approved functions or 'All'
 #' @param file (optional) name of file where the approved tibble will be read to.
 #' If not specified, the tibble is returned.
