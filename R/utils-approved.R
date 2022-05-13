@@ -1,7 +1,7 @@
 #' Build approved packages and functions tibble
 #'
 #' A utility function to help you build your approve package and functions list.
-#' This can be used by timber to log unnaproved use.
+#' This can be used by timber to log unnaproved use of packages and functions.
 #'
 #' #' For more details see the help vignette:
 #' \code{vignette("approved", package = "timber")}
