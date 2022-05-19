@@ -12,7 +12,7 @@ Please check off each taskbox as an acknowledgment that you completed the task. 
 
 - [ ] The spirit of timber is met in your Pull Request
 - [ ] Code is formatted according to the [tidyverse style guide](https://style.tidyverse.org/) 
-- [ ] Updated relevant unit tests or have written new unit tests - See [Unit Test Guide](https://pharmaverse.github.io/admiral/articles/unit_test_guidance.html#writing-unit-tests-in-admiral-)
+- [ ] Updated relevant unit tests or have written new unit tests
 - [ ] Creation/updates to relevant roxygen headers and examples 
 - [ ] Run `devtools::document()` so all `.Rd` files in the `man` folder and the `NAMESPACE` file in the project root are updated appropriately
 - [ ] Address any updates needed for vignettes and/or templates

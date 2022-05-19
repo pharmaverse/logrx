@@ -14,7 +14,7 @@ body:
     attributes:
       label: Feature Idea
       description: Tell us your idea in as few words as possible
-      placeholder: "`derive_var_dtm` should do x, y and z"
+      placeholder: "`log_write` should do x, y and z"
     validations:
       required: true
   - type: textarea
