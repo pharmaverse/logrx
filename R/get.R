@@ -144,7 +144,7 @@ get_used_functions <- function(file){
    # catch error
    retfun <- safely(parse,
                     quiet = FALSE,
-                    otherwise = "Syntax Error Found,  Package and Function Identification Stopped")
+                    otherwise = "Syntax Error Found, Package and Function Identification Stopped")
    ret <- retfun(file, keep.source = TRUE)
 
    if (!is.expression(ret$result)){
