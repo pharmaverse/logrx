@@ -129,6 +129,9 @@ get_masked_functions <- function(){
 #' @return tibble with `library` and `function_name`
 #' @importFrom dplyr select distinct across mutate coalesce group_by ungroup
 #' @importFrom tidyr pivot_wider complete
+#' @importFrom purrr safely
+#' @importFrom tibble tibble
+#' @importFrom utils getParseData
 #' @export
 #'
 #' @examples
@@ -139,21 +142,21 @@ get_masked_functions <- function(){
 get_used_functions <- function(file){
 
    # catch error
-   retfun <- purrr::safely(parse,
-                           quiet = FALSE,
-                           otherwise = "Syntax Error Found,  Package and Function Identification Stopped")
+   retfun <- safely(parse,
+                    quiet = FALSE,
+                    otherwise = "Syntax Error Found,  Package and Function Identification Stopped")
    ret <- retfun(file, keep.source = TRUE)
 
    if (!is.expression(ret$result)){
       return(
-         tibble::tibble(
+         tibble(
             function_name = "",
             library = ret$result
          )
       )
    }
 
-   tokens <- utils::getParseData(ret$result)
+   tokens <- getParseData(ret$result)
 
    # grouping and complete to ensure all three columns carry through after pivot
    # regardless if seen in the parsed data
@@ -188,12 +191,13 @@ get_used_functions <- function(file){
 #' @param df dataframe containing variables `function_name` and `SYMBOL_PACKAGE`
 #' @importFrom dplyr mutate
 #' @importFrom rlang .data
+#' @importFrom purrr map
 #'
 #' @return tibble that includes `library`
 get_library <- function(df){
-   search_lookup <- purrr::map(search(), objects)
+   search_lookup <- map(search(), objects)
    names(search_lookup) <- search()
-   df$library <- unlist(purrr::map(df$function_name, ~get_first(., search_lookup)))
+   df$library <- unlist(map(df$function_name, ~get_first(., search_lookup)))
 
    df %>%
       mutate(library = ifelse(
@@ -205,7 +209,7 @@ get_library <- function(df){
 
 
 get_first <- function(func, search_lookup){
-   flag_found <- purrr::map(search_lookup, ~ func %in% .)
+   flag_found <- map(search_lookup, ~ func %in% .)
    if (any(unlist(flag_found))) {
       names(flag_found[flag_found == TRUE][1])
    } else {

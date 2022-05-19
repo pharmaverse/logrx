@@ -48,12 +48,12 @@ Imports:
     shiny,
     sessioninfo,
     stringi,
-    waiter
+    waiter,
+    tibble
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
     rmarkdown,
-    tibble,
     withr,
     covr,
     pkgdown
