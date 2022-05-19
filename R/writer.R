@@ -115,7 +115,7 @@ write_used_functions <- function(){
 
    combined <- aggregate(function_name~library, used_functions_list, paste)
 
-   purrr::map2(combined$library, combined$function_name, ~paste(paste0("{", .x, "}"), paste0(.y, collapse = ", "))) %>%
+   map2(combined$library, combined$function_name, ~paste(paste0("{", .x, "}"), paste0(.y, collapse = ", "))) %>%
       unname() %>%
       unlist()
 }
@@ -141,7 +141,7 @@ write_unapproved_functions <- function(){
 
    combined <- aggregate(function_name~library, unapproved_functions_list, paste)
 
-   purrr::map2(combined$library, combined$function_name, ~paste(paste0("{", .x, "}"), paste0(.y, collapse = ", "))) %>%
+   map2(combined$library, combined$function_name, ~paste(paste0("{", .x, "}"), paste0(.y, collapse = ", "))) %>%
       unname() %>%
       unlist()
 }

@@ -106,7 +106,7 @@ test_that("parse does not fatal error when syntax issue occurs", {
 
    expected <- tibble::tibble(
          function_name = "",
-         library = "Syntax Error Found,  Package and Function Identification Stopped"
+         library = "Syntax Error Found, Package and Function Identification Stopped"
       )
 
    expect_identical(get_used_functions(filename), expected)
