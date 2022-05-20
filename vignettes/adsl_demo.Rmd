@@ -1,0 +1,25 @@
+---
+title: "Creating a Log for an ADaM adsl script"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{approved}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(timber)
+```
+
+## Full adsl script
+
+<iframe width="700" height="400" src='adsl_script.html'/>
+
+## Final Log Output
+
+<iframe width="700" height="400" src='adsl_log.html'/>
