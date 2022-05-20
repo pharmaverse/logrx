@@ -39,6 +39,7 @@ making a log file for a `adsl.R` script.  More details on the parts of the log s
 are found in the [Get Started Page](https://atorus-research.github.io/timber/articles/timber.html) and
 we have several vignettes that show specific use cases for using the package.
 
+
 ```{r, out.width = "650px", echo = FALSE}
 knitr::include_graphics("https://i.makeagif.com/media/5-02-2022/m8mnmc.gif")
 ```
