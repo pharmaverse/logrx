@@ -2,7 +2,7 @@
 title: "Logging for Summary Disply Table"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Summary Table Creation}
+  %\VignetteIndexEntry{Logging for Summary Disply Table}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
