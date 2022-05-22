@@ -1,5 +1,5 @@
 ---
-title: "Summary Table Creation"
+title: "Logging for Summary Disply Table"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Summary Table Creation}
@@ -80,15 +80,18 @@ close(fileConn)
 ```
 
 ## 4. Axecute the script
-We `axecute` the script.
+
+We will axecute` the following script.
+
+<iframe width="700" height="400" src='risk_diff_script.html'/>
+
 ```{r results='hide', warning=FALSE}
 axecute(file.path(dir,"risk_diff.R"))
 ```
 
 Below is the log. Pay special attention to the Warnings and Result sections.
-```{r echo = FALSE}
-cat(readLines(file.path(dir, "risk_diff.log")), sep = '\n')
-```
+
+<iframe width="700" height="400" src='risk_diff_log.html'/>
 
 ```{r cleanup, echo = FALSE}
 unlink(dir, recursive = TRUE)

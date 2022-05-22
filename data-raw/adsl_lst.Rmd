@@ -1,0 +1,14 @@
+---
+title: ""
+author: " "
+date: " "
+output: 
+html_document:
+description: ""
+---
+
+```{r engine='bash', comment='', echo=FALSE}
+cat adsl.lst
+```
+
+
