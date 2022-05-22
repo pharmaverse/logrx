@@ -34,7 +34,7 @@ Page](https://atorus-research.github.io/timber/articles/timber.html) and
 we have several vignettes that show specific use cases for using the
 package.
 
-<img src="https://i.makeagif.com/media/5-02-2022/m8mnmc.gif" width="650px" />
+<img src="data-raw/timber.gif" />
 
 While many packages to facilitate the logging of code already exist in
 the R ecosystem, it is hard to find a solution that works well for
