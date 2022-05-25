@@ -38,8 +38,8 @@ articles:
 - title: Use Cases
   navbar: Use Cases
   contents:
-  - tables
-  - adsl_demo
+  - articles/tables
+  - articles/adsl_demo
 
 - title: Advanced Guides
   navbar: Advanced Guides

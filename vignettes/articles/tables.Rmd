@@ -81,7 +81,7 @@ close(fileConn)
 
 ## 4. Axecute the script
 
-We will axecute` the following script.
+We will `axecute` the following script.
 
 <iframe width="700" height="400" src='risk_diff_script.html'/>
 
