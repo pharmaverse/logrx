@@ -27,7 +27,7 @@ devtools::install_github("atorus-research/timber")
 
 ## What is `timber` ?
 
-Simple! The timber package makes a log file for a R script!. Below we
+Simple! The timber package makes a log file for a R script! Below we
 have a short gif of making a log file for a `adsl.R` script. More
 details on the parts of the log script are found in the [Get
 Started](https://atorus-research.github.io/timber/articles/timber.html)
