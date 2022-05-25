@@ -34,7 +34,7 @@ Started](https://atorus-research.github.io/timber/articles/timber.html)
 and we have several vignettes that show specific use cases for using the
 package.
 
-<img src="vignettes/timber.gif" title="Caption for this figure 1" alt="Caption for this figure 1" width="100%" style="display: block; margin: auto;" />
+<img src="man/figures/timber.gif" title="Caption for this figure 1" alt="Caption for this figure 1" width="100%" style="display: block; margin: auto;" />
 
 While many packages to facilitate the logging of code already exist in
 the R ecosystem, it is hard to find a solution that works well for
@@ -58,12 +58,3 @@ execution.
 `timber` can be used in a file or through scripting. More information on
 how to use `timber` can be found in [Get
 Started](https://atorus-research.github.io/timber/articles/timber.html).
-
-## Future development
-
-While this development version has been released, the development team
-is still making improvements to the package. This release is intended to
-give access to the core functionality of `timber` while it is still
-being developed. While the main functions and functionality have already
-been created, there are still many behind the scenes items that need to
-be addressed.

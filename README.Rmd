@@ -41,7 +41,7 @@ we have several vignettes that show specific use cases for using the package.
 
 
 ```{r img-with-knitr, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Caption for this figure 1'}
-knitr::include_graphics("vignettes/timber.gif")
+knitr::include_graphics("man/figures/timber.gif")
 ```
 
 
@@ -52,5 +52,3 @@ While many packages to facilitate the logging of code already exist in the R eco
 ## Using timber
 ```timber``` can be used in a file or through scripting.  More information on how to use ```timber``` can be found in [Get Started](https://atorus-research.github.io/timber/articles/timber.html).
 
-## Future development
-While this development version has been released, the development team is still making improvements to the package.  This release is intended to give access to the core functionality of ```timber``` while it is still being developed.  While the main functions and functionality have already been created, there are still many behind the scenes items that need to be addressed. 
