@@ -18,7 +18,7 @@
 .Rproj.user/
 
 # produced vignettes
-vignettes/*.html
+# vignettes/*.html (need for iframes)
 vignettes/*.pdf
 
 # OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
