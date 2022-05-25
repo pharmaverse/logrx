@@ -24,34 +24,22 @@ approved_pkgs <- list(base = "mean",
                       dplyr = "All")
 approved_pkgs
 ```
+
 ## 2. Build `approved.rds`
 #### Pass the named list through `build_approved()` to build your tibble.
+#### If We create a temp directory to save this for illustration.
 
 ```{r}
-build_approved <- function(.x, .y){
-   
-  all <- tibble::tibble(function_name = getNamespaceExports(.x),
-                        library = paste0("package:", .x))
-
-  if (.y[1] %in% c("All", "all")){
-    all
-  } else{
-    all[all$function_name %in% .y,]
-  }
-  
-}
-
-approved <- purrr::map2_df(names(approved_pkgs), approved_pkgs, build_approved)
-
-approved
-
+build_approved(approved_pkgs)
 ```
+
 ## 3. Save as `approved.rds`
-####  You can save this wherever you like.
+####  You can use the `file` argument in `build_approved()` to save approved.rds instead of return the tibble.
 
 ```{r}
 dir <- tempdir()
-saveRDS(approved, file.path(dir, "approved.rds"))
+
+build_approved(approved_pkgs, file = file.path(dir, "approved.rds"))
 ```
 
 ## 4. Update the `timber.approved` option
