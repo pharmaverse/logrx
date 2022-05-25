@@ -29,9 +29,10 @@ devtools::install_github("atorus-research/timber")
 
 Simple! The timber package makes a log file for a R script!. Below we
 have a short gif of making a log file for a `adsl.R` script. More
-details on the parts of the log script are found in the
-`vignette("timber")` and we have several vignettes that show specific
-use cases for using the package.
+details on the parts of the log script are found in the [Get
+Started](https://atorus-research.github.io/timber/articles/timber.html)
+and we have several vignettes that show specific use cases for using the
+package.
 
 <img src="vignettes/timber.gif" title="Caption for this figure 1" alt="Caption for this figure 1" width="100%" style="display: block; margin: auto;" />
 
@@ -55,7 +56,8 @@ execution.
 ## Using timber
 
 `timber` can be used in a file or through scripting. More information on
-how to use `timber` can be found in `vignette("timber")`
+how to use `timber` can be found in [Get
+Started](https://atorus-research.github.io/timber/articles/timber.html).
 
 ## Future development
 
