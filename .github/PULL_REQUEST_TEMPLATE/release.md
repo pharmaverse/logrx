@@ -16,6 +16,6 @@ Milestone:
 - [ ] Vignettes have been updated (if applicable)
 - [ ] Ensure all unit tests are passing
 - [ ] GitHub actions on this PR are all passing
-- [ ] Run `spell_check()`
+- [ ] Run `spelling::spell_check_package()` and address any issues
 - [ ] Draft GitHub release created using automatic template and updated with additional details. Remember to click "release" after PR is merged.
 

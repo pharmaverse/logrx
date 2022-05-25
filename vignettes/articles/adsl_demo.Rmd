@@ -24,14 +24,14 @@ Users wishing to run a similar script will need to do the following:
 * Copy the below script or use `admiral::use_ad_template("adsl)` to generate it.
 * Note this script differs from the template with a call to `diffdf` to do a compare,
 a simple custom message is used and results are manipulated for illustrative purposes.  
-* Users will also need to make the decision on whether they want to use the addin of 
+* Users will also need to make the decision on whether they want to use the Addin of 
 `timber` or use the `aexcute()` directly in a script or in the console to get a log file.
 
 ## axecute the adsl.R script
 
 Below is a simple `adsl.R` script generated from the `admiral` package.  Notable features of the script are as follows:
 
-* Calls for getting SDTM datsets, e.g. `DM`, `EX`, `DS`
+* Calls for getting SDTM datasets, e.g. `DM`, `EX`, `DS`
 * Converting SAS blanks to NAs 
 * Typical derivations you would need to get treatment groups, start/end dates, duration
 * Typical derivation for Screen Failures, Screen Flags, Death Flags
@@ -52,7 +52,7 @@ this script.
 
 **NOTE:**  Users can do the following to axecute their script:
 
-1.  Use the addin
+1.  Use the Addin
 2.  Use `timber::axecute("file.R")` directly in their script [See Vignette TODO]
 3.  Use `timber::axecute("file.R")` in the console
 4.  Use `timber::axecute("file.R")` in a batch script [See Vignette TODO]
@@ -65,7 +65,7 @@ this script.
 3. Errors and Warnings and Messages, Output, and Result are the final sections of the log file.  Please note the following
    * Warning from the comparison file.
    * Message sent from the script to the log file
-   * Results appeneded to the file
+   * Results appended to the file
 
 <iframe width="700" height="400" src='adsl_log.html'/>
 

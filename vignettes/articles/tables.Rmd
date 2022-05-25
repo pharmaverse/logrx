@@ -1,5 +1,5 @@
 ---
-title: "Logging for Summary Disply Table"
+title: "Logging for Summary Display Table"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Logging for Summary Disply Table}
