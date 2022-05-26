@@ -11,3 +11,5 @@ Enhancements
 # timber 0.0.1
 
 Initial alpha release of timber
+
+See the [GitHub release tracker](https://github.com/atorus-research/timber/releases) for additional release documentation and links to issues. 
