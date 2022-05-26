@@ -129,12 +129,18 @@ log_cleanup <- function() {
 #' Write the formatted timber.log to a file
 #'
 #' @param file File path of file being run
-#' @param remove_log_object Should the log object be removed after writing, defaults to TRUE
+#' @param remove_log_object Should the log object be removed after writing,
+#'   defaults to TRUE
+#' @param to_report toggle for optional reporting objects, additional
+#'   information in \code{\link{axecute}}
+#'
 #'
 #' @return Nothing
 #' @export
 #'
-log_write <- function(file = NA, remove_log_object = TRUE){
+log_write <- function(file = NA,
+                      remove_log_object = TRUE,
+                      to_report = c("messages", "output", "result")){
    # Set end time and run time
    set_log_element("end_time", strftime(Sys.time(), usetz = TRUE))
    set_log_element("run_time",
@@ -210,13 +216,24 @@ log_write <- function(file = NA, remove_log_object = TRUE){
                         write_errors())
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_warnings())
-   cleaned_log_vec <- c(cleaned_log_vec,
-                        write_log_header("Messages, Output, and Result"),
-                        write_messages())
-   cleaned_log_vec <- c(cleaned_log_vec,
-                        write_output())
-   cleaned_log_vec <- c(cleaned_log_vec,
-                        write_result())
+
+   if (any(c("messages", "output", "result") %in% to_report)){
+      cleaned_log_vec <- c(cleaned_log_vec,
+                           write_log_header("Messages, Output, and Result"))
+   }
+
+   if ("messages" %in% to_report){
+      cleaned_log_vec <- c(cleaned_log_vec,
+                           write_messages())
+   }
+   if ("output" %in% to_report){
+      cleaned_log_vec <- c(cleaned_log_vec,
+                           write_output())
+   }
+   if ("result" %in% to_report){
+      cleaned_log_vec <- c(cleaned_log_vec,
+                           write_result())
+   }
 
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_header("Log Output File"),

@@ -1,0 +1,76 @@
+---
+title: "Logging for an ADSL dataset"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Logging for an ADSL dataset}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+In this section, we will `axecute()` an  R script that creates and `ADSL` to get a log file.  This file was taken from the `admiral::use_ad_template("adsl)` with a few changes to its contents
+to showcase certain features of the `timber` package's log file.
+
+Users wishing to run a similar script will need to do the following:
+
+* Install the timber package 
+* Copy the below script or use `admiral::use_ad_template("adsl)` to generate it.
+* Note this script differs from the template with a call to `diffdf` to do a compare,
+a simple custom message is used and results are manipulated for illustrative purposes.  
+* Users will also need to make the decision on whether they want to use the Addin of 
+`timber` or use the `aexcute()` directly in a script or in the console to get a log file.
+
+## axecute the adsl.R script
+
+Below is a simple `adsl.R` script generated from the `admiral` package.  Notable features of the script are as follows:
+
+* Calls for getting SDTM datasets, e.g. `DM`, `EX`, `DS`
+* Converting SAS blanks to NAs 
+* Typical derivations you would need to get treatment groups, start/end dates, duration
+* Typical derivation for Screen Failures, Screen Flags, Death Flags
+* Creating numeric variables with custom format functions
+* A call to  `diffdf::diffdf()` to do a simple compare between two datasets
+   * Note: The compare will create a warning that the two objects being compared have different columns.  This warning will appear in the log
+* Simple message inserted for illustration.  This message will appear in the log.
+* Manipulated results that will appear in the log file.
+
+### Inspect adsl.R script
+
+Feel free to explore the script.  The next section showcases the output for log file for the 
+this script.
+
+<iframe width="700" height="400" src='adsl_script.html'/>
+
+<br>
+
+**NOTE:**  Users can do the following to axecute their script:
+
+1.  Use the Addin
+2.  Use `timber::axecute("file.R")` directly in their script [See Vignette TODO]
+3.  Use `timber::axecute("file.R")` in the console
+4.  Use `timber::axecute("file.R")` in a batch script [See Vignette TODO]
+
+
+## Log Output adsl.R
+
+1. timber Metadata and User and File Information, of the log contains information about the version of timber used to create this log as well as user and file information.
+2. Session Information, Packages , External software, Masked Functions, Used Package and Functions and Program Run Time Information of the log file contains information for everything used to run the R script.  We believe this information suffices to re-create the environment needed for re-running the script.
+3. Errors and Warnings and Messages, Output, and Result are the final sections of the log file.  Please note the following
+   * Warning from the comparison file.
+   * Message sent from the script to the log file
+   * Results appended to the file
+
+<iframe width="700" height="400" src='adsl_log.html'/>
+
+### Comparison between Production and QC datasets
+
+For illustrative purposes, we have included the comparison file between the two datasets.  Here we can see that `diffdf::diffdf()` correctly picked up the differences in the dataset.  The log file picked up the warning from `diffdf::diffdf()` and placed it in the appropriate section of the above log file.
+
+<iframe width="700" height="250" src='adsl_lst.html'/>

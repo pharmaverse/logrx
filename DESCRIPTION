@@ -1,6 +1,6 @@
 Package: timber
 Title: A Logging Utility Focus on Clinical Trial Programming Workflows
-Version: 0.0.1
+Version: 0.1.0
 Authors@R: 
     c(
     person(given = "Nathan",
@@ -47,15 +47,18 @@ Imports:
     rstudioapi,
     shiny,
     sessioninfo,
-    stringi
+    stringi,
+    waiter,
+    tibble
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
     rmarkdown,
-    tibble,
     withr,
     covr,
-    pkgdown
+    pkgdown,
+    Tplyr,
+    haven
 VignetteBuilder: knitr, rmarkdown
 Config/testthat/edition: 3
 Depends: 

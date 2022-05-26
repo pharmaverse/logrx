@@ -1,0 +1,205 @@
+--------------------------------------------------------------------------------
+-                               timber Metadata                                -
+--------------------------------------------------------------------------------
+This log was generated using timber 0.0.1.9002
+timber package version: 0.0.1.9002
+timber build: Github (atorus-research/timber@af4371f33d54a3182f0c95f3ba5b6cb56ac8cf00)
+timber link to repository: https://github.com/atorus-research/timber
+--------------------------------------------------------------------------------
+-                          User and File Information                           -
+--------------------------------------------------------------------------------
+User: rstudio-user
+File Name: risk_diff.R
+File Path: /cloud/project/data-raw
+--------------------------------------------------------------------------------
+-                             Session Information                              -
+--------------------------------------------------------------------------------
+─ Session info ─────────────────────────────────────────────────────────────────
+ setting  value
+ version  R version 4.1.3 (2022-03-10)
+ os       Ubuntu 20.04.4 LTS
+ system   x86_64, linux-gnu
+ ui       RStudio
+ language (EN)
+ collate  C.UTF-8
+ ctype    C.UTF-8
+ tz       UTC
+ date     2022-05-22
+ rstudio  2022.02.2+485.pro2 Prairie Trillium (server)
+ pandoc   2.17.1.1 @ /usr/lib/rstudio-server/bin/quarto/bin/ (via rmarkdown)
+
+─ Packages ─────────────────────────────────────────────────────────────────────
+ package      * version    date (UTC) lib source
+ admiral      * 0.6.3      2022-02-17 [1] RSPM (R 4.1.0)
+ admiral.test * 0.1.2      2022-02-15 [1] RSPM (R 4.1.0)
+ assertthat     0.2.1      2019-03-21 [1] RSPM (R 4.1.0)
+ brio           1.1.3      2021-11-30 [1] RSPM (R 4.1.0)
+ cachem         1.0.6      2021-08-19 [1] RSPM (R 4.1.0)
+ callr          3.7.0      2021-04-20 [1] RSPM (R 4.1.0)
+ cli            3.3.0      2022-04-25 [1] RSPM (R 4.1.0)
+ crayon         1.5.1      2022-03-26 [1] RSPM (R 4.1.0)
+ DBI            1.1.2      2021-12-20 [1] RSPM (R 4.1.0)
+ desc           1.4.1      2022-03-06 [1] RSPM (R 4.1.0)
+ devtools       2.4.3      2021-11-30 [1] RSPM (R 4.1.0)
+ diffdf       * 1.0.4      2020-03-17 [1] RSPM (R 4.1.0)
+ digest         0.6.29     2021-12-01 [1] RSPM (R 4.1.0)
+ dplyr        * 1.0.9      2022-04-28 [1] RSPM (R 4.1.0)
+ ellipsis       0.3.2      2021-04-29 [1] RSPM (R 4.1.0)
+ evaluate       0.15       2022-02-18 [1] RSPM (R 4.1.0)
+ fansi          1.0.3      2022-03-24 [1] RSPM (R 4.1.0)
+ fastmap        1.1.0      2021-01-25 [1] RSPM (R 4.1.0)
+ forcats        0.5.1      2021-01-27 [1] RSPM (R 4.1.0)
+ fs             1.5.2      2021-12-08 [1] RSPM (R 4.1.0)
+ generics       0.1.2      2022-01-31 [1] RSPM (R 4.1.0)
+ glue           1.6.2      2022-02-24 [1] RSPM (R 4.1.0)
+ haven        * 2.4.3      2021-08-04 [1] RSPM (R 4.1.0)
+ hms            1.1.1      2021-09-26 [1] RSPM (R 4.1.0)
+ htmltools      0.5.2      2021-08-25 [1] RSPM (R 4.1.0)
+ httpuv         1.6.5      2022-01-05 [1] RSPM (R 4.1.0)
+ knitr          1.38       2022-03-25 [1] RSPM (R 4.1.0)
+ later          1.3.0      2021-08-18 [1] RSPM (R 4.1.0)
+ lifecycle      1.0.1      2021-09-24 [1] RSPM (R 4.1.0)
+ lubridate    * 1.8.0      2021-10-07 [1] RSPM (R 4.1.0)
+ magrittr     * 2.0.3      2022-03-30 [1] RSPM (R 4.1.0)
+ memoise        2.0.1      2021-11-26 [1] RSPM (R 4.1.0)
+ mime           0.12       2021-09-28 [1] RSPM (R 4.1.0)
+ miniUI         0.1.1.1    2018-05-18 [1] RSPM (R 4.1.0)
+ pillar         1.7.0      2022-02-01 [1] RSPM (R 4.1.0)
+ pkgbuild       1.3.1      2021-12-20 [1] RSPM (R 4.1.0)
+ pkgconfig      2.0.3      2019-09-22 [1] RSPM (R 4.1.0)
+ pkgdown        2.0.2      2022-01-13 [1] RSPM (R 4.1.0)
+ pkgload        1.2.4      2021-11-30 [1] RSPM (R 4.1.0)
+ prettyunits    1.1.1      2020-01-24 [1] RSPM (R 4.1.0)
+ processx       3.5.3      2022-03-25 [1] RSPM (R 4.1.0)
+ promises       1.2.0.1    2021-02-11 [1] RSPM (R 4.1.0)
+ ps             1.6.0      2021-02-28 [1] RSPM (R 4.1.0)
+ purrr          0.3.4      2020-04-17 [1] RSPM (R 4.1.0)
+ R6             2.5.1      2021-08-19 [1] RSPM (R 4.1.0)
+ Rcpp           1.0.8.3    2022-03-17 [1] RSPM (R 4.1.0)
+ readr          2.1.2      2022-01-30 [1] RSPM (R 4.1.0)
+ remotes        2.4.2      2021-11-30 [1] RSPM (R 4.1.0)
+ rlang          1.0.2      2022-03-04 [1] RSPM (R 4.1.0)
+ rmarkdown      2.13       2022-03-10 [1] RSPM (R 4.1.0)
+ rprojroot      2.0.2      2020-11-15 [1] RSPM (R 4.1.0)
+ rstudioapi     0.13       2020-11-12 [1] RSPM (R 4.1.0)
+ sessioninfo    1.2.2      2021-12-06 [1] RSPM (R 4.1.0)
+ shiny          1.7.1      2021-10-02 [1] RSPM (R 4.1.0)
+ stringi        1.7.6      2021-11-29 [1] RSPM (R 4.1.0)
+ stringr        1.4.0      2019-02-10 [1] RSPM (R 4.1.0)
+ testthat       3.1.4      2022-04-26 [1] RSPM (R 4.1.0)
+ tibble         3.1.7      2022-05-03 [1] RSPM (R 4.1.0)
+ tidyr          1.2.0      2022-02-01 [1] RSPM (R 4.1.0)
+ tidyselect     1.1.2      2022-02-21 [1] RSPM (R 4.1.0)
+ timber         0.0.1.9002 2022-05-20 [1] Github
+	  (atorus-research/timber@af4371f)
+ Tplyr        * 0.4.4      2022-01-27 [1] RSPM (R 4.1.0)
+ tzdb           0.3.0      2022-03-28 [1] RSPM (R 4.1.0)
+ usethis        2.1.5      2021-12-09 [1] RSPM (R 4.1.0)
+ utf8           1.2.2      2021-07-24 [1] RSPM (R 4.1.0)
+ vctrs          0.4.1      2022-04-13 [1] RSPM (R 4.1.0)
+ waiter         0.2.5      2022-01-03 [1] RSPM (R 4.1.0)
+ withr          2.5.0      2022-03-03 [1] RSPM (R 4.1.0)
+ xfun           0.30       2022-03-02 [1] RSPM (R 4.1.0)
+ xtable         1.8-4      2019-04-21 [1] RSPM (R 4.1.0)
+ yaml           2.3.5      2022-02-21 [1] RSPM (R 4.1.0)
+
+ [1] /cloud/lib/x86_64-pc-linux-gnu-library/4.1
+ [2] /opt/R/4.1.3/lib/R/library
+
+─ External software ────────────────────────────────────────────────────────────
+ setting        value
+ cairo          1.16.0
+ cairoFT
+ pango          1.44.7
+ png            1.6.37
+ jpeg           8.0
+ tiff           LIBTIFF, Version 4.1.0
+ tcl            8.6.10
+ curl           7.68.0
+ zlib           1.2.11
+ bzlib          1.0.8, 13-Jul-2019
+ xz             5.2.4
+ PCRE           10.34 2019-11-21
+ ICU            66.1
+ TRE            TRE 0.8.0 R_fixes (BSD)
+ iconv          glibc 2.31
+ readline       8.0
+ BLAS           /usr/lib/x86_64-linux-gnu/atlas/libblas.so.3.10.3
+ lapack         /usr/lib/x86_64-linux-gnu/atlas/liblapack.so.3.10.3
+ lapack_version 3.9.0
+
+─ Python configuration ─────────────────────────────────────────────────────────
+ Python is not available
+
+────────────────────────────────────────────────────────────────────────────────
+--------------------------------------------------------------------------------
+-                               Masked Functions                               -
+--------------------------------------------------------------------------------
+function `ae` from {package:admiral.test} by .GlobalEnv
+function `dm` from {package:admiral.test} by .GlobalEnv
+function `ds` from {package:admiral.test} by .GlobalEnv
+function `ex` from {package:admiral.test} by .GlobalEnv
+function `lb` from {package:admiral.test} by .GlobalEnv
+function `adae` from {package:admiral} by .GlobalEnv
+function `t` from {package:base} by .GlobalEnv
+function `%>%` from {package:dplyr} by package:magrittr
+function `intersect` from {package:dplyr, package:base} by package:lubridate
+function `setdiff` from {package:dplyr, package:base} by package:lubridate
+function `union` from {package:dplyr, package:base} by package:lubridate
+function `Arith` from {package:methods} by package:lubridate
+function `Compare` from {package:methods} by package:lubridate
+function `show` from {package:methods} by package:lubridate
+function `as.difftime` from {package:base} by package:lubridate
+function `date` from {package:base} by package:lubridate
+function `desc` from {package:admiral} by package:dplyr
+function `filter_if` from {package:admiral} by package:dplyr
+function `vars` from {package:admiral} by package:dplyr
+function `filter` from {package:stats} by package:dplyr
+function `lag` from {package:stats} by package:dplyr
+function `setequal` from {package:base} by package:dplyr
+function `ts` from {package:stats} by package:admiral.test
+function `cm` from {package:grDevices} by package:admiral.test
+function `rlang_downstream_check` from {NA, org:r-lib} by org:r-lib
+function `plot` from {package:base} by package:graphics
+function `body<-` from {package:base} by package:methods
+function `kronecker` from {package:base} by package:methods
+--------------------------------------------------------------------------------
+-                          Used Package and Functions                          -
+--------------------------------------------------------------------------------
+{package:base} library, c
+{package:haven} read_xpt
+{package:magrittr} %>%
+{package:timber} axecute
+{package:Tplyr} tplyr_table, add_layer, group_count, set_distinct_by, add_risk_diff, build
+--------------------------------------------------------------------------------
+-                         Program Run Time Information                         -
+--------------------------------------------------------------------------------
+Start time: 2022-05-22 16:52:41 UTC
+End time: 2022-05-22 16:52:41 UTC
+Run time: 0 seconds
+--------------------------------------------------------------------------------
+-                             Errors and Warnings                              -
+--------------------------------------------------------------------------------
+Errors:
+	a timber.log environment already exists
+
+Warnings:
+	Chi-squared approximation may be incorrect
+	Chi-squared approximation may be incorrect
+	Chi-squared approximation may be incorrect
+	Chi-squared approximation may be incorrect
+--------------------------------------------------------------------------------
+-                         Messages, Output, and Result                         -
+--------------------------------------------------------------------------------
+Messages:
+	
+Output:
+	
+
+Result:
+	NULL
+--------------------------------------------------------------------------------
+-                               Log Output File                                -
+--------------------------------------------------------------------------------
+Log name: risk_diff.log
+Log path: data-raw

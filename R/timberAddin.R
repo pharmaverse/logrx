@@ -1,16 +1,56 @@
 #' timberAddin
-#' Code needed to create the miniUI for the addin
-#' @return returns mimUI Addin to batch submit r files and create logs around them
+#' Code needed to create the miniUI for the Addin
+#' @return returns miniUI Addin to batch submit r files and create logs around them
 #' @importFrom miniUI miniPage gadgetTitleBar miniContentPanel
 #' @importFrom shiny textInput checkboxInput actionButton uiOutput reactiveValues observeEvent renderText stopApp runGadget conditionalPanel fluidRow column tags HTML
 #' @importFrom rstudioapi selectFile selectDirectory
 #' @importFrom stringr str_locate_all str_replace
+#' @importFrom waiter useWaiter waiter_show waiter_hide spin_solar
 #' @export
 timberAddin <- function() {
    ui <- miniUI::miniPage(
-      #CSS sheet to color ui
-      shiny::includeCSS("inst/styles.css"),
-      #Title for miniui
+      useWaiter(), # include dependencies
+      # css
+      shiny::tags$head(
+         shiny::tags$style(
+            shiny::HTML(
+               ".gadget-title {
+                  color:rgb(0,0,0);
+                  font-weight: bold;
+                  background-color:rgb(134,202,198);
+                  border: 1px solid rgb(0,0,0);
+               }
+
+               #axecute{
+               text-align: left;
+               color:rgb(255,255,255);
+               background-color: rgb(134,202,198);
+               border: 1px solid rgb(0,0,0);
+               font-weight: bold;
+               }
+               #axecute:hover{
+               color:rgb(134,202,198);
+               background-color: rgb(255,255,255);
+               border: 1px solid rgb(0,0,0);
+               }
+
+               .btn {
+                  text-align: left;
+                  color:rgb(255,255,255);
+                  background-color: rgb(243, 102, 51);
+                  border: 1px solid rgb(0,0,0);
+                  font-weight: bold;
+               }
+
+               .btn:hover{
+                  background-color:rgb(255,255,255);
+                  border: 1px solid rgb(243, 102, 51);
+                  color:rgb(0,0,0);
+               }"
+            )
+         )
+      ),
+      #Title for miniUI
       miniUI::gadgetTitleBar("timber",
                              left = NULL,
                              right = miniUI::miniTitleBarButton("done", "Done", primary = TRUE)
@@ -46,6 +86,17 @@ timberAddin <- function() {
             shiny::column(
                12,
                shiny::checkboxInput("rmLog", "Remove the log object after axecution?", TRUE)
+            )
+         ),
+         shiny::fluidRow(
+            shiny::column(
+               12,
+               shiny::checkboxGroupInput("toReport", "Optional elements to report:",
+                                         c("Messages" = "messages",
+                                           "Output" = "output",
+                                           "Result" = "result"),
+                                         inline = TRUE,
+                                         selected = c("messages", "output", "result"))
             )
          ),
          shiny::fluidRow(
@@ -106,9 +157,14 @@ timberAddin <- function() {
       })
 
       shiny::observeEvent(input$axecute, {
+         waiter_show( # show the waiter
+            html = spin_solar() # use a spinner
+         )
          axecute(file = logInfo$file, log_name = logInfo$name,
-                 log_path = logInfo$location, remove_log_object = input$rmLog)
+                 log_path = logInfo$location, remove_log_object = input$rmLog,
+                 to_report = input$toReport)
          doneCheck$data <- "Select a new file, if you wish to run more files"
+         waiter_hide() # hide the waiter
       })
 
       output$output <- shiny::renderText({
@@ -119,7 +175,7 @@ timberAddin <- function() {
          stopApp()
       })
    }
-   viewer <- shiny::dialogViewer("Run with timber", width = 800, height = 300)
+   viewer <- shiny::dialogViewer("Run with timber", width = 800, height = 400)
    shiny::runGadget(ui, server, viewer = viewer)
    }
 

@@ -1,0 +1,113 @@
+---
+title: "Logging Unapproved Package and Function Use"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{approved}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(timber)
+```
+
+## 1. Create a named list
+#### The named list contains the functions approved for use for each package. If all functions for a package are approved for use, list "All".
+
+```{r}
+approved_pkgs <- list(base = "mean",
+                      dplyr = "All")
+approved_pkgs
+```
+
+## 2. Build `approved.rds`
+#### Pass the named list through `build_approved()` to build your tibble.
+#### If We create a temp directory to save this for illustration.
+
+```{r}
+build_approved(approved_pkgs)
+```
+
+## 3. Save as `approved.rds`
+####  You can use the `file` argument in `build_approved()` to save approved.rds instead of return the tibble.
+
+```{r}
+dir <- tempdir()
+
+build_approved(approved_pkgs, file = file.path(dir, "approved.rds"))
+```
+
+## 4. Update the `timber.approved` option
+### Update the `timber.approved` option to point to your `approved.rds` location. We recommend setting this in your `.Rprofile`.
+
+```{r}
+options(timber.approved = file.path(dir, "approved.rds"))
+```
+
+## 5. You're done. Let's axecute! 
+#### `timber` will take it from there. When each program is executed, packages and functions will be compared to `approved.rds` and if any unapproved use is found, it will be logged within the "Unapproved Package and Functions" section.
+
+## Example
+
+Let's write a simple script summarizing mean mpg from mtcars. We save this as `mpg.R` in the temporary directory `dir` and `axecute()` it.
+
+```{r}
+library(dplyr)
+
+results <- mtcars %>%
+   group_by(cyl) %>%
+   summarize(mean = mean(mpg)) %>%
+   mutate(label = "Mean MPG")
+
+results %>%
+   tidyr::pivot_wider(names_from = cyl, values_from = mean, id_cols = label)
+```
+
+```{r echo = FALSE}
+# write this to the temp directory so we have a script to axecute
+
+text <- 'library(dplyr)
+
+results <- mtcars %>%
+   group_by(cyl) %>%
+   summarize(mean = mean(mpg)) %>%
+   mutate(label = "Mean MPG")
+
+results %>%
+   tidyr::pivot_wider(names_from = cyl, values_from = mean, id_cols = label)'
+   
+fileConn <- file(file.path(dir,"mpg.R"))
+writeLines(text, fileConn)
+close(fileConn)
+
+```
+
+```{r results='hide'}
+axecute(file.path(dir,"mpg.R"), remove_log_object = FALSE)
+```
+
+Here we have the log elements for "Used Package and Functions" and "Unapproved Package and Functions". We can see we used `library()` from `package:base` and `pivot_wider` from `package:tidyr`.  We did not include the base library or tidyr functions in our approved list, so this has been logged!
+
+```{r echo=FALSE}
+cleaned_log_vec <- c()
+
+cleaned_log_vec <- c(cleaned_log_vec,
+                           write_log_header("Used Package and Functions"),
+                           write_used_functions())
+
+cleaned_log_vec <- c(cleaned_log_vec,
+                           write_log_header("Unapproved Package and Functions"),
+                           write_unapproved_functions())
+cat(cleaned_log_vec, sep = "\n")
+```
+
+```{r cleanup, echo = FALSE}
+timber::log_remove()
+
+unlink(dir, recursive = TRUE)
+```

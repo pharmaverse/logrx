@@ -29,7 +29,21 @@ reference:
      desc: Utility functions
    - contents:
       - loudly
+      - build_approved
    - title: RStudio addin
      desc: RStudio addin to facilitate the execution of a log
    - contents:
       - timberAddin
+
+articles:
+- title: Use Cases
+  navbar: Use Cases
+  contents:
+  - articles/tables
+  - articles/adsl_demo
+
+- title: Advanced Guides
+  navbar: Advanced Guides
+  contents:
+  - approved
+
