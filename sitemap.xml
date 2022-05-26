@@ -10,7 +10,31 @@
     <loc>/LICENSE.html</loc>
   </url>
   <url>
+    <loc>/articles/adsl_demo.html</loc>
+  </url>
+  <url>
+    <loc>/articles/adsl_log.html</loc>
+  </url>
+  <url>
+    <loc>/articles/adsl_lst.html</loc>
+  </url>
+  <url>
+    <loc>/articles/adsl_script.html</loc>
+  </url>
+  <url>
+    <loc>/articles/approved.html</loc>
+  </url>
+  <url>
     <loc>/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>/articles/risk_diff_log.html</loc>
+  </url>
+  <url>
+    <loc>/articles/risk_diff_script.html</loc>
+  </url>
+  <url>
+    <loc>/articles/tables.html</loc>
   </url>
   <url>
     <loc>/articles/timber.html</loc>
@@ -22,6 +46,12 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/news/index.html</loc>
+  </url>
+  <url>
+    <loc>/pull_request_template.html</loc>
+  </url>
+  <url>
     <loc>/reference/approved.html</loc>
   </url>
   <url>
@@ -29,6 +59,9 @@
   </url>
   <url>
     <loc>/reference/axecute.html</loc>
+  </url>
+  <url>
+    <loc>/reference/build_approved.html</loc>
   </url>
   <url>
     <loc>/reference/get_file_path.html</loc>

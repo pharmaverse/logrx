@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">timber</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
@@ -51,6 +51,33 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li class="divider">
+    </li>
+<li class="dropdown-header">Use Cases</li>
+    <li>
+      <a href="../articles/tables.html">Logging for Summary Display Table</a>
+    </li>
+    <li>
+      <a href="../articles/adsl_demo.html">Logging for an ADSL dataset</a>
+    </li>
+    <li class="divider">
+    </li>
+<li class="dropdown-header">Advanced Guides</li>
+    <li>
+      <a href="../articles/approved.html">Logging Unapproved Package and Function Use</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -94,15 +121,21 @@
 <li>
 <code>metadata</code>: The timber <code>package</code> information</li>
 <li>
+<code>user and file information</code>: The user that generates the log, file name and path of the R script</li>
+<li>
 <code>session_info</code>: The R session information</li>
 <li>
-<code>user</code>: The user that generates the log</li>
+<code>packages</code>: List all available packages in the environment</li>
 <li>
-<code>file_name</code>, <code>file_path</code>: The file name and path of the R script</li>
+<code>external_software</code>" Lists all external software</li>
 <li>
-<code>log_name</code>, <code>log_path</code>: The name and path of the log</li>
+<code>masked_functions</code>: The functions masked by packages</li>
 <li>
 <code>start_time</code>, <code>end_time</code>, and <code>run_time</code>: The start, end, and run times</li>
+<li>
+<code>used_packages_functions</code>: Any packages and functions used in the R script</li>
+<li>
+<code>unapproved_packages_functions</code>: Any packages and functions used in the R script that are not part of that approved packages and functions list</li>
 <li>
 <code>errors</code>: The errors generated when running the R script</li>
 <li>
@@ -114,12 +147,9 @@
 <li>
 <code>output</code>: The output generated when running the R script</li>
 <li>
-<code>masked_functions</code>: The functions masked by packages</li>
-<li>
-<code>used_packages_functions</code>: Any packages and functions used in the R script</li>
-<li>
-<code>unapproved_packages_functions</code>: Any packages and functions used in the R script that are not part of that approved packages and functions list</li>
+<code>log_name</code>, <code>log_path</code>: The name and path of the log</li>
 </ul>
+<iframe width="700" height="400" src="adsl_log.html"></iframe>
 </div>
 <div class="section level2">
 <h2 id="generating-a-log">Generating a log<a class="anchor" aria-label="anchor" href="#generating-a-log"></a>
@@ -184,7 +214,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>

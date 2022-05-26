@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">timber</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
@@ -51,6 +51,33 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li class="divider">
+    </li>
+<li class="dropdown-header">Use Cases</li>
+    <li>
+      <a href="articles/tables.html">Logging for Summary Display Table</a>
+    </li>
+    <li>
+      <a href="articles/adsl_demo.html">Logging for an ADSL dataset</a>
+    </li>
+    <li class="divider">
+    </li>
+<li class="dropdown-header">Advanced Guides</li>
+    <li>
+      <a href="articles/approved.html">Logging Unapproved Package and Function Use</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -76,7 +103,6 @@
 <div class="page-header"><h1 id="timber-">timber <img src="reference/figures/logo.png" align="right" alt="" width="120"><a class="anchor" aria-label="anchor" href="#timber-"></a>
 </h1></div>
 <!-- badges: start -->
-
 <p>The goal of timber is to facilitate logging in a clinical environment with the goal of making code easily traceable and reproducible.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -86,20 +112,24 @@
 <code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"atorus-research/timber"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="what-is-timber">What is <code>timber</code>?<a class="anchor" aria-label="anchor" href="#what-is-timber"></a>
+<h2 id="what-is-timber-">What is <code>timber</code> ?<a class="anchor" aria-label="anchor" href="#what-is-timber-"></a>
 </h2>
+<p>Simple! The timber package makes a log file for a R script!. Below we have a short gif of making a log file for a <code>adsl.R</code> script. More details on the parts of the log script are found in the <a href="https://atorus-research.github.io/timber/articles/timber.html" class="external-link">Get Started</a> and we have several vignettes that show specific use cases for using the package.</p>
+<p><img src="reference/figures/timber.gif" title="Caption for this figure 1" alt="Caption for this figure 1" width="100%" style="display: block; margin: auto;"></p>
 <p>While many packages to facilitate the logging of code already exist in the R ecosystem, it is hard to find a solution that works well for clinical programming applications. Many logging implementations are more implicit and rely on user input to create the log for the execution of a script. While this is useful for logging specific events of an application, in clinical programming a log has a set purpose.</p>
 <p><code>timber</code> is built around the concept of creating a log for the execution of an R script that provides an overview of what happened as well as the environment that it happened in. We set out to create a flexible logging utility that could provide the necessary information to anyone reviewing the code execution so they can recreate the execution environment and run the code for themselves. <code>timber</code> is purpose-built for the needs of clinical programming to capture necessary elements of the environment and execution to be able to create a complete view of the program execution.</p>
 </div>
 <div class="section level2">
 <h2 id="using-timber">Using timber<a class="anchor" aria-label="anchor" href="#using-timber"></a>
 </h2>
-<p><code>timber</code> can be used in a file or through scripting. More information on how to use <code>timber</code> can be found in <code><a href="articles/timber.html">vignette("timber")</a></code></p>
+<p><code>timber</code> can be used in a file or through scripting. More information on how to use <code>timber</code> can be found in <a href="https://atorus-research.github.io/timber/articles/timber.html" class="external-link">Get Started</a>.</p>
 </div>
 <div class="section level2">
-<h2 id="future-development">Future development<a class="anchor" aria-label="anchor" href="#future-development"></a>
+<h2 id="contact">Contact<a class="anchor" aria-label="anchor" href="#contact"></a>
 </h2>
-<p>While this development version has been released, the development team is still making improvements to the package. This release is intended to give access to the core functionality of <code>timber</code> while it is still being developed. While the main functions and functionality have already been created, there are still many behind the scenes items that need to be addressed.</p>
+<p>We use the following for support and communications between user and developer community:</p>
+<ul><li>
+<a href="https://app.slack.com/client/T028PB489D3/C02M8KN8269" class="external-link">Slack</a>—for informal discussions, Q&amp;A and building our user community. If you don’t have access, use this <a href="https://join.slack.com/t/pharmaverse/shared_invite/zt-yv5atkr4-Np2ytJ6W_QKz_4Olo7Jo9A" class="external-link">link</a> to join the pharmaverse Slack workspace</li></ul>
 </div>
 </div>
   </div>
@@ -144,6 +174,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
+<li><a href="https://pharmaverse.org" class="external-link"><img src="http://pharmaverse.org/shields/timber.svg"></a></li>
 <li><a href="https://github.com/atorus-research/timber/actions?workflow=R-CMD-check" class="external-link"><img src="https://github.com/atorus-research/timber/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 <li><a href="https://codecov.io/gh/atorus-research/timber" class="external-link"><img src="https://img.shields.io/codecov/c/github/atorus-research/timber"></a></li>
 <li><a href="https://github.com/atorus-research/timber/blob/master/LICENSE.md" class="external-link"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a></li>
@@ -162,7 +193,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
