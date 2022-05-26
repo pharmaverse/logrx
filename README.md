@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+[<img src="http://pharmaverse.org/shields/timber.svg">](https://pharmaverse.org)
 [![R build
 status](https://github.com/atorus-research/timber/workflows/R-CMD-check/badge.svg)](https://github.com/atorus-research/timber/actions?workflow=R-CMD-check)
 [<img src="https://img.shields.io/codecov/c/github/atorus-research/timber">](https://codecov.io/gh/atorus-research/timber)
@@ -27,7 +28,7 @@ devtools::install_github("atorus-research/timber")
 
 ## What is `timber` ?
 
-Simple! The timber package makes a log file for a R script! Below we
+Simple! The timber package makes a log file for a R script!. Below we
 have a short gif of making a log file for a `adsl.R` script. More
 details on the parts of the log script are found in the [Get
 Started](https://atorus-research.github.io/timber/articles/timber.html)

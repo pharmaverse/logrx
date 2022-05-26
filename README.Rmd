@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # timber  <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
 <!-- badges: start -->
+[<img src="http://pharmaverse.org/shields/timber.svg">](https://pharmaverse.org)
 [![R build status](https://github.com/atorus-research/timber/workflows/R-CMD-check/badge.svg)](https://github.com/atorus-research/timber/actions?workflow=R-CMD-check)
 [<img src="https://img.shields.io/codecov/c/github/atorus-research/timber">](https://codecov.io/gh/atorus-research/timber)
 [<img src="https://img.shields.io/badge/License-MIT-blue.svg">](https://github.com/atorus-research/timber/blob/master/LICENSE.md)
