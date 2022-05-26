@@ -1,6 +1,6 @@
 # timber 0.1.0
 
-Beta release for Tplyr with introduction of numerous new features:
+Beta release for timber with introduction of numerous new features:
 
 Enhancements
 - Add `to_report` param to `axecute()` to give users ability to filter out which pieces are reported
