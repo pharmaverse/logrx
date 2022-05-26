@@ -11,11 +11,11 @@ Milestone:
 
 - [ ] Version number has been updated
 - [ ] Description file updated with New Developers (if applicable)
-- [ ] NEWS.md has been updated and issues linked where appropriate
+- [ ] NEWS.md has been updated
 - [ ] README.md has been updated (if applicable)
 - [ ] Vignettes have been updated (if applicable)
 - [ ] Ensure all unit tests are passing
 - [ ] GitHub actions on this PR are all passing
-- [ ] Run `spell_check()`
+- [ ] Run `spelling::spell_check_package()` and address any issues
 - [ ] Draft GitHub release created using automatic template and updated with additional details. Remember to click "release" after PR is merged.
 
