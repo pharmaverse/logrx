@@ -59,3 +59,9 @@ execution.
 `timber` can be used in a file or through scripting. More information on
 how to use `timber` can be found in [Get
 Started](https://atorus-research.github.io/timber/articles/timber.html).
+
+## Contact
+
+We use the following for support and communications between user and developer community:
+
+* [Slack](https://app.slack.com/client/T028PB489D3/C02M8KN8269)---for informal discussions, Q&A and building our user community. If you don't have access, use this [link](https://join.slack.com/t/pharmaverse/shared_invite/zt-yv5atkr4-Np2ytJ6W_QKz_4Olo7Jo9A) to join the pharmaverse Slack workspace
