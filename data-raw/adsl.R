@@ -238,5 +238,3 @@ message("Please check for this important message!!")
 
 dir <- tempdir() # Change to whichever directory you want to save the dataset in
 save(adsl, file = file.path(dir, "adsl.rda"), compress = "bzip2")
-
-logrx::axecute("data-raw/adsl.R", log_path = "data-raw", remove_log_object = TRUE)

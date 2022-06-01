@@ -366,135 +366,120 @@ pre code {
 
 
 <pre><code>--------------------------------------------------------------------------------
--                               logrx Metadata                                -
+-                                logrx Metadata                                -
 --------------------------------------------------------------------------------
-This log was generated using logrx 0.0.1.9002
-logrx package version: 0.0.1.9002
-logrx build: Github (atorus-research/logrx@af4371f33d54a3182f0c95f3ba5b6cb56ac8cf00)
+This log was generated using logrx 0.1.0
+logrx package version: 0.1.0
+logrx build: local
 logrx link to repository: https://github.com/atorus-research/logrx
 --------------------------------------------------------------------------------
 -                          User and File Information                           -
 --------------------------------------------------------------------------------
-User: rstudio-user
+User: nathan.kosiba
 File Name: adsl.R
-File Path: /cloud/project/data-raw
+File Path: /home/nathan.kosiba/logrx/data-raw
 --------------------------------------------------------------------------------
 -                             Session Information                              -
 --------------------------------------------------------------------------------
 ─ Session info ─────────────────────────────────────────────────────────────────
  setting  value
- version  R version 4.1.3 (2022-03-10)
- os       Ubuntu 20.04.4 LTS
+ version  R version 4.0.5 (2021-03-31)
+ os       Ubuntu 18.04.6 LTS
  system   x86_64, linux-gnu
  ui       RStudio
  language (EN)
  collate  C.UTF-8
  ctype    C.UTF-8
- tz       UTC
- date     2022-05-22
- rstudio  2022.02.2+485.pro2 Prairie Trillium (server)
+ tz       Etc/UTC
+ date     2022-06-01
+ rstudio  2022.02.1+461.pro1 Prairie Trillium (server)
  pandoc   2.17.1.1 @ /usr/lib/rstudio-server/bin/quarto/bin/ (via rmarkdown)
 
 ─ Packages ─────────────────────────────────────────────────────────────────────
  package     * version    date (UTC) lib source
- admiral     * 0.7.0      2022-05-22 [1] Github (pharmaverse/admiral@e3f8cd5)
- admiraltest * 0.2.0      2022-05-22 [1] Github
+ admiral     * 0.3.0      2021-09-28 [1] local
+ admiraltest * 0.2.0      2022-05-18 [1] Github
       (pharmaverse/admiraltest@e0e50a9)
- assertthat    0.2.1      2019-03-21 [1] RSPM (R 4.1.0)
- brio          1.1.3      2021-11-30 [1] RSPM (R 4.1.0)
- cachem        1.0.6      2021-08-19 [1] RSPM (R 4.1.0)
- callr         3.7.0      2021-04-20 [1] RSPM (R 4.1.0)
- cli           3.3.0      2022-04-25 [1] RSPM (R 4.1.0)
- crayon        1.5.1      2022-03-26 [1] RSPM (R 4.1.0)
- curl          4.3.2      2021-06-23 [1] RSPM (R 4.1.0)
- DBI           1.1.2      2021-12-20 [1] RSPM (R 4.1.0)
- desc          1.4.1      2022-03-06 [1] RSPM (R 4.1.0)
- devtools      2.4.3      2021-11-30 [1] RSPM (R 4.1.0)
- diffdf      * 1.0.4      2020-03-17 [1] RSPM (R 4.1.0)
- digest        0.6.29     2021-12-01 [1] RSPM (R 4.1.0)
- dplyr       * 1.0.9      2022-04-28 [1] RSPM (R 4.1.0)
- ellipsis      0.3.2      2021-04-29 [1] RSPM (R 4.1.0)
- evaluate      0.15       2022-02-18 [1] RSPM (R 4.1.0)
- fansi         1.0.3      2022-03-24 [1] RSPM (R 4.1.0)
- fastmap       1.1.0      2021-01-25 [1] RSPM (R 4.1.0)
- forcats       0.5.1      2021-01-27 [1] RSPM (R 4.1.0)
- fs            1.5.2      2021-12-08 [1] RSPM (R 4.1.0)
- generics      0.1.2      2022-01-31 [1] RSPM (R 4.1.0)
- glue          1.6.2      2022-02-24 [1] RSPM (R 4.1.0)
- haven       * 2.4.3      2021-08-04 [1] RSPM (R 4.1.0)
- hms           1.1.1      2021-09-26 [1] RSPM (R 4.1.0)
- htmltools     0.5.2      2021-08-25 [1] RSPM (R 4.1.0)
- httpuv        1.6.5      2022-01-05 [1] RSPM (R 4.1.0)
- knitr         1.38       2022-03-25 [1] RSPM (R 4.1.0)
- later         1.3.0      2021-08-18 [1] RSPM (R 4.1.0)
- lifecycle     1.0.1      2021-09-24 [1] RSPM (R 4.1.0)
- lubridate   * 1.8.0      2021-10-07 [1] RSPM (R 4.1.0)
- magrittr    * 2.0.3      2022-03-30 [1] RSPM (R 4.1.0)
- memoise       2.0.1      2021-11-26 [1] RSPM (R 4.1.0)
- mime          0.12       2021-09-28 [1] RSPM (R 4.1.0)
- miniUI        0.1.1.1    2018-05-18 [1] RSPM (R 4.1.0)
- pillar        1.7.0      2022-02-01 [1] RSPM (R 4.1.0)
- pkgbuild      1.3.1      2021-12-20 [1] RSPM (R 4.1.0)
- pkgconfig     2.0.3      2019-09-22 [1] RSPM (R 4.1.0)
- pkgdown       2.0.2      2022-01-13 [1] RSPM (R 4.1.0)
- pkgload       1.2.4      2021-11-30 [1] RSPM (R 4.1.0)
- prettyunits   1.1.1      2020-01-24 [1] RSPM (R 4.1.0)
- processx      3.5.3      2022-03-25 [1] RSPM (R 4.1.0)
- promises      1.2.0.1    2021-02-11 [1] RSPM (R 4.1.0)
- ps            1.6.0      2021-02-28 [1] RSPM (R 4.1.0)
- purrr         0.3.4      2020-04-17 [1] RSPM (R 4.1.0)
- R6            2.5.1      2021-08-19 [1] RSPM (R 4.1.0)
- Rcpp          1.0.8.3    2022-03-17 [1] RSPM (R 4.1.0)
- readr         2.1.2      2022-01-30 [1] RSPM (R 4.1.0)
- remotes       2.4.2      2021-11-30 [1] RSPM (R 4.1.0)
- rlang         1.0.2      2022-03-04 [1] RSPM (R 4.1.0)
- rmarkdown     2.13       2022-03-10 [1] RSPM (R 4.1.0)
- rprojroot     2.0.2      2020-11-15 [1] RSPM (R 4.1.0)
- rstudioapi    0.13       2020-11-12 [1] RSPM (R 4.1.0)
- sessioninfo   1.2.2      2021-12-06 [1] RSPM (R 4.1.0)
- shiny         1.7.1      2021-10-02 [1] RSPM (R 4.1.0)
- stringi       1.7.6      2021-11-29 [1] RSPM (R 4.1.0)
- stringr     * 1.4.0      2019-02-10 [1] RSPM (R 4.1.0)
- testthat      3.1.4      2022-04-26 [1] RSPM (R 4.1.0)
- tibble        3.1.7      2022-05-03 [1] RSPM (R 4.1.0)
- tidyr         1.2.0      2022-02-01 [1] RSPM (R 4.1.0)
- tidyselect    1.1.2      2022-02-21 [1] RSPM (R 4.1.0)
- logrx        0.0.1.9002 2022-05-20 [1] Github (atorus-research/logrx@af4371f)
- Tplyr       * 0.4.4      2022-01-27 [1] RSPM (R 4.1.0)
- tzdb          0.3.0      2022-03-28 [1] RSPM (R 4.1.0)
- usethis       2.1.5      2021-12-09 [1] RSPM (R 4.1.0)
- utf8          1.2.2      2021-07-24 [1] RSPM (R 4.1.0)
- vctrs         0.4.1      2022-04-13 [1] RSPM (R 4.1.0)
- waiter        0.2.5      2022-01-03 [1] RSPM (R 4.1.0)
- withr         2.5.0      2022-03-03 [1] RSPM (R 4.1.0)
- xfun          0.30       2022-03-02 [1] RSPM (R 4.1.0)
- xtable        1.8-4      2019-04-21 [1] RSPM (R 4.1.0)
- yaml          2.3.5      2022-02-21 [1] RSPM (R 4.1.0)
+ assertthat    0.2.1      2019-03-21 [1] RSPM (R 4.0.0)
+ cli           3.3.0      2022-04-25 [1] RSPM (R 4.0.5)
+ clisymbols    1.2.0      2017-05-21 [1] RSPM (R 4.0.0)
+ crayon        1.5.1      2022-03-26 [1] RSPM (R 4.0.5)
+ DBI           1.1.0      2019-12-15 [1] RSPM (R 4.0.0)
+ digest        0.6.29     2021-12-01 [1] RSPM (R 4.0.5)
+ dplyr       * 1.0.9      2022-04-28 [1] RSPM (R 4.0.5)
+ ellipsis      0.3.2      2021-04-29 [1] RSPM (R 4.0.4)
+ evaluate      0.15       2022-02-18 [1] RSPM (R 4.0.5)
+ fansi         1.0.3      2022-03-24 [1] RSPM (R 4.0.5)
+ fastmap       1.1.0      2021-01-25 [1] RSPM (R 4.0.3)
+ forcats       0.5.1      2021-01-27 [1] RSPM (R 4.0.3)
+ fs            1.5.2      2021-12-08 [1] RSPM (R 4.0.5)
+ generics      0.1.2      2022-01-31 [1] RSPM (R 4.0.5)
+ glue          1.6.2      2022-02-24 [1] RSPM (R 4.0.5)
+ haven       * 2.4.3      2021-08-04 [1] RSPM (R 4.0.5)
+ hms           1.1.1      2021-09-26 [1] RSPM (R 4.0.5)
+ htmltools     0.5.2.9000 2022-02-08 [1] Github (rstudio/htmltools@9490b62)
+ httpuv        1.6.5      2022-01-05 [1] RSPM (R 4.0.5)
+ knitr         1.37       2021-12-16 [1] RSPM (R 4.0.5)
+ later         1.3.0      2021-08-18 [1] RSPM (R 4.0.5)
+ lifecycle     1.0.1      2021-09-24 [1] RSPM (R 4.0.5)
+ logrx       * 0.1.0      2022-06-01 [1] local
+ lubridate   * 1.8.0      2021-10-07 [1] RSPM (R 4.0.5)
+ magrittr    * 2.0.3      2022-03-30 [1] RSPM (R 4.0.5)
+ mime          0.12       2021-09-28 [1] RSPM (R 4.0.5)
+ miniUI        0.1.1.1    2018-05-18 [1] RSPM (R 4.0.0)
+ pillar        1.7.0      2022-02-01 [1] RSPM (R 4.0.5)
+ pkgconfig     2.0.3      2019-09-22 [1] RSPM (R 4.0.0)
+ promises      1.2.0.1    2021-02-11 [1] RSPM (R 4.0.3)
+ prompt        1.0.0      2021-01-13 [1] Github (gaborcsardi/prompt@b332c42)
+ purrr         0.3.4      2020-04-17 [1] RSPM (R 4.0.3)
+ R6            2.5.1      2021-08-19 [1] RSPM (R 4.0.5)
+ Rcpp          1.0.8.3    2022-03-17 [1] RSPM (R 4.0.5)
+ readr         2.1.0      2021-11-11 [1] RSPM (R 4.0.5)
+ rlang         1.0.2.9000 2022-05-04 [1] Github (r-lib/rlang@f527d0c)
+ rmarkdown     2.13       2022-03-10 [1] RSPM (R 4.0.5)
+ rsconnect     0.8.24     2021-08-05 [1] RSPM (R 4.0.5)
+ rstudioapi    0.13       2020-11-12 [1] RSPM (R 4.0.3)
+ sessioninfo   1.2.2      2021-12-06 [1] RSPM (R 4.0.5)
+ shiny         1.7.1      2021-10-02 [1] RSPM (R 4.0.5)
+ stringi       1.7.6      2021-11-29 [1] RSPM (R 4.0.5)
+ stringr     * 1.4.0      2019-02-10 [1] RSPM (R 4.0.0)
+ tibble        3.1.7      2022-05-03 [1] RSPM (R 4.0.5)
+ tidyr         1.2.0      2022-02-01 [1] RSPM (R 4.0.5)
+ tidyselect    1.1.2      2022-02-21 [1] RSPM (R 4.0.5)
+ Tplyr       * 0.4.0      2021-02-11 [1] RSPM (R 4.0.3)
+ tzdb          0.2.0      2021-10-27 [1] RSPM (R 4.0.5)
+ usethis       2.1.5      2021-12-09 [1] RSPM (R 4.0.5)
+ utf8          1.2.2      2021-07-24 [1] RSPM (R 4.0.5)
+ vctrs         0.4.1      2022-04-13 [1] RSPM (R 4.0.5)
+ waiter        0.2.5      2022-01-03 [1] RSPM (R 4.0.5)
+ xfun          0.30       2022-03-02 [1] RSPM (R 4.0.5)
+ xtable        1.8-4      2019-04-21 [1] RSPM (R 4.0.0)
+ yaml          2.3.5      2022-02-21 [1] RSPM (R 4.0.5)
 
- [1] /cloud/lib/x86_64-pc-linux-gnu-library/4.1
- [2] /opt/R/4.1.3/lib/R/library
+ [1] /home/nathan.kosiba/R/x86_64-pc-linux-gnu-library/4.0
+ [2] /opt/R/4.0.5/lib/R/library
 
 ─ External software ────────────────────────────────────────────────────────────
  setting        value
- cairo          1.16.0
+ cairo          1.15.10
  cairoFT
- pango          1.44.7
- png            1.6.37
+ pango          1.40.14
+ png            1.6.34
  jpeg           8.0
- tiff           LIBTIFF, Version 4.1.0
- tcl            8.6.10
- curl           7.68.0
+ tiff           LIBTIFF, Version 4.0.9
+ tcl            8.6.8
+ curl           7.58.0
  zlib           1.2.11
- bzlib          1.0.8, 13-Jul-2019
- xz             5.2.4
- PCRE           10.34 2019-11-21
- ICU            66.1
+ bzlib          1.0.6, 6-Sept-2010
+ xz             5.2.2
+ PCRE           10.31 2018-02-12
+ ICU            60.2
  TRE            TRE 0.8.0 R_fixes (BSD)
- iconv          glibc 2.31
- readline       8.0
- BLAS           /usr/lib/x86_64-linux-gnu/atlas/libblas.so.3.10.3
- lapack         /usr/lib/x86_64-linux-gnu/atlas/liblapack.so.3.10.3
- lapack_version 3.9.0
+ iconv          glibc 2.27
+ readline       7.0
+ BLAS           /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
+ lapack         /usr/lib/x86_64-linux-gnu/libopenblasp-r0.2.20.so
+ lapack_version 3.7.1
 
 ─ Python configuration ─────────────────────────────────────────────────────────
  Python is not available
@@ -503,115 +488,36 @@ File Path: /cloud/project/data-raw
 --------------------------------------------------------------------------------
 -                               Masked Functions                               -
 --------------------------------------------------------------------------------
-function `admiral_ae` from {package:admiraltest} by .GlobalEnv
-function `admiral_dm` from {package:admiraltest} by .GlobalEnv
-function `admiral_ds` from {package:admiraltest} by .GlobalEnv
-function `admiral_ex` from {package:admiraltest} by .GlobalEnv
-function `admiral_lb` from {package:admiraltest} by .GlobalEnv
-function `dir` from {package:base} by .GlobalEnv
 function `t` from {package:base} by .GlobalEnv
-function `desc` from {package:dplyr} by package:admiral
-function `filter_if` from {package:dplyr} by package:admiral
-function `vars` from {package:dplyr} by package:admiral
-function `%&gt;%` from {package:magrittr, package:dplyr} by package:stringr
-function `intersect` from {package:dplyr, package:base} by package:lubridate
-function `setdiff` from {package:dplyr, package:base} by package:lubridate
-function `union` from {package:dplyr, package:base} by package:lubridate
-function `Arith` from {package:methods} by package:lubridate
-function `Compare` from {package:methods} by package:lubridate
-function `show` from {package:methods} by package:lubridate
-function `as.difftime` from {package:base} by package:lubridate
-function `date` from {package:base} by package:lubridate
-function `filter` from {package:stats} by package:dplyr
-function `lag` from {package:stats} by package:dplyr
-function `setequal` from {package:base} by package:dplyr
 function `rlang_downstream_check` from {NA, org:r-lib} by org:r-lib
 function `plot` from {package:base} by package:graphics
 function `body&lt;-` from {package:base} by package:methods
 function `kronecker` from {package:base} by package:methods
 --------------------------------------------------------------------------------
--                          Used Package and Functions                          -
---------------------------------------------------------------------------------
-{.GlobalEnv} format_racegr1, format_region1, format_lddthgr1
-{package:admiral} convert_blanks_to_na, derive_vars_merged_dtm, vars, derive_vars_dtm_to_dt, derive_var_trtdurd, derive_vars_merged_dt, derive_var_disposition_status, derive_vars_dt, derive_vars_duration, date_source, derive_var_extreme_dt, derive_var_agegr_fda, derive_var_merged_exist_flag
-{package:base} library, is.na, c, %in%, nchar, list, message, tempdir, save, file.path
-{package:diffdf} diffdf
-{package:dplyr} case_when, mutate, if_else, slice, glimpse, select
-{package:stringr} %&gt;%, str_detect
-{package:logrx} axecute
-{package:utils} data
---------------------------------------------------------------------------------
 -                         Program Run Time Information                         -
 --------------------------------------------------------------------------------
-Start time: 2022-05-22 17:38:00 UTC
-End time: 2022-05-22 17:38:02 UTC
-Run time: 2 seconds
+Start time: 2022-06-01 20:34:14 UTC
+End time: 2022-06-01 20:34:15 UTC
+Run time: 1 seconds
 --------------------------------------------------------------------------------
 -                             Errors and Warnings                              -
 --------------------------------------------------------------------------------
 Errors:
-    a log.rx environment already exists
+    could not find function &quot;derive_vars_merged_dt&quot;
 
 Warnings:
     
-There are columns in BASE that are not in COMPARE !!
 --------------------------------------------------------------------------------
 -                         Messages, Output, and Result                         -
 --------------------------------------------------------------------------------
 Messages:
-    Please check for this important message!!
+    Attaching package: ‘dplyr’
+    The following objects are masked from ‘package:stats’:    filter, lag
+    The following objects are masked from ‘package:base’:    intersect, setdiff, setequal, union
+    Attaching package: ‘lubridate’
+    The following objects are masked from ‘package:base’:    date, intersect, setdiff, union
 Output:
-    Rows: 3
-    Columns: 49
-    $ STUDYID  [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;CDISCPILOT01&quot;, &quot;CDISCPILOT01&quot;, &quot;CDISCPILOT01&quot;
-    $ USUBJID  [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;01-701-1015&quot;, &quot;01-701-1023&quot;, &quot;01-701-1028&quot;
-    $ SUBJID   [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;1015&quot;, &quot;1023&quot;, &quot;1028&quot;
-    $ RFSTDTC  [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;2014-01-02&quot;, &quot;2012-08-05&quot;, &quot;2013-07-19&quot;
-    $ RFENDTC  [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;2014-07-02&quot;, &quot;2012-09-02&quot;, &quot;2014-01-14&quot;
-    $ RFXSTDTC [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;2014-01-02&quot;, &quot;2012-08-05&quot;, &quot;2013-07-19&quot;
-    $ RFXENDTC [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;2014-07-02&quot;, &quot;2012-09-01&quot;, &quot;2014-01-14&quot;
-    $ RFICDTC  [3m[38;5;246m&lt;chr&gt;[39m[23m NA, NA, NA
-    $ RFPENDTC [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;2014-07-02T11:45&quot;, &quot;2013-02-18&quot;, &quot;2014-01-14T11:10&quot;
-    $ DTHDTC   [3m[38;5;246m&lt;chr&gt;[39m[23m NA, NA, NA
-    $ DTHFL    [3m[38;5;246m&lt;chr&gt;[39m[23m NA, NA, NA
-    $ SITEID   [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;701&quot;, &quot;701&quot;, &quot;701&quot;
-    $ AGE      [3m[38;5;246m&lt;dbl&gt;[39m[23m 63, 64, 71
-    $ AGEU     [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;YEARS&quot;, &quot;YEARS&quot;, &quot;YEARS&quot;
-    $ SEX      [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;F&quot;, &quot;M&quot;, &quot;M&quot;
-    $ RACE     [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;WHITE&quot;, &quot;WHITE&quot;, &quot;WHITE&quot;
-    $ ETHNIC   [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;HISPANIC OR LATINO&quot;, &quot;HISPANIC OR LATINO&quot;, &quot;NOT HISPANIC OR LATINO&quot;
-    $ ARMCD    [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;Pbo&quot;, &quot;Pbo&quot;, &quot;Xan_Hi&quot;
-    $ ARM      [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;Placebo&quot;, &quot;Placebo&quot;, &quot;Xanomeline High Dose&quot;
-    $ ACTARMCD [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;Pbo&quot;, &quot;Pbo&quot;, &quot;Xan_Hi&quot;
-    $ ACTARM   [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;Placebo&quot;, &quot;Placebo&quot;, &quot;Xanomeline High Dose&quot;
-    $ COUNTRY  [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;USA&quot;, &quot;USA&quot;, &quot;USA&quot;
-    $ DMDTC    [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;2013-12-26&quot;, &quot;2012-07-22&quot;, &quot;2013-07-11&quot;
-    $ DMDY     [3m[38;5;246m&lt;dbl&gt;[39m[23m -7, -14, -8
-    $ TRT01P   [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;Placebo&quot;, &quot;Placebo&quot;, &quot;Xanomeline High Dose&quot;
-    $ TRT01A   [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;Placebo&quot;, &quot;Placebo&quot;, &quot;Xanomeline High Dose&quot;
-    $ TRTSDTM  [3m[38;5;246m&lt;dttm&gt;[39m[23m 2014-01-02, 2012-08-05, 2013-07-19
-    $ TRTSTMF  [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;H&quot;, &quot;H&quot;, &quot;H&quot;
-    $ TRTEDTM  [3m[38;5;246m&lt;dttm&gt;[39m[23m 2014-07-02 23:59:59, 2012-09-01 23:59:59, 2014-01-14 23:59:59
-    $ TRTETMF  [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;H&quot;, &quot;H&quot;, &quot;H&quot;
-    $ TRTSDT   [3m[38;5;246m&lt;date&gt;[39m[23m 2014-01-02, 2012-08-05, 2013-07-19
-    $ TRTEDT   [3m[38;5;246m&lt;date&gt;[39m[23m 2014-07-02, 2012-09-01, 2014-01-14
-    $ TRTDURD  [3m[38;5;246m&lt;dbl&gt;[39m[23m 182, 28, 180
-    $ SCRFDT   [3m[38;5;246m&lt;date&gt;[39m[23m NA, NA, NA
-    $ EOSDT    [3m[38;5;246m&lt;date&gt;[39m[23m 2014-07-02, 2012-09-02, 2014-01-14
-    $ EOSSTT   [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;COMPLETED&quot;, &quot;DISCONTINUED&quot;, &quot;COMPLETED&quot;
-    $ FRVDT    [3m[38;5;246m&lt;date&gt;[39m[23m NA, 2013-02-18, NA
-    $ DTHDT    [3m[38;5;246m&lt;date&gt;[39m[23m NA, NA, NA
-    $ DTHADY   [3m[38;5;246m&lt;dbl&gt;[39m[23m NA, NA, NA
-    $ LDDTHELD [3m[38;5;246m&lt;dbl&gt;[39m[23m NA, NA, NA
-    $ LSTALVDT [3m[38;5;246m&lt;date&gt;[39m[23m 2014-07-02, 2012-09-02, 2014-01-14
-    $ AGEGR1   [3m[38;5;246m&lt;fct&gt;[39m[23m 18-64, 18-64, &gt;=65
-    $ SAFFL    [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;
-    $ RACEGR1  [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;White&quot;, &quot;White&quot;, &quot;White&quot;
-    $ REGION1  [3m[38;5;246m&lt;chr&gt;[39m[23m &quot;NA&quot;, &quot;NA&quot;, &quot;NA&quot;
-    $ LDDTHGR1 [3m[38;5;246m&lt;chr&gt;[39m[23m NA, NA, NA
-    $ DTH30FL  [3m[38;5;246m&lt;chr&gt;[39m[23m NA, NA, NA
-    $ DTHA30FL [3m[38;5;246m&lt;chr&gt;[39m[23m NA, NA, NA
-    $ DTHB30FL [3m[38;5;246m&lt;chr&gt;[39m[23m NA, NA, NA
+    
 
 Result:
     NULL
@@ -619,7 +525,7 @@ Result:
 -                               Log Output File                                -
 --------------------------------------------------------------------------------
 Log name: adsl.log
-Log path: data-raw</code></pre>
+Log path: /home/nathan.kosiba/logrx/data-raw</code></pre>
 
 
 

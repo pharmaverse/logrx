@@ -604,9 +604,7 @@ message(&quot;Please check for this important message!!&quot;)
 # ---- Save output ----
 
 dir &lt;- tempdir() # Change to whichever directory you want to save the dataset in
-save(adsl, file = file.path(dir, &quot;adsl.rda&quot;), compress = &quot;bzip2&quot;)
-
-logrx::axecute(&quot;data-raw/adsl.R&quot;, log_path = &quot;data-raw&quot;, remove_log_object = TRUE)</code></pre>
+save(adsl, file = file.path(dir, &quot;adsl.rda&quot;), compress = &quot;bzip2&quot;)</code></pre>
 
 
 
