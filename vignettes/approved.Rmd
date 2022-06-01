@@ -2,7 +2,7 @@
 title: "Logging Unapproved Package and Function Use"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{approved}
+  %\VignetteIndexEntry{Logging Unapproved Package and Function Use}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
