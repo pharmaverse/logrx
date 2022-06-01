@@ -35,6 +35,9 @@ Started](https://atorus-research.github.io/logrx/articles/logrx.html)
 and we have several vignettes that show specific use cases for using the
 package.
 
+**Note:** The Addin was originally called `timber`, but has been updated
+to `logrx.`
+
 <img src="man/figures/logrx.gif" title="Caption for this figure 1" alt="Caption for this figure 1" width="100%" style="display: block; margin: auto;" />
 
 While many packages to facilitate the logging of code already exist in
