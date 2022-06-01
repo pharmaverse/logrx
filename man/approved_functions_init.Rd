@@ -2,7 +2,7 @@
 % Please edit documentation in R/log.R
 \name{approved_functions_init}
 \alias{approved_functions_init}
-\title{Initialises the timber.approved option}
+\title{Initialises the logrx.approved option}
 \usage{
 approved_functions_init()
 }

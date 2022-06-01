@@ -6,7 +6,7 @@
 \enumerate{
 \item As the name and path if specified
 \item As the file name and path if specified
-\item As timber_log.log and . if none of the above are specified
+\item As logrx_log.log and . if none of the above are specified
 }}
 \usage{
 set_log_name_path(log_name = NA, log_path = NA)
@@ -24,6 +24,6 @@ Set the log name and path:
 \enumerate{
 \item As the name and path if specified
 \item As the file name and path if specified
-\item As timber_log.log and . if none of the above are specified
+\item As logrx_log.log and . if none of the above are specified
 }
 }

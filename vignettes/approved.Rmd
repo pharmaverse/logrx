@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-library(timber)
+library(logrx)
 ```
 
 ## 1. Create a named list
@@ -42,15 +42,15 @@ dir <- tempdir()
 build_approved(approved_pkgs, file = file.path(dir, "approved.rds"))
 ```
 
-## 4. Update the `timber.approved` option
-### Update the `timber.approved` option to point to your `approved.rds` location. We recommend setting this in your `.Rprofile`.
+## 4. Update the `logrx.approved` option
+### Update the `logrx.approved` option to point to your `approved.rds` location. We recommend setting this in your `.Rprofile`.
 
 ```{r}
-options(timber.approved = file.path(dir, "approved.rds"))
+options(logrx.approved = file.path(dir, "approved.rds"))
 ```
 
 ## 5. You're done. Let's axecute! 
-#### `timber` will take it from there. When each program is executed, packages and functions will be compared to `approved.rds` and if any unapproved use is found, it will be logged within the "Unapproved Package and Functions" section.
+#### `logrx` will take it from there. When each program is executed, packages and functions will be compared to `approved.rds` and if any unapproved use is found, it will be logged within the "Unapproved Package and Functions" section.
 
 ## Example
 
@@ -107,7 +107,7 @@ cat(cleaned_log_vec, sep = "\n")
 ```
 
 ```{r cleanup, echo = FALSE}
-timber::log_remove()
+logrx::log_remove()
 
 unlink(dir, recursive = TRUE)
 ```

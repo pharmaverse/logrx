@@ -17,4 +17,4 @@ t <- tplyr_table(adae, TRTA) %>%
 
 build(t)
 
-timber::axecute("data-raw/risk_diff.R", log_path = "data-raw", remove_log_object = TRUE)
+logrx::axecute("data-raw/risk_diff.R", log_path = "data-raw", remove_log_object = TRUE)

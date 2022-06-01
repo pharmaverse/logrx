@@ -1,4 +1,4 @@
 library(testthat)
-library(timber)
+library(logrx)
 
-test_check("timber")
+test_check("logrx")

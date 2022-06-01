@@ -1,8 +1,8 @@
 test_that("axecute will run a file and create the necessary log", {
-   options("timber.log" = NULL)
+   options("log.rx" = NULL)
    scriptPath <- tempfile()
    logDir <- tempdir()
-   writeLines("print('hello timber')", con = scriptPath)
+   writeLines("print('hello logrx')", con = scriptPath)
 
    # check no log is currently written out
    expect_warning(expect_error(file(file.path(logDir, "log_out"), "r"), "cannot open the connection"))
@@ -15,7 +15,7 @@ test_that("axecute will run a file and create the necessary log", {
    # check that the output file is populated
    expect_gt(length(flines), 1)
    # check all the elements are there
-   expect_true(grepl(paste(write_log_header("timber Metadata"), collapse = ','),
+   expect_true(grepl(paste(write_log_header("logrx Metadata"), collapse = ','),
                      paste(flines,collapse = ',')))
    expect_true(grepl(paste(write_log_header("User and File Information"), collapse = ','),
                      paste(flines,collapse = ',')))
@@ -38,11 +38,11 @@ test_that("axecute will run a file and create the necessary log", {
 })
 
 test_that("to_report works to control log output elements", {
-   options("timber.log" = NULL)
+   options("log.rx" = NULL)
    scriptPath <- tempfile()
    logDir <- tempdir()
    writeLines(
-      c("message('hello timber')",
+      c("message('hello logrx')",
         "cat('this is output')",
         "data.frame(c(8, 6, 7, 5, 3, 0, 9))"),
       con = scriptPath)

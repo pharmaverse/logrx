@@ -1,8 +1,8 @@
 ---
-title: "timber-package"
+title: "logrx-package"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{timber-package}
+  %\VignetteIndexEntry{logrx-package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -15,17 +15,17 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(timber)
+library(logrx)
 ```
 
-The purpose of the `timber` package is to generate a log upon execution of 
+The purpose of the `logrx` package is to generate a log upon execution of 
 an R script which enables traceability and reproducibility of the executed code. 
 
 
 # Log attributes
 The following attributes are recorded in the log:
 
-* `metadata`: The timber `package` information
+* `metadata`: The logrx `package` information
 * `user and file information`: The user that generates the log, file name and path of the R script
 * `session_info`: The R session information
 * `packages`: List all available packages in the environment
@@ -42,7 +42,7 @@ The following attributes are recorded in the log:
 * `log_name`, `log_path`: The name and path of the log
 
 
-<iframe width="700" height="400" src='adsl_log.html'/>
+<iframe width="700" height="400" src='articles/adsl_log.html'/>
 
 
 # Generating a log
@@ -64,7 +64,7 @@ axecute("my_script.R")
 ## `log_*()` functions
 Use the `log_*()` functions:
 
-* `log_init()` to create the environment timber.log
+* `log_init()` to create the environment log.rx
 
 * `log_config()` to add the core elements of the log to the environment, and 
  basic elements that are available at the time of configuration
@@ -79,8 +79,8 @@ run_safely_loudly("my_script.R")
 log_write()
 ```
 
-# Scripting with ```timber```
-While ```timber``` is built around creating a log for a program it can just as easily be used when running an entire set of programs.  The `axecute()` function has been built with both single file execution and scripted file execution in mind.  With the use of simple functions such as `lapply()` scripting is easy.  Below is some sample code of how `lapply()` can be used with `axecute()`.
+# Scripting with ```logrx```
+While ```logrx``` is built around creating a log for a program it can just as easily be used when running an entire set of programs.  The `axecute()` function has been built with both single file execution and scripted file execution in mind.  With the use of simple functions such as `lapply()` scripting is easy.  Below is some sample code of how `lapply()` can be used with `axecute()`.
 
 ```{r scripting, eval = FALSE}
 lapply(c("file.R", "otherfile.R"), axecute)

@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        The timber team loves documentation!  Help us keep it up to date and fresh!
+        The logrx team loves documentation!  Help us keep it up to date and fresh!
   - type: dropdown
     id: browsers
     attributes:

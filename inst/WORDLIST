@@ -5,7 +5,7 @@ miniUI
 pre
 reproducibility
 tibble
-timberAddin
+logrxAddin
 ADaM
 adsl
 axecute
@@ -14,3 +14,4 @@ PHUSE
 SDTM
 tidyr
 rds
+logrx

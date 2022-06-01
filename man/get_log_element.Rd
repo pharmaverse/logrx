@@ -2,16 +2,16 @@
 % Please edit documentation in R/interact.R
 \name{get_log_element}
 \alias{get_log_element}
-\title{Gets the value of a named element in the timber.log environment}
+\title{Gets the value of a named element in the log.rx environment}
 \usage{
 get_log_element(el_key)
 }
 \arguments{
-\item{el_key}{the key of the element in timber.log to be fetched}
+\item{el_key}{the key of the element in log.rx to be fetched}
 }
 \value{
-Value of corresponding element from timber.log environment
+Value of corresponding element from log.rx environment
 }
 \description{
-Gets the value of a named element in the timber.log environment
+Gets the value of a named element in the log.rx environment
 }

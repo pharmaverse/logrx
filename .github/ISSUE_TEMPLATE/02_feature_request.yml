@@ -1,5 +1,5 @@
 name: Feature Request
-description: Enchancement to timber functionality
+description: Enchancement to logrx functionality
 title: "Feature Request:  <Insert Issue Title Here>"
 labels: ["enhancement", "programming"]
 assignees:
@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this feature request!  We love keeping timber fresh!
+        Thanks for taking the time to fill out this feature request!  We love keeping logrx fresh!
   - type: textarea
     id: feature
     attributes:

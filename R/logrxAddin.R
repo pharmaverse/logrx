@@ -1,4 +1,4 @@
-#' timberAddin
+#' logrxAddin
 #' Code needed to create the miniUI for the Addin
 #' @return returns miniUI Addin to batch submit r files and create logs around them
 #' @importFrom miniUI miniPage gadgetTitleBar miniContentPanel
@@ -7,7 +7,7 @@
 #' @importFrom stringr str_locate_all str_replace
 #' @importFrom waiter useWaiter waiter_show waiter_hide spin_solar
 #' @export
-timberAddin <- function() {
+logrxAddin <- function() {
    ui <- miniUI::miniPage(
       useWaiter(), # include dependencies
       # css
@@ -51,7 +51,7 @@ timberAddin <- function() {
          )
       ),
       #Title for miniUI
-      miniUI::gadgetTitleBar("timber",
+      miniUI::gadgetTitleBar("logrx",
                              left = NULL,
                              right = miniUI::miniTitleBarButton("done", "Done", primary = TRUE)
       ),
@@ -175,7 +175,7 @@ timberAddin <- function() {
          stopApp()
       })
    }
-   viewer <- shiny::dialogViewer("Run with timber", width = 800, height = 400)
+   viewer <- shiny::dialogViewer("Run with logrx", width = 800, height = 400)
    shiny::runGadget(ui, server, viewer = viewer)
    }
 

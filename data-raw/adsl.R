@@ -2,8 +2,8 @@
 # install.packages("admiral")
 # admiral::use_ad_template("adsl")
 
-# Use this line to get latest timber install
-#devtools::install_github("https://github.com/atorus-research/timber", ref = "dev")
+# Use this line to get latest logrx install
+#devtools::install_github("https://github.com/atorus-research/logrx", ref = "dev")
 
 # Name: ADSL
 #
@@ -239,4 +239,4 @@ message("Please check for this important message!!")
 dir <- tempdir() # Change to whichever directory you want to save the dataset in
 save(adsl, file = file.path(dir, "adsl.rda"), compress = "bzip2")
 
-timber::axecute("data-raw/adsl.R", log_path = "data-raw", remove_log_object = TRUE)
+logrx::axecute("data-raw/adsl.R", log_path = "data-raw", remove_log_object = TRUE)

@@ -1,7 +1,7 @@
 
 # Create the log environment on load
 .onLoad <- function(libname, pkgname) {
-   # init functions for other timber functionality
+   # init functions for other logrx functionality
    log_init()
    approved_functions_init()
 

@@ -1,10 +1,10 @@
 --------------------------------------------------------------------------------
--                               timber Metadata                                -
+-                               logrx Metadata                                -
 --------------------------------------------------------------------------------
-This log was generated using timber 0.0.1.9002
-timber package version: 0.0.1.9002
-timber build: Github (atorus-research/timber@af4371f33d54a3182f0c95f3ba5b6cb56ac8cf00)
-timber link to repository: https://github.com/atorus-research/timber
+This log was generated using logrx 0.0.1.9002
+logrx package version: 0.0.1.9002
+logrx build: Github (atorus-research/logrx@af4371f33d54a3182f0c95f3ba5b6cb56ac8cf00)
+logrx link to repository: https://github.com/atorus-research/logrx
 --------------------------------------------------------------------------------
 -                          User and File Information                           -
 --------------------------------------------------------------------------------
@@ -90,8 +90,8 @@ File Path: /cloud/project/data-raw
  tibble         3.1.7      2022-05-03 [1] RSPM (R 4.1.0)
  tidyr          1.2.0      2022-02-01 [1] RSPM (R 4.1.0)
  tidyselect     1.1.2      2022-02-21 [1] RSPM (R 4.1.0)
- timber         0.0.1.9002 2022-05-20 [1] Github
-	  (atorus-research/timber@af4371f)
+ logrx         0.0.1.9002 2022-05-20 [1] Github
+	  (atorus-research/logrx@af4371f)
  Tplyr        * 0.4.4      2022-01-27 [1] RSPM (R 4.1.0)
  tzdb           0.3.0      2022-03-28 [1] RSPM (R 4.1.0)
  usethis        2.1.5      2021-12-09 [1] RSPM (R 4.1.0)
@@ -169,7 +169,7 @@ function `kronecker` from {package:base} by package:methods
 {package:base} library, c
 {package:haven} read_xpt
 {package:magrittr} %>%
-{package:timber} axecute
+{package:logrx} axecute
 {package:Tplyr} tplyr_table, add_layer, group_count, set_distinct_by, add_risk_diff, build
 --------------------------------------------------------------------------------
 -                         Program Run Time Information                         -
@@ -181,7 +181,7 @@ Run time: 0 seconds
 -                             Errors and Warnings                              -
 --------------------------------------------------------------------------------
 Errors:
-	a timber.log environment already exists
+	a log.rx environment already exists
 
 Warnings:
 	Chi-squared approximation may be incorrect

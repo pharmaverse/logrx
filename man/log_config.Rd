@@ -2,7 +2,7 @@
 % Please edit documentation in R/log.R
 \name{log_config}
 \alias{log_config}
-\title{Configures the timber.log environment}
+\title{Configures the log.rx environment}
 \usage{
 log_config(file = NA, log_name = NA, log_path = NA)
 }
@@ -17,5 +17,5 @@ log_config(file = NA, log_name = NA, log_path = NA)
 Nothing
 }
 \description{
-Configures the timber.log environment
+Configures the log.rx environment
 }

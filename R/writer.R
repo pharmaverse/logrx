@@ -1,8 +1,8 @@
 ### Functions to format log elements to facilitate the writing of the output log file
 
-#' Generic function to format timber.log elements for writing
+#' Generic function to format log.rx elements for writing
 #'
-#' @param el_key the key of the element in timber.log to be fetched
+#' @param el_key the key of the element in log.rx to be fetched
 #' @param prefix string to be placed before element value during formatting
 #'
 #' @return formatted element including prefix
@@ -19,30 +19,30 @@ write_log_element <- function(el_key, prefix = NULL) {
    return(fmtd_el)
 }
 
-#' Format timber.log's metadata attributes for writing
+#' Format log.rx's metadata attributes for writing
 #'
-#' @return A vector of timber.log's metadata attributes
+#' @return A vector of log.rx's metadata attributes
 #' @export
 #'
 write_metadata <- function(){
    metadata <- get_log_element("metadata")
 
    metadata <- c(metadata$info,
-                 paste0("timber package version: ", metadata$version),
-                 paste0("timber build: ", metadata$built),
-                 paste0("timber link to repository: ", metadata$repository_link))
+                 paste0("logrx package version: ", metadata$version),
+                 paste0("logrx build: ", metadata$built),
+                 paste0("logrx link to repository: ", metadata$repository_link))
 
    return(metadata)
 }
 
 
-#' Format timber.log's session info attribute for writing
+#' Format log.rx's session info attribute for writing
 #'
 #' @importFrom purrr map_chr
 #' @importFrom stringi stri_wrap
 #' @importFrom stringr str_c
 #'
-#' @return A vector of timber.log's session info attribute
+#' @return A vector of log.rx's session info attribute
 #' @export
 #'
 write_session_info <- function(){

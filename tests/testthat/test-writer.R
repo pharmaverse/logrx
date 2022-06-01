@@ -1,7 +1,7 @@
 test_that("write_log_element will return a formatted log element", {
-   options("timber.log" = NULL)
+   options("log.rx" = NULL)
    log_config("./test-writer.R")
-   expect_identical(getOption("timber.log")[['user']], Sys.info()[["user"]])
+   expect_identical(getOption("log.rx")[['user']], Sys.info()[["user"]])
    expect_identical(write_log_element('user'), Sys.info()[["user"]])
    expect_identical(write_log_element("user", "User: "), paste0("User: ", Sys.info()[["user"]]))
 })
@@ -19,31 +19,31 @@ test_that("write_log_header will return a correctly padded header", {
 })
 
 test_that("write_metadata will return a formatted log metadata element",{
-   options("timber.log" = NULL)
+   options("log.rx" = NULL)
    log_config("./test-writer.R")
 
-   timber_session_info <- session_info()$packages %>%
-      filter(.data$package == "timber")
+   logrx_session_info <- session_info()$packages %>%
+      filter(.data$package == "logrx")
 
-   metadata <- list(info = paste0("This log was generated using timber ",
-                                  timber_session_info[['loadedversion']]),
-                    version = timber_session_info[['loadedversion']],
-                    built = timber_session_info[['source']],
-                    repository_link = "https://github.com/atorus-research/timber"
+   metadata <- list(info = paste0("This log was generated using logrx ",
+                                  logrx_session_info[['loadedversion']]),
+                    version = logrx_session_info[['loadedversion']],
+                    built = logrx_session_info[['source']],
+                    repository_link = "https://github.com/atorus-research/logrx"
             )
    expect_identical(write_metadata(),
                     c(metadata$info,
-                      paste0("timber package version: ", metadata$version),
-                      paste0("timber build: ", metadata$built),
-                      paste0("timber link to repository: ", metadata$repository_link)))
+                      paste0("logrx package version: ", metadata$version),
+                      paste0("logrx build: ", metadata$built),
+                      paste0("logrx link to repository: ", metadata$repository_link)))
 })
 
 test_that("write_masked_functions will return a formatted log masked functions element",{
-   options("timber.log" = NULL)
+   options("log.rx" = NULL)
    log_config("./test-writer.R")
    masked_functions <- list("plot" = list("source" = "package:graphics", "masks" = c("package:base")),
                             "tribble" = list("source" = "package:dplyr", "masks" = c("package:tidyr", "package:tibble")))
-   assign('masked_functions', masked_functions, envir = getOption('timber.log'))
+   assign('masked_functions', masked_functions, envir = getOption('log.rx'))
 
    expect_identical(write_masked_functions(),
                     c("function `plot` from {package:base} by package:graphics",
@@ -51,27 +51,27 @@ test_that("write_masked_functions will return a formatted log masked functions e
 })
 
 test_that("write_file_name_path will return a formatted log file name and path element", {
-   options("timber.log" = NULL)
+   options("log.rx" = NULL)
    log_config("./test-writer.R")
-   assign('file_name', "safely_loudly_test_file_result.R", envir = getOption('timber.log'))
-   assign('file_path', "tests/testthat/ref", envir = getOption('timber.log'))
+   assign('file_name', "safely_loudly_test_file_result.R", envir = getOption('log.rx'))
+   assign('file_path', "tests/testthat/ref", envir = getOption('log.rx'))
    expect_identical(write_file_name_path(),
                     c("File Name: safely_loudly_test_file_result.R",
                       "File Path: tests/testthat/ref"))
 })
 
 test_that("write_file_name_path will return an informative message if no file_name and file_path exists", {
-   options("timber.log" = NULL)
+   options("log.rx" = NULL)
    log_config("./test-writer.R")
-   assign('file_name', NA, envir = getOption('timber.log'))
-   assign('file_path', NA, envir = getOption('timber.log'))
+   assign('file_name', NA, envir = getOption('log.rx'))
+   assign('file_path', NA, envir = getOption('log.rx'))
    expect_identical(write_file_name_path(),
                     c("File Name: File name not able to be determined",
                       "File Path: File path not able to be determined"))
 })
 
 test_that("write_used_functions will return a formatted log of used pacakges and functions element",{
-   options("timber.log" = NULL)
+   options("log.rx" = NULL)
    log_config("./test-writer.R")
    used_functions <- tibble::tribble(
       ~function_name,        ~library,
@@ -83,7 +83,7 @@ test_that("write_used_functions will return a formatted log of used pacakges and
       "print",  "package:base",
       "pivot_wider", "package:tidyr"
    )
-   assign('used_packages_functions', used_functions, envir = getOption('timber.log'))
+   assign('used_packages_functions', used_functions, envir = getOption('log.rx'))
 
    expect_identical(write_used_functions(),
                     c("{package:base} library, mean, print",
@@ -93,7 +93,7 @@ test_that("write_used_functions will return a formatted log of used pacakges and
 })
 
 test_that("write_unapproved_functions will return a formatted log of unapproved pacakges and functions element",{
-   options("timber.log" = NULL)
+   options("log.rx" = NULL)
    log_config("./test-writer.R")
    unapproved_functions <- tibble::tribble(
       ~function_name,        ~library,
@@ -105,7 +105,7 @@ test_that("write_unapproved_functions will return a formatted log of unapproved 
       "print",  "package:base",
       "pivot_wider", "package:tidyr"
    )
-   assign('unapproved_packages_functions', unapproved_functions, envir = getOption('timber.log'))
+   assign('unapproved_packages_functions', unapproved_functions, envir = getOption('log.rx'))
 
    expect_identical(write_unapproved_functions(),
                     c("{package:base} library, mean, print",
@@ -115,13 +115,13 @@ test_that("write_unapproved_functions will return a formatted log of unapproved 
 })
 
 test_that("write_unapproved_functions will return expect results when all packages and functions are approved",{
-   options("timber.log" = NULL)
+   options("log.rx" = NULL)
    log_config("./test-writer.R")
    unapproved_functions <- tibble::tibble(
       function_name = vector(mode = "character"),
       library = vector(mode = "character")
    )
-   assign('unapproved_packages_functions', unapproved_functions, envir = getOption('timber.log'))
+   assign('unapproved_packages_functions', unapproved_functions, envir = getOption('log.rx'))
 
    expect_identical(write_unapproved_functions(),
                     "No unapproved packages or functions used"
@@ -130,17 +130,17 @@ test_that("write_unapproved_functions will return expect results when all packag
 
 
 test_that("write_errors will return a formatted log errors element", {
-   options("timber.log" = NULL)
+   options("log.rx" = NULL)
    log_config("./test-writer.R")
    errors <- list(message = "object 'a' not found")
-   assign('errors', errors, envir = getOption('timber.log'))
+   assign('errors', errors, envir = getOption('log.rx'))
    expect_identical(write_errors(), "Errors:\n\tobject 'a' not found")
 })
 
 test_that("write_warnings will return a formatted log warnings element", {
-   options("timber.log" = NULL)
+   options("log.rx" = NULL)
    log_config("./test-writer.R")
-   assign('warnings', c("this is a warning"), envir = getOption('timber.log'))
+   assign('warnings', c("this is a warning"), envir = getOption('log.rx'))
    expect_identical(write_warnings(), "\nWarnings:\n\tthis is a warning")
    log_remove()
 })

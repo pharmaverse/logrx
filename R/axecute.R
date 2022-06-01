@@ -1,4 +1,4 @@
-### Functions to setup and run code using timber
+### Functions to setup and run code using logrx
 
 #' Create a log and run a file
 #'
