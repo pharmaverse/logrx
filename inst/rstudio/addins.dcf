@@ -1,4 +1,4 @@
-Name: timber
+Name: logrx
 Description: Runs a file using `axecute()`
-Binding: timberAddin
+Binding: logrxAddin
 Interactive: true

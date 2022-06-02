@@ -1,33 +1,33 @@
 ### Functions to get data for elements of the log
 
 
-#' Returns named list of timber metadata attributes
+#' Returns named list of logrx metadata attributes
 #'
-#' @return Named list of timber package metadata attributes
+#' @return Named list of logrx package metadata attributes
 #' @export
 #'
 #' @importFrom sessioninfo session_info
 #' @importFrom dplyr filter
 #'
 #' @examples
-#' get_timber_metadata()
+#' get_logrx_metadata()
 #'
-get_timber_metadata <- function(){
+get_logrx_metadata <- function(){
 
-   timber_session_info <- session_info()$packages %>%
-      filter(.data$package == "timber")
+   logrx_session_info <- session_info()$packages %>%
+      filter(.data$package == "logrx")
 
-   timber_metadata <- list(
-      info = paste0("This log was generated using timber ",
-                    timber_session_info[['loadedversion']]),
-      version = timber_session_info[['loadedversion']],
-      built = ifelse(!is.na(timber_session_info[['source']]),
-                     timber_session_info[['source']],
+   logrx_metadata <- list(
+      info = paste0("This log was generated using logrx ",
+                    logrx_session_info[['loadedversion']]),
+      version = logrx_session_info[['loadedversion']],
+      built = ifelse(!is.na(logrx_session_info[['source']]),
+                     logrx_session_info[['source']],
                      "Build not able to be determined"),
-      repository_link = "https://github.com/atorus-research/timber"
+      repository_link = "https://github.com/atorus-research/logrx"
    )
 
-   return(timber_metadata)
+   return(logrx_metadata)
 }
 
 #' Gets full path of file being run

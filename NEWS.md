@@ -1,6 +1,6 @@
-# timber 0.1.0
+# logrx 0.1.0
 
-Beta release for timber with introduction of numerous new features:
+Beta release for logrx with introduction of numerous new features:
 
 Enhancements
 - Add `to_report` param to `axecute()` to give users ability to filter out which pieces are reported
@@ -8,8 +8,8 @@ Enhancements
 - Improve approved packages use with new function `build_approved()` and corresponding vignette
 - Add example articles for adsl and a risk difference table
 
-# timber 0.0.1
+# logrx 0.0.1
 
-Initial alpha release of timber
+Initial alpha release of logrx
 
-See the [GitHub release tracker](https://github.com/atorus-research/timber/releases) for additional release documentation and links to issues. 
+See the [GitHub release tracker](https://github.com/atorus-research/logrx/releases) for additional release documentation and links to issues. 

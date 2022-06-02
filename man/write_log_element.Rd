@@ -2,12 +2,12 @@
 % Please edit documentation in R/writer.R
 \name{write_log_element}
 \alias{write_log_element}
-\title{Generic function to format timber.log elements for writing}
+\title{Generic function to format log.rx elements for writing}
 \usage{
 write_log_element(el_key, prefix = NULL)
 }
 \arguments{
-\item{el_key}{the key of the element in timber.log to be fetched}
+\item{el_key}{the key of the element in log.rx to be fetched}
 
 \item{prefix}{string to be placed before element value during formatting}
 }
@@ -15,5 +15,5 @@ write_log_element(el_key, prefix = NULL)
 formatted element including prefix
 }
 \description{
-Generic function to format timber.log elements for writing
+Generic function to format log.rx elements for writing
 }

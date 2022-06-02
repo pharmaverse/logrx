@@ -1,20 +1,20 @@
-### Functions to initialise, configure, cleanup, and write the timber.log environment
+### Functions to initialise, configure, cleanup, and write the log.rx environment
 
-#' Initialises the timber.log environment
+#' Initialises the log.rx environment
 #'
 #' @return Nothing
 #' @export
 #'
 #'
 log_init <- function(){
-   timber.log <- new.env()
+   log.rx <- new.env()
 
-   if(!('timber.log' %in% names(options()))) {
-      options('timber.log' = timber.log)
+   if(!('log.rx' %in% names(options()))) {
+      options('log.rx' = log.rx)
    }
 }
 
-#' Initialises the timber.approved option
+#' Initialises the logrx.approved option
 #'
 #' Defaults to working directory. This should point to the location of the
 #' dataframe storing approved packages and functions.
@@ -26,13 +26,13 @@ log_init <- function(){
 #'
 #'
 approved_functions_init <- function(){
-   if(!('timber.approved' %in% names(options()))) {
-      options('timber.approved' = './approved.rds')
+   if(!('logrx.approved' %in% names(options()))) {
+      options('logrx.approved' = './approved.rds')
    }
 }
 
 
-#' Configures the timber.log environment
+#' Configures the log.rx environment
 #'
 #' @param file File path of file being run, optional
 #' @param log_name The log name
@@ -42,13 +42,13 @@ approved_functions_init <- function(){
 #' @export
 #'
 log_config <- function(file = NA, log_name = NA, log_path = NA){
-   # If the timber.log environment is not NULL or empty, warn the user
-   if (!is.null(getOption("timber.log"))) {
-      if (!(identical(ls(getOption("timber.log")), character(0)))) {
-         stop("a timber.log environment already exists")}
+   # If the log.rx environment is not NULL or empty, warn the user
+   if (!is.null(getOption("log.rx"))) {
+      if (!(identical(ls(getOption("log.rx")), character(0)))) {
+         stop("a log.rx environment already exists")}
    }
 
-   # Initialise timber.log environment
+   # Initialise log.rx environment
    # This should already be done onLoad but redundant here
    log_init()
 
@@ -73,14 +73,14 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
       "log_name",
       "log_path")
 
-   # Add attributes to the timber.log environment, and set them to NA
+   # Add attributes to the log.rx environment, and set them to NA
    for (key in 1:length(keys)){
-      assign(keys[[key]], NA, envir = getOption('timber.log'))
+      assign(keys[[key]], NA, envir = getOption('log.rx'))
    }
 
-   # Set some timber_log attributes
+   # Set some logrx_log attributes
    # Metadata
-   set_log_element("metadata", get_timber_metadata())
+   set_log_element("metadata", get_logrx_metadata())
    # Masked Functions
    set_log_element("masked_functions", get_masked_functions())
    # Source file path and name
@@ -98,17 +98,17 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
 
 #' Cleans up log and does checks against elements
 #'
-#' @return List of non-NA elements and their value in timber.log environment
+#' @return List of non-NA elements and their value in log.rx environment
 #' @export
 #'
 log_cleanup <- function() {
-   # check the timber.log environment exists
-   if (!('timber.log' %in% names(options()))) {
-      stop("environment timber.log must exist")
+   # check the log.rx environment exists
+   if (!('log.rx' %in% names(options()))) {
+      stop("environment log.rx must exist")
    }
 
    # get all names of elements in the log
-   log_env <- getOption('timber.log')
+   log_env <- getOption('log.rx')
    el_names <- names(log_env)
 
    # check if element is not NA and add to list to return
@@ -126,7 +126,7 @@ log_cleanup <- function() {
 }
 
 
-#' Write the formatted timber.log to a file
+#' Write the formatted log.rx to a file
 #'
 #' @param file File path of file being run
 #' @param remove_log_object Should the log object be removed after writing,
@@ -156,7 +156,7 @@ log_write <- function(file = NA,
 
    if ("metadata" %in% names(log_cleanup())) {
       cleaned_log_vec <- c(cleaned_log_vec,
-                           write_log_header("timber Metadata"),
+                           write_log_header("logrx Metadata"),
                            write_metadata())
 
       cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "metadata"]
@@ -192,8 +192,8 @@ log_write <- function(file = NA,
 
    }
 
-   if (file.exists(getOption("timber.approved"))) {
-      approved_functions <- readRDS(getOption("timber.approved"))
+   if (file.exists(getOption("logrx.approved"))) {
+      approved_functions <- readRDS(getOption("logrx.approved"))
       unapproved_functions <- get_unapproved_use(used_functions, approved_functions)
       set_log_element("unapproved_packages_functions", unapproved_functions)
 
@@ -249,13 +249,13 @@ log_write <- function(file = NA,
 }
 
 
-#' Remove the timber.log environment by setting options("timber.log") to NULL
+#' Remove the log.rx environment by setting options("log.rx") to NULL
 #'
 #' @return Nothing
 #' @export
 #'
 log_remove <- function() {
-   if (!is.null(getOption("timber.log"))) {
-      options("timber.log" = NULL)
+   if (!is.null(getOption("log.rx"))) {
+      options("log.rx" = NULL)
    }
 }

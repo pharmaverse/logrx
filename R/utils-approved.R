@@ -1,11 +1,11 @@
 #' Build approved packages and functions tibble
 #'
 #' A utility function to help you build your approve package and functions list.
-#' This can be used by timber to log unapproved use of packages and functions.
+#' This can be used by logrx to log unapproved use of packages and functions.
 #'
 #' For more details see the help vignette:
 #'
-#' \code{vignette("approved", package = "timber")}
+#' \code{vignette("approved", package = "logrx")}
 #'
 #' @param pkg_list A named list of character vectors where the name is the
 #' package name with a character vector of approved functions or 'All'

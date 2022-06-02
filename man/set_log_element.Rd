@@ -2,18 +2,18 @@
 % Please edit documentation in R/interact.R
 \name{set_log_element}
 \alias{set_log_element}
-\title{Adds values to existing named elements in the timber.log environment}
+\title{Adds values to existing named elements in the log.rx environment}
 \usage{
 set_log_element(el_key, el_value)
 }
 \arguments{
-\item{el_key}{the key of the element in timber.log to be updated}
+\item{el_key}{the key of the element in log.rx to be updated}
 
-\item{el_value}{the value to be added to the timber.log element}
+\item{el_value}{the value to be added to the log.rx element}
 }
 \value{
 Nothing
 }
 \description{
-Adds values to existing named elements in the timber.log environment
+Adds values to existing named elements in the log.rx environment
 }

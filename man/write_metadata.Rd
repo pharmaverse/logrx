@@ -2,13 +2,13 @@
 % Please edit documentation in R/writer.R
 \name{write_metadata}
 \alias{write_metadata}
-\title{Format timber.log's metadata attributes for writing}
+\title{Format log.rx's metadata attributes for writing}
 \usage{
 write_metadata()
 }
 \value{
-A vector of timber.log's metadata attributes
+A vector of log.rx's metadata attributes
 }
 \description{
-Format timber.log's metadata attributes for writing
+Format log.rx's metadata attributes for writing
 }

@@ -18,10 +18,10 @@ approved
 A dataset that stores approved packages and functions for use.
 Each row contains a \code{library} and \code{function_name}.
 This dataset is used to illustrate the data format to be stored in
-the timber.approved option.
+the logrx.approved option.
 }
 \examples{
-timber::approved
+logrx::approved
 
 }
 \keyword{datasets}

@@ -22,12 +22,12 @@ A tibble with two columns (library, function) and one row per function
 }
 \description{
 A utility function to help you build your approve package and functions list.
-This can be used by timber to log unapproved use of packages and functions.
+This can be used by logrx to log unapproved use of packages and functions.
 }
 \details{
 For more details see the help vignette:
 
-\code{vignette("approved", package = "timber")}
+\code{vignette("approved", package = "logrx")}
 }
 \examples{
 approved_pkgs <- list(

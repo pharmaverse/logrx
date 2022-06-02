@@ -2,13 +2,13 @@
 % Please edit documentation in R/writer.R
 \name{write_session_info}
 \alias{write_session_info}
-\title{Format timber.log's session info attribute for writing}
+\title{Format log.rx's session info attribute for writing}
 \usage{
 write_session_info()
 }
 \value{
-A vector of timber.log's session info attribute
+A vector of log.rx's session info attribute
 }
 \description{
-Format timber.log's session info attribute for writing
+Format log.rx's session info attribute for writing
 }

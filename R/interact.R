@@ -1,43 +1,43 @@
-### Functions to interact with elements in the timber.log environment
+### Functions to interact with elements in the log.rx environment
 
-#' Adds values to existing named elements in the timber.log environment
+#' Adds values to existing named elements in the log.rx environment
 #'
-#' @param el_key the key of the element in timber.log to be updated
-#' @param el_value the value to be added to the timber.log element
+#' @param el_key the key of the element in log.rx to be updated
+#' @param el_value the value to be added to the log.rx element
 #'
 #' @return Nothing
 #' @export
 #'
 set_log_element <- function(el_key, el_value){
-   # check if key is currently in the timber.log environment
-   if (!(el_key %in% names(getOption('timber.log')))) {
-      stop("element key provided must already exist in timber.log")
+   # check if key is currently in the log.rx environment
+   if (!(el_key %in% names(getOption('log.rx')))) {
+      stop("element key provided must already exist in log.rx")
    }
 
    # check if element is currently not empty
-   if (!is.na(getOption('timber.log')[[el_key]])) {
+   if (!is.na(getOption('log.rx')[[el_key]])) {
       stop("element can not already have a value")
    }
 
    # assign element value to specified element key
-   assign(el_key, el_value, envir = getOption('timber.log'))
+   assign(el_key, el_value, envir = getOption('log.rx'))
 }
 
 
-#' Gets the value of a named element in the timber.log environment
+#' Gets the value of a named element in the log.rx environment
 #'
-#' @param el_key the key of the element in timber.log to be fetched
+#' @param el_key the key of the element in log.rx to be fetched
 #'
-#' @return Value of corresponding element from timber.log environment
+#' @return Value of corresponding element from log.rx environment
 #' @export
 #'
 get_log_element <- function(el_key){
-   if (!(el_key %in% names(getOption('timber.log')))) {
-      stop("element key provided must already exist in timber.log")
+   if (!(el_key %in% names(getOption('log.rx')))) {
+      stop("element key provided must already exist in log.rx")
    }
 
    # assign element value to specified element key
-   el_value <- getOption('timber.log')[[el_key]]
+   el_value <- getOption('log.rx')[[el_key]]
 
    # return value to user
    return(el_value)
@@ -47,7 +47,7 @@ get_log_element <- function(el_key){
 #' Set the log name and path:
 #' 1. As the name and path if specified
 #' 2. As the file name and path if specified
-#' 3. As timber_log.log and . if none of the above are specified
+#' 3. As logrx_log.log and . if none of the above are specified
 #'
 #' @param log_name The log name
 #' @param log_path The log path
@@ -74,7 +74,7 @@ set_log_name_path <- function(log_name = NA, log_path = NA) {
                                 x = file_name,
                                 perl = TRUE))
          } else {
-            set_log_element("log_name", "timber_log.log")
+            set_log_element("log_name", "logrx_log.log")
          }
       }
    }
