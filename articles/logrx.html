@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>timber-package • timber</title>
+<title>logrx-package • logrx</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,8 +17,8 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="timber-package">
-<meta property="og:description" content="timber">
+<script src="../pkgdown.js"></script><meta property="og:title" content="logrx-package">
+<meta property="og:description" content="logrx">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -39,7 +39,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">timber</a>
+        <a class="navbar-link" href="../index.html">logrx</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
@@ -47,7 +47,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../articles/timber.html">Get started</a>
+  <a href="../articles/logrx.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -82,7 +82,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/atorus-research/timber/" class="external-link">
+  <a href="https://github.com/atorus-research/logrx/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -97,29 +97,29 @@
 
       
 
-      </header><script src="timber_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="logrx_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>timber-package</h1>
+      <h1 data-toc-skip>logrx-package</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/atorus-research/timber/blob/HEAD/vignettes/timber.Rmd" class="external-link"><code>vignettes/timber.Rmd</code></a></small>
-      <div class="hidden name"><code>timber.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/atorus-research/logrx/blob/HEAD/vignettes/logrx.Rmd" class="external-link"><code>vignettes/logrx.Rmd</code></a></small>
+      <div class="hidden name"><code>logrx.Rmd</code></div>
 
     </div>
 
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/atorus-research/timber" class="external-link">timber</a></span><span class="op">)</span></code></pre></div>
-<p>The purpose of the <code>timber</code> package is to generate a log upon execution of an R script which enables traceability and reproducibility of the executed code.</p>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/atorus-research/logrx" class="external-link">logrx</a></span><span class="op">)</span></code></pre></div>
+<p>The purpose of the <code>logrx</code> package is to generate a log upon execution of an R script which enables traceability and reproducibility of the executed code.</p>
 <div class="section level2">
 <h2 id="log-attributes">Log attributes<a class="anchor" aria-label="anchor" href="#log-attributes"></a>
 </h2>
 <p>The following attributes are recorded in the log:</p>
 <ul>
 <li>
-<code>metadata</code>: The timber <code>package</code> information</li>
+<code>metadata</code>: The logrx <code>package</code> information</li>
 <li>
 <code>user and file information</code>: The user that generates the log, file name and path of the R script</li>
 <li>
@@ -149,7 +149,7 @@
 <li>
 <code>log_name</code>, <code>log_path</code>: The name and path of the log</li>
 </ul>
-<iframe width="700" height="400" src="adsl_log.html"></iframe>
+<iframe width="700" height="400" src="articles/adsl_log.html"></iframe>
 </div>
 <div class="section level2">
 <h2 id="generating-a-log">Generating a log<a class="anchor" aria-label="anchor" href="#generating-a-log"></a>
@@ -173,7 +173,7 @@
 </h3>
 <p>Use the <code>log_*()</code> functions:</p>
 <ul>
-<li><p><code><a href="../reference/log_init.html">log_init()</a></code> to create the environment timber.log</p></li>
+<li><p><code><a href="../reference/log_init.html">log_init()</a></code> to create the environment log.rx</p></li>
 <li><p><code><a href="../reference/log_config.html">log_config()</a></code> to add the core elements of the log to the environment, and basic elements that are available at the time of configuration</p></li>
 <li><p><code><a href="../reference/run_safely_loudly.html">run_safely_loudly()</a></code> to execute the program code, and capture errors, warnings, messages, output, and result</p></li>
 <li><p><code><a href="../reference/log_write.html">log_write()</a></code> to generate and format the log</p></li>
@@ -185,9 +185,9 @@
 </div>
 </div>
 <div class="section level2">
-<h2 id="scripting-with-timber">Scripting with <code>timber</code><a class="anchor" aria-label="anchor" href="#scripting-with-timber"></a>
+<h2 id="scripting-with-logrx">Scripting with <code>logrx</code><a class="anchor" aria-label="anchor" href="#scripting-with-logrx"></a>
 </h2>
-<p>While <code>timber</code> is built around creating a log for a program it can just as easily be used when running an entire set of programs. The <code><a href="../reference/axecute.html">axecute()</a></code> function has been built with both single file execution and scripted file execution in mind. With the use of simple functions such as <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> scripting is easy. Below is some sample code of how <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> can be used with <code><a href="../reference/axecute.html">axecute()</a></code>.</p>
+<p>While <code>logrx</code> is built around creating a log for a program it can just as easily be used when running an entire set of programs. The <code><a href="../reference/axecute.html">axecute()</a></code> function has been built with both single file execution and scripted file execution in mind. With the use of simple functions such as <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> scripting is easy. Below is some sample code of how <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> can be used with <code><a href="../reference/axecute.html">axecute()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"file.R"</span>, <span class="st">"otherfile.R"</span><span class="op">)</span>, <span class="va">axecute</span><span class="op">)</span></code></pre></div>
 <p>If your scripting needs to work on the contents of a directory instead of a pre-defined list, functions such as <code>list.files</code> can be used to obtain a list of files to use. Below is an example of how this can be applied in practice by getting all files ending in ‘.R’ in the current working directory using a regular expression, and then using <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> to run the files using <code><a href="../reference/axecute.html">axecute()</a></code>.</p>

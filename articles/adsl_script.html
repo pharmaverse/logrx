@@ -365,26 +365,24 @@ pre code {
 </div>
 
 
-<pre><code># You can use this to 98% of this script:
+<pre><code># Uncomments these lines to get latest packages and script
 # install.packages(&quot;admiral&quot;)
 # admiral::use_ad_template(&quot;adsl&quot;)
-
-# Use this line to get latest timber install
-#devtools::install_github(&quot;https://github.com/atorus-research/timber&quot;, ref = &quot;dev&quot;)
+# devtools::install_github(&quot;https://github.com/atorus-research/logrx&quot;, ref = &quot;dev&quot;)
 
 # Name: ADSL
 #
 # Label: Subject Level Analysis Dataset
 #
 # Input: dm, ex, ds
-#remotes::install_github(&quot;pharmaverse/admiral&quot;, ref = &quot;devel&quot;)
+
 library(admiral)
-# remotes::install_github(&quot;pharmaverse/admiraltest&quot;, ref = &quot;devel&quot;) # NOT ON CRAN YET
-library(admiraltest) # Contains example datasets from the CDISC pilot project
+library(admiral.test) # Contains example datasets from the CDISC pilot project
 
 library(dplyr)
 library(lubridate)
 library(stringr)
+library(diffdf)
 
 # ---- Load source datasets ----
 
@@ -597,16 +595,14 @@ adsl %&gt;% slice(1:3) %&gt;% glimpse()
 adsl_qc &lt;- adsl %&gt;% select(-ETHNIC)
 
 # Simple comparision between objects.  Check the file for what was captured.
-adsl_lst &lt;- diffdf(adsl, adsl_qc, file = &quot;data-raw/adsl.lst&quot;)
+adsl_lst &lt;- diffdf(adsl, adsl_qc, file = &quot;adsl.lst&quot;)
 
 message(&quot;Please check for this important message!!&quot;)
 
 # ---- Save output ----
 
 dir &lt;- tempdir() # Change to whichever directory you want to save the dataset in
-save(adsl, file = file.path(dir, &quot;adsl.rda&quot;), compress = &quot;bzip2&quot;)
-
-timber::axecute(&quot;data-raw/adsl.R&quot;, log_path = &quot;data-raw&quot;, remove_log_object = TRUE)</code></pre>
+save(adsl, file = file.path(dir, &quot;adsl.rda&quot;), compress = &quot;bzip2&quot;)</code></pre>
 
 
 

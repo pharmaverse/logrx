@@ -25,7 +25,13 @@
     <loc>/articles/approved.html</loc>
   </url>
   <url>
+    <loc>/articles/articles/adsl_log.html</loc>
+  </url>
+  <url>
     <loc>/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>/articles/logrx.html</loc>
   </url>
   <url>
     <loc>/articles/risk_diff_log.html</loc>
@@ -35,9 +41,6 @@
   </url>
   <url>
     <loc>/articles/tables.html</loc>
-  </url>
-  <url>
-    <loc>/articles/timber.html</loc>
   </url>
   <url>
     <loc>/authors.html</loc>
@@ -73,13 +76,13 @@
     <loc>/reference/get_log_element.html</loc>
   </url>
   <url>
+    <loc>/reference/get_logrx_metadata.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_masked_functions.html</loc>
   </url>
   <url>
     <loc>/reference/get_session_info.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_timber_metadata.html</loc>
   </url>
   <url>
     <loc>/reference/get_unapproved_use.html</loc>
@@ -106,6 +109,9 @@
     <loc>/reference/log_write.html</loc>
   </url>
   <url>
+    <loc>/reference/logrxAddin.html</loc>
+  </url>
+  <url>
     <loc>/reference/loudly.html</loc>
   </url>
   <url>
@@ -116,9 +122,6 @@
   </url>
   <url>
     <loc>/reference/set_log_name_path.html</loc>
-  </url>
-  <url>
-    <loc>/reference/timberAddin.html</loc>
   </url>
   <url>
     <loc>/reference/write_errors.html</loc>
