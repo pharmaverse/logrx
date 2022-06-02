@@ -1,23 +1,21 @@
-# You can use this to 98% of this script:
+# Uncomments these lines to get latest packages and script
 # install.packages("admiral")
 # admiral::use_ad_template("adsl")
-
-# Use this line to get latest logrx install
-#devtools::install_github("https://github.com/atorus-research/logrx", ref = "dev")
+# devtools::install_github("https://github.com/atorus-research/logrx", ref = "dev")
 
 # Name: ADSL
 #
 # Label: Subject Level Analysis Dataset
 #
 # Input: dm, ex, ds
-#remotes::install_github("pharmaverse/admiral", ref = "devel")
+
 library(admiral)
-# remotes::install_github("pharmaverse/admiraltest", ref = "devel") # NOT ON CRAN YET
-library(admiraltest) # Contains example datasets from the CDISC pilot project
+library(admiral.test) # Contains example datasets from the CDISC pilot project
 
 library(dplyr)
 library(lubridate)
 library(stringr)
+library(diffdf)
 
 # ---- Load source datasets ----
 
@@ -230,7 +228,7 @@ adsl %>% slice(1:3) %>% glimpse()
 adsl_qc <- adsl %>% select(-ETHNIC)
 
 # Simple comparision between objects.  Check the file for what was captured.
-adsl_lst <- diffdf(adsl, adsl_qc, file = "data-raw/adsl.lst")
+adsl_lst <- diffdf(adsl, adsl_qc, file = "adsl.lst")
 
 message("Please check for this important message!!")
 
