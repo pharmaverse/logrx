@@ -2,7 +2,7 @@
 % Please edit documentation in R/log.R
 \name{log_init}
 \alias{log_init}
-\title{Initialises the timber.log environment}
+\title{Initialises the log.rx environment}
 \usage{
 log_init()
 }
@@ -10,5 +10,5 @@ log_init()
 Nothing
 }
 \description{
-Initialises the timber.log environment
+Initialises the log.rx environment
 }

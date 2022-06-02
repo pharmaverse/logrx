@@ -1,20 +1,20 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# timber <img src="man/figures/logo.png" align="right" alt="" width="120" />
+# logrx <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
 <!-- badges: start -->
 
-[<img src="http://pharmaverse.org/shields/timber.svg">](https://pharmaverse.org)
+[<img src="http://pharmaverse.org/shields/logrx.svg">](https://pharmaverse.org)
 [![R build
-status](https://github.com/atorus-research/timber/workflows/R-CMD-check/badge.svg)](https://github.com/atorus-research/timber/actions?workflow=R-CMD-check)
-[<img src="https://img.shields.io/codecov/c/github/atorus-research/timber">](https://codecov.io/gh/atorus-research/timber)
-[<img src="https://img.shields.io/badge/License-MIT-blue.svg">](https://github.com/atorus-research/timber/blob/master/LICENSE.md)
+status](https://github.com/atorus-research/logrx/workflows/R-CMD-check/badge.svg)](https://github.com/atorus-research/logrx/actions?workflow=R-CMD-check)
+[<img src="https://img.shields.io/codecov/c/github/atorus-research/logrx">](https://codecov.io/gh/atorus-research/logrx)
+[<img src="https://img.shields.io/badge/License-MIT-blue.svg">](https://github.com/atorus-research/logrx/blob/master/LICENSE.md)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental-1)
 <!-- badges: end -->
 
-The goal of timber is to facilitate logging in a clinical environment
+The goal of logrx is to facilitate logging in a clinical environment
 with the goal of making code easily traceable and reproducible.
 
 ## Installation
@@ -23,19 +23,22 @@ This package is still in development and currently is only available
 from GitHub. To install the development version run the following:
 
 ``` r
-devtools::install_github("atorus-research/timber")
+devtools::install_github("atorus-research/logrx")
 ```
 
-## What is `timber` ?
+## What is `logrx` ?
 
-Simple! The timber package makes a log file for a R script!. Below we
+Simple! The logrx package makes a log file for a R script!. Below we
 have a short gif of making a log file for a `adsl.R` script. More
 details on the parts of the log script are found in the [Get
-Started](https://atorus-research.github.io/timber/articles/timber.html)
+Started](https://atorus-research.github.io/logrx/articles/logrx.html)
 and we have several vignettes that show specific use cases for using the
 package.
 
-<img src="man/figures/timber.gif" title="Caption for this figure 1" alt="Caption for this figure 1" width="100%" style="display: block; margin: auto;" />
+**Note:** The Addin was originally called `timber`, but has been updated
+to `logrx.`
+
+<img src="man/figures/logrx.gif" title="Caption for this figure 1" alt="Caption for this figure 1" width="100%" style="display: block; margin: auto;" />
 
 While many packages to facilitate the logging of code already exist in
 the R ecosystem, it is hard to find a solution that works well for
@@ -44,24 +47,18 @@ implicit and rely on user input to create the log for the execution of a
 script. While this is useful for logging specific events of an
 application, in clinical programming a log has a set purpose.
 
-`timber` is built around the concept of creating a log for the execution
+`logrx` is built around the concept of creating a log for the execution
 of an R script that provides an overview of what happened as well as the
 environment that it happened in. We set out to create a flexible logging
 utility that could provide the necessary information to anyone reviewing
 the code execution so they can recreate the execution environment and
-run the code for themselves. `timber` is purpose-built for the needs of
+run the code for themselves. `logrx` is purpose-built for the needs of
 clinical programming to capture necessary elements of the environment
 and execution to be able to create a complete view of the program
 execution.
 
-## Using timber
+## Using logrx
 
-`timber` can be used in a file or through scripting. More information on
-how to use `timber` can be found in [Get
-Started](https://atorus-research.github.io/timber/articles/timber.html).
-
-## Contact
-
-We use the following for support and communications between user and developer community:
-
-* [Slack](https://app.slack.com/client/T028PB489D3/C02M8KN8269)---for informal discussions, Q&A and building our user community. If you don't have access, use this [link](https://join.slack.com/t/pharmaverse/shared_invite/zt-yv5atkr4-Np2ytJ6W_QKz_4Olo7Jo9A) to join the pharmaverse Slack workspace
+`logrx` can be used in a file or through scripting. More information on
+how to use `logrx` can be found in [Get
+Started](https://atorus-research.github.io/logrx/articles/logrx.html).

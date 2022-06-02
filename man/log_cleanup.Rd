@@ -7,7 +7,7 @@
 log_cleanup()
 }
 \value{
-List of non-NA elements and their value in timber.log environment
+List of non-NA elements and their value in log.rx environment
 }
 \description{
 Cleans up log and does checks against elements

@@ -33,7 +33,7 @@ reference:
    - title: RStudio addin
      desc: RStudio addin to facilitate the execution of a log
    - contents:
-      - timberAddin
+      - logrxAddin
 
 articles:
 - title: Use Cases

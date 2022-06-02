@@ -2,7 +2,7 @@
 % Please edit documentation in R/log.R
 \name{log_write}
 \alias{log_write}
-\title{Write the formatted timber.log to a file}
+\title{Write the formatted log.rx to a file}
 \usage{
 log_write(
   file = NA,
@@ -23,5 +23,5 @@ information in \code{\link{axecute}}}
 Nothing
 }
 \description{
-Write the formatted timber.log to a file
+Write the formatted log.rx to a file
 }

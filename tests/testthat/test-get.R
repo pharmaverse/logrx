@@ -1,15 +1,15 @@
 test_that("metadata elements are specified correctly and loaded into a list", {
 
-   timber_session_info <- session_info()$packages %>%
-      filter(.data$package == "timber")
+   logrx_session_info <- session_info()$packages %>%
+      filter(.data$package == "logrx")
 
-  expect_identical(get_timber_metadata(),
+  expect_identical(get_logrx_metadata(),
                list(
-                  info = paste0("This log was generated using timber ",
-                                timber_session_info[['loadedversion']]),
-                  version = timber_session_info[['loadedversion']],
-                  built = timber_session_info[["source"]],
-                  repository_link = "https://github.com/atorus-research/timber"
+                  info = paste0("This log was generated using logrx ",
+                                logrx_session_info[['loadedversion']]),
+                  version = logrx_session_info[['loadedversion']],
+                  built = logrx_session_info[["source"]],
+                  repository_link = "https://github.com/atorus-research/logrx"
                ))
 })
 
@@ -54,9 +54,9 @@ test_that("unapproved packages and functions found in ex2.R", {
    filename <- test_path("ref", "ex2.R")
    source(filename, local = TRUE)
 
-   withr::local_options(timber.approved = test_path("ref", "approved.rds"))
+   withr::local_options(logrx.approved = test_path("ref", "approved.rds"))
 
-   approved_functions <- readRDS(getOption("timber.approved"))
+   approved_functions <- readRDS(getOption("logrx.approved"))
 
    used_functions <- get_used_functions(filename)
 
@@ -72,9 +72,9 @@ test_that("unapproved packages returns expected result when all packages and fun
    filename <- test_path("ref", "ex1.R")
    source(filename, local = TRUE)
 
-   withr::local_options(timber.approved = test_path("ref", "approved.rds"))
+   withr::local_options(logrx.approved = test_path("ref", "approved.rds"))
 
-   approved_functions <- readRDS(getOption("timber.approved"))
+   approved_functions <- readRDS(getOption("logrx.approved"))
 
    used_functions <- tibble::tibble(
       function_name = "mean",
