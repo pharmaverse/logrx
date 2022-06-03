@@ -42,7 +42,7 @@ The following attributes are recorded in the log:
 * `log_name`, `log_path`: The name and path of the log
 
 
-<iframe width="700" height="400" src='articles/adsl_log.html'/>
+<iframe width="700" height="400" src='`r here::here("man/figures/log.png")`'/>
 
 
 # Generating a log

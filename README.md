@@ -5,10 +5,9 @@
 
 <!-- badges: start -->
 
-[<img src="http://pharmaverse.org/shields/logrx.svg">](https://pharmaverse.org)
 [![R build
 status](https://github.com/atorus-research/logrx/workflows/R-CMD-check/badge.svg)](https://github.com/atorus-research/logrx/actions?workflow=R-CMD-check)
-[<img src="https://img.shields.io/codecov/c/github/atorus-research/logrx">](https://codecov.io/gh/atorus-research/logrx)
+[<img src="https://img.shields.io/codecov/c/github/atorus-research/logrx">](https://app.codecov.io/gh/atorus-research/logrx)
 [<img src="https://img.shields.io/badge/License-MIT-blue.svg">](https://github.com/atorus-research/logrx/blob/master/LICENSE.md)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental-1)
