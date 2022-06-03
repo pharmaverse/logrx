@@ -42,8 +42,17 @@ The following attributes are recorded in the log:
 * `log_name`, `log_path`: The name and path of the log
 
 
-<iframe width="700" height="400" src='`r here::here("man/figures/log.png")`'/>
+<style>
+  .scrolled {
+    overflow-y: scroll !important;
+    white-space: nowrap;
+    max-height: 400px;
+  }
+</style>
 
+<div class = "scrolled">
+ <img src='`r here::here("man/figures/log.png")`'/>
+</div>
 
 # Generating a log
 The log can be generated according in two ways:
