@@ -41,7 +41,7 @@ are found in the [Get Started](https://atorus-research.github.io/logrx/articles/
 **Note:**  The Addin was originally called `timber`, but has been updated to `logrx.`
 
 ```{r img-with-knitr, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Caption for this figure 1'}
-knitr::include_graphics("man/figures/logrx.gif")
+knitr::include_graphics("https://raw.githubusercontent.com/atorus-research/atorus-assets/main/logrx.gif")
 ```
 
 
