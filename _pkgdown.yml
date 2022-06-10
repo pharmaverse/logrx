@@ -5,40 +5,41 @@ template:
     bootswatch: yeti
 
 reference:
-   - title: Source a file with Logging
-     desc: Functionality for Creating logs from Scripts
-   - contents:
-      - axecute
-      - run_safely_loudly
-   - title: Logging Framework Functions
-     desc: Functionality to Build The Log Manually
-   - contents:
-      - starts_with("log")
-   - title: Logging Helper Functions
-     desc: Functionality to Interact With The Log Object(s)
-   - contents:
-      - starts_with("get")
-      - starts_with("set")
-      - approved
-      - approved_functions_init
-   - title: Write Log
-     desc: Functionality for Writing Logs to a File
-   - contents:
-      - starts_with("write")
-   - title: Utilities
-     desc: Utility functions
-   - contents:
-      - loudly
-      - build_approved
-   - title: RStudio addin
-     desc: RStudio addin to facilitate the execution of a log
-   - contents:
-      - logrxAddin
+- title: Source a file with Logging
+  desc: Functionality for Creating logs from Scripts
+- contents:
+   - axecute
+   - run_safely_loudly
+- title: Logging Framework Functions
+  desc: Functionality to Build The Log Manually
+- contents:
+   - starts_with("log")
+- title: Logging Helper Functions
+  desc: Functionality to Interact With The Log Object(s)
+- contents:
+   - starts_with("get")
+   - starts_with("set")
+   - approved
+   - approved_functions_init
+- title: Write Log
+  desc: Functionality for Writing Logs to a File
+- contents:
+   - starts_with("write")
+- title: Utilities
+  desc: Utility functions
+- contents:
+   - loudly
+   - build_approved
+- title: RStudio addin
+  desc: RStudio addin to facilitate the execution of a log
+- contents:
+   - logrxAddin
 
 articles:
 - title: Use Cases
   navbar: Use Cases
   contents:
+  - logrx
   - articles/tables
   - articles/adsl_demo
 

@@ -1,8 +1,8 @@
 ---
-title: "logrx-package"
+title: "logrxpackage"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{logrx-package}
+  %\VignetteIndexEntry{logrxpackage}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
