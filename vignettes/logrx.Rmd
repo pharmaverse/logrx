@@ -38,7 +38,7 @@ The following attributes are recorded in the log:
 * `warnings`: The warnings generated when running the R script
 * `messages`: The messages generated when running the R script
 * `result`: The result generated when running the R script
-* `output`: The output generated when running the R script
+* `stream`: A complete stream of any output, errors, warnings, and messages generated when running the R script
 * `log_name`, `log_path`: The name and path of the log
 
 

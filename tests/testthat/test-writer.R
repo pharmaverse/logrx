@@ -145,18 +145,6 @@ test_that("write_warnings will return a formatted log warnings element", {
    log_remove()
 })
 
-test_that("write_output will return a formatted log output element", {
-   fp <- test_path("ref", "safely_loudly_test_file.R")
-
-   log_config(file = fp)
-
-   run_safely_loudly(fp)
-
-   expect_identical(write_output(), "Output:\n\t[1] \"log print\"\n\t[1] \"log print 2\"\n\tlog catlog cat 2")
-
-   log_remove()
-})
-
 test_that("write_messages will return a formatted log messages element", {
    fp <- test_path("ref", "safely_loudly_test_file.R")
 
@@ -178,6 +166,18 @@ test_that("write_result will return a formatted log result element", {
 
    expect_identical(write_result(),
                     c("\nResult:", paste0("\t", capture.output(data.frame(test = c(8, 6, 7, 5, 3, 0, 9))))))
+
+   log_remove()
+})
+
+test_that("write_stream will return a formatted log stream element", {
+   fp <- test_path("ref", "safely_loudly_test_file.R")
+
+   log_config(file = fp)
+
+   run_safely_loudly(fp)
+
+   expect_identical(write_stream(), "Log Stream:\n\t[1] \"log print\"\n\tlog catlog cat 2log inform\n\tlog inform 2\n\tlog message\n\tlog message 2\n\tlog warning\n\t[1] \"log print 2\"\n\tlog warning2\n\tError: log error\n\t")
 
    log_remove()
 })

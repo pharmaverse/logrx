@@ -101,7 +101,7 @@ test_that("setting path name works", {
    log_remove()
 })
 
-test_that("run_safely_loudly works for warnings, errors, messages, and output", {
+test_that("run_safely_loudly works for warnings, errors, messages, and stream", {
    fp <- test_path("ref", "safely_loudly_test_file.R")
 
    log_config(file = fp)
@@ -111,7 +111,7 @@ test_that("run_safely_loudly works for warnings, errors, messages, and output", 
    expect_true(!is.null(getOption("log.rx")[["warnings"]]))
    expect_true(!is.null(getOption("log.rx")[["errors"]]))
    expect_true(!is.null(getOption("log.rx")[["messages"]]))
-   expect_true(!is.null(getOption("log.rx")[["output"]]))
+   expect_true(!is.null(getOption("log.rx")[["stream"]]))
 
    log_remove()
 })

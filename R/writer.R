@@ -207,20 +207,6 @@ write_messages <- function() {
           paste0(messages, collapse = "\n\t"))
 }
 
-#' Format output attribute for writing
-#'
-#' @importFrom stringr str_replace_all
-#'
-#' @return A formatted vector of output
-#' @export
-#'
-write_output <- function() {
-   output <- get_log_element("output")
-
-   paste0("Output:\n\t",
-          str_replace_all(output, "\n", "\n\t"))
-}
-
 #' Format result attribute for writing
 #'
 #' @return A formatted vector of results
@@ -235,15 +221,14 @@ write_result <- function() {
 #' Format stream attribute for writing
 #'
 #' @importFrom purrr map
-#' @importFrom stringr str_remove_all
+#' @importFrom stringr str_replace_all
 #'
 #' @return A formatted vector of messages
 #' @export
 #'
 write_stream <- function() {
-   stream <- get_log_element("stream") %>%
-      map(~ str_remove_all(.x, "\n"))
+   stream <- get_log_element("stream")
 
    paste0("Log Stream:\n\t",
-          paste0(stream, collapse = "\n\t"))
+          str_replace_all(stream, "\n+", "\n\t"))
 }

@@ -10,21 +10,20 @@
 #'
 #' @export
 loudly <- function(code){
-   stream <- character()
+   temp <- file()
    warnings <- character()
    wHandler <- function(w) {
-      stream <<- c(stream, w$message)
+      capture.output(writeLines(w$message, con = temp))
       warnings <<- c(warnings, w$message)
    }
 
    messages <- character()
    mHandler <- function(m) {
-      stream <<- c(stream, m$message)
+      capture.output(writeLines(m$message, con = temp))
       messages <<- c(messages, m$message)
    }
 
-   temp <- file()
-   sink(temp, split = TRUE)
+   sink(temp, append = TRUE, split = TRUE)
    on.exit({
       sink()
       close(temp)
@@ -36,11 +35,10 @@ loudly <- function(code){
       message = mHandler
    )
 
-   output <- paste0(readLines(temp, warn = FALSE), collapse = "\n")
+   stream <<- paste(readLines(temp, warn = FALSE), collapse = "\n")
 
    list(
       result = result,
-      output = output,
       warnings = warnings,
       messages = messages,
       stream = stream
