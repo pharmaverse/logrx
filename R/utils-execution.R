@@ -10,13 +10,16 @@
 #'
 #' @export
 loudly <- function(code){
+   stream <- character()
    warnings <- character()
    wHandler <- function(w) {
+      stream <<- c(stream, w$message)
       warnings <<- c(warnings, w$message)
    }
 
    messages <- character()
    mHandler <- function(m) {
+      stream <<- c(stream, m$message)
       messages <<- c(messages, m$message)
    }
 
@@ -39,6 +42,7 @@ loudly <- function(code){
       result = result,
       output = output,
       warnings = warnings,
-      messages = messages
+      messages = messages,
+      stream = stream
    )
 }

@@ -231,3 +231,19 @@ write_result <- function() {
 
    c("\nResult:", paste0("\t", capture.output(result$value)))
 }
+
+#' Format stream attribute for writing
+#'
+#' @importFrom purrr map
+#' @importFrom stringr str_remove_all
+#'
+#' @return A formatted vector of messages
+#' @export
+#'
+write_stream <- function() {
+   stream <- get_log_element("stream") %>%
+      map(~ str_remove_all(.x, "\n"))
+
+   paste0("Log Stream:\n\t",
+          paste0(stream, collapse = "\n\t"))
+}
