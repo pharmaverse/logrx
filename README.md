@@ -18,11 +18,16 @@ with the goal of making code easily traceable and reproducible.
 
 ## Installation
 
-This package is still in development and currently is only available
-from GitHub. To install the development version run the following:
+This package is available from CRAN and can be installed by running:
 
 ``` r
-devtools::install_github("atorus-research/logrx")
+install.packages("logrx")
+```
+
+To get the latest development version use:
+
+``` r
+devtools::install_github("atorus-research/logrx", ref = "dev")
 ```
 
 ## What is `logrx` ?
