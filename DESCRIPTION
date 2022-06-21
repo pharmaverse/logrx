@@ -46,7 +46,7 @@ Imports:
     miniUI,
     rstudioapi,
     shiny,
-    sessioninfo,
+    sessioninfo (>= 1.2),
     stringi,
     waiter,
     tibble
