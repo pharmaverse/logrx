@@ -26,10 +26,16 @@ The goal of logrx is to facilitate logging in a clinical environment with the go
 
 ## Installation
 
-This package is still in development and currently is only available from GitHub. To install the development version run the following:
+This package is available from CRAN and can be installed by running: 
 
 ```{r, eval = FALSE}
-devtools::install_github("atorus-research/logrx")
+install.packages("logrx")
+```
+
+To get the latest development version use:
+
+```{r, eval = FALSE}
+devtools::install_github("atorus-research/logrx", ref = "dev")
 ```
 
 ## What is ```logrx``` ?
