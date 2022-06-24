@@ -106,7 +106,12 @@ run_safely <- function(file) "dummy"
 #' Dummy function for running a file
 #' @noRd
 run_file <- function(file){
-   source(file, local = TRUE)
+   if (is.null(getOption("log.rx.exec.env"))){
+      exec_env <- new.env(parent=globalenv())
+   } else{
+      exec_env <- getOption("log.rx.exec.env")
+   }
+   source(file, local = exec_env)
 }
 
 #' Safely run an R script and record results, outputs, messages, errors, warnings
