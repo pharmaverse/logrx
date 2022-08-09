@@ -1,6 +1,6 @@
 Package: logrx
 Title: A Logging Utility Focus on Clinical Trial Programming Workflows
-Version: 0.1.0
+Version: 0.1.0.9001
 Authors@R: 
     c(
     person(given = "Nathan",
@@ -34,7 +34,7 @@ BugReports: https://github.com/atorus-research/logrx/issues
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 Imports:
     dplyr,
     magrittr,
