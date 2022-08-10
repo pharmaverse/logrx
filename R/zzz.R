@@ -4,6 +4,7 @@
    # init functions for other logrx functionality
    log_init()
    approved_functions_init()
+   lint_init()
 
    # This overwrite is to correctly build purrr adverb function
    # outlined in purrr best practices for exporting adverb-wrapped functions
