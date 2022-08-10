@@ -1,0 +1,1 @@
+message(capture.output(environment()))

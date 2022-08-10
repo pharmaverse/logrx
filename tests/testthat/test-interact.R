@@ -127,3 +127,17 @@ test_that("run_safely_loudly works for result", {
 
    log_remove()
 })
+
+test_that("run_file uses a child of the global environment for execution", {
+   expect_equal("<environment: R_GlobalEnv>\n",
+                capture_message(logrx:::run_file(test_path("ref", "run_file_test_parent_env.R")))$message)
+
+})
+
+test_that("run_file uses the global env if set using log.rx.exec.env", {
+   options("log.rx.exec.env" = globalenv())
+
+   expect_equal("<environment: R_GlobalEnv>\n",
+                capture_message(logrx:::run_file(test_path("ref", "run_file_test_current_env.R")))$message)
+
+})
