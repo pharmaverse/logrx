@@ -129,15 +129,37 @@ test_that("run_safely_loudly works for result", {
 })
 
 test_that("run_file uses a child of the global environment for execution", {
-   expect_equal("<environment: R_GlobalEnv>\n",
-                capture_message(logrx:::run_file(test_path("ref", "run_file_test_parent_env.R")))$message)
+
+   expect_equal(capture.output(globalenv()),
+                capture.output(logrx:::run_file(test_path("ref", "run_file_test_parent_env.R"))))
 
 })
 
-test_that("run_file uses the global env if set using log.rx.exec.env", {
-   options("log.rx.exec.env" = globalenv())
+test_that("run_file makes no changes are made to the global environment or options during execution", {
 
-   expect_equal("<environment: R_GlobalEnv>\n",
-                capture_message(logrx:::run_file(test_path("ref", "run_file_test_current_env.R")))$message)
+   pre_global <- globalenv()
+   pre_ops <- options()
+
+   logrx:::run_file(test_path("ref", "run_file_test.R"))
+
+   post_global <- globalenv()
+   post_ns <- search()
+   post_ops <- options()
+
+   expect_identical(pre_global, post_global)
+   expect_identical(pre_ops, post_ops)
+
+})
+
+test_that("run_file uses a different env if set using log.rx.exec.env", {
+   run_env <- new.env(parent = as.environment(search()[3]))
+
+   options("log.rx.exec.env" = run_env)
+
+   expect_equal(capture.output(run_env),
+                capture.output(logrx:::run_file(test_path("ref", "run_file_test_current_env.R"))))
+
+   expect_equal(capture.output(parent.env(run_env)),
+                capture.output(logrx:::run_file(test_path("ref", "run_file_test_parent_env.R"))))
 
 })

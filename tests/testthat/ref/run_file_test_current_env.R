@@ -1,1 +1,1 @@
-message(capture.output(environment()))
+print(environment())

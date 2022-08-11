@@ -1,1 +1,1 @@
-message(capture.output(parent.env(environment())))
+print(parent.env(environment()))
