@@ -143,7 +143,6 @@ test_that("run_file makes no changes are made to the global environment or optio
    logrx:::run_file(test_path("ref", "run_file_test.R"))
 
    post_global <- globalenv()
-   post_ns <- search()
    post_ops <- options()
 
    expect_identical(pre_global, post_global)
