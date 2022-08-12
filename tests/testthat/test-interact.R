@@ -137,12 +137,12 @@ test_that("run_file uses a child of the global environment for execution", {
 
 test_that("run_file makes no changes are made to the global environment or options during execution", {
 
-   pre_global <- globalenv()
+   pre_global <- ls(globalenv())
    pre_ops <- options()
 
    logrx:::run_file(test_path("ref", "run_file_test.R"))
 
-   post_global <- globalenv()
+   post_global <- ls(globalenv())
    post_ops <- options()
 
    expect_identical(pre_global, post_global)
