@@ -1,3 +1,6 @@
+# logrx 0.1.1
+Address CRAN comments about documentation.
+
 # logrx 0.1.0
 
 Beta release for logrx with introduction of numerous new features:
