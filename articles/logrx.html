@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">logrx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
       </span>
     </div>
 
@@ -111,7 +111,7 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/atorus-research/logrx" class="external-link">logrx</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/atorus-research/logrx" class="external-link">logrx</a></span><span class="op">)</span></span></code></pre></div>
 <p>The purpose of the <code>logrx</code> package is to generate a log upon execution of an R script which enables traceability and reproducibility of the executed code.</p>
 <div class="section level2">
 <h2 id="log-attributes">Log attributes<a class="anchor" aria-label="anchor" href="#log-attributes"></a>
@@ -174,7 +174,7 @@
 </h3>
 <p><code><a href="../reference/axecute.html">axecute()</a></code> enables the command line submission of a program. A log is set-up around the program, and its code is run safely and loudly (using <code>safely()</code> from the <code>purrr</code> package).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/axecute.html">axecute</a></span><span class="op">(</span><span class="st">"my_script.R"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/axecute.html">axecute</a></span><span class="op">(</span><span class="st">"my_script.R"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="log_-functions">
@@ -188,9 +188,9 @@
 <li><p><code><a href="../reference/log_write.html">log_write()</a></code> to generate and format the log</p></li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/log_config.html">log_config</a></span><span class="op">(</span><span class="st">"my_script.R"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/run_safely_loudly.html">run_safely_loudly</a></span><span class="op">(</span><span class="st">"my_script.R"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/log_write.html">log_write</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/log_config.html">log_config</a></span><span class="op">(</span><span class="st">"my_script.R"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/run_safely_loudly.html">run_safely_loudly</a></span><span class="op">(</span><span class="st">"my_script.R"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/log_write.html">log_write</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -198,11 +198,11 @@
 </h2>
 <p>While <code>logrx</code> is built around creating a log for a program it can just as easily be used when running an entire set of programs. The <code><a href="../reference/axecute.html">axecute()</a></code> function has been built with both single file execution and scripted file execution in mind. With the use of simple functions such as <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> scripting is easy. Below is some sample code of how <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> can be used with <code><a href="../reference/axecute.html">axecute()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"file.R"</span>, <span class="st">"otherfile.R"</span><span class="op">)</span>, <span class="va">axecute</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"file.R"</span>, <span class="st">"otherfile.R"</span><span class="op">)</span>, <span class="va">axecute</span><span class="op">)</span></span></code></pre></div>
 <p>If your scripting needs to work on the contents of a directory instead of a pre-defined list, functions such as <code>list.files</code> can be used to obtain a list of files to use. Below is an example of how this can be applied in practice by getting all files ending in ‘.R’ in the current working directory using a regular expression, and then using <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> to run the files using <code><a href="../reference/axecute.html">axecute()</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">r_script_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"."</span>, pattern <span class="op">=</span> <span class="st">"\\.R$"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">r_script_list</span>, <span class="va">axecute</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">r_script_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"."</span>, pattern <span class="op">=</span> <span class="st">"\\.R$"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">r_script_list</span>, <span class="va">axecute</span><span class="op">)</span></span></code></pre></div>
 </div>
   </div>
 
@@ -223,7 +223,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

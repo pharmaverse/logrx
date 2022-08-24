@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">logrx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
       </span>
     </div>
 
@@ -117,14 +117,14 @@
 <h4 id="the-named-list-contains-the-functions-approved-for-use-for-each-package--if-all-functions-for-a-package-are-approved-for-use-list-all-">The named list contains the functions approved for use for each package. If all functions for a package are approved for use, list “All”.<a class="anchor" aria-label="anchor" href="#the-named-list-contains-the-functions-approved-for-use-for-each-package--if-all-functions-for-a-package-are-approved-for-use-list-all-"></a>
 </h4>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">approved_pkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>base <span class="op">=</span> <span class="st">"mean"</span>,
-                      dplyr <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span>
-<span class="va">approved_pkgs</span>
-<span class="co">#&gt; $base</span>
-<span class="co">#&gt; [1] "mean"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dplyr</span>
-<span class="co">#&gt; [1] "All"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">approved_pkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>base <span class="op">=</span> <span class="st">"mean"</span>,</span>
+<span>                      dplyr <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
+<span><span class="va">approved_pkgs</span></span>
+<span><span class="co">#&gt; $base</span></span>
+<span><span class="co">#&gt; [1] "mean"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $dplyr</span></span>
+<span><span class="co">#&gt; [1] "All"</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -138,21 +138,21 @@
 <h4 id="if-we-create-a-temp-directory-to-save-this-for-illustration-">If We create a temp directory to save this for illustration.<a class="anchor" aria-label="anchor" href="#if-we-create-a-temp-directory-to-save-this-for-illustration-"></a>
 </h4>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/build_approved.html">build_approved</a></span><span class="op">(</span><span class="va">approved_pkgs</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 289 × 2</span></span>
-<span class="co">#&gt;    function_name library      </span>
-<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> mean          package:base </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> rows_upsert   package:dplyr</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> src_local     package:dplyr</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> db_analyze    package:dplyr</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> n_groups      package:dplyr</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> distinct      package:dplyr</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> summarise_    package:dplyr</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> group_split   package:dplyr</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> group_by_if   package:dplyr</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> sample_n      package:dplyr</span>
-<span class="co">#&gt; <span style="color: #949494;"># … with 279 more rows</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/build_approved.html">build_approved</a></span><span class="op">(</span><span class="va">approved_pkgs</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 289 × 2</span></span></span>
+<span><span class="co">#&gt;    function_name library      </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> mean          package:base </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> rows_upsert   package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> src_local     package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> db_analyze    package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> n_groups      package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> distinct      package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> summarise_    package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> group_split   package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> group_by_if   package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> sample_n      package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 279 more rows</span></span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -162,9 +162,9 @@
 <h4 id="you-can-use-the-file-argument-in-build_approved-to-save-approved-rds-instead-of-return-the-tibble-">You can use the <code>file</code> argument in <code>build_approved()</code> to save approved.rds instead of return the tibble.<a class="anchor" aria-label="anchor" href="#you-can-use-the-file-argument-in-build_approved-to-save-approved-rds-instead-of-return-the-tibble-"></a>
 </h4>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="fu"><a href="../reference/build_approved.html">build_approved</a></span><span class="op">(</span><span class="va">approved_pkgs</span>, file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="st">"approved.rds"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/build_approved.html">build_approved</a></span><span class="op">(</span><span class="va">approved_pkgs</span>, file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="st">"approved.rds"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -174,7 +174,7 @@
 <h3 id="update-the-logrx-approved-option-to-point-to-your-approved-rds-location--we-recommend-setting-this-in-your--rprofile-">Update the <code>logrx.approved</code> option to point to your <code>approved.rds</code> location. We recommend setting this in your <code>.Rprofile</code>.<a class="anchor" aria-label="anchor" href="#update-the-logrx-approved-option-to-point-to-your-approved-rds-location--we-recommend-setting-this-in-your--rprofile-"></a>
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>logrx.approved <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="st">"approved.rds"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>logrx.approved <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="st">"approved.rds"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -191,41 +191,41 @@
 </h2>
 <p>Let’s write a simple script summarizing mean mpg from mtcars. We save this as <code>mpg.R</code> in the temporary directory <code>dir</code> and <code><a href="../reference/axecute.html">axecute()</a></code> it.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'dplyr'</span>
-<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     filter, lag</span>
-<span class="co">#&gt; The following objects are masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
-
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Mean MPG"</span><span class="op">)</span>
-
-<span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-   <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">cyl</span>, values_from <span class="op">=</span> <span class="va">mean</span>, id_cols <span class="op">=</span> <span class="va">label</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 4</span></span>
-<span class="co">#&gt;   label      `4`   `6`   `8`</span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Mean MPG  26.7  19.7  15.1</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     filter, lag</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
+<span></span>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Mean MPG"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>   <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">cyl</span>, values_from <span class="op">=</span> <span class="va">mean</span>, id_cols <span class="op">=</span> <span class="va">label</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 4</span></span></span>
+<span><span class="co">#&gt;   label      `4`   `6`   `8`</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Mean MPG  26.7  19.7  15.1</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/axecute.html">axecute</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dir</span>,<span class="st">"mpg.R"</span><span class="op">)</span>, remove_log_object <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/axecute.html">axecute</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dir</span>,<span class="st">"mpg.R"</span><span class="op">)</span>, remove_log_object <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>Here we have the log elements for “Used Package and Functions” and “Unapproved Package and Functions”. We can see we used <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code> from <code>package:base</code> and <code>pivot_wider</code> from <code>package:tidyr</code>. We did not include the base library or tidyr functions in our approved list, so this has been logged!</p>
-<pre><code><span class="co">#&gt; --------------------------------------------------------------------------------</span>
-<span class="co">#&gt; -                          Used Package and Functions                          -</span>
-<span class="co">#&gt; --------------------------------------------------------------------------------</span>
-<span class="co">#&gt; {package:base} library, mean</span>
-<span class="co">#&gt; {package:dplyr} %&gt;%, group_by, summarize, mutate</span>
-<span class="co">#&gt; {package:tidyr} pivot_wider</span>
-<span class="co">#&gt; --------------------------------------------------------------------------------</span>
-<span class="co">#&gt; -                       Unapproved Package and Functions                       -</span>
-<span class="co">#&gt; --------------------------------------------------------------------------------</span>
-<span class="co">#&gt; {package:base} library</span>
-<span class="co">#&gt; {package:tidyr} pivot_wider</span></code></pre>
+<pre><code><span><span class="co">#&gt; --------------------------------------------------------------------------------</span></span>
+<span><span class="co">#&gt; -                          Used Package and Functions                          -</span></span>
+<span><span class="co">#&gt; --------------------------------------------------------------------------------</span></span>
+<span><span class="co">#&gt; {package:base} library, mean</span></span>
+<span><span class="co">#&gt; {package:dplyr} %&gt;%, group_by, summarize, mutate</span></span>
+<span><span class="co">#&gt; {package:tidyr} pivot_wider</span></span>
+<span><span class="co">#&gt; --------------------------------------------------------------------------------</span></span>
+<span><span class="co">#&gt; -                       Unapproved Package and Functions                       -</span></span>
+<span><span class="co">#&gt; --------------------------------------------------------------------------------</span></span>
+<span><span class="co">#&gt; {package:base} library</span></span>
+<span><span class="co">#&gt; {package:tidyr} pivot_wider</span></span></code></pre>
 </div>
   </div>
 
@@ -246,7 +246,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
