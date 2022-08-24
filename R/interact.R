@@ -44,10 +44,14 @@ get_log_element <- function(el_key){
 }
 
 
-#' Set the log name and path:
-#' 1. As the name and path if specified
-#' 2. As the file name and path if specified
-#' 3. As logrx_log.log and . if none of the above are specified
+#' Set the log name and path
+#'
+#' \enumerate{
+#'   \item As the name and path if supplied
+#'   \item As the file name with .log extension and path if specified or
+#'     if they can be determined by the function
+#'   \item As logrx_log.log and . if none of the above are specified
+#' }
 #'
 #' @param log_name The log name
 #' @param log_path The log path

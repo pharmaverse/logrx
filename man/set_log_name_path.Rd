@@ -2,12 +2,7 @@
 % Please edit documentation in R/interact.R
 \name{set_log_name_path}
 \alias{set_log_name_path}
-\title{Set the log name and path:
-\enumerate{
-\item As the name and path if specified
-\item As the file name and path if specified
-\item As logrx_log.log and . if none of the above are specified
-}}
+\title{Set the log name and path}
 \usage{
 set_log_name_path(log_name = NA, log_path = NA)
 }
@@ -20,10 +15,10 @@ set_log_name_path(log_name = NA, log_path = NA)
 Nothing
 }
 \description{
-Set the log name and path:
 \enumerate{
-\item As the name and path if specified
-\item As the file name and path if specified
+\item As the name and path if supplied
+\item As the file name with .log extension and path if specified or
+if they can be determined by the function
 \item As logrx_log.log and . if none of the above are specified
 }
 }
