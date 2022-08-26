@@ -1,0 +1,33 @@
+---
+title: "logrx Options"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{logrx Options}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(logrx)
+library(tibble)
+```
+
+One of the ways that `logrx` has been built to be customizable is to add a set of options to enable different logging and execution elements.
+
+Below are the options and their default values
+```{r options_table, echo=FALSE}
+table_ops <- tribble(
+   ~option, ~value, ~description,
+   "log.rx", "An empty R environment", "Used to store log elements during program exection",
+   "log.rx.exec.env", "NULL", "The environment in which the program code is executed",
+   "log.rx.lint", "FALSE", "A `lintr` object for use in lint checking",
+   "log.rx.approved", "./approved.rds", "Location of an approved functions file"
+)
+```

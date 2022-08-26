@@ -14,30 +14,6 @@ log_init <- function(){
    }
 }
 
-#' Initialises the logrx.approved option
-#'
-#' Defaults to working directory. This should point to the location of the
-#' dataframe storing approved packages and functions.
-#'
-#' See ?approved for an example dataframe.
-#'
-#' @return Nothing
-#' @export
-#'
-#'
-approved_functions_init <- function(){
-   if(!('logrx.approved' %in% names(options()))) {
-      options('logrx.approved' = './approved.rds')
-   }
-}
-
-#' Initialises the logrx.lint option
-lint_init <- function(){
-   if(!('logrx.lint' %in% names(options()))) {
-      options('logrx.lint' = FALSE)
-   }
-}
-
 
 #' Configures the log.rx environment
 #'
@@ -202,8 +178,8 @@ log_write <- function(file = NA,
 
    }
 
-   if (file.exists(getOption("logrx.approved"))) {
-      approved_functions <- readRDS(getOption("logrx.approved"))
+   if (file.exists(getOption("log.rx.approved"))) {
+      approved_functions <- readRDS(getOption("log.rx.approved"))
       unapproved_functions <- get_unapproved_use(used_functions, approved_functions)
       set_log_element("unapproved_packages_functions", unapproved_functions)
 
