@@ -231,3 +231,24 @@ write_result <- function() {
 
    c("\nResult:", paste0("\t", capture.output(result$value)))
 }
+
+#' Format lint results for writing
+#'
+#' @return A formatted vector of results
+#'
+write_lint_results <- function(){
+   lint_results <- get_log_element("lint_results")
+
+   lint_df <- as.data.frame(lint_results)
+
+   lint_df$lint_messages <- paste0("Line ",
+                                   lint_df$line_number,
+                                   " [",
+                                   lint_df$linter,
+                                   "] ",
+                                   lint_df$message)
+
+   break_rows <- paste(lint_df$lint_messages, collapse = "\n\n")
+
+   paste(strwrap(break_rows, width = 78), collapse = "\n")
+}
