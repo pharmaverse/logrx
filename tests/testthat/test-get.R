@@ -111,3 +111,21 @@ test_that("parse does not fatal error when syntax issue occurs", {
 
    expect_identical(get_used_functions(filename), expected)
 })
+
+test_that("lint returns expected result when option is set", {
+   filename <- test_path("ref", "ex6.R")
+   source(filename, local = TRUE)
+
+   expected <- lint(filename, c(lintr::undesirable_operator_linter()))
+
+   withr::local_options(logrx.lint = c(lintr::undesirable_operator_linter()))
+
+   expect_identical(get_lint_results(filename), expected)
+})
+
+test_that("lint returns expected result when option is not set", {
+   filename <- test_path("ref", "ex6.R")
+   source(filename, local = TRUE)
+
+   expect_identical(get_lint_results(filename), NULL)
+})
