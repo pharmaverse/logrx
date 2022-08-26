@@ -181,3 +181,32 @@ test_that("write_stream will return a formatted log stream element", {
 
    log_remove()
 })
+
+test_that("write_lint_results will return a formatted lint results element", {
+   filename <- test_path("ref", "ex6.R")
+   source(filename, local = TRUE)
+
+   options("log.rx" = NULL)
+   log_config("./test-writer.R")
+   lint_results <- lintr::lint(filename, c(lintr::undesirable_operator_linter()))
+   assign('lint_results', lint_results, envir = getOption('log.rx'))
+
+   expect_identical(
+      write_lint_results(),
+      paste0(
+         "Line 3 [undesirable_operator_linter] Operator `<<-` is undesirable.",
+         " It\nassigns outside the current environment in a way that can be hard",
+         " to reason\nabout. Prefer fully-encapsulated functions wherever possible,",
+         " or, if\nnecessary, assign to a specific environment with assign(). ",
+         "Recall that you\ncan create an environment at the desired scope with",
+         " new.env().\n\nLine 4 [undesirable_operator_linter] Operator `<<-` is",
+         " undesirable. It\nassigns outside the current environment in a way that",
+         " can be hard to reason\nabout. Prefer fully-encapsulated functions",
+         " wherever possible, or, if\nnecessary, assign to a specific environment",
+         " with assign(). Recall that you\ncan create an environment at the",
+         " desired scope with new.env()."
+            )
+      )
+
+   log_remove()
+})

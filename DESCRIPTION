@@ -49,7 +49,8 @@ Imports:
     sessioninfo (>= 1.2),
     stringi,
     waiter,
-    tibble
+    tibble,
+    lintr
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
