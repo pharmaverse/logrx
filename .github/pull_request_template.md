@@ -11,6 +11,7 @@ logrx is built around the concept of creating a log for the execution of an R sc
 Please check off each taskbox as an acknowledgment that you completed the task. This checklist is part of the Github Action workflows and the Pull Request will not be merged into the `dev` branch until you have checked off each task.
 
 - [ ] The spirit of logrx is met in your Pull Request
+- [ ] Check that your Pull Request is targeting the dev branch, Pull Requests to master should use the [Release Pull Request Template](https://github.com/atorus-research/logrx/blob/main/.github/PULL_REQUEST_TEMPLATE/release.md)
 - [ ] Code is formatted according to the [tidyverse style guide](https://style.tidyverse.org/) 
 - [ ] Updated relevant unit tests or have written new unit tests
 - [ ] Creation/updates to relevant roxygen headers and examples 
