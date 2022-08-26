@@ -1,4 +1,5 @@
-Name: logrx
+Name: Submit with logrx
 Description: Runs a file using `axecute()`
 Binding: logrxAddin
 Interactive: true
+

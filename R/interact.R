@@ -44,10 +44,14 @@ get_log_element <- function(el_key){
 }
 
 
-#' Set the log name and path:
-#' 1. As the name and path if specified
-#' 2. As the file name and path if specified
-#' 3. As logrx_log.log and . if none of the above are specified
+#' Set the log name and path
+#'
+#' \enumerate{
+#'   \item As the name and path if supplied
+#'   \item As the file name with .log extension and path if specified or
+#'     if they can be determined by the function
+#'   \item As logrx_log.log and . if none of the above are specified
+#' }
 #'
 #' @param log_name The log name
 #' @param log_path The log path
@@ -106,7 +110,12 @@ run_safely <- function(file) "dummy"
 #' Dummy function for running a file
 #' @noRd
 run_file <- function(file){
-   source(file, local = TRUE)
+   if (is.null(getOption("log.rx.exec.env"))){
+      exec_env <- new.env(parent=globalenv())
+   } else{
+      exec_env <- getOption("log.rx.exec.env")
+   }
+   source(file, local = exec_env)
 }
 
 #' Safely run an R script and record results, outputs, messages, errors, warnings
