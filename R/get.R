@@ -236,3 +236,19 @@ get_first <- function(func, search_lookup){
 get_unapproved_use <- function(approved_packages, used_packages) {
    anti_join(approved_packages, used_packages, by = c("library", "function_name"))
 }
+
+#' Get lint results
+#'
+#' Pass linters specified in the `logrx.lint` option to `lintr::lint`
+#'
+#' @param file File path of file being run
+#'
+#' @importFrom lintr lint
+#'
+#' @return results from `lintr::lint()`
+get_lint_results <- function(file) {
+   # lint file if option is turned on
+   if (!is.logical(getOption('logrx.lint'))) {
+      lint(file, getOption('logrx.lint'))
+   }
+}
