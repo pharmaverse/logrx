@@ -1,8 +1,8 @@
-
 # logrx 0.2.0
 
-Updates 
+## Updates 
   - Update the run environment to be a child of the global environment instead of a child of the `logrx` package namespace.  This fixes the issue of `logrx` using internally imported versions of functions in the place of user imported version of functions. (PR [#109](https://github.com/atorus-research/logrx/pull/109))
+  - `get_used_functions()` now works for scripts with no functions (#111)
 
 # logrx 0.1.1
 

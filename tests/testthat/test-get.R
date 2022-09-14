@@ -50,6 +50,16 @@ test_that("ex1.R parses correctly", {
    expect_identical(get_used_functions(filename), expected)
 })
 
+test_that("get used functions returns NULL when no functions are used", {
+   r_path <- tempfile(fileext = ".R")
+   withr::defer(unlink(r_path))
+
+   writeLines(text = "1",
+              con = r_path)
+
+   expect_identical(get_used_functions(r_path), NULL)
+})
+
 test_that("unapproved packages and functions found in ex2.R", {
    filename <- test_path("ref", "ex2.R")
    source(filename, local = TRUE)
