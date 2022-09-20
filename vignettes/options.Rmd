@@ -10,11 +10,13 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  echo = FALSE
 )
 ```
 
 ```{r setup}
+library(knitr)
 library(logrx)
 library(tibble)
 ```
@@ -22,7 +24,7 @@ library(tibble)
 One of the ways that `logrx` has been built to be customizable is to add a set of options to enable different logging and execution elements.
 
 Below are the options and their default values
-```{r options_table, echo=FALSE}
+```{r options_table}
 table_ops <- tribble(
    ~option, ~value, ~description,
    "log.rx", "An empty R environment", "Used to store log elements during program exection",
@@ -30,4 +32,6 @@ table_ops <- tribble(
    "log.rx.lint", "FALSE", "A `lintr` object for use in lint checking",
    "log.rx.approved", "./approved.rds", "Location of an approved functions file"
 )
+
+kable(table_ops)
 ```
