@@ -156,11 +156,16 @@ get_used_functions <- function(file){
       )
    }
 
-   tokens <- getParseData(ret$result)
+   tokens <- getParseData(ret$result) %>%
+      filter(.data$token %in% c("SYMBOL_FUNCTION_CALL", "SPECIAL", "SYMBOL_PACKAGE"))
+
+   if(nrow(tokens) == 0) {
+      return (NULL)
+   }
 
    # grouping and complete to ensure all three columns carry through after pivot
    # regardless if seen in the parsed data
-   filtered_tokens <- tokens[tokens[["token"]] %in% c("SYMBOL_FUNCTION_CALL", "SPECIAL", "SYMBOL_PACKAGE"),] %>%
+   filtered_tokens <- tokens %>%
       mutate(token = factor(.data$token,
                             c("SYMBOL_FUNCTION_CALL", "SPECIAL", "SYMBOL_PACKAGE"))) %>%
       group_by(.data$line1, .data$parent) %>%
