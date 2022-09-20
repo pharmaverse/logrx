@@ -2,7 +2,8 @@
 # logrx 0.2.0
 
 Updates 
-  - Update the run environment to be a child of the global environment instead of a child of the `logrx` package namespace.  This fixes the issue of `logrx` using internally imported versions of functions in the place of user imported version of functions. (PR [#109](https://github.com/atorus-research/logrx/pull/109))
+  - Update the run environment to be a child of the global environment instead of a child of the `logrx` package namespace.  This fixes the issue of `logrx` using internally imported versions of functions in the place of user imported version of functions. (#104)
+  - Add options vignette and move all options for `logrx` to be set on package load if not set by user prior (#110)
 
 # logrx 0.1.1
 
