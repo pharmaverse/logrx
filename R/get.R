@@ -239,7 +239,7 @@ get_unapproved_use <- function(approved_packages, used_packages) {
 
 #' Get lint results
 #'
-#' Pass linters specified in the `logrx.lint` option to `lintr::lint`
+#' Pass linters specified in the `log.rx.lint` option to `lintr::lint`
 #'
 #' @param file File path of file being run
 #'
@@ -248,7 +248,7 @@ get_unapproved_use <- function(approved_packages, used_packages) {
 #' @return results from `lintr::lint()`
 get_lint_results <- function(file) {
    # lint file if option is turned on
-   if (!is.logical(getOption('logrx.lint'))) {
-      lint(file, getOption('logrx.lint'))
+   if (!is.logical(getOption('log.rx.lint'))) {
+      lint(file, getOption('log.rx.lint'))
    }
 }

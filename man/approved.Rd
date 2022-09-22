@@ -18,7 +18,7 @@ approved
 A dataset that stores approved packages and functions for use.
 Each row contains a \code{library} and \code{function_name}.
 This dataset is used to illustrate the data format to be stored in
-the logrx.approved option.
+the log.rx.approved option.
 }
 \examples{
 logrx::approved

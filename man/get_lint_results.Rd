@@ -13,5 +13,5 @@ get_lint_results(file)
 results from \code{lintr::lint()}
 }
 \description{
-Pass linters specified in the \code{logrx.lint} option to \code{lintr::lint}
+Pass linters specified in the \code{log.rx.lint} option to \code{lintr::lint}
 }

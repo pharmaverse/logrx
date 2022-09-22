@@ -128,7 +128,7 @@ test_that("lint returns expected result when option is set", {
 
    expected <- lint(filename, c(lintr::undesirable_operator_linter()))
 
-   withr::local_options(logrx.lint = c(lintr::undesirable_operator_linter()))
+   withr::local_options(log.rx.lint = c(lintr::undesirable_operator_linter()))
 
    expect_identical(get_lint_results(filename), expected)
 })

@@ -1,15 +1,19 @@
 # Default options
 logrx_default_options <- list(
    # execution environment
-   log.rx.exec.env = NULL
+   log.rx.exec.env = NULL,
+
+   # Initializes the logrx.lint option
+   log.rx.lint = FALSE,
+
+   # Initialises the logrx.approved option
+   log.rx.approved = './approved.rds'
 )
 
 # Implement on load processes
 .onLoad <- function(libname, pkgname) {
    # init functions for other logrx functionality
    log_init()
-   approved_functions_init()
-   lint_init()
 
    # This overwrite is to correctly build purrr adverb function
    # outlined in purrr best practices for exporting adverb-wrapped functions
