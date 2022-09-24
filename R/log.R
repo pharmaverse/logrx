@@ -67,6 +67,7 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
       "file_name",
       "file_path",
       "user",
+      "hashsum",
       "masked_functions",
       "used_packages_functions",
       "unapproved_packages_functions",
@@ -90,6 +91,8 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
       }, silent = TRUE)
    # User
    set_log_element("user", Sys.info()[["user"]])
+   # Hashsum
+   set_log_element("hashsum", digest::sha1(file))
    # Start time
    set_log_element("start_time", strftime(Sys.time(), usetz = TRUE))
    # log name and path
@@ -165,6 +168,7 @@ log_write <- function(file = NA,
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_header("User and File Information"),
                         write_log_element("user", "User: "),
+                        write_sha1(),
                         write_file_name_path())
 
 

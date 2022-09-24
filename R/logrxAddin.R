@@ -94,7 +94,8 @@ logrxAddin <- function() {
                shiny::checkboxGroupInput("toReport", "Optional elements to report:",
                                          c("Messages" = "messages",
                                            "Output" = "output",
-                                           "Result" = "result"),
+                                           "Result" = "result",
+                                           "HashSum" = "hashsum"),
                                          inline = TRUE,
                                          selected = c("messages", "output", "result"))
             )

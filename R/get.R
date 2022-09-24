@@ -231,3 +231,15 @@ get_first <- function(func, search_lookup){
 get_unapproved_use <- function(approved_packages, used_packages) {
    anti_join(approved_packages, used_packages, by = c("library", "function_name"))
 }
+
+# Get hashsums
+
+get_sha1 <- function(){
+
+   #Using Shiny
+
+   #Using Other Method
+
+}
+
+

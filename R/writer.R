@@ -78,6 +78,15 @@ write_file_name_path <- function(){
    )
 }
 
+#' Format hashsums for writing
+#'
+#' @return A string
+#' @export
+#'
+write_sha1 <- function(){
+      paste0("HashSum: ", digest::sha1(file))
+}
+
 #' Format masked functions attribute for writing
 #'
 #' @return A formatted vector of masked functions
