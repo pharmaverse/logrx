@@ -20,7 +20,6 @@ reference:
    - starts_with("get")
    - starts_with("set")
    - approved
-   - approved_functions_init
 - title: Write Log
   desc: Functionality for Writing Logs to a File
 - contents:
@@ -42,6 +41,11 @@ articles:
   - logrx
   - articles/tables
   - articles/adsl_demo
+
+- title: Helpers
+  navbar: Helpers
+  contents:
+  - options
 
 - title: Advanced Guides
   navbar: Advanced Guides

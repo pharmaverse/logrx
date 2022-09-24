@@ -46,7 +46,7 @@ build_approved(approved_pkgs, file = file.path(dir, "approved.rds"))
 ### Update the `logrx.approved` option to point to your `approved.rds` location. We recommend setting this in your `.Rprofile`.
 
 ```{r}
-options(logrx.approved = file.path(dir, "approved.rds"))
+options(log.rx.approved = file.path(dir, "approved.rds"))
 ```
 
 ## 5. You're done. Let's axecute! 

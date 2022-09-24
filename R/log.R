@@ -14,23 +14,6 @@ log_init <- function(){
    }
 }
 
-#' Initialises the logrx.approved option
-#'
-#' Defaults to working directory. This should point to the location of the
-#' dataframe storing approved packages and functions.
-#'
-#' See ?approved for an example dataframe.
-#'
-#' @return Nothing
-#' @export
-#'
-#'
-approved_functions_init <- function(){
-   if(!('logrx.approved' %in% names(options()))) {
-      options('logrx.approved' = './approved.rds')
-   }
-}
-
 
 #' Configures the log.rx environment
 #'
@@ -71,6 +54,7 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
       "masked_functions",
       "used_packages_functions",
       "unapproved_packages_functions",
+      "lint_results",
       "log_name",
       "log_path")
 
@@ -97,6 +81,8 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
    set_log_element("start_time", strftime(Sys.time(), usetz = TRUE))
    # log name and path
    set_log_name_path(log_name, log_path)
+   # lint results
+   set_log_element("lint_results", get_lint_results(file))
 }
 
 #' Cleans up log and does checks against elements
@@ -196,8 +182,8 @@ log_write <- function(file = NA,
 
    }
 
-   if (file.exists(getOption("logrx.approved"))) {
-      approved_functions <- readRDS(getOption("logrx.approved"))
+   if (file.exists(getOption("log.rx.approved"))) {
+      approved_functions <- readRDS(getOption("log.rx.approved"))
       unapproved_functions <- get_unapproved_use(used_functions, approved_functions)
       set_log_element("unapproved_packages_functions", unapproved_functions)
 
@@ -208,7 +194,13 @@ log_write <- function(file = NA,
       cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "unapproved_packages_functions"]
    }
 
+   if ("lint_results" %in% names(log_cleanup())) {
+      cleaned_log_vec <- c(cleaned_log_vec,
+                           write_log_header("Linter Results"),
+                           write_lint_results())
 
+      cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "lint_results"]
+   }
 
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_header("Program Run Time Information"),
