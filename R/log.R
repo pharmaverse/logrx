@@ -154,8 +154,8 @@ log_write <- function(file = NA,
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_header("User and File Information"),
                         write_log_element("user", "User: "),
-                        write_sha1(),
-                        write_file_name_path())
+                        write_file_name_path(),
+                        write_sha1())
 
 
    cleaned_log_vec <- c(cleaned_log_vec,

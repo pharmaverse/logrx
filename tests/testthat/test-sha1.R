@@ -1,21 +1,29 @@
 test_that("axecute will run a file and create the necessary log", {
    options("log.rx" = NULL)
-   scriptPath <- tempfile()
-   logDir <- tempdir()
-   writeLines("print('hello logrx')", con = scriptPath)
+   scriptPath_sha <- tempfile()
+   logDir_sha <- tempdir()
+   writeLines("print('hello logrx')", con = scriptPath_sha)
 
    # check no log is currently written out
-   expect_warning(expect_error(file(file.path(logDir, "log_out"), "r"), "cannot open the connection"))
+   expect_warning(expect_error(
+      file(file.path(logDir_sha, "log_out_sha"), "r"),
+      "cannot open the connection")
+      )
 
-   axecute(scriptPath, log_name = "log_out", log_path = logDir, remove_log_object = FALSE)
-   con <- file(file.path(logDir, "log_out"), "r")
+   axecute(scriptPath_sha,
+           log_name = "log_out_sha",
+           log_path = logDir_sha,
+           remove_log_object = FALSE)
+
+
+   con <- file(file.path(logDir_sha, "log_out_sha"), "r")
    flines <- readLines(con)
    close(con)
 
    # check that the output file is populated
    expect_gt(length(flines), 1)
    # check all the elements are there
-   expect_true(grepl(paste(write_log_header("logrx Metadata"), collapse = ','),
+   expect_true(grepl(paste(write_log_header("File HashSum:"), collapse = ','),
                      paste(flines,collapse = ',')))
    expect_true(grepl(paste(write_log_header("User and File Information"), collapse = ','),
                      paste(flines,collapse = ',')))
@@ -33,35 +41,37 @@ test_that("axecute will run a file and create the necessary log", {
                      paste(flines,collapse = ',')))
 
    # remove all the stuff we added
-   rm(flines, con, scriptPath, logDir)
+   rm(flines, con, scriptPath_sha, logDir_sha)
 
 })
 
 test_that("to_report works to control log output elements", {
    options("log.rx" = NULL)
-   scriptPath <- tempfile()
-   logDir <- tempdir()
+   scriptPath_sha <- tempfile()
+   logDir_sha <- tempdir()
    writeLines(
       c("message('hello logrx')",
         "cat('this is output')",
         "data.frame(c(8, 6, 7, 5, 3, 0, 9))"),
-      con = scriptPath)
+      con = scriptPath_sha)
 
    # check no log is currently written out
-   expect_warning(expect_error(file(file.path(logDir, "log_out_report"), "r"), "cannot open the connection"))
+   expect_warning(expect_error(file(file.path(logDir_sha, "log_out_report_sha"), "r"), "cannot open the connection"))
 
-   axecute(scriptPath,
-           log_name = "log_out_report",
-           log_path = logDir,
+   axecute(scriptPath_sha,
+           log_name = "log_out_report_sha",
+           log_path = logDir_sha,
            remove_log_object = FALSE,
            to_report = c("messages", "result"))
-   con <- file(file.path(logDir, "log_out_report"), "r")
+   con <- file(file.path(logDir_sha, "log_out_report_sha"), "r")
    flines <- readLines(con)
    close(con)
 
    expect_true(any(grepl("^Messages:", flines) == TRUE))
    expect_true(all(grepl("^Output:", flines) != TRUE))
    expect_true(any(grepl("^Result:", flines) == TRUE))
+
+   rm(flines, con, scriptPath_sha, logDir_sha)
 
 
 })

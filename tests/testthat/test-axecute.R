@@ -63,5 +63,6 @@ test_that("to_report works to control log output elements", {
    expect_true(all(grepl("^Output:", flines) != TRUE))
    expect_true(any(grepl("^Result:", flines) == TRUE))
 
+   rm(flines, con, scriptPath, logDir)
 
 })
