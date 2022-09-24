@@ -50,7 +50,7 @@ Imports:
     stringi,
     waiter,
     tibble,
-    digest
+    digest,
     lintr
 Suggests: 
     testthat (>= 3.0.0),
