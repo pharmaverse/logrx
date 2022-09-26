@@ -13,6 +13,8 @@ Named list of masked functions, source package, and what they mask
 Returns named list of masked functions
 }
 \examples{
+\dontrun{
 get_masked_functions()
+}
 
 }

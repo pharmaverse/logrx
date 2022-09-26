@@ -2,16 +2,17 @@
 % Please edit documentation in R/writer.R
 \name{write_log_header}
 \alias{write_log_header}
-\title{Generic function to format log section headers}
+\title{Formatting of log file section headers}
 \usage{
 write_log_header(title_string)
 }
 \arguments{
-\item{title_string}{String to be used as section title}
+\item{title_string}{String. Used as section title}
 }
 \value{
-A vector with the header including title
+Vector of strings. Formatted log file section header
 }
 \description{
-Generic function to format log section headers
+\code{write_log_header} formats a string and returns it as a formatted log file
+section header
 }

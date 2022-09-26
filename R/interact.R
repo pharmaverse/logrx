@@ -6,7 +6,6 @@
 #' @param el_value the value to be added to the log.rx element
 #'
 #' @return Nothing
-#' @export
 #'
 set_log_element <- function(el_key, el_value){
    # check if key is currently in the log.rx environment
@@ -29,7 +28,6 @@ set_log_element <- function(el_key, el_value){
 #' @param el_key the key of the element in log.rx to be fetched
 #'
 #' @return Value of corresponding element from log.rx environment
-#' @export
 #'
 get_log_element <- function(el_key){
    if (!(el_key %in% names(getOption('log.rx')))) {
@@ -57,7 +55,6 @@ get_log_element <- function(el_key){
 #' @param log_path The log path
 #'
 #' @return Nothing
-#' @export
 #'
 set_log_name_path <- function(log_name = NA, log_path = NA) {
    # If log_name was previously assigned, generate warning
@@ -126,7 +123,6 @@ run_file <- function(file){
 #' @param file File to run
 #'
 #' @return Nothing
-#' @export
 #'
 run_safely_loudly <- function(file) {
    ret <- loudly(run_safely(file))

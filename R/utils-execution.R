@@ -8,7 +8,6 @@
 #' @return Wrapped function returns a list with components
 #'   `result`, `stream`, `messages` and `warnings`.
 #'
-#' @export
 loudly <- function(code){
    warnings <- character()
    wHandler <- function(w) {

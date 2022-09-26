@@ -13,6 +13,8 @@ Formatted Session Info
 Returns Session Info
 }
 \examples{
+\dontrun{
 get_session_info()
+}
 
 }

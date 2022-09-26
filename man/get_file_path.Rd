@@ -18,6 +18,8 @@ full path of file being run
 Gets full path of file being run
 }
 \examples{
+\dontrun{
 get_file_path()
+}
 
 }

@@ -13,6 +13,8 @@ Named list of logrx package metadata attributes
 Returns named list of logrx metadata attributes
 }
 \examples{
+\dontrun{
 get_logrx_metadata()
+}
 
 }

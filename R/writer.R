@@ -6,7 +6,6 @@
 #' @param prefix string to be placed before element value during formatting
 #'
 #' @return formatted element including prefix
-#' @export
 #'
 write_log_element <- function(el_key, prefix = NULL) {
    # get element from log
@@ -22,7 +21,6 @@ write_log_element <- function(el_key, prefix = NULL) {
 #' Format log.rx's metadata attributes for writing
 #'
 #' @return A vector of log.rx's metadata attributes
-#' @export
 #'
 write_metadata <- function(){
    metadata <- get_log_element("metadata")
@@ -43,7 +41,6 @@ write_metadata <- function(){
 #' @importFrom stringr str_c
 #'
 #' @return A vector of log.rx's session info attribute
-#' @export
 #'
 write_session_info <- function(){
    session_info <- get_log_element("session_info") %>%
@@ -62,7 +59,6 @@ write_session_info <- function(){
 #' Format file name and path for writing
 #'
 #' @return A vector of file name and path prefixed
-#' @export
 #'
 write_file_name_path <- function(){
    file_name <- ifelse(is.na(get_log_element("file_name")),
@@ -81,7 +77,6 @@ write_file_name_path <- function(){
 #' Format masked functions attribute for writing
 #'
 #' @return A formatted vector of masked functions
-#' @export
 #'
 #' @importFrom purrr imap
 #'
@@ -97,9 +92,12 @@ write_masked_functions <- function(){
    return(masked_functions)
 }
 
-#' Format used functions attribute for writing
+#' Formats and returns a vector of used package functions
 #'
-#' @return A formatted vector of used functions
+#' `write_used_functions()` gets log.rx used_packages_functions attribute,
+#' formats and returns the list of used package functions
+#'
+#' @return Formatted vector of used package functions
 #' @export
 #'
 #' @importFrom purrr map2
@@ -120,9 +118,13 @@ write_used_functions <- function(){
       unlist()
 }
 
-#' Format unapproved functions attribute for writing
+
+#' Formats and returns a vector of unapproved functions
 #'
-#' @return A formatted vector of unapproved functions
+#' `write_unapproved_functions()` gets log.rx unapproved_packages_functions
+#' attribute, formats and returns the list of unapproved functions
+#'
+#' @return Formatted vector of unapproved functions
 #' @export
 #'
 #' @importFrom purrr map2
@@ -146,11 +148,14 @@ write_unapproved_functions <- function(){
       unlist()
 }
 
-#' Generic function to format log section headers
+#' Formatting of log file section headers
 #'
-#' @param title_string String to be used as section title
+#' `write_log_header` formats a string and returns it as a formatted log file
+#' section header
 #'
-#' @return A vector with the header including title
+#' @param title_string String. Used as section title
+#'
+#' @return Vector of strings. Formatted log file section header
 #' @export
 #'
 write_log_header <- function(title_string){
@@ -168,7 +173,6 @@ write_log_header <- function(title_string){
 #' Format errors attribute for writing
 #'
 #' @return A formatted vector of errors
-#' @export
 #'
 #' @importFrom utils capture.output
 #'
@@ -182,7 +186,6 @@ write_errors <- function() {
 #' Format warnings attribute for writing
 #'
 #' @return A formatted vector of warnings
-#' @export
 #'
 write_warnings <- function() {
    warnings <- get_log_element("warnings")
@@ -197,7 +200,6 @@ write_warnings <- function() {
 #' @importFrom stringr str_remove_all
 #'
 #' @return A formatted vector of messages
-#' @export
 #'
 write_messages <- function() {
    messages <- get_log_element("messages") %>%
@@ -212,7 +214,6 @@ write_messages <- function() {
 #' @importFrom stringr str_replace_all
 #'
 #' @return A formatted vector of output
-#' @export
 #'
 write_output <- function() {
    output <- get_log_element("output")
@@ -224,7 +225,6 @@ write_output <- function() {
 #' Format result attribute for writing
 #'
 #' @return A formatted vector of results
-#' @export
 #'
 write_result <- function() {
    result <- get_log_element("result")
