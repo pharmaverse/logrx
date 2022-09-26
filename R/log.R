@@ -1,10 +1,11 @@
 ### Functions to initialise, configure, cleanup, and write the log.rx environment
 
-#' Initialises the log.rx environment
+#' Initialisation of the log.rx environment
+#'
+#' `log_init()` initialises the log.rx environment
 #'
 #' @return Nothing
 #' @export
-#'
 #'
 log_init <- function(){
    log.rx <- new.env()
@@ -15,11 +16,14 @@ log_init <- function(){
 }
 
 
-#' Configures the log.rx environment
+#' Configuration of the log.rx environment
 #'
-#' @param file File path of file being run, optional
-#' @param log_name The log name
-#' @param log_path The log path
+#' `log_config()` initialises the log.rx environment, adds its attributes, and
+#' sets them
+#'
+#' @param file String. Path to file executed. Optional
+#' @param log_name String. Name of log file. Optional
+#' @param log_path String. Path to log file. Optional
 #'
 #' @return Nothing
 #' @export
@@ -82,10 +86,12 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
    set_log_element("lint_results", get_lint_results(file))
 }
 
-#' Cleans up log and does checks against elements
+#' Cleaning-up of log.rx object
 #'
-#' @return List of non-NA elements and their value in log.rx environment
-#' @export
+#' `log_cleanup()` compiles a list of non-NA log.rx attributes and their
+#' values, and return it
+#'
+#' @return List of non-NA log.rx attributes and their values
 #'
 log_cleanup <- function() {
    # check the log.rx environment exists
@@ -112,14 +118,16 @@ log_cleanup <- function() {
 }
 
 
-#' Write the formatted log.rx to a file
+#' Formatting and writing of the log.rx object to a log file
 #'
-#' @param file File path of file being run
-#' @param remove_log_object Should the log object be removed after writing,
-#'   defaults to TRUE
-#' @param to_report toggle for optional reporting objects, additional
-#'   information in \code{\link{axecute}}
+#' `log_write()` gets and formats the content of the log.rx before writing it
+#' to a log file
 #'
+#' @param file String. Path to file executed
+#' @param remove_log_object Boolean. Should the log object be removed after
+#' writing the log file? Defaults to TRUE
+#' @param to_report String vector. Objects to optionally report; additional
+#' information in \code{\link{axecute}}
 #'
 #' @return Nothing
 #' @export
@@ -241,7 +249,10 @@ log_write <- function(file = NA,
 }
 
 
-#' Remove the log.rx environment by setting options("log.rx") to NULL
+#' log.rx object removal
+#'
+#' `log_remove()` removes the log.rx object by setting `options("log.rx")` to
+#' NULL
 #'
 #' @return Nothing
 #' @export

@@ -2,7 +2,7 @@
 % Please edit documentation in R/log.R
 \name{log_write}
 \alias{log_write}
-\title{Write the formatted log.rx to a file}
+\title{Formatting and writing of the log.rx object to a log file}
 \usage{
 log_write(
   file = NA,
@@ -11,17 +11,18 @@ log_write(
 )
 }
 \arguments{
-\item{file}{File path of file being run}
+\item{file}{String. Path to file executed}
 
-\item{remove_log_object}{Should the log object be removed after writing,
-defaults to TRUE}
+\item{remove_log_object}{Boolean. Should the log object be removed after
+writing the log file? Defaults to TRUE}
 
-\item{to_report}{toggle for optional reporting objects, additional
+\item{to_report}{String vector. Objects to optionally report; additional
 information in \code{\link{axecute}}}
 }
 \value{
 Nothing
 }
 \description{
-Write the formatted log.rx to a file
+\code{log_write()} gets and formats the content of the log.rx before writing it
+to a log file
 }

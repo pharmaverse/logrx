@@ -2,13 +2,14 @@
 % Please edit documentation in R/log.R
 \name{log_cleanup}
 \alias{log_cleanup}
-\title{Cleans up log and does checks against elements}
+\title{Cleaning-up of log.rx object}
 \usage{
 log_cleanup()
 }
 \value{
-List of non-NA elements and their value in log.rx environment
+List of non-NA log.rx attributes and their values
 }
 \description{
-Cleans up log and does checks against elements
+\code{log_cleanup()} compiles a list of non-NA log.rx attributes and their
+values, and return it
 }

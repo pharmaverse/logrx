@@ -2,20 +2,21 @@
 % Please edit documentation in R/log.R
 \name{log_config}
 \alias{log_config}
-\title{Configures the log.rx environment}
+\title{Configuration of the log.rx environment}
 \usage{
 log_config(file = NA, log_name = NA, log_path = NA)
 }
 \arguments{
-\item{file}{File path of file being run, optional}
+\item{file}{String. Path to file executed. Optional}
 
-\item{log_name}{The log name}
+\item{log_name}{String. Name of log file. Optional}
 
-\item{log_path}{The log path}
+\item{log_path}{String. Path to log file. Optional}
 }
 \value{
 Nothing
 }
 \description{
-Configures the log.rx environment
+\code{log_config()} initialises the log.rx environment, adds its attributes, and
+sets them
 }

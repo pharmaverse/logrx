@@ -2,15 +2,14 @@
 % Please edit documentation in R/logrxAddin.R
 \name{logrxAddin}
 \alias{logrxAddin}
-\title{logrxAddin
-Code needed to create the miniUI for the Addin}
+\title{Creation of the logrx RStudio Addin}
 \usage{
 logrxAddin()
 }
 \value{
-returns miniUI Addin to batch submit r files and create logs around them
+MiniUI for the logrx Rstudio Addin for batch submitting R files and
+generating their logs
 }
 \description{
-logrxAddin
-Code needed to create the miniUI for the Addin
+\code{logrxAddin} creates the miniUI for the logrx RStudio Addin
 }
