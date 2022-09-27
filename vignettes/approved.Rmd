@@ -36,7 +36,7 @@ build_approved(approved_pkgs)
 
 # 3. Save as `approved.rds`
 You can use the `file` argument in `build_approved()` to save `approved.rds` 
-instead of return the tibble.
+instead of returning the tibble.
 
 ```{r}
 dir <- tempdir()
@@ -55,14 +55,16 @@ options(log.rx.approved = file.path(dir, "approved.rds"))
 # 5. You're done. Let's axecute! 
 `logrx` will take it from there. When each program is executed, packages and 
 functions will be compared to `approved.rds` and if any unapproved use is 
-found, it will be logged within the "Unapproved Package and Functions" section of the log file.
+found, it will be logged within the "Unapproved Package and Functions" section 
+of the log file.
 
 # Example
 
-Let's write a simple script summarizing mean mpg from mtcars. We save this as `mpg.R` in the temporary directory `dir` and `axecute()` it.
+Let's write a simple script summarizing mean mpg from mtcars. We save this as 
+`mpg.R` in the temporary directory `dir` and `axecute()` it.
 
 ```{r}
-library(dplyr)
+library(dplyr, warn.conflicts = FALSE)
 
 results <- mtcars %>%
    group_by(cyl) %>%
@@ -89,7 +91,6 @@ results %>%
 fileConn <- file(file.path(dir,"mpg.R"))
 writeLines(text, fileConn)
 close(fileConn)
-
 ```
 
 ```{r results='hide'}
