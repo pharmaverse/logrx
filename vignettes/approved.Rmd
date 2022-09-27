@@ -59,8 +59,7 @@ found, it will be logged within the "Unapproved Package and Functions" section o
 
 # Example
 
-Let's write a simple script summarizing mean mpg from mtcars. We save this as `
-mpg.R` in the temporary directory `dir` and `axecute()` it.
+Let's write a simple script summarizing mean mpg from mtcars. We save this as `mpg.R` in the temporary directory `dir` and `axecute()` it.
 
 ```{r}
 library(dplyr)
