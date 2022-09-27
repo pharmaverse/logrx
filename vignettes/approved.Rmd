@@ -35,7 +35,7 @@ build_approved(approved_pkgs)
 ```
 
 # 3. Save as `approved.rds`
-You can use the `file` argument in `build_approved()` to save approved.rds 
+You can use the `file` argument in `build_approved()` to save `approved.rds` 
 instead of return the tibble.
 
 ```{r}
