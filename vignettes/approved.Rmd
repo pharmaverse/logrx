@@ -55,7 +55,7 @@ options(log.rx.approved = file.path(dir, "approved.rds"))
 # 5. You're done. Let's axecute! 
 `logrx` will take it from there. When each program is executed, packages and 
 functions will be compared to `approved.rds` and if any unapproved use is 
-found, it will be logged within the "Unapproved Package and Functions" section.
+found, it will be logged within the "Unapproved Package and Functions" section of the log file.
 
 # Example
 
