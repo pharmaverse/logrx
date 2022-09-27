@@ -7,6 +7,8 @@
 #'
 #' @return formatted element including prefix
 #'
+#' @noRd
+#'
 write_log_element <- function(el_key, prefix = NULL) {
    # get element from log
    el <- get_log_element(el_key)
@@ -21,6 +23,10 @@ write_log_element <- function(el_key, prefix = NULL) {
 #' Format log.rx's metadata attributes for writing
 #'
 #' @return A vector of log.rx's metadata attributes
+#'
+#' @noRd
+#'
+#' @noRd
 #'
 write_metadata <- function(){
    metadata <- get_log_element("metadata")
@@ -42,6 +48,8 @@ write_metadata <- function(){
 #'
 #' @return A vector of log.rx's session info attribute
 #'
+#' @noRd
+#'
 write_session_info <- function(){
    session_info <- get_log_element("session_info") %>%
       # remove extra dashes on title lines
@@ -59,6 +67,8 @@ write_session_info <- function(){
 #' Format file name and path for writing
 #'
 #' @return A vector of file name and path prefixed
+#'
+#' @noRd
 #'
 write_file_name_path <- function(){
    file_name <- ifelse(is.na(get_log_element("file_name")),
@@ -79,6 +89,8 @@ write_file_name_path <- function(){
 #' @return A formatted vector of masked functions
 #'
 #' @importFrom purrr imap
+#'
+#' @noRd
 #'
 write_masked_functions <- function(){
    masked_functions_list <- get_log_element("masked_functions")
@@ -176,6 +188,8 @@ write_log_header <- function(title_string){
 #'
 #' @importFrom utils capture.output
 #'
+#' @noRd
+#'
 write_errors <- function() {
    errors <- get_log_element("errors")
 
@@ -186,6 +200,8 @@ write_errors <- function() {
 #' Format warnings attribute for writing
 #'
 #' @return A formatted vector of warnings
+#'
+#' @noRd
 #'
 write_warnings <- function() {
    warnings <- get_log_element("warnings")
@@ -201,6 +217,8 @@ write_warnings <- function() {
 #'
 #' @return A formatted vector of messages
 #'
+#' @noRd
+#'
 write_messages <- function() {
    messages <- get_log_element("messages") %>%
       map(~ str_remove_all(.x, "\n"))
@@ -215,6 +233,8 @@ write_messages <- function() {
 #'
 #' @return A formatted vector of output
 #'
+#' @noRd
+#'
 write_output <- function() {
    output <- get_log_element("output")
 
@@ -226,6 +246,8 @@ write_output <- function() {
 #'
 #' @return A formatted vector of results
 #'
+#' @noRd
+#'
 write_result <- function() {
    result <- get_log_element("result")
 
@@ -235,6 +257,8 @@ write_result <- function() {
 #' Format lint results for writing
 #'
 #' @return A formatted vector of results
+#'
+#' @noRd
 #'
 write_lint_results <- function(){
    lint_results <- get_log_element("lint_results")

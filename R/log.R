@@ -93,6 +93,8 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
 #'
 #' @return List of non-NA log.rx attributes and their values
 #'
+#' @noRd
+#'
 log_cleanup <- function() {
    # check the log.rx environment exists
    if (!('log.rx' %in% names(options()))) {

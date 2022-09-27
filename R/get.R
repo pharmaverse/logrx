@@ -13,6 +13,8 @@
 #' get_logrx_metadata()
 #' }
 #'
+#' @noRd
+#'
 get_logrx_metadata <- function(){
 
    logrx_session_info <- session_info()$packages %>%
@@ -42,6 +44,8 @@ get_logrx_metadata <- function(){
 #' \dontrun{
 #' get_file_path()
 #' }
+#'
+#' @noRd
 #'
 get_file_path <- function(file = NA, normalize = TRUE){
    if (!is.na(file)){
@@ -89,6 +93,8 @@ get_file_path <- function(file = NA, normalize = TRUE){
 #' get_session_info()
 #' }
 #'
+#' @noRd
+#'
 get_session_info <- function(){
    return(capture.output(session_info(info = "all")))
 }
@@ -107,6 +113,8 @@ get_session_info <- function(){
 #' \dontrun{
 #' get_masked_functions()
 #' }
+#'
+#' @noRd
 #'
 get_masked_functions <- function(){
    # get conflicts into stable object
@@ -142,6 +150,9 @@ get_masked_functions <- function(){
 #' file <- "ex1.R"
 #' get_functions_used(file)
 #' }
+#'
+#' @noRd
+#'
 get_used_functions <- function(file){
 
    # catch error
@@ -202,6 +213,9 @@ get_used_functions <- function(file){
 #' @importFrom purrr map
 #'
 #' @return tibble that includes `library`
+#'
+#' @noRd
+#'
 get_library <- function(df){
    search_lookup <- map(search(), objects)
    names(search_lookup) <- search()
@@ -235,6 +249,9 @@ get_first <- function(func, search_lookup){
 #' @importFrom dplyr anti_join
 #'
 #' @return tibble that includes packages and functions used, but not approved
+#'
+#' @noRd
+#'
 get_unapproved_use <- function(approved_packages, used_packages) {
    anti_join(approved_packages, used_packages, by = c("library", "function_name"))
 }
@@ -248,6 +265,9 @@ get_unapproved_use <- function(approved_packages, used_packages) {
 #' @importFrom lintr lint
 #'
 #' @return results from `lintr::lint()`
+#'
+#' @noRd
+#'
 get_lint_results <- function(file) {
    # lint file if option is turned on
    if (!is.logical(getOption('log.rx.lint'))) {
