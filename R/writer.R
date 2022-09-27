@@ -217,6 +217,19 @@ write_result <- function() {
 
    c("\nResult:", paste0("\t", capture.output(result$value)))
 }
+#' Format output attribute for writing
+#'
+#' @importFrom stringr str_replace_all
+#'
+#' @return A formatted vector of output
+#' @export
+#'
+write_output <- function() {
+   output <- get_log_element("output")
+
+   paste0("\nOutput:\n\t",
+          str_replace_all(output, "\n", "\n\t"))
+}
 
 #' Format stream attribute for writing
 #'

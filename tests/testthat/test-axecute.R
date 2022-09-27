@@ -27,9 +27,7 @@ test_that("axecute will run a file and create the necessary log", {
                      paste(flines,collapse = ',')))
    expect_true(grepl(paste(write_log_header("Errors and Warnings"), collapse = ','),
                      paste(flines,collapse = ',')))
-   expect_true(grepl(paste(write_log_header("Messages and Result"), collapse = ','),
-                     paste(flines,collapse = ',')))
-   expect_true(grepl(paste(write_log_header("Log Stream"), collapse = ','),
+   expect_true(grepl(paste(write_log_header("Messages, Output, and Result"), collapse = ','),
                      paste(flines,collapse = ',')))
    expect_true(grepl(paste(write_log_header("Log Output File"), collapse = ','),
                      paste(flines,collapse = ',')))
@@ -62,8 +60,9 @@ test_that("to_report works to control log output elements", {
    close(con)
 
    expect_true(any(grepl("^Messages:", flines) == TRUE))
-   expect_true(all(grepl("^Log Stream:", flines) != TRUE))
+   expect_true(any(grepl("^Output:", flines) != TRUE))
    expect_true(any(grepl("^Result:", flines) == TRUE))
+   expect_true(all(grepl("^Log Stream:", flines) != TRUE))
 
 
 })

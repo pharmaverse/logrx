@@ -67,6 +67,7 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
       "errors",
       "messages",
       "result",
+      "output",
       "stream",
       "start_time",
       "end_time",
@@ -233,9 +234,9 @@ log_write <- function(file = NA,
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_warnings())
 
-   if (any(c("messages", "result") %in% to_report)){
+   if (any(c("messages", "output", "result") %in% to_report)){
       cleaned_log_vec <- c(cleaned_log_vec,
-                           write_log_header("Messages and Result"))
+                           write_log_header("Messages, Output, and Result"))
    }
 
    if ("messages" %in% to_report){
@@ -245,6 +246,10 @@ log_write <- function(file = NA,
    if ("result" %in% to_report){
       cleaned_log_vec <- c(cleaned_log_vec,
                            write_result())
+   }
+   if ("output" %in% to_report){
+      cleaned_log_vec <- c(cleaned_log_vec,
+                           write_output())
    }
    if ("stream" %in% to_report){
       cleaned_log_vec <- c(cleaned_log_vec,

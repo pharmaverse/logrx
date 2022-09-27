@@ -2,16 +2,19 @@
 % Please edit documentation in R/interact.R
 \name{run_safely_loudly}
 \alias{run_safely_loudly}
-\title{Safely run an R script and record results, outputs, messages, errors, warnings}
+\title{Safely run an R script and record errors, warnings, messages, output, results, and stream}
 \usage{
-run_safely_loudly(file)
+run_safely_loudly(file, to_report)
 }
 \arguments{
 \item{file}{File to run}
+
+\item{to_report}{toggle for optional reporting objects, additional
+information in \code{\link{axecute}}}
 }
 \value{
 Nothing
 }
 \description{
-Safely run an R script and record results, outputs, messages, errors, warnings
+Safely run an R script and record errors, warnings, messages, output, results, and stream
 }

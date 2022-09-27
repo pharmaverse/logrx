@@ -5,14 +5,17 @@
 \title{Capture errors, warnings, messages, and a stream output from
 executing R code}
 \usage{
-loudly(code)
+loudly(code, to_report)
 }
 \arguments{
 \item{code}{All code to be run loudly}
+
+\item{to_report}{toggle for optional reporting objects, additional
+information in \code{\link{axecute}}}
 }
 \value{
 Wrapped function returns a list with components
-\code{result}, \code{stream}, \code{messages} and \code{warnings}.
+\code{result}, \code{output}, \code{stream}, \code{messages} and \code{warnings}.
 }
 \description{
 Capture errors, warnings, messages, and a stream output from

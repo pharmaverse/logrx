@@ -118,22 +118,25 @@ run_file <- function(file){
    source(file, local = exec_env)
 }
 
-#' Safely run an R script and record results, outputs, messages, errors, warnings
+#' Safely run an R script and record errors, warnings, messages, output, results, and stream
 #'
 #' @importFrom purrr safely discard
 #' @importFrom stringr str_starts
 #'
 #' @param file File to run
+#' @param to_report toggle for optional reporting objects, additional
+#'   information in \code{\link{axecute}}
 #'
 #' @return Nothing
 #' @export
 #'
-run_safely_loudly <- function(file) {
-   ret <- loudly(run_safely(file))
-   set_log_element("messages", discard(ret$messages, ~ str_starts(.x, "Error")))
-   set_log_element("result", ret$result$result)
-   set_log_element("warnings", ret$warnings)
+run_safely_loudly <- function(file, to_report) {
+   ret <- loudly(run_safely(file), to_report)
    set_log_element("errors", ret$result$error)
+   set_log_element("warnings", ret$warnings)
+   set_log_element("messages", discard(ret$messages, ~ str_starts(.x, "Error")))
+   set_log_element("output", ret$output)
+   set_log_element("result", ret$result$result)
    set_log_element("stream", ret$stream)
 
    # Session Info
