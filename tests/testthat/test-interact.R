@@ -50,6 +50,8 @@ test_that("get_log_element works", {
                               l)
 
    log_remove()
+
+
 })
 
 test_that("setting log name works", {
