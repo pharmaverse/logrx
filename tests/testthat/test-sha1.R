@@ -23,8 +23,6 @@ test_that("axecute will run a file and create the necessary log", {
    # check that the output file is populated
    expect_gt(length(flines), 1)
    # check all the elements are there
-   expect_true(grepl(paste(write_log_header("File HashSum:"), collapse = ','),
-                     paste(flines,collapse = ',')))
    expect_true(grepl(paste(write_log_header("User and File Information"), collapse = ','),
                      paste(flines,collapse = ',')))
    expect_true(grepl(paste(write_log_header("Session Information"), collapse = ','),
@@ -42,6 +40,7 @@ test_that("axecute will run a file and create the necessary log", {
 
    # remove all the stuff we added
    rm(flines, con, scriptPath_sha, logDir_sha)
+   log_remove()
 
 })
 
@@ -72,6 +71,6 @@ test_that("to_report works to control log output elements", {
    expect_true(any(grepl("^Result:", flines) == TRUE))
 
    rm(flines, con, scriptPath_sha, logDir_sha)
-
+   log_remove()
 
 })

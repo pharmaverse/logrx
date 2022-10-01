@@ -11,7 +11,7 @@ test_that("log_config configures the log and all the necessary elements", {
    expect_setequal(names(getOption("log.rx")),
                    c("metadata","session_info","warnings","errors","messages",
                      "result","output","start_time", "end_time", "run_time",
-                     "file_name","file_path","user", "masked_functions",
+                     "file_name","file_path","user", "hash_sum", "masked_functions",
                      "used_packages_functions", "unapproved_packages_functions",
                      "lint_results", "log_name","log_path"))
 
