@@ -10,7 +10,7 @@ axecute(
   log_path = NA,
   remove_log_object = TRUE,
   quit_on_error = TRUE,
-  to_report = c("messages", "output", "result", "hashsum")
+  to_report = c("messages", "output", "result")
 )
 }
 \arguments{
