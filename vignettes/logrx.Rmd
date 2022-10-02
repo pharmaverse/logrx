@@ -27,6 +27,7 @@ The following attributes are recorded in the log:
 
 * `metadata`: The logrx `package` information
 * `user and file information`: The user that generates the log, file name and path of the R script
+* `hash_sum`:  A unique sha1 is created for the log file
 * `session_info`: The R session information
 * `packages`: List all available packages in the environment
 * `external_software`" Lists all external software

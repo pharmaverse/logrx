@@ -1,4 +1,4 @@
-test_that("File HashSum is generated for ex1.R", {
+test_that("File HashSum does not change for ex1.R", {
    log_remove()
    scriptPath <- test_path("ref", "ex1.R")
    logDir <- test_path("ref")
