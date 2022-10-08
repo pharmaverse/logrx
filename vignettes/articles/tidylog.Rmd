@@ -1,8 +1,8 @@
 ---
-title: "Logging for an ADSL dataset"
+title: "Logging with tidylog"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Logging for an ADSL dataset}
+  %\VignetteIndexEntry{Using tidylog and logrx}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -15,13 +15,19 @@ knitr::opts_chunk$set(
 ```
 
 
-In this section, we will `axecute()` an  R script that creates an `ADSL` dataset to get a log file.  This file was taken from the `admiral::use_ad_template("adsl")` with a few changes to its contents
+In this article, we will create a log with `axecute()` while using the `tidylog` package.  The goal of `{tidylog}` is to provide feedback about `{dplyr}` and `{tidyr}` operations. It provides simple wrapper functions for almost all `{dplyr}` and `{tidyr}` functions, such as `filter`, `mutate`, `select`, `full_join`, and `group_by`. 
+
+## Logging a simple script
+
+## Logging a ADSL script
+
+an  R script that creates and `ADSL` to get a log file.  This file was taken from the `admiral::use_ad_template("adsl")` with a few changes to its contents
 to showcase certain features of the `logrx` package's log file.
 
 Users wishing to run a similar script will need to do the following:
 
 * Install the logrx package 
-* Copy the below script or use `admiral::use_ad_template("adsl")` to generate it.
+* Copy the below script or use `admiral::use_ad_template("adsl)` to generate it.
 * Note this script differs from the template with a call to `diffdf` to do a compare,
 a simple custom message is used and results are manipulated for illustrative purposes.  
 * Users will also need to make the decision on whether they want to use the Addin of 
@@ -67,10 +73,6 @@ this script.
    * Message sent from the script to the log file
    * Results appended to the file
 
-<iframe width="700" height="400" src='adsl_log.html'/>
+<iframe width="700" height="400" src='adsl_tidylog.html'/>
 
-### Comparison between Production and QC datasets
 
-For illustrative purposes, we have included the comparison file between the two datasets.  Here we can see that `diffdf::diffdf()` correctly picked up the differences in the dataset.  The log file picked up the warning from `diffdf::diffdf()` and placed it in the appropriate section of the above log file.
-
-<iframe width="700" height="250" src='adsl_lst.html'/>

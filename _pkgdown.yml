@@ -41,6 +41,7 @@ articles:
   - logrx
   - articles/tables
   - articles/adsl_demo
+  - articles/tidylog
 
 - title: Helpers
   navbar: Helpers
