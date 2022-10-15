@@ -23,6 +23,14 @@
 #' @return 0 if there are no errors or 1 if there are any errors
 #' @export
 #'
+#' @examples
+#' dir <- tempdir()
+#' text <- 'print("Hello, Timberperson!")'
+#' fileConn <- file(file.path(dir, "hello.R"))
+#' writeLines(text, fileConn)
+#' close(fileConn)
+#'
+#' axecute(file.path(dir, "hello.R"))
 axecute <- function(file, log_name = NA,
                     log_path = NA,
                     remove_log_object = TRUE,

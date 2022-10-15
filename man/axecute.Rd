@@ -2,7 +2,7 @@
 % Please edit documentation in R/axecute.R
 \name{axecute}
 \alias{axecute}
-\title{Creation of a log and execution of a file}
+\title{Creation of a log and axecution of a file}
 \usage{
 axecute(
   file,
@@ -40,4 +40,13 @@ many as necessary:
 \description{
 \code{axecute()} creates a log, executes a file, and returns 0 if there are no
 errors or 1 if there are any errors
+}
+\examples{
+dir <- tempdir()
+text <- 'print("Hello, Timberperson!")'
+fileConn <- file(file.path(dir, "hello.R"))
+writeLines(text, fileConn)
+close(fileConn)
+
+axecute(file.path(dir, "hello.R"))
 }
