@@ -16,3 +16,8 @@ Vector of strings. Formatted log file section header
 \code{write_log_header} formats a string and returns it as a formatted log file
 section header
 }
+\examples{
+\dontrun{
+write_log_header("Section Header")
+}
+}

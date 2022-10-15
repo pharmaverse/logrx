@@ -26,8 +26,6 @@ write_log_element <- function(el_key, prefix = NULL) {
 #'
 #' @noRd
 #'
-#' @noRd
-#'
 write_metadata <- function(){
    metadata <- get_log_element("metadata")
 
@@ -170,6 +168,10 @@ write_unapproved_functions <- function(){
 #' @return Vector of strings. Formatted log file section header
 #' @export
 #'
+#' @examples
+#' \dontrun{
+#' write_log_header("Section Header")
+#' }
 write_log_header <- function(title_string){
    # create left and right pad length
    rpad <- ceiling((78 - nchar(title_string))/2)
