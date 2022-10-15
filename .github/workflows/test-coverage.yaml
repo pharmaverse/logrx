@@ -40,5 +40,5 @@ jobs:
 
       - name: Test coverage
         run: |
-          covr::codecov()
+          covr::codecov(function_exclusions = "\\.onLoad")
         shell: Rscript {0}
