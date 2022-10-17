@@ -14,10 +14,29 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{css, echo=FALSE}
+.scroll-100 {
+  max-height: 100px;
+  overflow-y: auto;
+  background-color: inherit;
+}
+```
 
 In this article, we will create a log with `axecute()` while using the `tidylog` package.  The goal of `{tidylog}` is to provide feedback about `{dplyr}` and `{tidyr}` operations. It provides simple wrapper functions for almost all `{dplyr}` and `{tidyr}` functions, such as `filter`, `mutate`, `select`, `full_join`, and `group_by`. 
 
-## Logging a simple script
+## Logging a simple script with {logrx} and {tidylog}
+
+Below we have a simple script using the `us_rent_income` dataset.  We will explore just a few functions avaialbe in `{tidyr}` and `{dplyr}`.  
+
+```{r engine='bash', comment='', echo=FALSE}
+cd ..
+cd ..
+cd data-raw
+cat tidylog_ex1.R
+```
+
+<iframe width="700" height="400" src='tidylog_ex1.html'/>
+
 
 ## Logging a ADSL script
 
