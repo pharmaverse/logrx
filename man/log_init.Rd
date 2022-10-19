@@ -12,3 +12,10 @@ Nothing
 \description{
 \code{log_init()} initialises the log.rx environment
 }
+\examples{
+# Initialise the log.rx environment
+log_init()
+
+# Remove the log.rx environment
+log_remove()
+}

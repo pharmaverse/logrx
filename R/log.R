@@ -7,6 +7,12 @@
 #' @return Nothing
 #' @export
 #'
+#' @examples
+#' # Initialise the log.rx environment
+#' log_init()
+#'
+#' # Remove the log.rx environment
+#' log_remove()
 log_init <- function(){
    log.rx <- new.env()
 
@@ -28,6 +34,23 @@ log_init <- function(){
 #' @return Nothing
 #' @export
 #'
+#' @examples
+#' dir <- tempdir()
+#' text <- 'print("Hello, Timberperson!")'
+#' fileConn <- file(file.path(dir, "hello.R"))
+#' writeLines(text, fileConn)
+#' close(fileConn)
+#'
+#' file <- file.path(dir, "hello.R")
+#'
+#' # Initialise and configure the log.rx environment
+#' log_config(file)
+#'
+#' # Run the script and record results, outputs, messages, errors, and warnings
+#' logrx:::run_safely_loudly(file)
+#'
+#' # Write the log
+#' log_write(file)
 log_config <- function(file = NA, log_name = NA, log_path = NA){
    # If the log.rx environment is not NULL or empty, warn the user
    if (!is.null(getOption("log.rx"))) {
@@ -134,6 +157,23 @@ log_cleanup <- function() {
 #' @return Nothing
 #' @export
 #'
+#' @examples
+#' dir <- tempdir()
+#' text <- 'print("Hello, Timberperson!")'
+#' fileConn <- file(file.path(dir, "hello.R"))
+#' writeLines(text, fileConn)
+#' close(fileConn)
+#'
+#' file <- file.path(dir, "hello.R")
+#'
+#' # Initialise and configure the log.rx environment
+#' log_config(file)
+#'
+#' # Run the script and record results, outputs, messages, errors, and warnings
+#' logrx:::run_safely_loudly(file)
+#'
+#' # Write the log
+#' log_write(file)
 log_write <- function(file = NA,
                       remove_log_object = TRUE,
                       to_report = c("messages", "output", "result")){
@@ -259,6 +299,12 @@ log_write <- function(file = NA,
 #' @return Nothing
 #' @export
 #'
+#' @examples
+#' # Initialise the log.rx environment
+#' log_init()
+#'
+#' # Remove the log.rx environment
+#' log_remove()
 log_remove <- function() {
    if (!is.null(getOption("log.rx"))) {
       options("log.rx" = NULL)

@@ -13,3 +13,10 @@ Nothing
 \code{log_remove()} removes the log.rx object by setting \code{options("log.rx")} to
 NULL
 }
+\examples{
+# Initialise the log.rx environment
+log_init()
+
+# Remove the log.rx environment
+log_remove()
+}

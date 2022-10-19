@@ -26,3 +26,21 @@ Nothing
 \code{log_write()} gets and formats the content of the log.rx before writing it
 to a log file
 }
+\examples{
+dir <- tempdir()
+text <- 'print("Hello, Timberperson!")'
+fileConn <- file(file.path(dir, "hello.R"))
+writeLines(text, fileConn)
+close(fileConn)
+
+file <- file.path(dir, "hello.R")
+
+# Initialise and configure the log.rx environment
+log_config(file)
+
+# Run the script and record results, outputs, messages, errors, and warnings
+logrx:::run_safely_loudly(file)
+
+# Write the log
+log_write(file)
+}
