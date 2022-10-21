@@ -75,8 +75,6 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
       }, silent = TRUE)
    # User
    set_log_element("user", Sys.info()[["user"]])
-   # Hashsum
-   set_log_element("hash_sum", digest::sha1(file))
    # Start time
    set_log_element("start_time", strftime(Sys.time(), usetz = TRUE))
    # log name and path
