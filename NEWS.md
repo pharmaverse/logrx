@@ -1,7 +1,5 @@
 # logrx 0.2.0
 
-# logrx 0.2.0
-
 Updates 
 
   - Updated the run environment to be a child of the global environment instead of a child of the `logrx` package namespace.  This fixes the issue of `logrx` using internally imported versions of functions in the place of user imported version of functions. (#104)
@@ -11,7 +9,8 @@ Updates
   - Add options vignette and move all options for `logrx` to be set on package load if not set by user prior (#110)(#124)
   
   - Added vignette showcasing `{logrx}` working with `{tidylog}` package (#97)
-
+  
+  - Fix typo in and re-format approved vignette (#105)
 
 # logrx 0.1.1
 
