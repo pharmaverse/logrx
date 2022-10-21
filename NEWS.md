@@ -8,7 +8,7 @@ Updates
   
   - Add options vignette and move all options for `logrx` to be set on package load if not set by user prior (#110)(#124)
   
-  - Added vignette showcasing `{logrx}` working with `{tidylog}` package (#97)
+  - `{logrx}` now produces a unique hash sum for each log file and script (#29)
 
 
 # logrx 0.1.1
