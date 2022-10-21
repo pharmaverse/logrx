@@ -9,8 +9,8 @@ logrx link to repository: https://github.com/atorus-research/logrx
 -                          User and File Information                           -
 --------------------------------------------------------------------------------
 User: r590548
-File Name: adsl_tidylog.R
-File Path: /cloud/project/data-raw
+File Name: ex2_tidylog_adsl.R
+File Path: /cloud/project/data-raw/tidylog
 --------------------------------------------------------------------------------
 -                             Session Information                              -
 --------------------------------------------------------------------------------
@@ -24,9 +24,9 @@ File Path: /cloud/project/data-raw
  collate  C.UTF-8
  ctype    C.UTF-8
  tz       UTC
- date     2022-10-08
+ date     2022-10-21
  rstudio  2022.07.1+554.pro3 Spotted Wakerobin (server)
- pandoc   NA
+ pandoc   2.18 @ /usr/lib/rstudio-server/bin/quarto/bin/tools/ (via rmarkdown)
 
 ─ Packages ─────────────────────────────────────────────────────────────────────
  package      * version    date (UTC) lib source
@@ -42,12 +42,13 @@ File Path: /cloud/project/data-raw
  crayon         1.5.1      2022-03-26 [1] RSPM (R 4.2.0)
  cyclocomp      1.1.0      2016-09-10 [1] RSPM (R 4.2.0)
  desc           1.4.2      2022-09-08 [1] RSPM (R 4.2.0)
- diffdf       * 1.0.4      2020-03-17 [1] RSPM (R 4.2.0)
  digest         0.6.29     2021-12-01 [1] RSPM (R 4.2.0)
  dplyr        * 1.0.10     2022-09-01 [1] RSPM (R 4.2.0)
  ellipsis       0.3.2      2021-04-29 [1] RSPM (R 4.2.0)
+ evaluate       0.16       2022-08-09 [1] RSPM (R 4.2.0)
  fansi          1.0.3      2022-03-24 [1] RSPM (R 4.2.0)
  fastmap        1.1.0      2021-01-25 [1] RSPM (R 4.2.0)
+ fs             1.5.2      2021-12-08 [1] RSPM (R 4.2.0)
  generics       0.1.3      2022-07-05 [1] RSPM (R 4.2.0)
  glue           1.6.2      2022-02-24 [1] RSPM (R 4.2.0)
  hms            1.1.2      2022-08-19 [1] RSPM (R 4.2.0)
@@ -55,11 +56,12 @@ File Path: /cloud/project/data-raw
  httpuv         1.6.6      2022-09-08 [1] RSPM (R 4.2.0)
  jquerylib      0.1.4      2021-04-26 [1] RSPM (R 4.2.0)
  jsonlite       1.8.0      2022-02-22 [1] RSPM (R 4.2.0)
+ knitr          1.40       2022-08-24 [1] RSPM (R 4.2.0)
  later          1.3.0      2021-08-18 [1] RSPM (R 4.2.0)
  lazyeval       0.2.2      2019-03-15 [1] RSPM (R 4.2.0)
  lifecycle      1.0.2      2022-09-09 [1] RSPM (R 4.2.0)
  lintr          3.0.1      2022-09-13 [1] RSPM (R 4.2.0)
- logrx        * 0.1.1.9002 2022-10-08 [1] local
+ logrx          0.1.1.9002 2022-10-08 [1] local
  lubridate    * 1.8.0      2021-10-07 [1] RSPM (R 4.2.0)
  magrittr       2.0.3      2022-03-30 [1] RSPM (R 4.2.0)
  memoise        2.0.1      2021-11-26 [1] RSPM (R 4.2.0)
@@ -67,6 +69,7 @@ File Path: /cloud/project/data-raw
  miniUI         0.1.1.1    2018-05-18 [1] RSPM (R 4.2.0)
  pillar         1.8.1      2022-08-19 [1] RSPM (R 4.2.0)
  pkgconfig      2.0.3      2019-09-22 [1] RSPM (R 4.2.0)
+ pkgdown        2.0.6      2022-07-16 [1] RSPM (R 4.2.0)
  processx       3.7.0      2022-07-07 [1] RSPM (R 4.2.0)
  promises       1.2.0.1    2021-02-11 [1] RSPM (R 4.2.0)
  ps             1.7.1      2022-06-18 [1] RSPM (R 4.2.0)
@@ -76,6 +79,7 @@ File Path: /cloud/project/data-raw
  remotes        2.4.2      2021-11-30 [1] RSPM (R 4.2.0)
  rex            1.2.1      2021-11-26 [1] RSPM (R 4.2.0)
  rlang          1.0.6      2022-09-24 [1] RSPM (R 4.2.0)
+ rmarkdown      2.16       2022-08-24 [1] RSPM (R 4.2.0)
  rprojroot      2.0.3      2022-04-02 [1] RSPM (R 4.2.0)
  rstudioapi     0.14       2022-08-22 [1] RSPM (R 4.2.0)
  sass           0.4.2      2022-07-16 [1] RSPM (R 4.2.0)
@@ -83,16 +87,18 @@ File Path: /cloud/project/data-raw
  shiny        * 1.7.2      2022-07-19 [1] RSPM (R 4.2.0)
  stringi        1.7.8      2022-07-11 [1] RSPM (R 4.2.0)
  stringr      * 1.4.1      2022-08-20 [1] RSPM (R 4.2.0)
- tibble         3.1.8      2022-07-22 [1] RSPM (R 4.2.0)
+ tibble       * 3.1.8      2022-07-22 [1] RSPM (R 4.2.0)
  tidylog      * 1.0.2      2020-07-03 [1] RSPM (R 4.2.0)
- tidyr          1.2.1      2022-09-08 [1] RSPM (R 4.2.0)
+ tidyr        * 1.2.1      2022-09-08 [1] RSPM (R 4.2.0)
  tidyselect     1.1.2      2022-02-21 [1] RSPM (R 4.2.0)
  utf8           1.2.2      2021-07-24 [1] RSPM (R 4.2.0)
  vctrs          0.4.1      2022-04-13 [1] RSPM (R 4.2.0)
  waiter         0.2.5      2022-01-03 [1] RSPM (R 4.2.0)
  withr          2.5.0      2022-03-03 [1] RSPM (R 4.2.0)
+ xfun           0.33       2022-09-12 [1] RSPM (R 4.2.0)
  xml2           1.3.3      2021-11-30 [1] RSPM (R 4.2.0)
  xtable         1.8-4      2019-04-21 [1] RSPM (R 4.2.0)
+ yaml           2.3.5      2022-02-21 [1] RSPM (R 4.2.0)
 
  [1] /cloud/lib/x86_64-pc-linux-gnu-library/4.2
  [2] /opt/R/4.2.1/lib/R/library
@@ -126,12 +132,30 @@ File Path: /cloud/project/data-raw
 --------------------------------------------------------------------------------
 -                               Masked Functions                               -
 --------------------------------------------------------------------------------
-function `admiral_ae` from {package:admiral.test} by .GlobalEnv
-function `admiral_dm` from {package:admiral.test} by .GlobalEnv
-function `admiral_ds` from {package:admiral.test} by .GlobalEnv
-function `admiral_ex` from {package:admiral.test} by .GlobalEnv
-function `admiral_lb` from {package:admiral.test} by .GlobalEnv
-function `dir` from {package:base} by .GlobalEnv
+function `a` from {package:shiny} by .GlobalEnv
+function `chickwts` from {package:datasets} by .GlobalEnv
+function `%>%` from {package:tidyr, package:dplyr} by package:tibble
+function `as_tibble` from {package:tidyr, package:dplyr} by package:tibble
+function `tibble` from {package:tidyr, package:dplyr} by package:tibble
+function `tribble` from {package:tidyr, package:dplyr} by package:tibble
+function `add_row` from {package:dplyr} by package:tibble
+function `as_data_frame` from {package:dplyr} by package:tibble
+function `data_frame` from {package:dplyr} by package:tibble
+function `data_frame_` from {package:dplyr} by package:tibble
+function `frame_data` from {package:dplyr} by package:tibble
+function `glimpse` from {package:dplyr} by package:tibble
+function `lst` from {package:dplyr} by package:tibble
+function `lst_` from {package:dplyr} by package:tibble
+function `tbl_sum` from {package:dplyr} by package:tibble
+function `type_sum` from {package:dplyr} by package:tibble
+function `drop_na` from {package:tidyr} by package:tidylog
+function `fill` from {package:tidyr} by package:tidylog
+function `gather` from {package:tidyr} by package:tidylog
+function `pivot_longer` from {package:tidyr} by package:tidylog
+function `pivot_wider` from {package:tidyr} by package:tidylog
+function `replace_na` from {package:tidyr} by package:tidylog
+function `spread` from {package:tidyr} by package:tidylog
+function `uncount` from {package:tidyr} by package:tidylog
 function `add_count` from {package:dplyr} by package:tidylog
 function `add_tally` from {package:dplyr} by package:tidylog
 function `anti_join` from {package:dplyr} by package:tidylog
@@ -143,7 +167,7 @@ function `distinct_if` from {package:dplyr} by package:tidylog
 function `filter` from {package:dplyr, package:stats} by package:tidylog
 function `filter_all` from {package:dplyr} by package:tidylog
 function `filter_at` from {package:dplyr} by package:tidylog
-function `filter_if` from {package:dplyr, package:admiral} by package:tidylog
+function `filter_if` from {package:dplyr} by package:tidylog
 function `full_join` from {package:dplyr} by package:tidylog
 function `group_by` from {package:dplyr} by package:tidylog
 function `group_by_all` from {package:dplyr} by package:tidylog
@@ -191,38 +215,30 @@ function `transmute_all` from {package:dplyr} by package:tidylog
 function `transmute_at` from {package:dplyr} by package:tidylog
 function `transmute_if` from {package:dplyr} by package:tidylog
 function `ungroup` from {package:dplyr} by package:tidylog
-function `%>%` from {package:dplyr} by package:stringr
-function `intersect` from {package:dplyr, package:base} by package:lubridate
-function `setdiff` from {package:dplyr, package:base} by package:lubridate
-function `union` from {package:dplyr, package:base} by package:lubridate
-function `Arith` from {package:methods} by package:lubridate
-function `Compare` from {package:methods} by package:lubridate
-function `show` from {package:methods} by package:lubridate
-function `as.difftime` from {package:base} by package:lubridate
-function `date` from {package:base} by package:lubridate
-function `desc` from {package:admiral} by package:dplyr
-function `vars` from {package:admiral} by package:dplyr
+function `all_of` from {package:dplyr} by package:tidyr
+function `any_of` from {package:dplyr} by package:tidyr
+function `contains` from {package:dplyr} by package:tidyr
+function `ends_with` from {package:dplyr} by package:tidyr
+function `everything` from {package:dplyr} by package:tidyr
+function `last_col` from {package:dplyr} by package:tidyr
+function `matches` from {package:dplyr} by package:tidyr
+function `num_range` from {package:dplyr} by package:tidyr
+function `one_of` from {package:dplyr} by package:tidyr
+function `starts_with` from {package:dplyr} by package:tidyr
 function `lag` from {package:stats} by package:dplyr
+function `intersect` from {package:base} by package:dplyr
+function `setdiff` from {package:base} by package:dplyr
 function `setequal` from {package:base} by package:dplyr
+function `union` from {package:base} by package:dplyr
 function `plot` from {package:base} by package:graphics
 function `body<-` from {package:base} by package:methods
 function `kronecker` from {package:base} by package:methods
 --------------------------------------------------------------------------------
--                          Used Package and Functions                          -
---------------------------------------------------------------------------------
-{.GlobalEnv} format_racegr1, format_region1, format_lddthgr1
-{package:admiral} convert_blanks_to_na, derive_vars_dtm, derive_vars_merged, derive_vars_dtm_to_dt, derive_var_trtdurd, derive_vars_dt, derive_var_disposition_status, derive_vars_duration, date_source, derive_var_extreme_dt, derive_var_agegr_fda, derive_var_merged_exist_flag
-{package:base} library, c, %in%, is.na, list, tempdir, save, file.path
-{package:dplyr} case_when, vars, if_else
-{package:stringr} %>%, str_detect
-{package:tidylog} mutate
-{package:utils} data
---------------------------------------------------------------------------------
 -                         Program Run Time Information                         -
 --------------------------------------------------------------------------------
-Start time: 2022-10-08 15:44:02 UTC
-End time: 2022-10-08 15:44:04 UTC
-Run time: 2 seconds
+Start time: 2022-10-21 20:35:53 UTC
+End time: 2022-10-21 20:35:57 UTC
+Run time: 4 seconds
 --------------------------------------------------------------------------------
 -                             Errors and Warnings                              -
 --------------------------------------------------------------------------------
@@ -236,6 +252,11 @@ Warnings:
 -                         Messages, Output, and Result                         -
 --------------------------------------------------------------------------------
 Messages:
+	Attaching package: ‘admiral’
+	The following object is masked from ‘package:tidylog’:    filter_if
+	The following object is masked from ‘package:dplyr’:    filter_if
+	Attaching package: ‘lubridate’
+	The following objects are masked from ‘package:base’:    date, intersect, setdiff, union
 	mutate: new variable 'TRT01P' (character) with 4 unique values and 0% NA
 	        new variable 'TRT01A' (character) with 4 unique values and 0% NA
 	mutate: new variable 'RACEGR1' (character) with 2 unique values and 0% NA
@@ -252,5 +273,5 @@ Result:
 --------------------------------------------------------------------------------
 -                               Log Output File                                -
 --------------------------------------------------------------------------------
-Log name: adsl_tidylog.log
-Log path: /cloud/project
+Log name: ex2_tidylog_adsl.log
+Log path: /cloud/project/data-raw/tidylog

@@ -2,12 +2,11 @@
 title: ""
 author: " "
 date: " "
-output:
+output: 
 html_document:
 description: ""
 ---
 
 ```{r engine='bash', comment='', echo=FALSE}
-# cat tidylog_ex1.log
-sed -n 240,255p  tidylog_ex1.log
+sed -n 251,267p ex2_tidylog_adsl.log
 ```

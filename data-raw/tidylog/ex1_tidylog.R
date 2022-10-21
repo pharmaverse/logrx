@@ -1,9 +1,7 @@
 library(dplyr)
 library(tidyr)
 library(tibble)
-suppressMessages(library(tidylog))
-
-data("chickwts")
+library(tidylog)
 
 data_wide <- us_rent_income %>%
    pivot_wider(

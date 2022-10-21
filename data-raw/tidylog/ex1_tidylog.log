@@ -9,8 +9,8 @@ logrx link to repository: https://github.com/atorus-research/logrx
 -                          User and File Information                           -
 --------------------------------------------------------------------------------
 User: r590548
-File Name: tidylog_ex1.R
-File Path: /cloud/project/data-raw
+File Name: ex1_tidylog.R
+File Path: /cloud/project/data-raw/tidylog
 --------------------------------------------------------------------------------
 -                             Session Information                              -
 --------------------------------------------------------------------------------
@@ -24,7 +24,7 @@ File Path: /cloud/project/data-raw
  collate  C.UTF-8
  ctype    C.UTF-8
  tz       UTC
- date     2022-10-17
+ date     2022-10-21
  rstudio  2022.07.1+554.pro3 Spotted Wakerobin (server)
  pandoc   2.18 @ /usr/lib/rstudio-server/bin/quarto/bin/tools/ (via rmarkdown)
 
@@ -44,6 +44,7 @@ File Path: /cloud/project/data-raw
  evaluate      0.16       2022-08-09 [1] RSPM (R 4.2.0)
  fansi         1.0.3      2022-03-24 [1] RSPM (R 4.2.0)
  fastmap       1.1.0      2021-01-25 [1] RSPM (R 4.2.0)
+ fs            1.5.2      2021-12-08 [1] RSPM (R 4.2.0)
  generics      0.1.3      2022-07-05 [1] RSPM (R 4.2.0)
  glue          1.6.2      2022-02-24 [1] RSPM (R 4.2.0)
  htmltools     0.5.3      2022-07-18 [1] RSPM (R 4.2.0)
@@ -62,6 +63,7 @@ File Path: /cloud/project/data-raw
  miniUI        0.1.1.1    2018-05-18 [1] RSPM (R 4.2.0)
  pillar        1.8.1      2022-08-19 [1] RSPM (R 4.2.0)
  pkgconfig     2.0.3      2019-09-22 [1] RSPM (R 4.2.0)
+ pkgdown       2.0.6      2022-07-16 [1] RSPM (R 4.2.0)
  processx      3.7.0      2022-07-07 [1] RSPM (R 4.2.0)
  promises      1.2.0.1    2021-02-11 [1] RSPM (R 4.2.0)
  ps            1.7.1      2022-06-18 [1] RSPM (R 4.2.0)
@@ -126,6 +128,20 @@ File Path: /cloud/project/data-raw
 --------------------------------------------------------------------------------
 function `a` from {package:shiny} by .GlobalEnv
 function `chickwts` from {package:datasets} by .GlobalEnv
+function `%>%` from {package:tidyr, package:dplyr} by package:tibble
+function `as_tibble` from {package:tidyr, package:dplyr} by package:tibble
+function `tibble` from {package:tidyr, package:dplyr} by package:tibble
+function `tribble` from {package:tidyr, package:dplyr} by package:tibble
+function `add_row` from {package:dplyr} by package:tibble
+function `as_data_frame` from {package:dplyr} by package:tibble
+function `data_frame` from {package:dplyr} by package:tibble
+function `data_frame_` from {package:dplyr} by package:tibble
+function `frame_data` from {package:dplyr} by package:tibble
+function `glimpse` from {package:dplyr} by package:tibble
+function `lst` from {package:dplyr} by package:tibble
+function `lst_` from {package:dplyr} by package:tibble
+function `tbl_sum` from {package:dplyr} by package:tibble
+function `type_sum` from {package:dplyr} by package:tibble
 function `drop_na` from {package:tidyr} by package:tidylog
 function `fill` from {package:tidyr} by package:tidylog
 function `gather` from {package:tidyr} by package:tidylog
@@ -193,10 +209,8 @@ function `transmute_all` from {package:dplyr} by package:tidylog
 function `transmute_at` from {package:dplyr} by package:tidylog
 function `transmute_if` from {package:dplyr} by package:tidylog
 function `ungroup` from {package:dplyr} by package:tidylog
-function `%>%` from {package:dplyr} by package:tidyr
 function `all_of` from {package:dplyr} by package:tidyr
 function `any_of` from {package:dplyr} by package:tidyr
-function `as_tibble` from {package:dplyr} by package:tidyr
 function `contains` from {package:dplyr} by package:tidyr
 function `ends_with` from {package:dplyr} by package:tidyr
 function `everything` from {package:dplyr} by package:tidyr
@@ -205,8 +219,6 @@ function `matches` from {package:dplyr} by package:tidyr
 function `num_range` from {package:dplyr} by package:tidyr
 function `one_of` from {package:dplyr} by package:tidyr
 function `starts_with` from {package:dplyr} by package:tidyr
-function `tibble` from {package:dplyr} by package:tidyr
-function `tribble` from {package:dplyr} by package:tidyr
 function `lag` from {package:stats} by package:dplyr
 function `intersect` from {package:base} by package:dplyr
 function `setdiff` from {package:base} by package:dplyr
@@ -218,16 +230,15 @@ function `kronecker` from {package:base} by package:methods
 --------------------------------------------------------------------------------
 -                          Used Package and Functions                          -
 --------------------------------------------------------------------------------
-{package:base} library, suppressMessages, c
+{package:base} library, c
 {package:dplyr} arrange, desc, bind_cols
 {package:tibble} %>%
 {package:tidylog} pivot_wider, distinct, rename, left_join
-{package:utils} data
 --------------------------------------------------------------------------------
 -                         Program Run Time Information                         -
 --------------------------------------------------------------------------------
-Start time: 2022-10-17 01:31:49 UTC
-End time: 2022-10-17 01:31:50 UTC
+Start time: 2022-10-21 20:25:13 UTC
+End time: 2022-10-21 20:25:14 UTC
 Run time: 1 seconds
 --------------------------------------------------------------------------------
 -                             Errors and Warnings                              -
@@ -274,5 +285,5 @@ Result:
 --------------------------------------------------------------------------------
 -                               Log Output File                                -
 --------------------------------------------------------------------------------
-Log name: tidylog_ex1.log
-Log path: /cloud/project/data-raw
+Log name: ex1_tidylog.log
+Log path: /cloud/project/data-raw/tidylog

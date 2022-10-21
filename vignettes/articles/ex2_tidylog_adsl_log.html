@@ -11,7 +11,7 @@
 
 
 
-<title>tidylog_ex1.knit</title>
+<title>ex2_tidylog_adsl_log.knit</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -369,18 +369,19 @@ pre code {
 -                         Messages, Output, and Result                         -
 --------------------------------------------------------------------------------
 Messages:
-    pivot_wider: reorganized (variable, estimate, moe) into (income_estimate, rent_estimate, income_moe, rent_moe) [was 104x5, now 52x6]
-    distinct: removed 52 rows (50%), 52 rows remaining
-    New names:
-    rename: renamed one variable (number)
-    Joining, by = &quot;NAME&quot;
-    left_join: added one column (number)
-               &gt; rows only in x    0
-               &gt; rows only in y  ( 0)
-               &gt; matched rows     52
-               &gt;                 ====
-               &gt; rows total       52
-Output:</code></pre>
+    Attaching package: ‘admiral’
+    The following object is masked from ‘package:tidylog’:    filter_if
+    The following object is masked from ‘package:dplyr’:    filter_if
+    Attaching package: ‘lubridate’
+    The following objects are masked from ‘package:base’:    date, intersect, setdiff, union
+    mutate: new variable &#39;TRT01P&#39; (character) with 4 unique values and 0% NA
+            new variable &#39;TRT01A&#39; (character) with 4 unique values and 0% NA
+    mutate: new variable &#39;RACEGR1&#39; (character) with 2 unique values and 0% NA
+            new variable &#39;REGION1&#39; (character) with one unique value and 0% NA
+            new variable &#39;LDDTHGR1&#39; (character) with 2 unique values and 99% NA
+            new variable &#39;DTH30FL&#39; (character) with 2 unique values and 99% NA
+            new variable &#39;DTHA30FL&#39; (character) with one unique value and 100% NA
+            new variable &#39;DTHB30FL&#39; (character) with 2 unique values and &gt;99% NA</code></pre>
 
 
 
