@@ -9,6 +9,8 @@ Updates
   - Add options vignette and move all options for `logrx` to be set on package load if not set by user prior (#110)(#124)
   
   - `{logrx}` now produces a unique hash sum for each log file and script (#29)
+  
+  - Fix typo in and re-format approved vignette (#105)
 
 
 # logrx 0.1.1
