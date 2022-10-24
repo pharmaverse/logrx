@@ -4,7 +4,7 @@
 #' list. This can be used by logrx to log unapproved use of packages and
 #' functions.
 #'
-#' For more details see the help vignette:
+#' For more details see the vignette:
 #' \code{vignette("approved", package = "logrx")}
 #'
 #' @param pkg_list Named list of character vectors where the name is the
