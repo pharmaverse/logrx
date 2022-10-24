@@ -26,10 +26,7 @@ reference:
   desc: Utility functions
 - contents:
    - build_approved
-- title: RStudio addin
-  desc: RStudio addin to facilitate the execution of a log
-- contents:
-   - logrxAddin
+   - approved
 
 articles:
 - title: Use Cases
@@ -48,4 +45,6 @@ articles:
   navbar: Advanced Guides
   contents:
   - approved
+
+
 
