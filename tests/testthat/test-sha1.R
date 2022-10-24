@@ -71,7 +71,7 @@ test_that("Test 4: Same File HashSum generated for temp file in Test 2", {
    scriptPath <- tempfile()
    logDir <- tempdir()
    writeLines(
-      c("message('hello again logrx')",
+      c("message('hello logrx')",
         "cat('this is output')",
         "data.frame(c(8, 6, 7, 5, 3, 0, 9))"),
       con = scriptPath)
@@ -85,7 +85,7 @@ test_that("Test 4: Same File HashSum generated for temp file in Test 2", {
    flines <- readLines(con)
    close(con)
 
-   expect_true(any(grepl("File HashSum: 1a850097971365b8846fd7a935cc792896e97fbe", flines) != TRUE))
+   expect_true(any(grepl("File HashSum: 1a850097971365b8846fd7a935cc792896e97fbe", flines) == TRUE))
    # remove all the stuff we added
    rm(scriptPath, logDir)
    log_remove()
