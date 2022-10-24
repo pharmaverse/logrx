@@ -29,7 +29,7 @@ list. This can be used by logrx to log unapproved use of packages and
 functions.
 }
 \details{
-For more details see the help vignette:
+For more details see the vignette:
 \code{vignette("approved", package = "logrx")}
 }
 \examples{

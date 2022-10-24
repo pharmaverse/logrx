@@ -16,7 +16,6 @@ reference:
    - log_init
    - log_remove
    - log_write
-   - logrxAddin
 - title: Write Log
   desc: Functionality for Writing Logs to a File
 - contents:

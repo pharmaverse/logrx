@@ -11,7 +11,8 @@
 #' @importFrom stringr str_replace
 #' @importFrom waiter useWaiter waiter_show waiter_hide spin_solar
 #'
-#' @export
+#' @noRd
+#'
 logrxAddin <- function() {
    ui <- miniUI::miniPage(
       useWaiter(), # include dependencies
