@@ -4,13 +4,16 @@
 #' Returns named list of logrx metadata attributes
 #'
 #' @return Named list of logrx package metadata attributes
-#' @export
 #'
 #' @importFrom sessioninfo session_info
 #' @importFrom dplyr filter
 #'
 #' @examples
+#' \dontrun{
 #' get_logrx_metadata()
+#' }
+#'
+#' @noRd
 #'
 get_logrx_metadata <- function(){
 
@@ -36,10 +39,13 @@ get_logrx_metadata <- function(){
 #' @param normalize If the returned path should be normalized
 #'
 #' @return full path of file being run
-#' @export
 #'
 #' @examples
+#' \dontrun{
 #' get_file_path()
+#' }
+#'
+#' @noRd
 #'
 get_file_path <- function(file = NA, normalize = TRUE){
    if (!is.na(file)){
@@ -79,12 +85,15 @@ get_file_path <- function(file = NA, normalize = TRUE){
 #' Returns Session Info
 #'
 #' @return Formatted Session Info
-#' @export
 #'
 #' @importFrom sessioninfo session_info
 #'
 #' @examples
+#' \dontrun{
 #' get_session_info()
+#' }
+#'
+#' @noRd
 #'
 get_session_info <- function(){
    return(capture.output(session_info(info = "all")))
@@ -94,7 +103,6 @@ get_session_info <- function(){
 #' Returns named list of masked functions
 #'
 #' @return Named list of masked functions, source package, and what they mask
-#' @export
 #'
 #' @importFrom purrr imap
 #' @importFrom purrr map
@@ -102,7 +110,11 @@ get_session_info <- function(){
 #' @importFrom magrittr "%>%"
 #'
 #' @examples
+#' \dontrun{
 #' get_masked_functions()
+#' }
+#'
+#' @noRd
 #'
 get_masked_functions <- function(){
    # get conflicts into stable object
@@ -132,13 +144,15 @@ get_masked_functions <- function(){
 #' @importFrom purrr safely
 #' @importFrom tibble tibble
 #' @importFrom utils getParseData
-#' @export
 #'
 #' @examples
 #' \dontrun{
 #' file <- "ex1.R"
 #' get_functions_used(file)
 #' }
+#'
+#' @noRd
+#'
 get_used_functions <- function(file){
 
    # catch error
@@ -199,6 +213,9 @@ get_used_functions <- function(file){
 #' @importFrom purrr map
 #'
 #' @return tibble that includes `library`
+#'
+#' @noRd
+#'
 get_library <- function(df){
    search_lookup <- map(search(), objects)
    names(search_lookup) <- search()
@@ -230,9 +247,11 @@ get_first <- function(func, search_lookup){
 #' @param used_packages dataframe containing variables `function_name` and `library`
 #'
 #' @importFrom dplyr anti_join
-#' @export
 #'
 #' @return tibble that includes packages and functions used, but not approved
+#'
+#' @noRd
+#'
 get_unapproved_use <- function(approved_packages, used_packages) {
    anti_join(approved_packages, used_packages, by = c("library", "function_name"))
 }
@@ -246,6 +265,9 @@ get_unapproved_use <- function(approved_packages, used_packages) {
 #' @importFrom lintr lint
 #'
 #' @return results from `lintr::lint()`
+#'
+#' @noRd
+#'
 get_lint_results <- function(file) {
    # lint file if option is turned on
    if (!is.logical(getOption('log.rx.lint'))) {

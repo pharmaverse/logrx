@@ -2,15 +2,16 @@
 % Please edit documentation in R/writer.R
 \name{write_used_functions}
 \alias{write_used_functions}
-\title{Format used functions attribute for writing}
+\title{Formats and returns a vector of used package functions}
 \usage{
 write_used_functions()
 }
 \value{
-A formatted vector of used functions
+Formatted vector of used package functions
 }
 \description{
-Format used functions attribute for writing
+\code{write_used_functions()} gets log.rx used_packages_functions attribute,
+formats and returns the list of used package functions
 }
 \examples{
 \dontrun{

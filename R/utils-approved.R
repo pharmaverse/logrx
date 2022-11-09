@@ -1,22 +1,25 @@
 #' Build approved packages and functions tibble
 #'
-#' A utility function to help you build your approve package and functions list.
-#' This can be used by logrx to log unapproved use of packages and functions.
+#' A utility function to help you build your approved packages and functions
+#' list. This can be used by logrx to log unapproved use of packages and
+#' functions.
 #'
-#' For more details see the help vignette:
-#'
+#' For more details see the vignette:
 #' \code{vignette("approved", package = "logrx")}
 #'
-#' @param pkg_list A named list of character vectors where the name is the
+#' @param pkg_list Named list of character vectors where the name is the
 #' package name with a character vector of approved functions or 'All'
-#' @param file Name of file where the approved tibble will be read to.
-#' If not specified, the tibble is returned.
+#' @param pkg_list Named list of character vectors:
+#' * Name is the package name
+#' * Value is a character vector of approved functions or 'All'
+#' @param file String. Name of file where the approved tibble will be written
+#' to. If not specified, the tibble is returned
 #'
 #' Default: NULL
 #'
 #' Permitted Files: .RDS
 #'
-#' @return A tibble with two columns (library, function) and one row per function
+#' @return Tibble with two columns (library, function) and one row per function
 #' @importFrom purrr map2_dfr
 #' @export
 #'
@@ -32,6 +35,7 @@
 #' # build and save
 #' dir <- tempdir()
 #' build_approved(approved_pkgs, file.path(dir, "approved.rds"))
+#'
 build_approved <- function(pkg_list, file = NULL) {
   approved <- purrr::map2_dfr(
     names(pkg_list),
