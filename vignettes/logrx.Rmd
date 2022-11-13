@@ -25,21 +25,33 @@ an R script which enables traceability and reproducibility of the executed code.
 # Log attributes
 The following attributes are recorded in the log:
 
-* `metadata`: The logrx `package` information
-* `user and file information`: The user that generates the log, file name and path of the R script
+* `metadata`: logrx `package` information
+   + Version of the package
+   + Type of build
+   + Link to the GitHub repository
+* `user and file information`
+   + User that generated the log
+   + Name and path of the script for which the log was generated
 * `session_info`: The R session information
-* `packages`: List all available packages in the environment
-* `external_software`" Lists all external software
-* `masked_functions`: The functions masked by packages
-* `start_time`, `end_time`, and `run_time`: The start, end, and run times
-* `used_packages_functions`: Any packages and functions used in the R script
-* `unapproved_packages_functions`: Any packages and functions used in the R script that are not part of that approved packages and functions list
-* `errors`: The errors generated when running the R script
-* `warnings`: The warnings generated when running the R script
-* `messages`: The messages generated when running the R script
-* `result`: The result generated when running the R script
-* `output`: The output generated when running the R script
-* `log_name`, `log_path`: The name and path of the log
+   + R version
+   + OS and system
+   + GUI
+   + Language and timezone
+* `packages`: List of all available packages in the environment
+* `external_software`: List of all external software
+* `masked_functions`: List of all functions masked by packages
+* `start_time`, `end_time`, and `run_time`: Start, end, and run times
+* `used_packages_functions`: List of all packages and functions used in the 
+script for which the log was generated
+* `unapproved_packages_functions`: List of all packages and functions used in 
+the script for which the log was generated that are not part of the approved 
+list of packages and functions
+* `errors`: Errors generated when running the script
+* `messages`: Messages generated when running the script
+* `warnings`: Warnings generated when running the script
+* `result`: Result generated when running the script
+* `output`: Output generated when running the script
+* `log_name`, `log_path`: Name and path of the log
 
 
 <style>
@@ -64,7 +76,8 @@ The log can be generated according in two ways:
 
 ## `axecute()`
 `axecute()` enables the command line submission of a program. A log is 
-set-up around the program, and its code is run safely and loudly (using `safely()` from the `purrr` package).
+set-up around the program, and its code is run safely and loudly (using 
+`safely()` from the `purrr` package).
 ```{r axecute, eval = FALSE}
 axecute("my_script.R")
 ```
@@ -73,15 +86,19 @@ axecute("my_script.R")
 ## `log_*()` functions
 Use the `log_*()` functions:
 
-* `log_init()` to create the environment log.rx
+* `log_init()` to initialise the log.rx environment
 
-* `log_config()` to add the core elements of the log to the environment, and 
- basic elements that are available at the time of configuration
+* `log_config()` to initialise the log.rx environment, add its attributes, and 
+set them
 
-* `run_safely_loudly()` to execute the program code, and capture errors, warnings,
-messages, output, and result
+* `run_safely_loudly()` to execute the program code, and capture errors, 
+warnings, messages, output, and result
 
-* `log_write()` to generate and format the log
+* `log_write()` to get and format the content of the log.rx before writing it 
+to a log file
+
+* `log_remove()` to remove the log.rx object by setting `options("log.rx")` to 
+NULL
 ```{r log_*, eval = FALSE}
 log_config("my_script.R")
 run_safely_loudly("my_script.R")
@@ -89,13 +106,23 @@ log_write()
 ```
 
 # Scripting with ```logrx```
-While ```logrx``` is built around creating a log for a program it can just as easily be used when running an entire set of programs.  The `axecute()` function has been built with both single file execution and scripted file execution in mind.  With the use of simple functions such as `lapply()` scripting is easy.  Below is some sample code of how `lapply()` can be used with `axecute()`.
+While ```logrx``` is built around creating a log for a program it can just as 
+easily be used when running an entire set of programs.  The `axecute()` 
+function has been built with both single file execution and scripted file 
+execution in mind.  With the use of simple functions such as `lapply()` 
+scripting is easy.  Below is some sample code of how `lapply()` can be used 
+with `axecute()`.
 
 ```{r scripting, eval = FALSE}
 lapply(c("file.R", "otherfile.R"), axecute)
 ```
 
-If your scripting needs to work on the contents of a directory instead of a pre-defined list, functions such as `list.files` can be used to obtain a list of files to use.  Below is an example of how this can be applied in practice by getting all files ending in '.R' in the current working directory using a regular expression, and then using `lapply()` to run the files using `axecute()`.
+If your scripting needs to work on the contents of a directory instead of a 
+pre-defined list, functions such as `list.files` can be used to obtain a list 
+of files to use.  Below is an example of how this can be applied in practice by 
+getting all files ending in '.R' in the current working directory using a 
+regular expression, and then using `lapply()` to run the files using 
+`axecute()`.
 
 ```{r scripting-dir, eval = FALSE}
 r_script_list <- list.files(path = ".", pattern = "\\.R$")
