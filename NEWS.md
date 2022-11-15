@@ -8,9 +8,11 @@ Updates
   
   - Add options vignette and move all options for `logrx` to be set on package load if not set by user prior (#110)(#124)
 
-  - `{logrx}` now produces a unique hash sum for each log file and script (#29)
+  - Added vignette showcasing `{logrx}` working with `{tidylog}` package (#97)
   
   - Update documentation to exported and non-exported functions (#106)(#120)
+
+  - `{logrx}` now produces a unique hash sum for each log file and script (#29)
   
   - Fix typo in and re-format approved vignette (#105)
 
