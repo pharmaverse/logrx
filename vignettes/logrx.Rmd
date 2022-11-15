@@ -25,7 +25,7 @@ an R script which enables traceability and reproducibility of the executed code.
 # Log attributes
 The following attributes are recorded in the log:
 
-* `metadata`: logrx `package` information
+* `metadata`: `logrx` package information
    + Version of the package
    + Type of build
    + Link to the GitHub repository
