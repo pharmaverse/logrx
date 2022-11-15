@@ -9,30 +9,24 @@ reference:
   desc: Functionality for Creating logs from Scripts
 - contents:
    - axecute
-   - run_safely_loudly
 - title: Logging Framework Functions
   desc: Functionality to Build The Log Manually
 - contents:
-   - starts_with("log")
-- title: Logging Helper Functions
-  desc: Functionality to Interact With The Log Object(s)
-- contents:
-   - starts_with("get")
-   - starts_with("set")
-   - approved
+   - log_config
+   - log_init
+   - log_remove
+   - log_write
 - title: Write Log
   desc: Functionality for Writing Logs to a File
 - contents:
-   - starts_with("write")
+   - write_log_header
+   - write_unapproved_functions
+   - write_used_functions
 - title: Utilities
   desc: Utility functions
 - contents:
-   - loudly
    - build_approved
-- title: RStudio addin
-  desc: RStudio addin to facilitate the execution of a log
-- contents:
-   - logrxAddin
+   - approved
 
 articles:
 - title: Use Cases
@@ -52,4 +46,6 @@ articles:
   navbar: Advanced Guides
   contents:
   - approved
+
+
 
