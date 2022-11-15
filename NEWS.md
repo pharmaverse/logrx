@@ -5,7 +5,7 @@ Updates
   - `get_used_functions()` now works for scripts with no functions (#111)
   - Add options vignette and move all options for `logrx` to be set on package load if not set by user prior (#110)(#124)
   - Fix typo in and re-format approved vignette (#105)
-
+  - Update logrx vignette to describe log attributes in more details (#119)(#136)(#137)
 
 # logrx 0.1.1
 
