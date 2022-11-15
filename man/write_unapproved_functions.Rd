@@ -2,15 +2,16 @@
 % Please edit documentation in R/writer.R
 \name{write_unapproved_functions}
 \alias{write_unapproved_functions}
-\title{Format unapproved functions attribute for writing}
+\title{Formats and returns a vector of unapproved functions}
 \usage{
 write_unapproved_functions()
 }
 \value{
-A formatted vector of unapproved functions
+Formatted vector of unapproved functions
 }
 \description{
-Format unapproved functions attribute for writing
+\code{write_unapproved_functions()} gets log.rx unapproved_packages_functions
+attribute, formats and returns the list of unapproved functions
 }
 \examples{
 \dontrun{

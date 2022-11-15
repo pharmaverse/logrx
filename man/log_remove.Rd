@@ -2,7 +2,7 @@
 % Please edit documentation in R/log.R
 \name{log_remove}
 \alias{log_remove}
-\title{Remove the log.rx environment by setting options("log.rx") to NULL}
+\title{log.rx object removal}
 \usage{
 log_remove()
 }
@@ -10,5 +10,13 @@ log_remove()
 Nothing
 }
 \description{
-Remove the log.rx environment by setting options("log.rx") to NULL
+\code{log_remove()} removes the log.rx object by setting \code{options("log.rx")} to
+NULL
+}
+\examples{
+# Initialise the log.rx environment
+log_init()
+
+# Remove the log.rx environment
+log_remove()
 }

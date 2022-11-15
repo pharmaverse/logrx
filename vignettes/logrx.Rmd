@@ -32,6 +32,7 @@ The following attributes are recorded in the log:
 * `user and file information`
    + User that generated the log
    + Name and path of the script for which the log was generated
+* `hash_sum`:  A unique sha1 is created for the log file
 * `session_info`: The R session information
    + R version
    + OS and system

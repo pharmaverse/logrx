@@ -1,12 +1,18 @@
-#' logrxAddin
-#' Code needed to create the miniUI for the Addin
-#' @return returns miniUI Addin to batch submit r files and create logs around them
+#' Creation of the logrx RStudio Addin
+#'
+#' `logrxAddin` creates the miniUI for the logrx RStudio Addin
+#'
+#' @return MiniUI for the logrx Rstudio Addin for batch submitting R files and
+#' generating their logs
+#'
 #' @importFrom miniUI miniPage gadgetTitleBar miniContentPanel
-#' @importFrom shiny textInput checkboxInput actionButton uiOutput reactiveValues observeEvent renderText stopApp runGadget conditionalPanel fluidRow column tags HTML
+#' @importFrom shiny textInput checkboxInput actionButton uiOutput reactiveValues observeEvent renderText stopApp runGadget fluidRow column tags HTML
 #' @importFrom rstudioapi selectFile selectDirectory
-#' @importFrom stringr str_locate_all str_replace
+#' @importFrom stringr str_replace
 #' @importFrom waiter useWaiter waiter_show waiter_hide spin_solar
-#' @export
+#'
+#' @noRd
+#'
 logrxAddin <- function() {
    ui <- miniUI::miniPage(
       useWaiter(), # include dependencies

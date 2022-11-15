@@ -11,14 +11,13 @@ test_that("log_config configures the log and all the necessary elements", {
    expect_setequal(names(getOption("log.rx")),
                    c("metadata","session_info","warnings","errors","messages",
                      "result","output","start_time", "end_time", "run_time",
-                     "file_name","file_path","user", "masked_functions",
+                     "file_name","file_path","user", "hash_sum", "masked_functions",
                      "used_packages_functions", "unapproved_packages_functions",
                      "lint_results", "log_name","log_path"))
 
    expect_identical(getOption("log.rx")[['file_path']], dirname(get_file_path('./test-get.R')))
    expect_identical(getOption("log.rx")[['file_name']], basename(get_file_path('./test-get.R')))
    expect_identical(getOption("log.rx")[['user']], Sys.info()[["user"]])
-
 })
 
 test_that("log_config errors if a populated log extists", {
