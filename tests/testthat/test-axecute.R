@@ -34,7 +34,7 @@ test_that("axecute will run a file and create the necessary log", {
 
    # remove all the stuff we added
    rm(flines, con, scriptPath, logDir)
-
+   log_remove()
 })
 
 test_that("to_report works to control log output elements", {
@@ -63,5 +63,6 @@ test_that("to_report works to control log output elements", {
    expect_true(all(grepl("^Output:", flines) != TRUE))
    expect_true(any(grepl("^Result:", flines) == TRUE))
 
-
+   rm(flines, con, scriptPath, logDir)
+   log_remove()
 })

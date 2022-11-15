@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 
-In this section, we will `axecute()` an  R script that creates an `ADSL` dataset to get a log file.  This file was taken from the `admiral::use_ad_template("adsl")` with a few changes to its contents
+In this section, we will `axecute()` an R script that creates and `ADSL` to get a log file.  This file was taken from the `admiral::use_ad_template("adsl")` with a few changes to its contents
 to showcase certain features of the `logrx` package's log file.
 
 Users wishing to run a similar script will need to do the following:

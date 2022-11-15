@@ -82,6 +82,15 @@ write_file_name_path <- function(){
    )
 }
 
+#' Format hashsums for writing
+#'
+#' @return A string
+#' @noRd
+#'
+write_hash_sum <- function(){
+      paste0("File HashSum: ", get_log_element("hash_sum"))
+}
+
 #' Format masked functions attribute for writing
 #'
 #' @return A formatted vector of masked functions

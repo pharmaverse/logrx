@@ -77,6 +77,7 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
       "file_name",
       "file_path",
       "user",
+      "hash_sum",
       "masked_functions",
       "used_packages_functions",
       "unapproved_packages_functions",
@@ -201,7 +202,8 @@ log_write <- function(file = NA,
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_header("User and File Information"),
                         write_log_element("user", "User: "),
-                        write_file_name_path())
+                        write_file_name_path(),
+                        write_hash_sum())
 
 
    cleaned_log_vec <- c(cleaned_log_vec,

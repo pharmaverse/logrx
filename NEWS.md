@@ -12,6 +12,8 @@ Updates
   
   - Update documentation to exported and non-exported functions (#106)(#120)
 
+  - `{logrx}` now produces a unique hash sum for each log file and script (#29)
+  
   - Fix typo in and re-format approved vignette (#105)
 
 # logrx 0.1.1
