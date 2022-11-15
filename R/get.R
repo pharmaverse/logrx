@@ -256,6 +256,7 @@ get_unapproved_use <- function(approved_packages, used_packages) {
    anti_join(approved_packages, used_packages, by = c("library", "function_name"))
 }
 
+
 #' Get lint results
 #'
 #' Pass linters specified in the `log.rx.lint` option to `lintr::lint`
