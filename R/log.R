@@ -203,7 +203,7 @@ log_write <- function(file = NA,
                         write_log_header("User and File Information"),
                         write_log_element("user", "User: "),
                         write_file_name_path(),
-                        write_sha1())
+                        write_hash_sum())
 
 
    cleaned_log_vec <- c(cleaned_log_vec,

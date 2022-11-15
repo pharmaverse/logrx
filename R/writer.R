@@ -85,9 +85,9 @@ write_file_name_path <- function(){
 #' Format hashsums for writing
 #'
 #' @return A string
-#' @export
+#' @noRd
 #'
-write_sha1 <- function(){
+write_hash_sum <- function(){
       paste0("File HashSum: ", get_log_element("hash_sum"))
 }
 
