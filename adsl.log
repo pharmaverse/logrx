@@ -11,7 +11,7 @@ logrx link to repository: https://github.com/atorus-research/logrx
 User: r590548
 File Name: adsl.R
 File Path: /cloud/project/data-raw
-File HashSum: 1e529cde562616cf52ef6090eb932ca07f82e474
+File HashSum: 1a9aa853518fde225db5fdecaadc280bc5c8a2f0
 --------------------------------------------------------------------------------
 -                             Session Information                              -
 --------------------------------------------------------------------------------
@@ -129,102 +129,42 @@ File HashSum: 1e529cde562616cf52ef6090eb932ca07f82e474
 --------------------------------------------------------------------------------
 -                               Masked Functions                               -
 --------------------------------------------------------------------------------
-function `admiral_ae` from {package:admiral.test} by .GlobalEnv
-function `admiral_dm` from {package:admiral.test} by .GlobalEnv
-function `admiral_ds` from {package:admiral.test} by .GlobalEnv
-function `admiral_ex` from {package:admiral.test} by .GlobalEnv
-function `admiral_lb` from {package:admiral.test} by .GlobalEnv
-function `%>%` from {package:dplyr, package:admiral} by package:stringr
-function `intersect` from {package:dplyr, package:base} by package:lubridate
-function `setdiff` from {package:dplyr, package:base} by package:lubridate
-function `union` from {package:dplyr, package:base} by package:lubridate
-function `Arith` from {package:methods} by package:lubridate
-function `Compare` from {package:methods} by package:lubridate
-function `show` from {package:methods} by package:lubridate
-function `as.difftime` from {package:base} by package:lubridate
-function `date` from {package:base} by package:lubridate
-function `desc` from {package:admiral} by package:dplyr
-function `vars` from {package:admiral} by package:dplyr
-function `filter` from {package:stats} by package:dplyr
-function `lag` from {package:stats} by package:dplyr
-function `setequal` from {package:base} by package:dplyr
 function `plot` from {package:base} by package:graphics
 function `body<-` from {package:base} by package:methods
 function `kronecker` from {package:base} by package:methods
 --------------------------------------------------------------------------------
 -                         Program Run Time Information                         -
 --------------------------------------------------------------------------------
-Start time: 2022-12-08 02:56:04 UTC
-End time: 2022-12-08 02:56:07 UTC
-Run time: 3 seconds
+Start time: 2022-12-08 02:52:54 UTC
+End time: 2022-12-08 02:52:56 UTC
+Run time: 2 seconds
 --------------------------------------------------------------------------------
 -                             Errors and Warnings                              -
 --------------------------------------------------------------------------------
 Errors:
-	
+	The `date_imputation` argument of `date_source()` was deprecated in admiral 0.8.0 and is now defunct.
+	Please use `derive_vars_dtm()` to convert DTC variables to datetime variables in the dataset.
 
 Warnings:
-	
-There are columns in BASE that are not in COMPARE !!
+	`derive_vars_merged_dt()` was deprecated in admiral 0.8.0.
+Please use `derive_vars_dt()` and `derive_vars_merged()` instead.
+	`derive_vars_merged_dt()` was deprecated in admiral 0.8.0.
+Please use `derive_vars_dt()` and `derive_vars_merged()` instead.
+	`derive_vars_merged_dtm()` was deprecated in admiral 0.8.0.
+Please use `derive_vars_dtm()` and `derive_vars_merged()` instead.
+	`derive_vars_merged_dtm()` was deprecated in admiral 0.8.0.
+Please use `derive_vars_dtm()` and `derive_vars_merged()` instead.
 --------------------------------------------------------------------------------
 -                         Messages, Output, and Result                         -
 --------------------------------------------------------------------------------
 Messages:
-	Please check for this important message!!
+	Attaching package: ‘dplyr’
+	The following objects are masked from ‘package:stats’:    filter, lag
+	The following objects are masked from ‘package:base’:    intersect, setdiff, setequal, union
+	Attaching package: ‘lubridate’
+	The following objects are masked from ‘package:base’:    date, intersect, setdiff, union
 Output:
-	Rows: 3
-	Columns: 51
-	$ STUDYID  <chr> "CDISCPILOT01", "CDISCPILOT01", "CDISCPILOT01"
-	$ USUBJID  <chr> "01-701-1015", "01-701-1023", "01-701-1028"
-	$ SUBJID   <chr> "1015", "1023", "1028"
-	$ RFSTDTC  <chr> "2014-01-02", "2012-08-05", "2013-07-19"
-	$ RFENDTC  <chr> "2014-07-02", "2012-09-02", "2014-01-14"
-	$ RFXSTDTC <chr> "2014-01-02", "2012-08-05", "2013-07-19"
-	$ RFXENDTC <chr> "2014-07-02", "2012-09-01", "2014-01-14"
-	$ RFICDTC  <chr> NA, NA, NA
-	$ RFPENDTC <chr> "2014-07-02T11:45", "2013-02-18", "2014-01-14T11:10"
-	$ DTHDTC   <chr> NA, NA, NA
-	$ DTHFL    <chr> NA, NA, NA
-	$ SITEID   <chr> "701", "701", "701"
-	$ AGE      <dbl> 63, 64, 71
-	$ AGEU     <chr> "YEARS", "YEARS", "YEARS"
-	$ SEX      <chr> "F", "M", "M"
-	$ RACE     <chr> "WHITE", "WHITE", "WHITE"
-	$ ETHNIC   <chr> "HISPANIC OR LATINO", "HISPANIC OR LATINO", "NOT HISPANIC OR LATINO"
-	$ ARMCD    <chr> "Pbo", "Pbo", "Xan_Hi"
-	$ ARM      <chr> "Placebo", "Placebo", "Xanomeline High Dose"
-	$ ACTARMCD <chr> "Pbo", "Pbo", "Xan_Hi"
-	$ ACTARM   <chr> "Placebo", "Placebo", "Xanomeline High Dose"
-	$ COUNTRY  <chr> "USA", "USA", "USA"
-	$ DMDTC    <chr> "2013-12-26", "2012-07-22", "2013-07-11"
-	$ DMDY     <dbl> -7, -14, -8
-	$ TRT01P   <chr> "Placebo", "Placebo", "Xanomeline High Dose"
-	$ TRT01A   <chr> "Placebo", "Placebo", "Xanomeline High Dose"
-	$ TRTSDTM  <dttm> 2014-01-02, 2012-08-05, 2013-07-19
-	$ TRTSTMF  <chr> "H", "H", "H"
-	$ TRTEDTM  <dttm> 2014-07-02 23:59:59, 2012-09-01 23:59:59, 2014-01-14 23:59:59
-	$ TRTETMF  <chr> "H", "H", "H"
-	$ TRTSDT   <date> 2014-01-02, 2012-08-05, 2013-07-19
-	$ TRTEDT   <date> 2014-07-02, 2012-09-01, 2014-01-14
-	$ TRTDURD  <dbl> 182, 28, 180
-	$ SCRFDT   <date> NA, NA, NA
-	$ EOSDT    <date> 2014-07-02, 2012-09-02, 2014-01-14
-	$ EOSSTT   <chr> "COMPLETED", "DISCONTINUED", "COMPLETED"
-	$ FRVDT    <date> NA, 2013-02-18, NA
-	$ RANDDT   <date> 2014-01-02, 2012-08-05, 2013-07-19
-	$ DTHDT    <date> NA, NA, NA
-	$ DTHDTF   <chr> NA, NA, NA
-	$ DTHADY   <dbl> NA, NA, NA
-	$ LDDTHELD <dbl> NA, NA, NA
-	$ LSTALVDT <date> 2014-07-02, 2012-09-02, 2014-01-14
-	$ SAFFL    <chr> "Y", "Y", "Y"
-	$ RACEGR1  <chr> "White", "White", "White"
-	$ AGEGR1   <chr> "18-64", "18-64", ">64"
-	$ REGION1  <chr> "NA", "NA", "NA"
-	$ LDDTHGR1 <chr> NA, NA, NA
-	$ DTH30FL  <chr> NA, NA, NA
-	$ DTHA30FL <chr> NA, NA, NA
-	$ DTHB30FL <chr> NA, NA, NA
+	
 
 Result:
 	NULL
@@ -232,4 +172,4 @@ Result:
 -                               Log Output File                                -
 --------------------------------------------------------------------------------
 Log name: adsl.log
-Log path: /cloud/project/data-raw
+Log path: /cloud/project

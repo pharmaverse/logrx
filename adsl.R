@@ -1,8 +1,3 @@
-# Uncomments these lines to get latest packages and script
-# install.packages("admiral")
-# admiral::use_ad_template("adsl")
-# devtools::install_github("https://github.com/atorus-research/logrx", ref = "dev")
-
 # Name: ADSL
 #
 # Label: Subject Level Analysis Dataset
@@ -13,7 +8,6 @@ library(admiral.test) # Contains example datasets from the CDISC pilot project
 library(dplyr)
 library(lubridate)
 library(stringr)
-library(diffdf)
 
 # Load source datasets ----
 
@@ -274,21 +268,3 @@ adsl <- adsl %>%
 
 dir <- tempdir() # Change to whichever directory you want to save the dataset in
 saveRDS(adsl, file = file.path(dir, "adsl.rds"), compress = "bzip2")
-
-adsl %>% slice(1:3) %>% glimpse()
-
-# We create a mock QC/Double Programming  dataset to showcase diffdf and the use of
-# the package for capturing warnings for differences in the datasets
-
-# Variable removed.
-adsl_qc <- adsl %>% select(-ETHNIC)
-
-# Simple comparision between objects.  Check the file for what was captured.
-adsl_lst <- diffdf(adsl, adsl_qc, file = "adsl.lst")
-
-message("Please check for this important message!!")
-
-# ---- Save output ----
-
-dir <- tempdir() # Change to whichever directory you want to save the dataset in
-save(adsl, file = file.path(dir, "adsl.rda"), compress = "bzip2")
