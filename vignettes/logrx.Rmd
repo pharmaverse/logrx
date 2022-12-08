@@ -32,7 +32,7 @@ The following attributes are recorded in the log:
 * `user and file information`
    + User that generated the log
    + Name and path of the script for which the log was generated
-* `hash_sum`:  A unique sha1 is created for the log file
+   + `hash_sum`: A unique hashsum is created for the log file
 * `session_info`: The R session information
    + R version
    + OS and system
@@ -68,12 +68,13 @@ list of packages and functions
 </div>
 
 # Generating a log
-The log can be generated according in two ways:
+The log can be generated in three ways:
 
 * Using the `axecute()` function
 
 * Using the `log_*()` functions
 
+* Using the `logrx` addin
 
 ## `axecute()`
 `axecute()` enables the command line submission of a program. A log is 
@@ -105,6 +106,10 @@ log_config("my_script.R")
 run_safely_loudly("my_script.R")
 log_write()
 ```
+
+## `logrx` addin:
+A log can be generated using the ```logrx``` addin. More information can be found in [logrx](https://atorus-research.github.io/logrx/index.html).
+
 
 # Scripting with ```logrx```
 While ```logrx``` is built around creating a log for a program it can just as 
