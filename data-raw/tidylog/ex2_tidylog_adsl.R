@@ -1,8 +1,3 @@
-# Uncomments these lines to get latest packages and script
-# install.packages("admiral")
-# admiral::use_ad_template("adsl")
-# devtools::install_github("https://github.com/atorus-research/logrx", ref = "dev")
-
 # Name: ADSL
 #
 # Label: Subject Level Analysis Dataset
@@ -13,7 +8,7 @@ library(admiral.test) # Contains example datasets from the CDISC pilot project
 library(dplyr)
 library(lubridate)
 library(stringr)
-library(diffdf)
+library(tidylog)
 
 # Load source datasets ----
 
@@ -54,15 +49,6 @@ format_racegr1 <- function(x) {
   case_when(
     x == "WHITE" ~ "White",
     x != "WHITE" ~ "Non-white",
-    TRUE ~ "Missing"
-  )
-}
-
-format_agegr1 <- function(x) {
-  case_when(
-    x < 18 ~ "<18",
-    between(x, 18, 64) ~ "18-64",
-    x > 64 ~ ">64",
     TRUE ~ "Missing"
   )
 }
@@ -108,8 +94,6 @@ ex_ext <- ex %>%
 
 adsl <- dm %>%
   ## derive treatment variables (TRT01P, TRT01A) ----
-  # See also the "Visit and Period Variables" vignette
-  # (https://pharmaverse.github.io/admiral/articles/visits_periods.html#treatment_adsl)
   mutate(TRT01P = ARM, TRT01A = ACTARM) %>%
   ## derive treatment start date (TRTSDTM) ----
   derive_vars_merged(
@@ -251,6 +235,12 @@ adsl <- adsl %>%
     source_datasets = list(ae = ae_ext, lb = lb_ext, adsl = adsl),
     mode = "last"
   ) %>%
+  ## Age group ----
+  derive_var_agegr_fda(
+    age_var = AGE,
+    new_var = AGEGR1
+  ) %>%
+  ## Safety population ----
   derive_var_merged_exist_flag(
     dataset_add = ex,
     by_vars = vars(STUDYID, USUBJID),
@@ -260,7 +250,6 @@ adsl <- adsl %>%
   ## Groupings and others variables ----
   mutate(
     RACEGR1 = format_racegr1(RACE),
-    AGEGR1 = format_agegr1(AGE),
     REGION1 = format_region1(COUNTRY),
     LDDTHGR1 = format_lddthgr1(LDDTHELD),
     DTH30FL = if_else(LDDTHGR1 == "<= 30", "Y", NA_character_),
@@ -273,22 +262,5 @@ adsl <- adsl %>%
 # Save output ----
 
 dir <- tempdir() # Change to whichever directory you want to save the dataset in
-saveRDS(adsl, file = file.path(dir, "adsl.rds"), compress = "bzip2")
-
-adsl %>% slice(1:3) %>% glimpse()
-
-# We create a mock QC/Double Programming  dataset to showcase diffdf and the use of
-# the package for capturing warnings for differences in the datasets
-
-# Variable removed.
-adsl_qc <- adsl %>% select(-ETHNIC)
-
-# Simple comparision between objects.  Check the file for what was captured.
-adsl_lst <- diffdf(adsl, adsl_qc, file = "adsl.lst")
-
-message("Please check for this important message!!")
-
-# ---- Save output ----
-
-dir <- tempdir() # Change to whichever directory you want to save the dataset in
 save(adsl, file = file.path(dir, "adsl.rda"), compress = "bzip2")
+

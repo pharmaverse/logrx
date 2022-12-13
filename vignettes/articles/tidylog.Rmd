@@ -1,0 +1,60 @@
+---
+title: "Logging with {tidylog}"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Logging with {tidylog}}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+In this vignette, we will create a log with `axecute()` while using the `{tidylog}` package.  The goal of `{tidylog}` is to provide feedback about `{dplyr}` and `{tidyr}` operations.  `{tidylog}` provides simple wrapper functions that provide feddback for almost all `{dplyr}` and `{tidyr}` functions, such as `filter`, `mutate`, `select`, `full_join`, and `group_by`. 
+
+Using `{logrx}` we will now capture this feedback on `{dplyr}` and `{tidyr}` functions and place it into the `Messages, Output, and Result` of our `{logrx}` log file.  We will look at two cases in this vignette.
+
+## Logging a simple script with `{logrx}` and `{tidylog}`
+
+Below we have a simple script using the `us_rent_income` dataset.  We will explore just a few functions available in `{tidyr}` and `{dplyr}`: `pivot_wider`, `arrange`, `distinct`, `bind_cols` and `left_join`.  
+
+<br>
+
+<iframe width="700" height="400" src='ex1_tidylog_R_file.html'/>
+
+<br>
+
+Using `axecute(ex1_tidylog.R)` we produce a log file.  Below we snapshot just the pertinent information for users interested in the `{tidylog}` feeback.  This feedback is placed by the `{logrx}` package into the `Messages, Output, and Result` section of the log.
+
+<br>
+
+<iframe width="700" height="400" src='ex1_tidylog_log.html'/>
+
+<br>
+
+## Logging an ADSL script with `{logrx}` and `{tidylog}`
+
+Now we use an R script that creates an `ADSL` dataset and get a log file.  This file was generated using the `{admiral}` package for creating ADaM datasets.  We can quickly generate this file by using the following command `admiral::use_ad_template("adsl")`.
+
+Feel free to explore the script.  The next section showcases the output for the log file after we have used `axecute` on the script.
+
+<br>
+
+<iframe width="700" height="400" src='ex2_tidylog_adsl_R_file.html'/>
+
+<br>
+
+We only showcase the feedback in the script relevant to our discussion on `{tidylog}`.  Again, the `{logrx}` package places feedback from `{tidylog}` into the `Messages, Output, and Result`section of the log file.  
+
+<br>
+
+<iframe width="700" height="400" src='ex2_tidylog_adsl_log.html'/>
+
+<br>
+
+Success!! We just `axecuted` two scripts using `{logrx}` and `{tidylog}`. Remember that feedback from `{tidylog}` is placed into the `Messages, Output, and Result` section of the log file.
+
