@@ -16,6 +16,8 @@ Updates
   
   - Fix typo in and re-format approved vignette (#105)
 
+  - Update logrx vignette to describe log attributes in more details (#119)(#136)(#137)
+
 # logrx 0.1.1
 
 Address CRAN comments about documentation.

@@ -57,4 +57,3 @@ While many packages to facilitate the logging of code already exist in the R eco
 
 ## Using logrx
 ```logrx``` can be used in a file or through scripting.  More information on how to use ```logrx``` can be found in [Get Started](https://atorus-research.github.io/logrx/articles/logrx.html).
-

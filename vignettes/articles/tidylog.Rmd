@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-In this vignette, we will create a log with `axecute()` while using the `{tidylog}` package.  The goal of `{tidylog}` is to provide feedback about `{dplyr}` and `{tidyr}` operations.  `{tidylog}` provides simple wrapper functions that provide feddback for almost all `{dplyr}` and `{tidyr}` functions, such as `filter`, `mutate`, `select`, `full_join`, and `group_by`. 
+In this vignette, we will create a log with `axecute()` while using the `{tidylog}` package.  The goal of `{tidylog}` is to provide feedback about `{dplyr}` and `{tidyr}` operations.  `{tidylog}` provides simple wrapper functions that provide feedback for almost all `{dplyr}` and `{tidyr}` functions, such as `filter`, `mutate`, `select`, `full_join`, and `group_by`. 
 
 Using `{logrx}` we will now capture this feedback on `{dplyr}` and `{tidyr}` functions and place it into the `Messages, Output, and Result` of our `{logrx}` log file.  We will look at two cases in this vignette.
 

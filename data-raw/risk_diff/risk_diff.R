@@ -2,7 +2,7 @@ library(haven)
 library(magrittr)
 library(Tplyr)
 
-adae <- read_xpt("data-raw/adae.xpt")
+adae <- read_xpt("data-raw/risk_diff/adae.xpt")
 
 
 t <- tplyr_table(adae, TRTA) %>%
