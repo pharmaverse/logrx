@@ -33,6 +33,7 @@ articles:
   navbar: Use Cases
   contents:
   - logrx
+  - execution
   - articles/tables
   - articles/adsl_demo
   - articles/tidylog
