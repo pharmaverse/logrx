@@ -44,11 +44,7 @@ Simple!  The logrx package makes a log file for a R script!.  Below we have a sh
 making a log file for a `adsl.R` script.  More details on the parts of the log script
 are found in the [Get Started](https://atorus-research.github.io/logrx/articles/logrx.html) and we have several vignettes that show specific use cases for using the package.
 
-**Note:**  The Addin was originally called `timber`, but has been updated to `logrx.`
-
-```{r img-with-knitr, echo=FALSE, fig.align='center', out.width='100%', fig.cap='Caption for this figure 1'}
-knitr::include_graphics("https://raw.githubusercontent.com/atorus-research/atorus-assets/main/logrx.gif")
-```
+<img src="https://pharmaverse.s3.us-east-2.amazonaws.com/gifs/logrx.gif" title="logrx Addin in Action" alt="logrx Addin in Action" width="100%" style="display: block; margin: auto;" />
 
 
 While many packages to facilitate the logging of code already exist in the R ecosystem, it is hard to find a solution that works well for clinical programming applications.  Many logging implementations are more implicit and rely on user input to create the log for the execution of a script.  While this is useful for logging specific events of an application, in clinical programming a log has a set purpose.  
