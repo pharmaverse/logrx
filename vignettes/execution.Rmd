@@ -36,7 +36,7 @@ The `log_*()` family of functions are the core of ```logrx``` and are used inter
 
 Use the `log_*()` functions to do the following:
 
-* `log_init()` to create the environment log.rx
+* `log_init()` to create the environment `log.rx`
 
 * `log_config()` to add the core elements of the log to the environment, and basic elements that are available at the time of configuration
 
