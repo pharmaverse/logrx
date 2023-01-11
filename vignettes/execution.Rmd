@@ -80,7 +80,7 @@ While ```logrx``` is built around creating a log for a program it can just as ea
 lapply(c("file.R", "otherfile.R"), axecute)
 ```
 
-If your scripting needs to work on the contents of a directory instead of a pre-defined list, functions such as `list.files` can be used to obtain a list of files to use.  Below is an example of how this can be applied in practice by getting all files ending in '.R' in the current working directory using a regular expression, and then using `lapply()` to run the files using `axecute()`.
+If your scripting needs to work on the contents of a directory instead of a pre-defined list, functions such as `list.files` can be used to obtain a list of files to use.  Below is an example of how this can be applied in practice by getting all files ending in `.R` in the current working directory using a regular expression, and then using `lapply()` to run the files using `axecute()`.
 
 ```{r scripting-dir, eval = FALSE}
 r_script_list <- list.files(path = ".", pattern = "\\.R$")
