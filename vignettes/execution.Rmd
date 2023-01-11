@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 library(logrx)
 ```
 
-`logrx` has ben built with the flexibility of code execution in mind with a number of different use cases in mind.  While the basic case has been outlined in our [Get Started](https://atorus-research.github.io/logrx/articles/logrx.html) vignette, here we will be discussing different methods of execution and creation of log files.  These examples are meant to guide users who wish to explore different methods of execution or for those using ```logrx``` to create scripting 
+`logrx` has been built with both the flexibility of code execution and a number of different use cases in mind.  While the basic case has been outlined in our [Get Started](https://atorus-research.github.io/logrx/articles/logrx.html) vignette, here we will be discussing different methods of execution and creation of log files.  These examples are meant to guide users who wish to explore different methods of execution or for those using ```logrx``` to create scripting.
 
 # Methods of Execution
 Below you will find a number of examples for different methods of exectuion, these go in an increasing level of complexity and increasing level of technical knowledge.  The below examples are meant to be starting points for those interested in using ```logrx``` in more complex settings.
