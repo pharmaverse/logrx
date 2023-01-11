@@ -34,7 +34,7 @@ axecute("my_script.R")
 ## `log_*()` functions
 The `log_*()` family of functions are the core of ```logrx``` and are used internally to configure, write, and remove the log and other objects.  While these are exported functions of the package, they are intended to be used in special cases where `axecute()` will not work.
 
-Use the `log_*()` functions:
+Use the `log_*()` functions to do the following:
 
 * `log_init()` to create the environment log.rx
 
