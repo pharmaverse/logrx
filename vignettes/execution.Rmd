@@ -41,7 +41,7 @@ Use the `log_*()` functions to do the following:
 * `log_config()` to add the core elements of the log to the environment, and basic elements that are available at the time of configuration
 
 * `run_safely_loudly()` to execute the program code, and capture errors, warnings,
-messages, output, and result.  This must be passed an executable R file to run and create the log elements from.
+messages, output, and result.  This must be passed an executable R file to run and create the log elements from
 
 * `log_write()` to generate and format the log
 
