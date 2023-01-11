@@ -45,7 +45,7 @@ messages, output, and result.  This must be passed an executable R file to run a
 
 * `log_write()` to generate and format the log
 
-* `log_remove()` to remove the log.rx environment created by code exeuction
+* `log_remove()` to remove the `log.rx` environment created by code exeuction
 
 ```{r log_*, eval = FALSE}
 log_config("my_script.R")
