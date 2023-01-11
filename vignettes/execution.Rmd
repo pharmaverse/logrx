@@ -62,7 +62,7 @@ The below chunk will run the file my_script.R and output any standard output tha
 Rscript -e "logrx::axecute('my_script.R', log_name = 'my_script.log', log_path = '.')"
 ```
 
-The below chunk will run the file my_script.R and output any standard output that is created by the execution of the file to a file called temp.log.  This output can then later be accessed should the user want to check the output of the file execution.
+The below chunk will run the file `my_script.R` and output any standard output that is created by the execution of the file to a file called `temp.log`.  This output can then later be accessed should the user want to check the output of the file execution.
 ```{r, engine = 'bash', eval = FALSE}
 Rscript -e "logrx::axecute('my_script.R', log_name = 'my_script.log', log_path = '.')" > temp.log 2>&1
 ```
