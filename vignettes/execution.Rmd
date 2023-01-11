@@ -26,7 +26,7 @@ Below you will find a number of examples for different methods of exectuion, the
 
 ## `axecute()`
 The easiest of the execution methods to use is `axecute()`.  This function can be used to exeucte code from an R terminal or using command line scripts. A log is 
-set-up around the program, and its code is run safely and loudly (using `safely()` from the `purrr` package).
+set-up around the program, and its code is run safely and loudly (using `safely()` from `{purrr}`).
 ```{r axecute, eval = FALSE}
 axecute("my_script.R")
 ```
