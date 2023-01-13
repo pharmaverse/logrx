@@ -29,7 +29,7 @@ test_that("write_metadata will return a formatted log metadata element",{
                                   logrx_session_info[['loadedversion']]),
                     version = logrx_session_info[['loadedversion']],
                     built = logrx_session_info[['source']],
-                    repository_link = "https://github.com/atorus-research/logrx"
+                    repository_link = "https://github.com/pharmaverse/logrx"
             )
    expect_identical(write_metadata(),
                     c(metadata$info,

@@ -37,4 +37,4 @@ Enhancements
 
 Initial alpha release of logrx
 
-See the [GitHub release tracker](https://github.com/atorus-research/logrx/releases) for additional release documentation and links to issues. 
+See the [GitHub release tracker](https://github.com/pharmaverse/logrx/releases) for additional release documentation and links to issues. 

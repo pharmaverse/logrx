@@ -108,7 +108,7 @@ log_write()
 ```
 
 ## `logrx` addin:
-A log can be generated using the ```logrx``` addin. More information can be found in [logrx](https://atorus-research.github.io/logrx/index.html).
+A log can be generated using the ```logrx``` addin. More information can be found in [logrx](https://pharmaverse.github.io/logrx/index.html).
 
 
 # Scripting with ```logrx```

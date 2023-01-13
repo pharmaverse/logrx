@@ -9,7 +9,7 @@ test_that("metadata elements are specified correctly and loaded into a list", {
                                 logrx_session_info[['loadedversion']]),
                   version = logrx_session_info[['loadedversion']],
                   built = logrx_session_info[["source"]],
-                  repository_link = "https://github.com/atorus-research/logrx"
+                  repository_link = "https://github.com/pharmaverse/logrx"
                ))
 })
 

@@ -1,7 +1,7 @@
 # Uncomments these lines to get latest packages and script
 # install.packages("admiral")
 # admiral::use_ad_template("adsl")
-# devtools::install_github("https://github.com/atorus-research/logrx", ref = "dev")
+# devtools::install_github("https://github.com/pharmaverse/logrx", ref = "dev")
 
 # Name: ADSL
 #
