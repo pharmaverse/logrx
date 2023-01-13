@@ -42,7 +42,7 @@ devtools::install_github("pharmaverse/logrx", ref = "dev")
 
 Simple!  The logrx package makes a log file for a R script!.  Below we have a short gif of
 making a log file for a `adsl.R` script.  More details on the parts of the log script
-are found in the [Get Started](https://pharmaverse.github.io/logrx/articles/logrx.html) and we have several vignettes that show specific use cases for using the package.
+are found in [Get Started](https://pharmaverse.github.io/logrx/articles/logrx.html) and we have several vignettes that show specific use cases for using the package.
 
 <img src="https://pharmaverse.s3.us-east-2.amazonaws.com/gifs/logrx.gif" title="logrx Addin in Action" alt="logrx Addin in Action" width="100%" style="display: block; margin: auto;" />
 
