@@ -1,6 +1,9 @@
 # logrx 0.2.0
 
-Major update release for logrx
+ - Major update release for logrx
+ 
+ - Package has moved from `atorus-research` to `pharmaverse` organization.
+
 
 ## New Features 
 
