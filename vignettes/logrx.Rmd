@@ -68,14 +68,7 @@ list of packages and functions
 </div>
 
 # Generating a log
-The log can be generated in three ways:
-
-* Using the `axecute()` function
-
-* Using the `log_*()` functions
-
-* Using the `logrx` addin
-
+The log can be generated in a number of ways, below is an example of how to use the `axecute()` function to generate a log. This method is the easiest and most accessible way of creating a log.  To learn more about executing code with ```logrx``` please visit our [Developing Vignette](https://pharmaverse.github.io/logrx/articles/developing.html).
 ## `axecute()`
 `axecute()` enables the command line submission of a program. A log is 
 set-up around the program, and its code is run safely and loudly (using 
@@ -85,53 +78,5 @@ axecute("my_script.R")
 ```
 
 
-## `log_*()` functions
-Use the `log_*()` functions:
-
-* `log_init()` to initialise the log.rx environment
-
-* `log_config()` to initialise the log.rx environment, add its attributes, and 
-set them
-
-* `run_safely_loudly()` to execute the program code, and capture errors, 
-warnings, messages, output, and result
-
-* `log_write()` to get and format the content of the log.rx before writing it 
-to a log file
-
-* `log_remove()` to remove the log.rx object by setting `options("log.rx")` to 
-NULL
-```{r log_*, eval = FALSE}
-log_config("my_script.R")
-run_safely_loudly("my_script.R")
-log_write()
-```
-
 ## `logrx` addin:
-A log can be generated using the ```logrx``` addin. More information can be found in [logrx](https://atorus-research.github.io/logrx/index.html).
-
-
-# Scripting with ```logrx```
-While ```logrx``` is built around creating a log for a program it can just as 
-easily be used when running an entire set of programs.  The `axecute()` 
-function has been built with both single file execution and scripted file 
-execution in mind.  With the use of simple functions such as `lapply()` 
-scripting is easy.  Below is some sample code of how `lapply()` can be used 
-with `axecute()`.
-
-```{r scripting, eval = FALSE}
-lapply(c("file.R", "otherfile.R"), axecute)
-```
-
-If your scripting needs to work on the contents of a directory instead of a 
-pre-defined list, functions such as `list.files` can be used to obtain a list 
-of files to use.  Below is an example of how this can be applied in practice by 
-getting all files ending in '.R' in the current working directory using a 
-regular expression, and then using `lapply()` to run the files using 
-`axecute()`.
-
-```{r scripting-dir, eval = FALSE}
-r_script_list <- list.files(path = ".", pattern = "\\.R$")
-lapply(r_script_list, axecute)
-```
-
+A log can be generated using the ```logrx``` addin. More information can be found in [logrx](https://pharmaverse.github.io/logrx/index.html).

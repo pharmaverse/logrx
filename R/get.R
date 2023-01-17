@@ -27,7 +27,7 @@ get_logrx_metadata <- function(){
       built = ifelse(!is.na(logrx_session_info[['source']]),
                      logrx_session_info[['source']],
                      "Build not able to be determined"),
-      repository_link = "https://github.com/atorus-research/logrx"
+      repository_link = "https://github.com/pharmaverse/logrx"
    )
 
    return(logrx_metadata)
