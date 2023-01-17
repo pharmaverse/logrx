@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">logrx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
       </span>
     </div>
 
@@ -63,10 +63,22 @@
     </li>
 <li class="dropdown-header">Use Cases</li>
     <li>
+      <a href="articles/execution.html">Generating a Log</a>
+    </li>
+    <li>
       <a href="articles/tables.html">Logging for Summary Display Table</a>
     </li>
     <li>
       <a href="articles/adsl_demo.html">Logging for an ADSL dataset</a>
+    </li>
+    <li>
+      <a href="articles/tidylog.html">Logging with {tidylog}</a>
+    </li>
+    <li class="divider">
+    </li>
+<li class="dropdown-header">Helpers</li>
+    <li>
+      <a href="articles/options.html">logrx Options</a>
     </li>
     <li class="divider">
     </li>
@@ -82,7 +94,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/atorus-research/logrx/" class="external-link">
+  <a href="https://github.com/pharmaverse/logrx/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -112,21 +124,20 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"logrx"</span><span class="op">)</span></span></code></pre></div>
 <p>To get the latest development version use:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"atorus-research/logrx"</span>, ref <span class="op">=</span> <span class="st">"dev"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"pharmaverse/logrx"</span>, ref <span class="op">=</span> <span class="st">"dev"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="what-is-logrx-">What is <code>logrx</code> ?<a class="anchor" aria-label="anchor" href="#what-is-logrx-"></a>
 </h2>
-<p>Simple! The logrx package makes a log file for a R script!. Below we have a short gif of making a log file for a <code>adsl.R</code> script. More details on the parts of the log script are found in the <a href="https://atorus-research.github.io/logrx/articles/logrx.html" class="external-link">Get Started</a> and we have several vignettes that show specific use cases for using the package.</p>
-<p><strong>Note:</strong> The Addin was originally called <code>timber</code>, but has been updated to <code>logrx.</code></p>
-<p><img src="https://raw.githubusercontent.com/atorus-research/atorus-assets/main/logrx.gif" title="Caption for this figure 1" alt="Caption for this figure 1" width="100%" style="display: block; margin: auto;"></p>
+<p>Simple! The logrx package makes a log file for a R script!. Below we have a short gif of making a log file for a <code>adsl.R</code> script. More details on the parts of the log script are found in <a href="https://pharmaverse.github.io/logrx/articles/logrx.html" class="external-link">Get Started</a> and we have several vignettes that show specific use cases for using the package.</p>
+<p><img src="https://pharmaverse.s3.us-east-2.amazonaws.com/gifs/logrx.gif" alt="logrx Addin in Action" width="100%" style="display: block; margin: auto;"></p>
 <p>While many packages to facilitate the logging of code already exist in the R ecosystem, it is hard to find a solution that works well for clinical programming applications. Many logging implementations are more implicit and rely on user input to create the log for the execution of a script. While this is useful for logging specific events of an application, in clinical programming a log has a set purpose.</p>
 <p><code>logrx</code> is built around the concept of creating a log for the execution of an R script that provides an overview of what happened as well as the environment that it happened in. We set out to create a flexible logging utility that could provide the necessary information to anyone reviewing the code execution so they can recreate the execution environment and run the code for themselves. <code>logrx</code> is purpose-built for the needs of clinical programming to capture necessary elements of the environment and execution to be able to create a complete view of the program execution.</p>
 </div>
 <div class="section level2">
 <h2 id="using-logrx">Using logrx<a class="anchor" aria-label="anchor" href="#using-logrx"></a>
 </h2>
-<p><code>logrx</code> can be used in a file or through scripting. More information on how to use <code>logrx</code> can be found in <a href="https://atorus-research.github.io/logrx/articles/logrx.html" class="external-link">Get Started</a>.</p>
+<p><code>logrx</code> can be used in a file or through scripting. More information on how to use <code>logrx</code> can be found in <a href="https://pharmaverse.github.io/logrx/articles/logrx.html" class="external-link">Get Started</a>.</p>
 </div>
 </div>
   </div>
@@ -136,8 +147,8 @@
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=logrx" class="external-link">View on CRAN</a></li>
-<li><a href="https://github.com/atorus-research/logrx/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/atorus-research/logrx/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/pharmaverse/logrx/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/pharmaverse/logrx/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -160,7 +171,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Nathan Kosiba <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-5359-4234" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Nathan Kosiba <br><small class="roles"> Author, maintainer </small>  </li>
 <li>Thomas Bermudez <br><small class="roles"> Author </small>  </li>
 <li>Ben Straub <br><small class="roles"> Author </small>  </li>
 <li>Michael Rimler <br><small class="roles"> Author </small>  </li>
@@ -172,9 +183,9 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/atorus-research/logrx/actions?workflow=R-CMD-check" class="external-link"><img src="https://github.com/atorus-research/logrx/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://app.codecov.io/gh/atorus-research/logrx" class="external-link"><img src="https://img.shields.io/codecov/c/github/atorus-research/logrx"></a></li>
-<li><a href="https://github.com/atorus-research/logrx/blob/master/LICENSE.md" class="external-link"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a></li>
+<li><a href="https://github.com/pharmaverse/logrx/actions?workflow=R-CMD-check" class="external-link"><img src="https://github.com/pharmaverse/logrx/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://app.codecov.io/gh/pharmaverse/logrx" class="external-link"><img src="https://img.shields.io/codecov/c/github/pharmaverse/logrx"></a></li>
+<li><a href="https://github.com/pharmaverse/logrx/blob/master/LICENSE.md" class="external-link"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental-1" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 </ul>
 </div>
@@ -190,7 +201,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

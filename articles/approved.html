@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">logrx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
       </span>
     </div>
 
@@ -63,10 +63,22 @@
     </li>
 <li class="dropdown-header">Use Cases</li>
     <li>
+      <a href="../articles/execution.html">Generating a Log</a>
+    </li>
+    <li>
       <a href="../articles/tables.html">Logging for Summary Display Table</a>
     </li>
     <li>
       <a href="../articles/adsl_demo.html">Logging for an ADSL dataset</a>
+    </li>
+    <li>
+      <a href="../articles/tidylog.html">Logging with {tidylog}</a>
+    </li>
+    <li class="divider">
+    </li>
+<li class="dropdown-header">Helpers</li>
+    <li>
+      <a href="../articles/options.html">logrx Options</a>
     </li>
     <li class="divider">
     </li>
@@ -82,7 +94,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/atorus-research/logrx/" class="external-link">
+  <a href="https://github.com/pharmaverse/logrx/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -103,7 +115,7 @@
       <h1 data-toc-skip>Logging Unapproved Package and Function Use</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/atorus-research/logrx/blob/HEAD/vignettes/approved.Rmd" class="external-link"><code>vignettes/approved.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/logrx/blob/HEAD/vignettes/approved.Rmd" class="external-link"><code>vignettes/approved.Rmd</code></a></small>
       <div class="hidden name"><code>approved.Rmd</code></div>
 
     </div>
@@ -111,11 +123,26 @@
     
     
 <div class="section level2">
-<h2 id="create-a-named-list">1. Create a named list<a class="anchor" aria-label="anchor" href="#create-a-named-list"></a>
+<h2 id="why-would-i-use-this-feature">Why would I use this feature?<a class="anchor" aria-label="anchor" href="#why-would-i-use-this-feature"></a>
 </h2>
-<div class="section level4">
-<h4 id="the-named-list-contains-the-functions-approved-for-use-for-each-package--if-all-functions-for-a-package-are-approved-for-use-list-all-">The named list contains the functions approved for use for each package. If all functions for a package are approved for use, list “All”.<a class="anchor" aria-label="anchor" href="#the-named-list-contains-the-functions-approved-for-use-for-each-package--if-all-functions-for-a-package-are-approved-for-use-list-all-"></a>
-</h4>
+<p>The main use case of this feature is to support traceability of package and function use within a validated environment.</p>
+<p>Following the guidance outlined in <a href="https://www.pharmar.org/white-paper/" class="external-link">A Risk-Based Approach for Assessing R Package Accuracy within a Validated Infrastructure</a>, packages are selected to support use cases, risk is assessed and mitigated, and packages are included in your validated environment for use. <strong>Section 4.3</strong> of this paper nicely outlines the need to trace what is used and the need to identify package and function use where risk was not assessed for direct use within the validated environment.</p>
+<p><br></p>
+<blockquote>
+<p><em>4.3. Traceability</em></p>
+<em>“One of the core concepts presented <a href="(https://www.pharmar.org/white-paper/)" class="external-link">in this paper</a> is that Imports are not typically loaded by users and need not therefore be directly risk-assessed. If adopting this risk-based approach then measures need to be taken to ensure that users do not directly load the Package Imports. It is suggested that this is handled mainly through process, although tools could be developed to check using sessionInfo or devtools::session_info that check the loaded packages against packages lists of Intended for Use and Imports. In any case the use of these tools within a standard, logged, workflow is highly recommended to ensure traceability of the work.”</em>
+</blockquote>
+<p><br></p>
+<p>{logrx} provides you this tool! It even goes a step further by not just logging the packages you’ve use, but it will log use at a function level. This gives you the flexibility of assessing the risk of functions and approving functions, rather than having to assess the risk of the entire package for use within your validated environment.</p>
+<p><br></p>
+</div>
+<div class="section level2">
+<h2 id="how-do-i-use-this-feature">How do I use this feature?<a class="anchor" aria-label="anchor" href="#how-do-i-use-this-feature"></a>
+</h2>
+<div class="section level3">
+<h3 id="create-a-named-list">1. Create a named list<a class="anchor" aria-label="anchor" href="#create-a-named-list"></a>
+</h3>
+<p>The named list contains the functions approved for use for each package. If all functions for a package are approved for use, list “All”.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">approved_pkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>base <span class="op">=</span> <span class="st">"mean"</span>,</span>
 <span>                      dplyr <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span>
@@ -126,17 +153,10 @@
 <span><span class="co">#&gt; $dplyr</span></span>
 <span><span class="co">#&gt; [1] "All"</span></span></code></pre></div>
 </div>
-</div>
-<div class="section level2">
-<h2 id="build-approved-rds">2. Build <code>approved.rds</code><a class="anchor" aria-label="anchor" href="#build-approved-rds"></a>
-</h2>
-<div class="section level4">
-<h4 id="pass-the-named-list-through-build_approved-to-build-your-tibble-">Pass the named list through <code>build_approved()</code> to build your tibble.<a class="anchor" aria-label="anchor" href="#pass-the-named-list-through-build_approved-to-build-your-tibble-"></a>
-</h4>
-</div>
-<div class="section level4">
-<h4 id="if-we-create-a-temp-directory-to-save-this-for-illustration-">If We create a temp directory to save this for illustration.<a class="anchor" aria-label="anchor" href="#if-we-create-a-temp-directory-to-save-this-for-illustration-"></a>
-</h4>
+<div class="section level3">
+<h3 id="build-approved-rds">2. Build <code>approved.rds</code><a class="anchor" aria-label="anchor" href="#build-approved-rds"></a>
+</h3>
+<p>Pass the named list through <code><a href="../reference/build_approved.html">build_approved()</a></code> to build your tibble. We create a temp directory to save this for illustration.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/build_approved.html">build_approved</a></span><span class="op">(</span><span class="va">approved_pkgs</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 289 × 2</span></span></span>
@@ -154,36 +174,26 @@
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> sample_n      package:dplyr</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with 279 more rows</span></span></span></code></pre></div>
 </div>
-</div>
-<div class="section level2">
-<h2 id="save-as-approved-rds">3. Save as <code>approved.rds</code><a class="anchor" aria-label="anchor" href="#save-as-approved-rds"></a>
-</h2>
-<div class="section level4">
-<h4 id="you-can-use-the-file-argument-in-build_approved-to-save-approved-rds-instead-of-return-the-tibble-">You can use the <code>file</code> argument in <code>build_approved()</code> to save approved.rds instead of return the tibble.<a class="anchor" aria-label="anchor" href="#you-can-use-the-file-argument-in-build_approved-to-save-approved-rds-instead-of-return-the-tibble-"></a>
-</h4>
+<div class="section level3">
+<h3 id="save-as-approved-rds">3. Save as <code>approved.rds</code><a class="anchor" aria-label="anchor" href="#save-as-approved-rds"></a>
+</h3>
+<p>You can use the <code>file</code> argument in <code><a href="../reference/build_approved.html">build_approved()</a></code> to save <code>approved.rds</code> instead of returning the tibble.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/build_approved.html">build_approved</a></span><span class="op">(</span><span class="va">approved_pkgs</span>, file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="st">"approved.rds"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-</div>
-<div class="section level2">
-<h2 id="update-the-logrx-approved-option">4. Update the <code>logrx.approved</code> option<a class="anchor" aria-label="anchor" href="#update-the-logrx-approved-option"></a>
-</h2>
 <div class="section level3">
-<h3 id="update-the-logrx-approved-option-to-point-to-your-approved-rds-location--we-recommend-setting-this-in-your--rprofile-">Update the <code>logrx.approved</code> option to point to your <code>approved.rds</code> location. We recommend setting this in your <code>.Rprofile</code>.<a class="anchor" aria-label="anchor" href="#update-the-logrx-approved-option-to-point-to-your-approved-rds-location--we-recommend-setting-this-in-your--rprofile-"></a>
+<h3 id="update-the-logrx-approved-option">4. Update the <code>logrx.approved</code> option<a class="anchor" aria-label="anchor" href="#update-the-logrx-approved-option"></a>
 </h3>
+<p>Update the <code>logrx.approved</code> option to point to your <code>approved.rds</code> location. We recommend setting this in your <code>.Rprofile</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>logrx.approved <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="st">"approved.rds"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>log.rx.approved <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="st">"approved.rds"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-</div>
-<div class="section level2">
-<h2 id="youre-done--lets-axecute">5. You’re done. Let’s axecute!<a class="anchor" aria-label="anchor" href="#youre-done--lets-axecute"></a>
-</h2>
-<div class="section level4">
-<h4 id="logrx-will-take-it-from-there--when-each-program-is-executed-packages-and-functions-will-be-compared-to-approved-rds-and-if-any-unapproved-use-is-found-it-will-be-logged-within-the-unapproved-package-and-functions-section-">
-<code>logrx</code> will take it from there. When each program is executed, packages and functions will be compared to <code>approved.rds</code> and if any unapproved use is found, it will be logged within the “Unapproved Package and Functions” section.<a class="anchor" aria-label="anchor" href="#logrx-will-take-it-from-there--when-each-program-is-executed-packages-and-functions-will-be-compared-to-approved-rds-and-if-any-unapproved-use-is-found-it-will-be-logged-within-the-unapproved-package-and-functions-section-"></a>
-</h4>
+<div class="section level3">
+<h3 id="youre-done--lets-axecute">5. You’re done. Let’s axecute!<a class="anchor" aria-label="anchor" href="#youre-done--lets-axecute"></a>
+</h3>
+<p><code>logrx</code> will take it from there. When each program is executed, packages and functions will be compared to <code>approved.rds</code> and if any unapproved use is found, it will be logged within the “Unapproved Package and Functions” section of the log file.</p>
 </div>
 </div>
 <div class="section level2">
@@ -191,15 +201,7 @@
 </h2>
 <p>Let’s write a simple script summarizing mean mpg from mtcars. We save this as <code>mpg.R</code> in the temporary directory <code>dir</code> and <code><a href="../reference/axecute.html">axecute()</a></code> it.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter, lag</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -246,7 +248,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

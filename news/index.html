@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">logrx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
       </span>
     </div>
 
@@ -37,10 +37,21 @@
   <ul class="dropdown-menu" role="menu"><li class="divider">
     <li class="dropdown-header">Use Cases</li>
     <li>
+      <a href="../articles/execution.html">Generating a Log</a>
+    </li>
+    <li>
       <a href="../articles/tables.html">Logging for Summary Display Table</a>
     </li>
     <li>
       <a href="../articles/adsl_demo.html">Logging for an ADSL dataset</a>
+    </li>
+    <li>
+      <a href="../articles/tidylog.html">Logging with {tidylog}</a>
+    </li>
+    <li class="divider">
+    <li class="dropdown-header">Helpers</li>
+    <li>
+      <a href="../articles/options.html">logrx Options</a>
     </li>
     <li class="divider">
     <li class="dropdown-header">Advanced Guides</li>
@@ -52,7 +63,7 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/atorus-research/logrx/" class="external-link">
+  <a href="https://github.com/pharmaverse/logrx/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -67,30 +78,53 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href="https://github.com/atorus-research/logrx/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/pharmaverse/logrx/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.2.0" id="logrx-020">logrx 0.2.0<a class="anchor" aria-label="anchor" href="#logrx-020"></a></h2>
-<p>Updates - Update the run environment to be a child of the global environment instead of a child of the <code>logrx</code> package namespace. This fixes the issue of <code>logrx</code> using internally imported versions of functions in the place of user imported version of functions. (PR <a href="https://github.com/atorus-research/logrx/pull/109" class="external-link">#109</a>)</p>
+<ul><li><p>Major update release for logrx</p></li>
+<li><p>Package has moved from <code>atorus-research</code> to <code>pharmaverse</code> organization.</p></li>
+</ul><div class="section level3">
+<h3 id="new-features-0-2-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-2-0"></a></h3>
+<ul><li>
+<a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> now produces a unique hash sum for each log file and script (<a href="https://github.com/pharmaverse/logrx/issues/29" class="external-link">#29</a>)</li></ul></div>
+<div class="section level3">
+<h3 id="updates-0-2-0">Updates<a class="anchor" aria-label="anchor" href="#updates-0-2-0"></a></h3>
+<ul><li><p>Updated the run environment to be a child of the global environment instead of a child of the <code>logrx</code> package namespace. This fixes the issue of <code>logrx</code> using internally imported versions of functions in the place of user imported version of functions. (<a href="https://github.com/pharmaverse/logrx/issues/104" class="external-link">#104</a>)</p></li>
+<li><p><code>get_used_functions()</code> now works for scripts with no functions (<a href="https://github.com/pharmaverse/logrx/issues/111" class="external-link">#111</a>)</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="documentation-0-2-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-2-0"></a></h3>
+<ul><li><p>Add options vignette and move all options for <code>logrx</code> to be set on package load if not set by user prior (<a href="https://github.com/pharmaverse/logrx/issues/110" class="external-link">#110</a>)(<a href="https://github.com/pharmaverse/logrx/issues/124" class="external-link">#124</a>)</p></li>
+<li><p>Added vignette showcasing <a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> working with <a href="https://github.com/elbersb/tidylog/" class="external-link">tidylog</a> package (<a href="https://github.com/pharmaverse/logrx/issues/97" class="external-link">#97</a>)</p></li>
+<li><p>Update documentation to exported and non-exported functions (<a href="https://github.com/pharmaverse/logrx/issues/106" class="external-link">#106</a>)(<a href="https://github.com/pharmaverse/logrx/issues/120" class="external-link">#120</a>)</p></li>
+<li><p>Fix typo in and re-format approved vignette (<a href="https://github.com/pharmaverse/logrx/issues/105" class="external-link">#105</a>)</p></li>
+<li><p>Update logrx vignette to describe log attributes in more details (<a href="https://github.com/pharmaverse/logrx/issues/119" class="external-link">#119</a>)(<a href="https://github.com/pharmaverse/logrx/issues/136" class="external-link">#136</a>)(<a href="https://github.com/pharmaverse/logrx/issues/137" class="external-link">#137</a>)</p></li>
+<li><p>Add vignette to execution vignette to help users better understand executing code and the different ways it can be done (<a href="https://github.com/pharmaverse/logrx/issues/72" class="external-link">#72</a>)(<a href="https://github.com/pharmaverse/logrx/issues/73" class="external-link">#73</a>)</p></li>
+</ul></div>
 </div>
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.1.1" id="logrx-011">logrx 0.1.1<a class="anchor" aria-label="anchor" href="#logrx-011"></a></h2>
+<h2 class="page-header" data-toc-text="0.1.1" id="logrx-011">logrx 0.1.1<small>2022-09-12</small><a class="anchor" aria-label="anchor" href="#logrx-011"></a></h2>
 <p>Address CRAN comments about documentation.</p>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.0" id="logrx-010">logrx 0.1.0<small>2022-06-17</small><a class="anchor" aria-label="anchor" href="#logrx-010"></a></h2>
-<p>Beta release for logrx with introduction of numerous new features:</p>
-<p>Enhancements</p>
+<p>Beta release for logrx</p>
+<div class="section level3">
+<h3 id="new-features-0-1-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-1-0"></a></h3>
 <ul><li>Add <code>to_report</code> param to <code><a href="../reference/axecute.html">axecute()</a></code> to give users ability to filter out which pieces are reported</li>
 <li>Add return codes when running <code><a href="../reference/axecute.html">axecute()</a></code> to determine if there were errors</li>
 <li>Improve approved packages use with new function <code><a href="../reference/build_approved.html">build_approved()</a></code> and corresponding vignette</li>
-<li>Add example articles for adsl and a risk difference table</li>
 </ul></div>
+<div class="section level3">
+<h3 id="documentation-0-1-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-1-0"></a></h3>
+<ul><li>Add example articles for adsl and a risk difference table</li></ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.1" id="logrx-001">logrx 0.0.1<a class="anchor" aria-label="anchor" href="#logrx-001"></a></h2>
 <p>Initial alpha release of logrx</p>
-<p>See the <a href="https://github.com/atorus-research/logrx/releases" class="external-link">GitHub release tracker</a> for additional release documentation and links to issues.</p>
+<p>See the <a href="https://github.com/pharmaverse/logrx/releases" class="external-link">GitHub release tracker</a> for additional release documentation and links to issues.</p>
 </div>
   </div>
 
@@ -106,7 +140,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

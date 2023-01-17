@@ -25,10 +25,28 @@
     <loc>/articles/approved.html</loc>
   </url>
   <url>
+    <loc>/articles/ex1_tidylog_R_file.html</loc>
+  </url>
+  <url>
+    <loc>/articles/ex1_tidylog_log.html</loc>
+  </url>
+  <url>
+    <loc>/articles/ex2_tidylog_adsl_R_file.html</loc>
+  </url>
+  <url>
+    <loc>/articles/ex2_tidylog_adsl_log.html</loc>
+  </url>
+  <url>
+    <loc>/articles/execution.html</loc>
+  </url>
+  <url>
     <loc>/articles/index.html</loc>
   </url>
   <url>
     <loc>/articles/logrx.html</loc>
+  </url>
+  <url>
+    <loc>/articles/options.html</loc>
   </url>
   <url>
     <loc>/articles/risk_diff_log.html</loc>
@@ -38,6 +56,9 @@
   </url>
   <url>
     <loc>/articles/tables.html</loc>
+  </url>
+  <url>
+    <loc>/articles/tidylog.html</loc>
   </url>
   <url>
     <loc>/authors.html</loc>
@@ -55,43 +76,13 @@
     <loc>/reference/approved.html</loc>
   </url>
   <url>
-    <loc>/reference/approved_functions_init.html</loc>
-  </url>
-  <url>
     <loc>/reference/axecute.html</loc>
   </url>
   <url>
     <loc>/reference/build_approved.html</loc>
   </url>
   <url>
-    <loc>/reference/get_file_path.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_library.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_log_element.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_logrx_metadata.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_masked_functions.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_session_info.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_unapproved_use.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_used_functions.html</loc>
-  </url>
-  <url>
     <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/log_cleanup.html</loc>
   </url>
   <url>
     <loc>/reference/log_config.html</loc>
@@ -106,57 +97,12 @@
     <loc>/reference/log_write.html</loc>
   </url>
   <url>
-    <loc>/reference/logrxAddin.html</loc>
-  </url>
-  <url>
-    <loc>/reference/loudly.html</loc>
-  </url>
-  <url>
-    <loc>/reference/run_safely_loudly.html</loc>
-  </url>
-  <url>
-    <loc>/reference/set_log_element.html</loc>
-  </url>
-  <url>
-    <loc>/reference/set_log_name_path.html</loc>
-  </url>
-  <url>
-    <loc>/reference/write_errors.html</loc>
-  </url>
-  <url>
-    <loc>/reference/write_file_name_path.html</loc>
-  </url>
-  <url>
-    <loc>/reference/write_log_element.html</loc>
-  </url>
-  <url>
     <loc>/reference/write_log_header.html</loc>
-  </url>
-  <url>
-    <loc>/reference/write_masked_functions.html</loc>
-  </url>
-  <url>
-    <loc>/reference/write_messages.html</loc>
-  </url>
-  <url>
-    <loc>/reference/write_metadata.html</loc>
-  </url>
-  <url>
-    <loc>/reference/write_output.html</loc>
-  </url>
-  <url>
-    <loc>/reference/write_result.html</loc>
-  </url>
-  <url>
-    <loc>/reference/write_session_info.html</loc>
   </url>
   <url>
     <loc>/reference/write_unapproved_functions.html</loc>
   </url>
   <url>
     <loc>/reference/write_used_functions.html</loc>
-  </url>
-  <url>
-    <loc>/reference/write_warnings.html</loc>
   </url>
 </urlset>

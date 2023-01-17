@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">logrx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
       </span>
     </div>
 
@@ -37,10 +37,21 @@
   <ul class="dropdown-menu" role="menu"><li class="divider">
     <li class="dropdown-header">Use Cases</li>
     <li>
+      <a href="../articles/execution.html">Generating a Log</a>
+    </li>
+    <li>
       <a href="../articles/tables.html">Logging for Summary Display Table</a>
     </li>
     <li>
       <a href="../articles/adsl_demo.html">Logging for an ADSL dataset</a>
+    </li>
+    <li>
+      <a href="../articles/tidylog.html">Logging with {tidylog}</a>
+    </li>
+    <li class="divider">
+    <li class="dropdown-header">Helpers</li>
+    <li>
+      <a href="../articles/options.html">logrx Options</a>
     </li>
     <li class="divider">
     <li class="dropdown-header">Advanced Guides</li>
@@ -52,7 +63,7 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://github.com/atorus-research/logrx/" class="external-link">
+  <a href="https://github.com/pharmaverse/logrx/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -76,170 +87,55 @@
       </tr></tbody><tbody><tr><td>
           <p><code><a href="axecute.html">axecute()</a></code> </p>
         </td>
-        <td><p>Create a log and run a file</p></td>
-      </tr><tr><td>
-          <p><code><a href="run_safely_loudly.html">run_safely_loudly()</a></code> </p>
-        </td>
-        <td><p>Safely run an R script and record results, outputs, messages, errors, warnings</p></td>
+        <td><p>Creation of a log and axecution of a file</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="logging-framework-functions">Logging Framework Functions <a href="#logging-framework-functions" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Functionality to Build The Log Manually</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="log_cleanup.html">log_cleanup()</a></code> </p>
-        </td>
-        <td><p>Cleans up log and does checks against elements</p></td>
-      </tr><tr><td>
           <p><code><a href="log_config.html">log_config()</a></code> </p>
         </td>
-        <td><p>Configures the log.rx environment</p></td>
+        <td><p>Configuration of the log.rx environment</p></td>
       </tr><tr><td>
           <p><code><a href="log_init.html">log_init()</a></code> </p>
         </td>
-        <td><p>Initialises the log.rx environment</p></td>
+        <td><p>Initialisation of the log.rx environment</p></td>
       </tr><tr><td>
           <p><code><a href="log_remove.html">log_remove()</a></code> </p>
         </td>
-        <td><p>Remove the log.rx environment by setting options("log.rx") to NULL</p></td>
+        <td><p>log.rx object removal</p></td>
       </tr><tr><td>
           <p><code><a href="log_write.html">log_write()</a></code> </p>
         </td>
-        <td><p>Write the formatted log.rx to a file</p></td>
-      </tr><tr><td>
-          <p><code><a href="logrxAddin.html">logrxAddin()</a></code> </p>
-        </td>
-        <td><p>logrxAddin
-Code needed to create the miniUI for the Addin</p></td>
-      </tr></tbody><tbody><tr><th colspan="2">
-          <h2 id="logging-helper-functions">Logging Helper Functions <a href="#logging-helper-functions" class="anchor" aria-hidden="true"></a></h2>
-          <p class="section-desc"></p><p>Functionality to Interact With The Log Object(s)</p>
-        </th>
-      </tr></tbody><tbody><tr><td>
-          <p><code><a href="get_file_path.html">get_file_path()</a></code> </p>
-        </td>
-        <td><p>Gets full path of file being run</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_library.html">get_library()</a></code> </p>
-        </td>
-        <td><p>Add libraries to functions</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_log_element.html">get_log_element()</a></code> </p>
-        </td>
-        <td><p>Gets the value of a named element in the log.rx environment</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_logrx_metadata.html">get_logrx_metadata()</a></code> </p>
-        </td>
-        <td><p>Returns named list of logrx metadata attributes</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_masked_functions.html">get_masked_functions()</a></code> </p>
-        </td>
-        <td><p>Returns named list of masked functions</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_session_info.html">get_session_info()</a></code> </p>
-        </td>
-        <td><p>Returns Session Info</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_unapproved_use.html">get_unapproved_use()</a></code> </p>
-        </td>
-        <td><p>Get unapproved packages and functions used</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_used_functions.html">get_used_functions()</a></code> </p>
-        </td>
-        <td><p>Get functions used within a file</p></td>
-      </tr><tr><td>
-          <p><code><a href="set_log_element.html">set_log_element()</a></code> </p>
-        </td>
-        <td><p>Adds values to existing named elements in the log.rx environment</p></td>
-      </tr><tr><td>
-          <p><code><a href="set_log_name_path.html">set_log_name_path()</a></code> </p>
-        </td>
-        <td><p>Set the log name and path</p></td>
-      </tr><tr><td>
-          <p><code><a href="approved.html">approved</a></code> </p>
-        </td>
-        <td><p>Approved packages and functions</p></td>
-      </tr><tr><td>
-          <p><code><a href="approved_functions_init.html">approved_functions_init()</a></code> </p>
-        </td>
-        <td><p>Initialises the logrx.approved option</p></td>
+        <td><p>Formatting and writing of the log.rx object to a log file</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="write-log">Write Log <a href="#write-log" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Functionality for Writing Logs to a File</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="write_errors.html">write_errors()</a></code> </p>
-        </td>
-        <td><p>Format errors attribute for writing</p></td>
-      </tr><tr><td>
-          <p><code><a href="write_file_name_path.html">write_file_name_path()</a></code> </p>
-        </td>
-        <td><p>Format file name and path for writing</p></td>
-      </tr><tr><td>
-          <p><code><a href="write_log_element.html">write_log_element()</a></code> </p>
-        </td>
-        <td><p>Generic function to format log.rx elements for writing</p></td>
-      </tr><tr><td>
           <p><code><a href="write_log_header.html">write_log_header()</a></code> </p>
         </td>
-        <td><p>Generic function to format log section headers</p></td>
-      </tr><tr><td>
-          <p><code><a href="write_masked_functions.html">write_masked_functions()</a></code> </p>
-        </td>
-        <td><p>Format masked functions attribute for writing</p></td>
-      </tr><tr><td>
-          <p><code><a href="write_messages.html">write_messages()</a></code> </p>
-        </td>
-        <td><p>Format messages attribute for writing</p></td>
-      </tr><tr><td>
-          <p><code><a href="write_metadata.html">write_metadata()</a></code> </p>
-        </td>
-        <td><p>Format log.rx's metadata attributes for writing</p></td>
-      </tr><tr><td>
-          <p><code><a href="write_output.html">write_output()</a></code> </p>
-        </td>
-        <td><p>Format output attribute for writing</p></td>
-      </tr><tr><td>
-          <p><code><a href="write_result.html">write_result()</a></code> </p>
-        </td>
-        <td><p>Format result attribute for writing</p></td>
-      </tr><tr><td>
-          <p><code><a href="write_session_info.html">write_session_info()</a></code> </p>
-        </td>
-        <td><p>Format log.rx's session info attribute for writing</p></td>
+        <td><p>Formatting of log file section headers</p></td>
       </tr><tr><td>
           <p><code><a href="write_unapproved_functions.html">write_unapproved_functions()</a></code> </p>
         </td>
-        <td><p>Format unapproved functions attribute for writing</p></td>
+        <td><p>Formats and returns a vector of unapproved functions</p></td>
       </tr><tr><td>
           <p><code><a href="write_used_functions.html">write_used_functions()</a></code> </p>
         </td>
-        <td><p>Format used functions attribute for writing</p></td>
-      </tr><tr><td>
-          <p><code><a href="write_warnings.html">write_warnings()</a></code> </p>
-        </td>
-        <td><p>Format warnings attribute for writing</p></td>
+        <td><p>Formats and returns a vector of used package functions</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="utilities">Utilities <a href="#utilities" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Utility functions</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="loudly.html">loudly()</a></code> </p>
-        </td>
-        <td><p>Capture errors, warnings, messages, and a stream output from
-executing R code</p></td>
-      </tr><tr><td>
           <p><code><a href="build_approved.html">build_approved()</a></code> </p>
         </td>
         <td><p>Build approved packages and functions tibble</p></td>
-      </tr></tbody><tbody><tr><th colspan="2">
-          <h2 id="rstudio-addin">RStudio addin <a href="#rstudio-addin" class="anchor" aria-hidden="true"></a></h2>
-          <p class="section-desc"></p><p>RStudio addin to facilitate the execution of a log</p>
-        </th>
-      </tr></tbody><tbody><tr><td>
-          <p><code><a href="logrxAddin.html">logrxAddin()</a></code> </p>
+      </tr><tr><td>
+          <p><code><a href="approved.html">approved</a></code> </p>
         </td>
-        <td><p>logrxAddin
-Code needed to create the miniUI for the Addin</p></td>
+        <td><p>Approved packages and functions</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -253,7 +149,7 @@ Code needed to create the miniUI for the Addin</p></td>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

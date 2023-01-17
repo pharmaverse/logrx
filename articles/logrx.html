@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">logrx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
       </span>
     </div>
 
@@ -63,10 +63,22 @@
     </li>
 <li class="dropdown-header">Use Cases</li>
     <li>
+      <a href="../articles/execution.html">Generating a Log</a>
+    </li>
+    <li>
       <a href="../articles/tables.html">Logging for Summary Display Table</a>
     </li>
     <li>
       <a href="../articles/adsl_demo.html">Logging for an ADSL dataset</a>
+    </li>
+    <li>
+      <a href="../articles/tidylog.html">Logging with {tidylog}</a>
+    </li>
+    <li class="divider">
+    </li>
+<li class="dropdown-header">Helpers</li>
+    <li>
+      <a href="../articles/options.html">logrx Options</a>
     </li>
     <li class="divider">
     </li>
@@ -82,7 +94,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/atorus-research/logrx/" class="external-link">
+  <a href="https://github.com/pharmaverse/logrx/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -103,15 +115,13 @@
       <h1 data-toc-skip>logrxpackage</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/atorus-research/logrx/blob/HEAD/vignettes/logrx.Rmd" class="external-link"><code>vignettes/logrx.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/logrx/blob/HEAD/vignettes/logrx.Rmd" class="external-link"><code>vignettes/logrx.Rmd</code></a></small>
       <div class="hidden name"><code>logrx.Rmd</code></div>
 
     </div>
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/atorus-research/logrx" class="external-link">logrx</a></span><span class="op">)</span></span></code></pre></div>
 <p>The purpose of the <code>logrx</code> package is to generate a log upon execution of an R script which enables traceability and reproducibility of the executed code.</p>
 <div class="section level2">
 <h2 id="log-attributes">Log attributes<a class="anchor" aria-label="anchor" href="#log-attributes"></a>
@@ -119,35 +129,55 @@
 <p>The following attributes are recorded in the log:</p>
 <ul>
 <li>
-<code>metadata</code>: The logrx <code>package</code> information</li>
+<code>metadata</code>: <code>logrx</code> package information
+<ul>
+<li>Version of the package</li>
+<li>Type of build</li>
+<li>Link to the GitHub repository</li>
+</ul>
+</li>
 <li>
-<code>user and file information</code>: The user that generates the log, file name and path of the R script</li>
+<code>user and file information</code>
+<ul>
+<li>User that generated the log</li>
+<li>Name and path of the script for which the log was generated</li>
 <li>
-<code>session_info</code>: The R session information</li>
+<code>hash_sum</code>: A unique hashsum is created for the log file</li>
+</ul>
+</li>
 <li>
-<code>packages</code>: List all available packages in the environment</li>
+<code>session_info</code>: The R session information
+<ul>
+<li>R version</li>
+<li>OS and system</li>
+<li>GUI</li>
+<li>Language and timezone</li>
+</ul>
+</li>
 <li>
-<code>external_software</code>" Lists all external software</li>
+<code>packages</code>: List of all available packages in the environment</li>
 <li>
-<code>masked_functions</code>: The functions masked by packages</li>
+<code>external_software</code>: List of all external software</li>
 <li>
-<code>start_time</code>, <code>end_time</code>, and <code>run_time</code>: The start, end, and run times</li>
+<code>masked_functions</code>: List of all functions masked by packages</li>
 <li>
-<code>used_packages_functions</code>: Any packages and functions used in the R script</li>
+<code>start_time</code>, <code>end_time</code>, and <code>run_time</code>: Start, end, and run times</li>
 <li>
-<code>unapproved_packages_functions</code>: Any packages and functions used in the R script that are not part of that approved packages and functions list</li>
+<code>used_packages_functions</code>: List of all packages and functions used in the script for which the log was generated</li>
 <li>
-<code>errors</code>: The errors generated when running the R script</li>
+<code>unapproved_packages_functions</code>: List of all packages and functions used in the script for which the log was generated that are not part of the approved list of packages and functions</li>
 <li>
-<code>warnings</code>: The warnings generated when running the R script</li>
+<code>errors</code>: Errors generated when running the script</li>
 <li>
-<code>messages</code>: The messages generated when running the R script</li>
+<code>messages</code>: Messages generated when running the script</li>
 <li>
-<code>result</code>: The result generated when running the R script</li>
+<code>warnings</code>: Warnings generated when running the script</li>
 <li>
-<code>output</code>: The output generated when running the R script</li>
+<code>result</code>: Result generated when running the script</li>
 <li>
-<code>log_name</code>, <code>log_path</code>: The name and path of the log</li>
+<code>output</code>: Output generated when running the script</li>
+<li>
+<code>log_name</code>, <code>log_path</code>: Name and path of the log</li>
 </ul>
 <style>
   .scrolled {
@@ -163,46 +193,15 @@
 <div class="section level2">
 <h2 id="generating-a-log">Generating a log<a class="anchor" aria-label="anchor" href="#generating-a-log"></a>
 </h2>
-<p>The log can be generated according in two ways:</p>
-<ul>
-<li><p>Using the <code><a href="../reference/axecute.html">axecute()</a></code> function</p></li>
-<li><p>Using the <code>log_*()</code> functions</p></li>
-</ul>
-<div class="section level3">
-<h3 id="axecute">
-<code>axecute()</code><a class="anchor" aria-label="anchor" href="#axecute"></a>
-</h3>
-<p><code><a href="../reference/axecute.html">axecute()</a></code> enables the command line submission of a program. A log is set-up around the program, and its code is run safely and loudly (using <code>safely()</code> from the <code>purrr</code> package).</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<p>The log can be generated in a number of ways, below is an example of how to use the <code><a href="../reference/axecute.html">axecute()</a></code> function to generate a log. This method is the easiest and most accessible way of creating a log. To learn more about executing code with <code>logrx</code> please visit our <a href="https://pharmaverse.github.io/logrx/articles/developing.html" class="external-link">Developing Vignette</a>. ## <code><a href="../reference/axecute.html">axecute()</a></code> <code><a href="../reference/axecute.html">axecute()</a></code> enables the command line submission of a program. A log is set-up around the program, and its code is run safely and loudly (using <code>safely()</code> from the <code>purrr</code> package).</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/axecute.html">axecute</a></span><span class="op">(</span><span class="st">"my_script.R"</span><span class="op">)</span></span></code></pre></div>
-</div>
 <div class="section level3">
-<h3 id="log_-functions">
-<code>log_*()</code> functions<a class="anchor" aria-label="anchor" href="#log_-functions"></a>
+<h3 id="logrx-addin">
+<code>logrx</code> addin:<a class="anchor" aria-label="anchor" href="#logrx-addin"></a>
 </h3>
-<p>Use the <code>log_*()</code> functions:</p>
-<ul>
-<li><p><code><a href="../reference/log_init.html">log_init()</a></code> to create the environment log.rx</p></li>
-<li><p><code><a href="../reference/log_config.html">log_config()</a></code> to add the core elements of the log to the environment, and basic elements that are available at the time of configuration</p></li>
-<li><p><code><a href="../reference/run_safely_loudly.html">run_safely_loudly()</a></code> to execute the program code, and capture errors, warnings, messages, output, and result</p></li>
-<li><p><code><a href="../reference/log_write.html">log_write()</a></code> to generate and format the log</p></li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/log_config.html">log_config</a></span><span class="op">(</span><span class="st">"my_script.R"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/run_safely_loudly.html">run_safely_loudly</a></span><span class="op">(</span><span class="st">"my_script.R"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/log_write.html">log_write</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>A log can be generated using the <code>logrx</code> addin. More information can be found in <a href="https://pharmaverse.github.io/logrx/index.html" class="external-link">logrx</a>.</p>
 </div>
-</div>
-<div class="section level2">
-<h2 id="scripting-with-logrx">Scripting with <code>logrx</code><a class="anchor" aria-label="anchor" href="#scripting-with-logrx"></a>
-</h2>
-<p>While <code>logrx</code> is built around creating a log for a program it can just as easily be used when running an entire set of programs. The <code><a href="../reference/axecute.html">axecute()</a></code> function has been built with both single file execution and scripted file execution in mind. With the use of simple functions such as <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> scripting is easy. Below is some sample code of how <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> can be used with <code><a href="../reference/axecute.html">axecute()</a></code>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"file.R"</span>, <span class="st">"otherfile.R"</span><span class="op">)</span>, <span class="va">axecute</span><span class="op">)</span></span></code></pre></div>
-<p>If your scripting needs to work on the contents of a directory instead of a pre-defined list, functions such as <code>list.files</code> can be used to obtain a list of files to use. Below is an example of how this can be applied in practice by getting all files ending in ‘.R’ in the current working directory using a regular expression, and then using <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> to run the files using <code><a href="../reference/axecute.html">axecute()</a></code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">r_script_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"."</span>, pattern <span class="op">=</span> <span class="st">"\\.R$"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">r_script_list</span>, <span class="va">axecute</span><span class="op">)</span></span></code></pre></div>
 </div>
   </div>
 
@@ -223,7 +222,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
