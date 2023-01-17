@@ -130,7 +130,9 @@
 <h2 id="what-is-logrx-">What is <code>logrx</code> ?<a class="anchor" aria-label="anchor" href="#what-is-logrx-"></a>
 </h2>
 <p>Simple! The logrx package makes a log file for a R script!. Below we have a short gif of making a log file for a <code>adsl.R</code> script. More details on the parts of the log script are found in <a href="https://pharmaverse.github.io/logrx/articles/logrx.html" class="external-link">Get Started</a> and we have several vignettes that show specific use cases for using the package.</p>
-<p><img src="https://pharmaverse.s3.us-east-2.amazonaws.com/gifs/logrx.gif" alt="logrx Addin in Action" width="100%" style="display: block; margin: auto;"></p>
+<div class="figure" style="text-align: center">
+<img src="https://pharmaverse.s3.us-east-2.amazonaws.com/gifs/logrx.gif" alt="logrx Addin in Action" width="100%"><p class="caption">logrx Addin in Action</p>
+</div>
 <p>While many packages to facilitate the logging of code already exist in the R ecosystem, it is hard to find a solution that works well for clinical programming applications. Many logging implementations are more implicit and rely on user input to create the log for the execution of a script. While this is useful for logging specific events of an application, in clinical programming a log has a set purpose.</p>
 <p><code>logrx</code> is built around the concept of creating a log for the execution of an R script that provides an overview of what happened as well as the environment that it happened in. We set out to create a flexible logging utility that could provide the necessary information to anyone reviewing the code execution so they can recreate the execution environment and run the code for themselves. <code>logrx</code> is purpose-built for the needs of clinical programming to capture necessary elements of the environment and execution to be able to create a complete view of the program execution.</p>
 </div>
