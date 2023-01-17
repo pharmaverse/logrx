@@ -3,8 +3,11 @@ title: "Logging Unapproved Package and Function Use"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Logging Unapproved Package and Function Use}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r, include = FALSE}
@@ -16,8 +19,54 @@ knitr::opts_chunk$set(
 library(logrx)
 ```
 
+# Why would I use this feature?
+
+The main use case of this feature is to support traceability of package
+and function use within a validated environment.
+
+Following the guidance outlined in [A Risk-Based Approach for Assessing
+R Package Accuracy within a Validated
+Infrastructure](https://www.pharmar.org/white-paper/), packages are
+selected to support use cases, risk is assessed and mitigated, and
+packages are included in your validated environment for use. **Section
+4.3** of this paper nicely outlines the need to trace what is used and
+the need to identify package and function use where risk was not assessed for
+direct use within the validated environment.
+
+<br>
+
+<blockquote> 
+*4.3. Traceability*
+
+*"One of the core concepts presented [in this
+paper]((https://www.pharmar.org/white-paper/)) is that Imports are not
+typically loaded by users and need not therefore be directly
+risk-assessed. If adopting this risk-based approach then measures need
+to be taken to ensure that users do not directly load the Package
+Imports. It is suggested that this is handled mainly through process,
+although tools could be developed to check using sessionInfo or
+devtools::session_info that check the loaded packages against packages
+lists of Intended for Use and Imports. In any case the use of these
+tools within a standard, logged, workflow is highly recommended to
+ensure traceability of the work."*
+</blockquote>
+
+<br>
+
+{logrx} provides you this tool! It even goes a step further by
+not just logging the packages you've use, but it will log use at a function
+level. This gives you the flexibility of assessing the risk of
+functions and approving functions, rather than having to assess the risk of the entire package for
+use within your validated environment.
+
+<br>
+
+# How do I use this feature?
+
 ## 1. Create a named list
-#### The named list contains the functions approved for use for each package. If all functions for a package are approved for use, list "All".
+
+The named list contains the functions approved for use for each package.
+If all functions for a package are approved for use, list "All".
 
 ```{r}
 approved_pkgs <- list(base = "mean",
@@ -26,15 +75,18 @@ approved_pkgs
 ```
 
 ## 2. Build `approved.rds`
-#### Pass the named list through `build_approved()` to build your tibble.
-#### If We create a temp directory to save this for illustration.
+
+Pass the named list through `build_approved()` to build your tibble. We
+create a temp directory to save this for illustration.
 
 ```{r}
 build_approved(approved_pkgs)
 ```
 
 ## 3. Save as `approved.rds`
-####  You can use the `file` argument in `build_approved()` to save approved.rds instead of return the tibble.
+
+You can use the `file` argument in `build_approved()` to save
+`approved.rds` instead of returning the tibble.
 
 ```{r}
 dir <- tempdir()
@@ -43,21 +95,28 @@ build_approved(approved_pkgs, file = file.path(dir, "approved.rds"))
 ```
 
 ## 4. Update the `logrx.approved` option
-### Update the `logrx.approved` option to point to your `approved.rds` location. We recommend setting this in your `.Rprofile`.
+
+Update the `logrx.approved` option to point to your `approved.rds`
+location. We recommend setting this in your `.Rprofile`.
 
 ```{r}
-options(logrx.approved = file.path(dir, "approved.rds"))
+options(log.rx.approved = file.path(dir, "approved.rds"))
 ```
 
-## 5. You're done. Let's axecute! 
-#### `logrx` will take it from there. When each program is executed, packages and functions will be compared to `approved.rds` and if any unapproved use is found, it will be logged within the "Unapproved Package and Functions" section.
+## 5. You're done. Let's axecute!
 
-## Example
+`logrx` will take it from there. When each program is executed, packages
+and functions will be compared to `approved.rds` and if any unapproved
+use is found, it will be logged within the "Unapproved Package and
+Functions" section of the log file.
 
-Let's write a simple script summarizing mean mpg from mtcars. We save this as `mpg.R` in the temporary directory `dir` and `axecute()` it.
+# Example
+
+Let's write a simple script summarizing mean mpg from mtcars. We save
+this as `mpg.R` in the temporary directory `dir` and `axecute()` it.
 
 ```{r}
-library(dplyr)
+library(dplyr, warn.conflicts = FALSE)
 
 results <- mtcars %>%
    group_by(cyl) %>%
@@ -84,14 +143,17 @@ results %>%
 fileConn <- file(file.path(dir,"mpg.R"))
 writeLines(text, fileConn)
 close(fileConn)
-
 ```
 
 ```{r results='hide'}
 axecute(file.path(dir,"mpg.R"), remove_log_object = FALSE)
 ```
 
-Here we have the log elements for "Used Package and Functions" and "Unapproved Package and Functions". We can see we used `library()` from `package:base` and `pivot_wider` from `package:tidyr`.  We did not include the base library or tidyr functions in our approved list, so this has been logged!
+Here we have the log elements for "Used Package and Functions" and
+"Unapproved Package and Functions". We can see we used `library()` from
+`package:base` and `pivot_wider` from `package:tidyr`. We did not
+include the base library or tidyr functions in our approved list, so
+this has been logged!
 
 ```{r echo=FALSE}
 cleaned_log_vec <- c()

@@ -4,13 +4,16 @@
 #' Returns named list of logrx metadata attributes
 #'
 #' @return Named list of logrx package metadata attributes
-#' @export
 #'
 #' @importFrom sessioninfo session_info
 #' @importFrom dplyr filter
 #'
 #' @examples
+#' \dontrun{
 #' get_logrx_metadata()
+#' }
+#'
+#' @noRd
 #'
 get_logrx_metadata <- function(){
 
@@ -24,7 +27,7 @@ get_logrx_metadata <- function(){
       built = ifelse(!is.na(logrx_session_info[['source']]),
                      logrx_session_info[['source']],
                      "Build not able to be determined"),
-      repository_link = "https://github.com/atorus-research/logrx"
+      repository_link = "https://github.com/pharmaverse/logrx"
    )
 
    return(logrx_metadata)
@@ -36,10 +39,13 @@ get_logrx_metadata <- function(){
 #' @param normalize If the returned path should be normalized
 #'
 #' @return full path of file being run
-#' @export
 #'
 #' @examples
+#' \dontrun{
 #' get_file_path()
+#' }
+#'
+#' @noRd
 #'
 get_file_path <- function(file = NA, normalize = TRUE){
    if (!is.na(file)){
@@ -79,12 +85,15 @@ get_file_path <- function(file = NA, normalize = TRUE){
 #' Returns Session Info
 #'
 #' @return Formatted Session Info
-#' @export
 #'
 #' @importFrom sessioninfo session_info
 #'
 #' @examples
+#' \dontrun{
 #' get_session_info()
+#' }
+#'
+#' @noRd
 #'
 get_session_info <- function(){
    return(capture.output(session_info(info = "all")))
@@ -94,7 +103,6 @@ get_session_info <- function(){
 #' Returns named list of masked functions
 #'
 #' @return Named list of masked functions, source package, and what they mask
-#' @export
 #'
 #' @importFrom purrr imap
 #' @importFrom purrr map
@@ -102,7 +110,11 @@ get_session_info <- function(){
 #' @importFrom magrittr "%>%"
 #'
 #' @examples
+#' \dontrun{
 #' get_masked_functions()
+#' }
+#'
+#' @noRd
 #'
 get_masked_functions <- function(){
    # get conflicts into stable object
@@ -132,13 +144,15 @@ get_masked_functions <- function(){
 #' @importFrom purrr safely
 #' @importFrom tibble tibble
 #' @importFrom utils getParseData
-#' @export
 #'
 #' @examples
 #' \dontrun{
 #' file <- "ex1.R"
 #' get_functions_used(file)
 #' }
+#'
+#' @noRd
+#'
 get_used_functions <- function(file){
 
    # catch error
@@ -156,11 +170,16 @@ get_used_functions <- function(file){
       )
    }
 
-   tokens <- getParseData(ret$result)
+   tokens <- getParseData(ret$result) %>%
+      filter(.data$token %in% c("SYMBOL_FUNCTION_CALL", "SPECIAL", "SYMBOL_PACKAGE"))
+
+   if(nrow(tokens) == 0) {
+      return (NULL)
+   }
 
    # grouping and complete to ensure all three columns carry through after pivot
    # regardless if seen in the parsed data
-   filtered_tokens <- tokens[tokens[["token"]] %in% c("SYMBOL_FUNCTION_CALL", "SPECIAL", "SYMBOL_PACKAGE"),] %>%
+   filtered_tokens <- tokens %>%
       mutate(token = factor(.data$token,
                             c("SYMBOL_FUNCTION_CALL", "SPECIAL", "SYMBOL_PACKAGE"))) %>%
       group_by(.data$line1, .data$parent) %>%
@@ -194,6 +213,9 @@ get_used_functions <- function(file){
 #' @importFrom purrr map
 #'
 #' @return tibble that includes `library`
+#'
+#' @noRd
+#'
 get_library <- function(df){
    search_lookup <- map(search(), objects)
    names(search_lookup) <- search()
@@ -225,25 +247,31 @@ get_first <- function(func, search_lookup){
 #' @param used_packages dataframe containing variables `function_name` and `library`
 #'
 #' @importFrom dplyr anti_join
-#' @export
 #'
 #' @return tibble that includes packages and functions used, but not approved
+#'
+#' @noRd
+#'
 get_unapproved_use <- function(approved_packages, used_packages) {
    anti_join(approved_packages, used_packages, by = c("library", "function_name"))
 }
 
+
 #' Get lint results
 #'
-#' Pass linters specified in the `logrx.lint` option to `lintr::lint`
+#' Pass linters specified in the `log.rx.lint` option to `lintr::lint`
 #'
 #' @param file File path of file being run
 #'
 #' @importFrom lintr lint
 #'
 #' @return results from `lintr::lint()`
+#'
+#' @noRd
+#'
 get_lint_results <- function(file) {
    # lint file if option is turned on
-   if (!is.logical(getOption('logrx.lint'))) {
-      lint(file, getOption('logrx.lint'))
+   if (!is.logical(getOption('log.rx.lint'))) {
+      lint(file, getOption('log.rx.lint'))
    }
 }

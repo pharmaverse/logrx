@@ -1,11 +1,18 @@
 ### Functions to initialise, configure, cleanup, and write the log.rx environment
 
-#' Initialises the log.rx environment
+#' Initialisation of the log.rx environment
+#'
+#' `log_init()` initialises the log.rx environment
 #'
 #' @return Nothing
 #' @export
 #'
+#' @examples
+#' # Initialise the log.rx environment
+#' log_init()
 #'
+#' # Remove the log.rx environment
+#' log_remove()
 log_init <- function(){
    log.rx <- new.env()
 
@@ -14,40 +21,36 @@ log_init <- function(){
    }
 }
 
-#' Initialises the logrx.approved option
+
+#' Configuration of the log.rx environment
 #'
-#' Defaults to working directory. This should point to the location of the
-#' dataframe storing approved packages and functions.
+#' `log_config()` initialises the log.rx environment, adds its attributes, and
+#' sets them
 #'
-#' See ?approved for an example dataframe.
+#' @param file String. Path to file executed. Optional
+#' @param log_name String. Name of log file. Optional
+#' @param log_path String. Path to log file. Optional
 #'
 #' @return Nothing
 #' @export
 #'
+#' @examples
+#' dir <- tempdir()
+#' text <- 'print("Hello, Timberperson!")'
+#' fileConn <- file(file.path(dir, "hello.R"))
+#' writeLines(text, fileConn)
+#' close(fileConn)
 #'
-approved_functions_init <- function(){
-   if(!('logrx.approved' %in% names(options()))) {
-      options('logrx.approved' = './approved.rds')
-   }
-}
-
-#' Initialises the logrx.lint option
-lint_init <- function(){
-   if(!('logrx.lint' %in% names(options()))) {
-      options('logrx.lint' = FALSE)
-   }
-}
-
-
-#' Configures the log.rx environment
+#' file <- file.path(dir, "hello.R")
 #'
-#' @param file File path of file being run, optional
-#' @param log_name The log name
-#' @param log_path The log path
+#' # Initialise and configure the log.rx environment
+#' log_config(file)
 #'
-#' @return Nothing
-#' @export
+#' # Run the script and record results, outputs, messages, errors, and warnings
+#' logrx:::run_safely_loudly(file)
 #'
+#' # Write the log
+#' log_write(file)
 log_config <- function(file = NA, log_name = NA, log_path = NA){
    # If the log.rx environment is not NULL or empty, warn the user
    if (!is.null(getOption("log.rx"))) {
@@ -74,6 +77,7 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
       "file_name",
       "file_path",
       "user",
+      "hash_sum",
       "masked_functions",
       "used_packages_functions",
       "unapproved_packages_functions",
@@ -106,10 +110,14 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
    set_log_element("lint_results", get_lint_results(file))
 }
 
-#' Cleans up log and does checks against elements
+#' Cleaning-up of log.rx object
 #'
-#' @return List of non-NA elements and their value in log.rx environment
-#' @export
+#' `log_cleanup()` compiles a list of non-NA log.rx attributes and their
+#' values, and return it
+#'
+#' @return List of non-NA log.rx attributes and their values
+#'
+#' @noRd
 #'
 log_cleanup <- function() {
    # check the log.rx environment exists
@@ -136,18 +144,37 @@ log_cleanup <- function() {
 }
 
 
-#' Write the formatted log.rx to a file
+#' Formatting and writing of the log.rx object to a log file
 #'
-#' @param file File path of file being run
-#' @param remove_log_object Should the log object be removed after writing,
-#'   defaults to TRUE
-#' @param to_report toggle for optional reporting objects, additional
-#'   information in \code{\link{axecute}}
+#' `log_write()` gets and formats the content of the log.rx before writing it
+#' to a log file
 #'
+#' @param file String. Path to file executed
+#' @param remove_log_object Boolean. Should the log object be removed after
+#' writing the log file? Defaults to TRUE
+#' @param to_report String vector. Objects to optionally report; additional
+#' information in \code{\link{axecute}}
 #'
 #' @return Nothing
 #' @export
 #'
+#' @examples
+#' dir <- tempdir()
+#' text <- 'print("Hello, Timberperson!")'
+#' fileConn <- file(file.path(dir, "hello.R"))
+#' writeLines(text, fileConn)
+#' close(fileConn)
+#'
+#' file <- file.path(dir, "hello.R")
+#'
+#' # Initialise and configure the log.rx environment
+#' log_config(file)
+#'
+#' # Run the script and record results, outputs, messages, errors, and warnings
+#' logrx:::run_safely_loudly(file)
+#'
+#' # Write the log
+#' log_write(file)
 log_write <- function(file = NA,
                       remove_log_object = TRUE,
                       to_report = c("messages", "output", "result")){
@@ -175,7 +202,8 @@ log_write <- function(file = NA,
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_header("User and File Information"),
                         write_log_element("user", "User: "),
-                        write_file_name_path())
+                        write_file_name_path(),
+                        write_hash_sum())
 
 
    cleaned_log_vec <- c(cleaned_log_vec,
@@ -202,8 +230,8 @@ log_write <- function(file = NA,
 
    }
 
-   if (file.exists(getOption("logrx.approved"))) {
-      approved_functions <- readRDS(getOption("logrx.approved"))
+   if (file.exists(getOption("log.rx.approved"))) {
+      approved_functions <- readRDS(getOption("log.rx.approved"))
       unapproved_functions <- get_unapproved_use(used_functions, approved_functions)
       set_log_element("unapproved_packages_functions", unapproved_functions)
 
@@ -265,11 +293,20 @@ log_write <- function(file = NA,
 }
 
 
-#' Remove the log.rx environment by setting options("log.rx") to NULL
+#' log.rx object removal
+#'
+#' `log_remove()` removes the log.rx object by setting `options("log.rx")` to
+#' NULL
 #'
 #' @return Nothing
 #' @export
 #'
+#' @examples
+#' # Initialise the log.rx environment
+#' log_init()
+#'
+#' # Remove the log.rx environment
+#' log_remove()
 log_remove <- function() {
    if (!is.null(getOption("log.rx"))) {
       options("log.rx" = NULL)
