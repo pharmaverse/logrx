@@ -68,7 +68,7 @@ list of packages and functions
 </div>
 
 # Generating a log
-The log can be generated in a number of ways, below is an example of how to use the `axecute()` function to generate a log. This method is the easiest and most accessible way of creating a log.  To learn more about executing code with ```logrx``` please visit our [Developing Vignette](https://pharmaverse.github.io/logrx/articles/execution.html).
+The log can be generated in a number of ways, below is an example of how to use the `axecute()` function to generate a log. This method is the easiest and most accessible way of creating a log.  To learn more about executing code with ```logrx``` please visit our [Execution Vignette](https://pharmaverse.github.io/logrx/articles/execution.html).
 ## `axecute()`
 `axecute()` enables the command line submission of a program. A log is 
 set-up around the program, and its code is run safely and loudly (using 
