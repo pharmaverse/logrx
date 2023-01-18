@@ -39,7 +39,7 @@ direct use within the validated environment.
 *4.3. Traceability*
 
 *"One of the core concepts presented [in this
-paper]((https://www.pharmar.org/white-paper/)) is that Imports are not
+paper](https://www.pharmar.org/white-paper/) is that Imports are not
 typically loaded by users and need not therefore be directly
 risk-assessed. If adopting this risk-based approach then measures need
 to be taken to ensure that users do not directly load the Package
