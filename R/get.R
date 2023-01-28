@@ -217,7 +217,12 @@ get_used_functions <- function(file){
 #' @noRd
 #'
 get_library <- function(df){
-   search_lookup <- map(search(), objects)
+
+   functions_only <- function(.x){
+      intersect(ls(.x), lsf.str(.x))
+   }
+
+   search_lookup <- map(search(), functions_only)
    names(search_lookup) <- search()
    df$library <- unlist(map(df$function_name, ~get_first(., search_lookup)))
 

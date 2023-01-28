@@ -111,6 +111,25 @@ test_that("used functions returned correctly when file doesn't contain all token
    expect_identical(get_used_functions(filename), expected)
 })
 
+test_that("get_library correctly returns correct function when a non-function
+          object of same name is available", {
+
+   writeLines('search <- "dummy object"', "dummy.R")
+
+   sys.source("dummy.R", envir = attach(NULL, name = "dummy"))
+
+   actual <- get_library(tibble(function_name = "search", SYMBOL_PACKAGE = NA))
+
+   unlink("dummy.R")
+
+   expected <- tibble::tribble(
+      ~function_name,  ~ SYMBOL_PACKAGE,     ~library,
+      "search",  NA, "package:base"
+   )
+
+   expect_identical(actual, expected)
+})
+
 test_that("parse does not fatal error when syntax issue occurs", {
    filename <- test_path("ref", "ex4.R")
 
