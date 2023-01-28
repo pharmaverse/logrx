@@ -211,6 +211,7 @@ get_used_functions <- function(file){
 #' @importFrom dplyr mutate
 #' @importFrom rlang .data
 #' @importFrom purrr map
+#' @importFrom utils lsf.str
 #'
 #' @return tibble that includes `library`
 #'
