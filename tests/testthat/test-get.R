@@ -121,6 +121,7 @@ test_that("get_library correctly returns correct function when a non-function
    actual <- get_library(tibble(function_name = "search", SYMBOL_PACKAGE = NA))
 
    unlink("dummy.R")
+   detach("dummy")
 
    expected <- tibble::tribble(
       ~function_name,  ~ SYMBOL_PACKAGE,     ~library,
