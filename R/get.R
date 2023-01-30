@@ -223,8 +223,14 @@ get_library <- function(df){
       intersect(ls(.x), lsf.str(.x))
    }
 
-   search_lookup <- map(search(), functions_only)
-   names(search_lookup) <- search()
+   # do not search CheckExEnv, this is created while examples are executed
+   # T and F as given a delayedAssign, and when we check this environments
+   # objects, the promise for T and F are evaluated, and return a
+   # stop("T used instead of TRUE"), stop("F used instead of FALSE")
+   search_environ <- search()[search() != "CheckExEnv"]
+
+   search_lookup <- map(search_environ, functions_only)
+   names(search_lookup) <- search_environ
    df$library <- unlist(map(df$function_name, ~get_first(., search_lookup)))
 
    df %>%
