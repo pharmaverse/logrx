@@ -1,6 +1,6 @@
 Package: logrx
 Title: A Logging Utility Focus on Clinical Trial Programming Workflows
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: 
     c(
     person(given = "Nathan",

@@ -224,8 +224,10 @@ get_library <- function(df){
    }
 
    # do not search CheckExEnv, this is created while examples are executed
-   # T and F as given a delayedAssign, and when we check this environments
-   # objects, the promise for T and F are evaluated, and return a
+   # during build
+   # T and F are given a delayedAssign within the CheckExEnv environment,
+   # and when we check this environments objects, the promise for T and F
+   # are evaluated, and return:
    # stop("T used instead of TRUE"), stop("F used instead of FALSE")
    search_environ <- search()[search() != "CheckExEnv"]
 

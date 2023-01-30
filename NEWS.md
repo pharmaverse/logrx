@@ -1,3 +1,7 @@
+# logrx 0.2.1
+
+ - non-function objects are no longer returned as functions by `get_used_functions` (#154)
+
 # logrx 0.2.0
 
  - Major update release for logrx
