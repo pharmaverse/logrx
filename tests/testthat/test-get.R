@@ -111,7 +111,7 @@ test_that("used functions returned correctly when file doesn't contain all token
    expect_identical(get_used_functions(filename), expected)
 })
 
-test_that("get_library correctly returns correct function when a non-function
+test_that("get_library returns correct function when a non-function
           object of same name is available", {
 
    writeLines('search <- "dummy object"', "dummy.R")
