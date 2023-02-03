@@ -211,14 +211,28 @@ get_used_functions <- function(file){
 #' @importFrom dplyr mutate
 #' @importFrom rlang .data
 #' @importFrom purrr map
+#' @importFrom utils lsf.str
 #'
 #' @return tibble that includes `library`
 #'
 #' @noRd
 #'
 get_library <- function(df){
-   search_lookup <- map(search(), objects)
-   names(search_lookup) <- search()
+
+   functions_only <- function(.x){
+      intersect(ls(.x), lsf.str(.x))
+   }
+
+   # do not search CheckExEnv, this is created while examples are executed
+   # during build
+   # T and F are given a delayedAssign within the CheckExEnv environment,
+   # and when we check this environments objects, the promise for T and F
+   # are evaluated, and return:
+   # stop("T used instead of TRUE"), stop("F used instead of FALSE")
+   search_environ <- search()[search() != "CheckExEnv"]
+
+   search_lookup <- map(search_environ, functions_only)
+   names(search_lookup) <- search_environ
    df$library <- unlist(map(df$function_name, ~get_first(., search_lookup)))
 
    df %>%
