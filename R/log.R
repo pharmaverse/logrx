@@ -284,9 +284,16 @@ log_write <- function(file = NA,
                         write_log_element("log_name", "Log name: "),
                         write_log_element("log_path", "Log path: "))
 
-   writeLines(cleaned_log_vec,
-              con = file.path(get_log_element("log_path"),
-                              get_log_element("log_name")))
+   if (tools::file_ext(get_log_element("log_name")) %in% c("log", "txt")){
+      writeLines(cleaned_log_vec,
+                 con = file.path(get_log_element("log_path"),
+                                 get_log_element("log_name")))
+   } else if ( tolower(tools::file_ext(get_log_element("log_name"))) == "rds") {
+      saveRDS(cleaned_log_vec,
+              file = file.path(get_log_element("log_path"),
+                               get_log_element("log_name")))
+   }
+
    if (remove_log_object) {
       log_remove()
    }
