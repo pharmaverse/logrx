@@ -293,6 +293,7 @@ log_write <- function(file = NA,
          getOption('log.rx'),
          function(i) i
       )
+      cleaned_log_list$session_info <- session_info(info = "all")
       saveRDS(cleaned_log_list,
               file = file.path(
                  get_log_element("log_path"),
