@@ -177,6 +177,7 @@ log_cleanup <- function() {
 #' log_write(file)
 log_write <- function(file = NA,
                       remove_log_object = TRUE,
+                      include_rds = TRUE,
                       to_report = c("messages", "output", "result")){
    # Set end time and run time
    set_log_element("end_time", strftime(Sys.time(), usetz = TRUE))
@@ -284,14 +285,22 @@ log_write <- function(file = NA,
                         write_log_element("log_name", "Log name: "),
                         write_log_element("log_path", "Log path: "))
 
-   if (tools::file_ext(get_log_element("log_name")) %in% c("log", "txt")){
-      writeLines(cleaned_log_vec,
+   writeLines(cleaned_log_vec,
                  con = file.path(get_log_element("log_path"),
                                  get_log_element("log_name")))
-   } else if ( tolower(tools::file_ext(get_log_element("log_name"))) == "rds") {
-      saveRDS(cleaned_log_vec,
-              file = file.path(get_log_element("log_path"),
-                               get_log_element("log_name")))
+   if (include_rds) {
+      cleaned_log_list <- lapply(
+         getOption('log.rx'),
+         function(i) i
+      )
+      saveRDS(cleaned_log_list,
+              file = file.path(
+                 get_log_element("log_path"),
+                 paste0(tools::file_path_sans_ext(
+                    get_log_element("log_name")
+                    ),".Rds")
+                 )
+              )
    }
 
    if (remove_log_object) {
