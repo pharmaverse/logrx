@@ -7,6 +7,7 @@
 log_write(
   file = NA,
   remove_log_object = TRUE,
+  include_rds = FALSE,
   to_report = c("messages", "output", "result")
 )
 }
@@ -15,6 +16,8 @@ log_write(
 
 \item{remove_log_object}{Boolean. Should the log object be removed after
 writing the log file? Defaults to TRUE}
+
+\item{include_rds}{Boolean. Option to export log object as Rds file}
 
 \item{to_report}{String vector. Objects to optionally report; additional
 information in \code{\link{axecute}}}

@@ -150,6 +150,7 @@ log_cleanup <- function() {
 #' to a log file
 #'
 #' @param file String. Path to file executed
+#' @param include_rds Boolean. Option to export log object as Rds file
 #' @param remove_log_object Boolean. Should the log object be removed after
 #' writing the log file? Defaults to TRUE
 #' @param to_report String vector. Objects to optionally report; additional
@@ -177,7 +178,7 @@ log_cleanup <- function() {
 #' log_write(file)
 log_write <- function(file = NA,
                       remove_log_object = TRUE,
-                      include_rds = TRUE,
+                      include_rds = FALSE,
                       to_report = c("messages", "output", "result")){
    # Set end time and run time
    set_log_element("end_time", strftime(Sys.time(), usetz = TRUE))
