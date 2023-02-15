@@ -155,6 +155,13 @@ get_masked_functions <- function(){
 #'
 get_used_functions <- function(file){
 
+   if (grepl("*.Rmd$", file, ignore.case = TRUE)){
+      tmpfile <- tempfile(fileext = ".R")
+      on.exit(unlink(tmpfile))
+      knitr::purl(file, tmpfile)
+      file <- tmpfile
+   }
+
    # catch error
    retfun <- safely(parse,
                     quiet = FALSE,
@@ -194,9 +201,13 @@ get_used_functions <- function(file){
    combine_tokens <- wide_tokens %>%
       mutate(function_name = coalesce(.data$SYMBOL_FUNCTION_CALL, .data$SPECIAL))
 
-   get_library(combine_tokens) %>%
+   distinct_use <- get_library(combine_tokens) %>%
       select(.data$function_name, .data$library) %>%
       distinct(across())
+
+   distinct_use[is.na(distinct_use)] <- "!!! NOT FOUND !!!"
+
+   distinct_use
 
 }
 
