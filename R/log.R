@@ -289,10 +289,25 @@ log_write <- function(file = NA,
    writeLines(cleaned_log_vec,
                  con = file.path(get_log_element("log_path"),
                                  get_log_element("log_name")))
-   if (include_rds) {
-      cleaned_log_list <- lapply(
-         getOption('log.rx'),
-         function(i) i
+   if (include_rds){
+      rds_fields <- c(
+         "end_time", "start_time", "run_time", "user", "hash_sum",
+         "log_path", "log_name", "file_path", "file_name",
+         "unapproved_packages_functions", "errors", "warnings"
+      )
+      log_options <- as.list(getOption('log.rx'))
+      cleaned_log_list <- Map(
+         function(i, x){
+            if(x %in% c("messages", "output", "result")){
+               if(x %in% to_report){
+                  return(i)
+               }
+            } else if(x %in% c(names(log_cleanup()), rds_fields)){
+               return(i)
+            }
+         },
+         log_options,
+         names(log_options)
       )
       cleaned_log_list$session_info <- session_info(info = "all")
       saveRDS(cleaned_log_list,
