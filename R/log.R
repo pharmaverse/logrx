@@ -151,7 +151,7 @@ log_cleanup <- function() {
 #'
 #' @param file String. Path to file executed
 #' @param include_rds Boolean. Option to export log object as Rds file.
-#' Defaults to TRUE
+#' Defaults to FALSE
 #' @param remove_log_object Boolean. Should the log object be removed after
 #' writing the log file? Defaults to TRUE
 #' @param to_report String vector. Objects to optionally report; additional
