@@ -18,7 +18,7 @@ log_write(
 writing the log file? Defaults to TRUE}
 
 \item{include_rds}{Boolean. Option to export log object as Rds file.
-Defaults to TRUE}
+Defaults to FALSE}
 
 \item{to_report}{String vector. Objects to optionally report; additional
 information in \code{\link{axecute}}}

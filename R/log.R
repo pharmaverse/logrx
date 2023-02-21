@@ -297,7 +297,9 @@ log_write <- function(file = NA,
          "unapproved_packages_functions", "errors", "warnings"
       )
       log_options <- as.list(getOption('log.rx'))
-      cleaned_log_list <- Map(
+      cleaned_log_list <- purrr::map2(
+         log_options,
+         names(log_options),
          function(i, x){
             if(x %in% c("messages", "output", "result")){
                if(x %in% to_report){
@@ -306,9 +308,7 @@ log_write <- function(file = NA,
             } else if(x %in% c(names(log_cleanup()), rds_fields)){
                return(i)
             }
-         },
-         log_options,
-         names(log_options)
+         }
       )
       cleaned_log_list$session_info <- session_info(info = "all")
       saveRDS(cleaned_log_list,
