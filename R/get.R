@@ -96,7 +96,7 @@ get_file_path <- function(file = NA, normalize = TRUE){
 #' @noRd
 #'
 get_session_info <- function(){
-   return(capture.output(session_info(info = "all")))
+   return(session_info(info = "all"))
 }
 
 

@@ -294,7 +294,8 @@ log_write <- function(file = NA,
       rds_fields <- c(
          "end_time", "start_time", "run_time", "user", "hash_sum",
          "log_path", "log_name", "file_path", "file_name",
-         "unapproved_packages_functions", "errors", "warnings"
+         "unapproved_packages_functions", "errors", "warnings",
+         "session_info"
       )
       log_options <- as.list(getOption('log.rx'))
       cleaned_log_list <- purrr::map2(
@@ -310,7 +311,6 @@ log_write <- function(file = NA,
             }
          }
       )
-      cleaned_log_list$session_info <- session_info(info = "all")
       saveRDS(cleaned_log_list,
               file = file.path(
                  get_log_element("log_path"),
