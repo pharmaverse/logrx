@@ -22,6 +22,10 @@ reference:
    - write_log_header
    - write_unapproved_functions
    - write_used_functions
+- title: Read Previous Log
+  desc: Functionality to Read Previous Log Files
+- contents:
+   - read_log_file
 - title: Utilities
   desc: Utility functions
 - contents:
