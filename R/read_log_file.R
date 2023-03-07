@@ -178,7 +178,7 @@ parse_log <- function(nested_log) {
         into = c("setting", "value"),
         extra = "merge",
       ) %>%
-      mutate(across(is.character, stringr::str_trim))
+      mutate(across(where(is.character), stringr::str_trim))
 
     parsed_log$`Session Information`$`Packages` <-
       nested_log$`Session Information`$`Packages` %>%
