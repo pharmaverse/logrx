@@ -7,7 +7,8 @@
 log_write(
   file = NA,
   remove_log_object = TRUE,
-  to_report = c("messages", "output", "result")
+  to_report = c("messages", "output", "result"),
+  show_repo_url = FALSE
 )
 }
 \arguments{
@@ -18,6 +19,9 @@ writing the log file? Defaults to TRUE}
 
 \item{to_report}{String vector. Objects to optionally report; additional
 information in \code{\link{axecute}}}
+
+\item{show_repo_url}{Boolean. Should the repo URLs be reported
+Defaults to FALSE}
 }
 \value{
 Nothing

@@ -66,3 +66,45 @@ test_that("to_report works to control log output elements", {
    rm(flines, con, scriptPath, logDir)
    log_remove()
 })
+
+test_that("show_repo_url works to show repo url elements", {
+   options("log.rx" = NULL)
+   scriptPath <- tempfile()
+   logDir <- tempdir()
+   writeLines(
+      c("message('hello logrx')",
+        "cat('this is output')",
+        "data.frame(c(8, 6, 7, 5, 3, 0, 9))"),
+      con = scriptPath)
+
+   # check no log is currently written out
+   expect_warning(expect_error(file(file.path(logDir, "log_out_repo_url"), "r"), "cannot open the connection"))
+
+   axecute(scriptPath, log_name = "log_out_repo_url",
+           log_path = logDir,
+           remove_log_object = FALSE,
+           show_repo_url = TRUE
+   )
+   con <- file(file.path(logDir, "log_out_repo_url"), "r")
+   flines <- readLines(con)
+   close(con)
+
+   expect_true(grepl(paste(write_log_header("Repo URLs"), collapse = ','),
+                     paste(flines,collapse = ',')))
+   rm(flines, con)
+   log_remove()
+
+   axecute(scriptPath, log_name = "log_out_repo_url2",
+           log_path = logDir,
+           remove_log_object = FALSE,
+           show_repo_url = FALSE
+   )
+   con <- file(file.path(logDir, "log_out_repo_url2"), "r")
+   flines <- readLines(con)
+   close(con)
+
+   expect_false(grepl(paste(write_log_header("Repo URLs"), collapse = ','),
+                      paste(flines,collapse = ',')))
+   rm(flines, con, scriptPath, logDir)
+   log_remove()
+})

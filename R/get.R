@@ -289,3 +289,15 @@ get_lint_results <- function(file) {
       lint(file, getOption('log.rx.lint'))
    }
 }
+
+#' Get repository URLs
+#'
+#' Obtain repository URLs possibly used to install packages in session
+#'
+#' @return results from `getOption("repos")` as list
+#'
+#' @noRd
+#'
+get_repo_urls <- function() {
+   as.list(getOption("repos"))
+}
