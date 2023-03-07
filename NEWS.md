@@ -1,3 +1,7 @@
+# logrx 0.2.2
+
+- Add `show_repo_url` option in `axecute()` to capture repo URL(s) into log file
+
 # logrx 0.2.1
 
  - non-function objects are no longer returned as functions by `get_used_functions` (#154)
