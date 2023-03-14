@@ -141,7 +141,7 @@ nest_log <- function(adj_log_txt) {
 #' @noRd
 #'
 parse_log <- function(nested_log) {
-  parsed_log <- list()
+  parsed_log <- nested_log
 
   if ("logrx Metadata" %in% names(nested_log)) {
     parsed_log$`logrx Metadata` <-
