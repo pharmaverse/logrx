@@ -1,3 +1,7 @@
+# logrx 0.2.2
+
+ - hotfix for update to `across()` and `.data$var` updates in source packages (#172)
+
 # logrx 0.2.1
 
  - non-function objects are no longer returned as functions by `get_used_functions` (#154)
