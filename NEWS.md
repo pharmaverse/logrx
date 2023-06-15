@@ -1,6 +1,7 @@
 # logrx 0.2.2
 
- - hotfix for update to `across()` and `.data$var` updates in source packages (#172)
+ - Hotfix to remove unnecessary `across()` and update `.data$var` top new syntax to match updates in source packages (#172)
+ - Add `{dplyr}` version requirement
 
 # logrx 0.2.1
 

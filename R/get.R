@@ -139,8 +139,8 @@ get_masked_functions <- function(){
 #' @param file File path of file to run
 #'
 #' @return tibble with `library` and `function_name`
-#' @importFrom dplyr select distinct across mutate coalesce group_by ungroup
-#' @importFrom tidyr pivot_wider complete all_of everything
+#' @importFrom dplyr select distinct mutate coalesce group_by ungroup
+#' @importFrom tidyr pivot_wider complete all_of
 #' @importFrom purrr safely
 #' @importFrom tibble tibble
 #' @importFrom utils getParseData
@@ -197,8 +197,7 @@ get_used_functions <- function(file){
 
    get_library(combine_tokens) %>%
       select(all_of(c("function_name", "library"))) %>%
-      distinct(across(.cols = everything(),
-                      .fns = NULL))
+      distinct()
 
 }
 
@@ -241,7 +240,7 @@ get_library <- function(df){
       mutate(library = ifelse(
          !is.na(df$SYMBOL_PACKAGE),
          paste0("package:", df$SYMBOL_PACKAGE),
-         .data$library)
+         .data[["library"]])
       )
 }
 
