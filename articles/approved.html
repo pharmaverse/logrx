@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">logrx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.2</span>
       </span>
     </div>
 
@@ -160,19 +160,19 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/build_approved.html">build_approved</a></span><span class="op">(</span><span class="va">approved_pkgs</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 294 × 2</span></span></span>
-<span><span class="co">#&gt;    function_name library      </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> mean          package:base </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> rows_upsert   package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> src_local     package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> db_analyze    package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> n_groups      package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> distinct      package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> summarise_    package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> group_split   package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> group_by_if   package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> sample_n      package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 284 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt;    function_name         library      </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> mean                  package:base </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> slice_max             package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> expr                  package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> src                   package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> db_desc               package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> group_by_drop_default package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> db_commit             package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> coalesce              package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> data_frame            package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> summarize_if          package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 284 more rows</span></span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="save-as-approved-rds">3. Save as <code>approved.rds</code><a class="anchor" aria-label="anchor" href="#save-as-approved-rds"></a>
@@ -215,12 +215,7 @@
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Mean MPG  26.7  19.7  15.1</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/axecute.html">axecute</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dir</span>,<span class="st">"mpg.R"</span><span class="op">)</span>, remove_log_object <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: There was 1 warning in `distinct()`.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> In argument: `across()`.</span></span>
-<span><span class="co">#&gt; Caused by warning:</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> Using `across()` without supplying `.cols` was deprecated in dplyr 1.1.0.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please supply `.cols` instead.</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/axecute.html">axecute</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dir</span>,<span class="st">"mpg.R"</span><span class="op">)</span>, remove_log_object <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>Here we have the log elements for “Used Package and Functions” and “Unapproved Package and Functions”. We can see we used <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code> from <code>package:base</code> and <code>pivot_wider</code> from <code>package:tidyr</code>. We did not include the base library or tidyr functions in our approved list, so this has been logged!</p>
 <pre><code><span><span class="co">#&gt; --------------------------------------------------------------------------------</span></span>
 <span><span class="co">#&gt; -                          Used Package and Functions                          -</span></span>
