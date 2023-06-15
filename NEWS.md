@@ -1,3 +1,8 @@
+# logrx 0.2.2
+
+ - Hotfix to remove unnecessary `across()` and update `.data$var` top new syntax to match updates in source packages (#172)
+ - Add `{dplyr}` version requirement
+
 # logrx 0.2.1
 
  - non-function objects are no longer returned as functions by `get_used_functions` (#154)
