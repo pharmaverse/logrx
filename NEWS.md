@@ -1,6 +1,11 @@
-# logrx 0.2.2
+# logrx 0.3.0
 
 - Add `show_repo_url` option in `axecute()` to capture repo URL(s) into log file
+
+# logrx 0.2.2
+
+ - Hotfix to remove unnecessary `across()` and update `.data$var` top new syntax to match updates in source packages (#172)
+ - Add `{dplyr}` version requirement
 
 # logrx 0.2.1
 

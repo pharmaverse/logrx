@@ -18,7 +18,7 @@
 get_logrx_metadata <- function(){
 
    logrx_session_info <- session_info()$packages %>%
-      filter(.data$package == "logrx")
+      filter(.data[["package"]] == "logrx")
 
    logrx_metadata <- list(
       info = paste0("This log was generated using logrx ",
@@ -139,8 +139,8 @@ get_masked_functions <- function(){
 #' @param file File path of file to run
 #'
 #' @return tibble with `library` and `function_name`
-#' @importFrom dplyr select distinct across mutate coalesce group_by ungroup
-#' @importFrom tidyr pivot_wider complete
+#' @importFrom dplyr select distinct mutate coalesce group_by ungroup
+#' @importFrom tidyr pivot_wider complete all_of
 #' @importFrom purrr safely
 #' @importFrom tibble tibble
 #' @importFrom utils getParseData
@@ -171,7 +171,7 @@ get_used_functions <- function(file){
    }
 
    tokens <- getParseData(ret$result) %>%
-      filter(.data$token %in% c("SYMBOL_FUNCTION_CALL", "SPECIAL", "SYMBOL_PACKAGE"))
+      filter(.data[["token"]] %in% c("SYMBOL_FUNCTION_CALL", "SPECIAL", "SYMBOL_PACKAGE"))
 
    if(nrow(tokens) == 0) {
       return (NULL)
@@ -180,23 +180,24 @@ get_used_functions <- function(file){
    # grouping and complete to ensure all three columns carry through after pivot
    # regardless if seen in the parsed data
    filtered_tokens <- tokens %>%
-      mutate(token = factor(.data$token,
+      mutate(token = factor(.data[["token"]],
                             c("SYMBOL_FUNCTION_CALL", "SPECIAL", "SYMBOL_PACKAGE"))) %>%
-      group_by(.data$line1, .data$parent) %>%
-      complete(token = .data$token)
+      group_by(.data[["line1"]], .data[["parent"]]) %>%
+      complete(token = .data[["token"]])
 
    wide_tokens <- pivot_wider(filtered_tokens,
-                              id_cols = c(.data$line1, .data$parent),
-                              values_from = .data$text,
-                              names_from = .data$token) %>%
+                              id_cols = all_of(c("line1", "parent")),
+                              values_from = "text",
+                              names_from = "token") %>%
       ungroup()
 
    combine_tokens <- wide_tokens %>%
-      mutate(function_name = coalesce(.data$SYMBOL_FUNCTION_CALL, .data$SPECIAL))
+      mutate(function_name = coalesce(.data[["SYMBOL_FUNCTION_CALL"]],
+                                      .data[["SPECIAL"]]))
 
    get_library(combine_tokens) %>%
-      select(.data$function_name, .data$library) %>%
-      distinct(across())
+      select(all_of(c("function_name", "library"))) %>%
+      distinct()
 
 }
 
@@ -239,7 +240,7 @@ get_library <- function(df){
       mutate(library = ifelse(
          !is.na(df$SYMBOL_PACKAGE),
          paste0("package:", df$SYMBOL_PACKAGE),
-         .data$library)
+         .data[["library"]])
       )
 }
 
