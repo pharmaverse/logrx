@@ -1,9 +1,22 @@
-destination: docs
+url: https://pharmaverse.github.io/logrx/
 
 template:
+  bootstrap: 5
   params:
-    bootswatch: yeti
+    bootswatch: sandstone
+search:
+  exclude: ["news/index.html"]
+news:
+  cran_dates: true
 
+navbar:
+  structure:
+    right: [slack, github]
+  components:
+    slack:
+      icon: fa-slack
+      href: https://pharmaverse.slack.com
+      aria-label: slack
 reference:
 - title: Source a file with Logging
   desc: Functionality for Creating logs from Scripts

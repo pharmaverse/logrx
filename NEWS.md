@@ -1,3 +1,7 @@
+# logrx 0.3.0
+
+- Moved website theme to bootstarp 5, enabled search (#179)
+
 # logrx 0.2.2
 
  - Hotfix to remove unnecessary `across()` and update `.data$var` top new syntax to match updates in source packages (#172)
