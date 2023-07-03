@@ -255,19 +255,14 @@ write_output <- function() {
 
 #' Format result attribute for writing
 #'
-#' @param file String. Path to file to execute
 #' @return A formatted vector of results
 #'
 #' @noRd
 #'
-write_result <- function(file) {
+write_result <- function() {
    result <- get_log_element("result")
 
-   if (is_rmarkdown(file)) {
-      c("\nResult:", paste0("\t", capture.output(result)))
-   } else {
-      c("\nResult:", paste0("\t", capture.output(result$value)))
-   }
+   c("\nResult:", paste0("\t", capture.output(result$value)))
 }
 
 #' Format lint results for writing

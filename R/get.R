@@ -155,13 +155,6 @@ get_masked_functions <- function(){
 #'
 get_used_functions <- function(file){
 
-   if (grepl("*.Rmd$", file, ignore.case = TRUE)){
-      tmpfile <- tempfile(fileext = ".R")
-      on.exit(unlink(tmpfile))
-      knitr::purl(file, tmpfile)
-      file <- tmpfile
-   }
-
    # catch error
    retfun <- safely(parse,
                     quiet = FALSE,

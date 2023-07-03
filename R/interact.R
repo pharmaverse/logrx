@@ -110,13 +110,6 @@ set_log_name_path <- function(log_name = NA, log_path = NA) {
 #' @noRd
 run_safely <- function(file) "dummy"
 
-#' Is this a R Markdown file#'
-#' @param file String. Path to file to execute
-#' @noRd
-is_rmarkdown <- function(file) {
-   grepl("*.Rmd$", file, ignore.case = TRUE)
-}
-
 #' Dummy function for running a file
 #' @noRd
 run_file <- function(file){
@@ -125,13 +118,7 @@ run_file <- function(file){
    } else{
       exec_env <- getOption("log.rx.exec.env")
    }
-
-   if (is_rmarkdown(file)) {
-      rmarkdown::render(file, envir = exec_env)
-   } else (
-      source(file, local = exec_env)
-   )
-
+   source(file, local = exec_env)
 }
 
 #' Safely run an R script and record results, outputs, messages, errors, warnings
