@@ -276,7 +276,7 @@ log_write <- function(file = NA,
    }
    if ("result" %in% to_report){
       cleaned_log_vec <- c(cleaned_log_vec,
-                           write_result())
+                           write_result(file))
    }
 
    cleaned_log_vec <- c(cleaned_log_vec,
