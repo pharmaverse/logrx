@@ -201,13 +201,13 @@ get_used_functions <- function(file){
    combine_tokens <- wide_tokens %>%
       mutate(function_name = coalesce(.data$SYMBOL_FUNCTION_CALL, .data$SPECIAL))
 
-   distinct_use <- get_library(combine_tokens) %>%
-      select(.data$function_name, .data$library) %>%
-      distinct(across())
+   get_library(combine_tokens) %>%
+      select(all_of(c("function_name", "library"))) %>%
+      distinct()
 
-   distinct_use[is.na(distinct_use)] <- "!!! NOT FOUND !!!"
-
-   distinct_use
+   # distinct_use[is.na(distinct_use)] <- "!!! NOT FOUND !!!"
+   #
+   # distinct_use
 
 }
 
