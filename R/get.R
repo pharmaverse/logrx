@@ -1,6 +1,5 @@
 ### Functions to get data for elements of the log
 
-
 #' Returns named list of logrx metadata attributes
 #'
 #' @return Named list of logrx package metadata attributes
