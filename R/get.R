@@ -205,10 +205,6 @@ get_used_functions <- function(file){
       select(all_of(c("function_name", "library"))) %>%
       distinct()
 
-   # distinct_use[is.na(distinct_use)] <- "!!! NOT FOUND !!!"
-   #
-   # distinct_use
-
 }
 
 
