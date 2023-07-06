@@ -96,7 +96,7 @@ get_file_path <- function(file = NA, normalize = TRUE){
 #' @noRd
 #'
 get_session_info <- function(){
-   return(capture.output(session_info(info = "all")))
+   return(session_info(info = "all"))
 }
 
 
@@ -195,7 +195,7 @@ get_used_functions <- function(file){
       mutate(function_name = coalesce(.data[["SYMBOL_FUNCTION_CALL"]],
                                       .data[["SPECIAL"]]))
 
-   get_library(combine_tokens) %>%
+get_library(combine_tokens) %>%
       select(all_of(c("function_name", "library"))) %>%
       distinct()
 

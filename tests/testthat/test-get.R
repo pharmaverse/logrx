@@ -22,7 +22,7 @@ test_that("when given a file as an argument a non-normalized file path to that f
 })
 
 test_that("session info is captured", {
-   expect_identical(get_session_info(), capture.output(session_info(info = "all")))
+   expect_identical(capture.output(get_session_info()), capture.output(session_info(info = "all")))
 })
 
 test_that("all functions that are masked are found and returned", {
