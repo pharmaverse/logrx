@@ -1,3 +1,7 @@
+# logrx 0.3.0
+
+- Add `include_rds` argument to `axecute()` to export log as rds file
+
 # logrx 0.2.2
 
  - Hotfix to remove unnecessary `across()` and update `.data$var` top new syntax to match updates in source packages (#172)
