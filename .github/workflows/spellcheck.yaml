@@ -1,0 +1,25 @@
+---
+name: Spellcheck
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    name: Spellcheck
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Run Spelling Check test
+        uses: insightsengineering/r-spellcheck-action@v3
+        with:
+          exclude: data/*
