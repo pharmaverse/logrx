@@ -68,17 +68,7 @@ test_that("to_report works to control log output elements", {
 })
 
 test_that("show_repo_url works to show repo url elements", {
-   options("log.rx" = NULL)
-   scriptPath <- tempfile()
-   logDir <- tempdir()
-   writeLines(
-      c("message('hello logrx')",
-        "cat('this is output')",
-        "data.frame(c(8, 6, 7, 5, 3, 0, 9))"),
-      con = scriptPath)
-
-   # check no log is currently written out
-   expect_warning(expect_error(file(file.path(logDir, "log_out_repo_url"), "r"), "cannot open the connection"))
+  expect_warning(expect_error(file(file.path(logDir, "log_out_repo_url"), "r"), "cannot open the connection"))
 
    axecute(scriptPath, log_name = "log_out_repo_url",
            log_path = logDir,
@@ -106,5 +96,37 @@ test_that("show_repo_url works to show repo url elements", {
    expect_false(grepl(paste(write_log_header("Repo URLs"), collapse = ','),
                       paste(flines,collapse = ',')))
    rm(flines, con, scriptPath, logDir)
+})
+
+test_that("include_rds works to output log as rds", {
+
+   options("log.rx" = NULL)
+   scriptPath <- tempfile()
+   logDir <- tempdir()
+   writeLines(
+      c("message('hello logrx')",
+        "cat('this is output')",
+        "data.frame(c(8, 6, 7, 5, 3, 0, 9))"),
+      con = scriptPath)
+
+   # check no log is currently written out
+   expect_warning(expect_error(file(file.path(logDir, "log_out_nested"), "r"), "cannot open the connection"))
+
+   axecute(scriptPath,
+           log_name = "log_out_nested",
+           log_path = logDir,
+           remove_log_object = FALSE,
+           include_rds = TRUE,
+           to_report = c("messages", "result"))
+   con <- file(file.path(logDir, "log_out_nested.Rds"), "r")
+   logRDS <- readRDS(file.path(logDir, "log_out_nested.Rds"))
+
+   expect_type(logRDS, "list")
+   expect_true("messages" %in% names(logRDS))
+   expect_true(all(is.na(logRDS$output)))
+   expect_true("result" %in% names(logRDS))
+   expect_true("start_time" %in% names(logRDS))
+
+   rm(con, scriptPath, logDir, logRDS)
    log_remove()
 })

@@ -50,6 +50,7 @@ write_metadata <- function(){
 #'
 write_session_info <- function(){
    session_info <- get_log_element("session_info") %>%
+      capture.output() %>%
       # remove extra dashes on title lines
       map_chr(~ ifelse(nchar(.x) > 80 & grepl("\u2500\u2500\u2500\u2500", .x),
                    substring(.x, 1, 80),
