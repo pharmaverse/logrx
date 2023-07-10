@@ -68,7 +68,17 @@ test_that("to_report works to control log output elements", {
 })
 
 test_that("show_repo_url works to show repo url elements", {
-  expect_warning(expect_error(file(file.path(logDir, "log_out_repo_url"), "r"), "cannot open the connection"))
+   options("log.rx" = NULL)
+   scriptPath <- tempfile()
+   logDir <- tempdir()
+   writeLines(
+      c("message('hello logrx')",
+        "cat('this is output')",
+        "data.frame(c(8, 6, 7, 5, 3, 0, 9))"),
+      con = scriptPath)
+
+   # check no log is currently written out
+   expect_warning(expect_error(file(file.path(logDir, "log_out_repo_url"), "r"), "cannot open the connection"))
 
    axecute(scriptPath, log_name = "log_out_repo_url",
            log_path = logDir,
@@ -99,7 +109,6 @@ test_that("show_repo_url works to show repo url elements", {
 })
 
 test_that("include_rds works to output log as rds", {
-
    options("log.rx" = NULL)
    scriptPath <- tempfile()
    logDir <- tempdir()
