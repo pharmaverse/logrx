@@ -146,7 +146,7 @@ close(fileConn)
 ```
 
 ```{r results='hide'}
-axecute(file.path(dir,"mpg.R"), remove_log_object = FALSE)
+axecute(file.path(dir,"mpg.R"))
 ```
 
 Here we have the log elements for "Used Package and Functions" and
