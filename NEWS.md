@@ -1,6 +1,14 @@
+
+# logrx 0.3.0
+
+- Moved website theme to bootstarp 5, enabled search (#179)
+- Add `include_rds` argument to `axecute()` to export log as rds file
+- Add `read_log_file()` to read previous logrx log file
+
 # logrx 0.2.2
 
-- Add `read_log_file()` to read previous logrx log file
+ - Hotfix to remove unnecessary `across()` and update `.data$var` top new syntax to match updates in source packages (#172)
+ - Add `{dplyr}` version requirement
 
 # logrx 0.2.1
 

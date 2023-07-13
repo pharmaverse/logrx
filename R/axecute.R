@@ -10,6 +10,8 @@
 #' @param log_path String. Path to log file
 #' @param remove_log_object Boolean. Should the log object be removed after
 #' writing the log file? Defaults to TRUE
+#' @param include_rds Boolean. Option to export log object as Rds file.
+#' Defaults to FALSE
 #' @param quit_on_error Boolean. Should the session quit with status 1 on error?
 #' Defaults to TRUE
 #' @param to_report String vector. Objects to optionally report, may include as
@@ -34,6 +36,7 @@
 axecute <- function(file, log_name = NA,
                     log_path = NA,
                     remove_log_object = TRUE,
+                    include_rds = FALSE,
                     quit_on_error = TRUE,
                     to_report = c("messages", "output", "result")){
 
@@ -51,7 +54,10 @@ axecute <- function(file, log_name = NA,
    any_errors <- get_log_element("errors")
 
    # write log
-   log_write(file = file, remove_log_object = remove_log_object, to_report = to_report)
+   log_write(file = file,
+             remove_log_object = remove_log_object,
+             include_rds = include_rds,
+             to_report = to_report)
 
    # if error, quit with status = 1 if not interactive
    if(!interactive() & !is.null(any_errors) & quit_on_error) {
