@@ -8,7 +8,6 @@ axecute(
   file,
   log_name = NA,
   log_path = NA,
-  remove_log_object = TRUE,
   include_rds = FALSE,
   quit_on_error = TRUE,
   to_report = c("messages", "output", "result")
@@ -20,9 +19,6 @@ axecute(
 \item{log_name}{String. Name of log file}
 
 \item{log_path}{String. Path to log file}
-
-\item{remove_log_object}{Boolean. Should the log object be removed after
-writing the log file? Defaults to TRUE}
 
 \item{include_rds}{Boolean. Option to export log object as Rds file.
 Defaults to FALSE}
