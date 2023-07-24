@@ -13,7 +13,7 @@ test_that("read_log_file will parse a logrx log file and create the necessary ob
   # check that the log file can be parsed
   parsedFile <- read_log_file(filePath)
 
-  expect_length(parsedFile, 7)
+  expect_length(parsedFile, 9)
   expect_named(
     parsedFile,
     c(
@@ -23,17 +23,25 @@ test_that("read_log_file will parse a logrx log file and create the necessary ob
       "Masked Functions",
       "Used Package and Functions",
       "Program Run Time Information",
+      "Errors and Warnings",
+      "Messages, Output, and Result",
       "Log Output File"
     )
   )
   expect_true(all(sapply(
-    parsedFile[names(parsedFile) != "Session Information"],
+    parsedFile[!names(parsedFile) %in%
+                 c("Session Information",
+                   "Messages, Output, and Result",
+                   "Errors and Warnings")],
     is.data.frame
   )))
 
   expect_true(
     all(sapply(
-      parsedFile[names(parsedFile) != "Session Information"],
+      parsedFile[!names(parsedFile) %in%
+                   c("Session Information",
+                     "Messages, Output, and Result",
+                     "Errors and Warnings")],
       nrow
     ) > 0)
   )
