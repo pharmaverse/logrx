@@ -33,6 +33,13 @@
 #' close(fileConn)
 #'
 #' axecute(file.path(dir, "hello.R"))
+#'
+#'
+#' fileConn <- file(file.path(dir, "hello.Rmd"))
+#' writeLines(text, fileConn)
+#' close(fileConn)
+#'
+#' axecute(file.path(dir, "hello.Rmd"))
 axecute <- function(file, log_name = NA,
                     log_path = NA,
                     remove_log_object = TRUE,

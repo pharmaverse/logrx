@@ -53,4 +53,11 @@ writeLines(text, fileConn)
 close(fileConn)
 
 axecute(file.path(dir, "hello.R"))
+
+
+fileConn <- file(file.path(dir, "hello.Rmd"))
+writeLines(text, fileConn)
+close(fileConn)
+
+axecute(file.path(dir, "hello.Rmd"))
 }
