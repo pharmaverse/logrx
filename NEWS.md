@@ -1,6 +1,6 @@
 # logrx 0.3.0
 
-- Add `show_repo_url` option in `axecute()` to capture repo URL(s) into log file
+- Add `show_repo_url` option in `axecute()` to capture repo URL(s) into log file (#167)
 - Moved website theme to bootstarp 5, enabled search (#179)
 - Add `include_rds` argument to `axecute()` to export log as rds file
 
