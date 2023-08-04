@@ -10,6 +10,8 @@ library_call_linter()
 Force library calls to all be at the top of the script.
 }
 \examples{
+library(lintr)
+
 # will produce lints
 lint(
   text = "

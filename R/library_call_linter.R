@@ -6,6 +6,8 @@
 #' @importFrom xml2 xml_find_all
 #'
 #' @examples
+#' library(lintr)
+#'
 #' # will produce lints
 #' lint(
 #'   text = "
