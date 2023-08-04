@@ -2,6 +2,9 @@
 #'
 #' Force library calls to all be at the top of the script.
 #'
+#' @importFrom lintr lint Linter xml_nodes_to_lints is_lint_level
+#' @importFrom xml2 xml_find_all
+#'
 #' @examples
 #' # will produce lints
 #' lint(

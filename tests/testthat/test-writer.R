@@ -210,3 +210,8 @@ test_that("write_lint_results will return a formatted lint results element", {
 
    log_remove()
 })
+
+test_that("write_lint_results works when linter is used but no lints found", {
+
+})
+

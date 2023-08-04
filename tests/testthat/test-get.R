@@ -155,6 +155,7 @@ test_that("lint returns expected result when option is set", {
 
 test_that("lint returns expected result when option is not set", {
    filename <- test_path("ref", "ex6.R")
+   withr::local_options(log.rx.lint = FALSE)
    source(filename, local = TRUE)
 
    expect_identical(get_lint_results(filename), NULL)
