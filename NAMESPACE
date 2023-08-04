@@ -2,6 +2,7 @@
 
 export(axecute)
 export(build_approved)
+export(library_call_linter)
 export(log_config)
 export(log_init)
 export(log_remove)

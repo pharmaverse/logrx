@@ -159,3 +159,50 @@ test_that("lint returns expected result when option is not set", {
 
    expect_identical(get_lint_results(filename), NULL)
 })
+
+test_that("library lint returns expected result when option is not set", {
+   options("log.rx" = NULL)
+   withr::local_options(log.rx.lint = FALSE)
+   filename <- test_path("ref", "ex7.R")
+
+   # get is called within log_config
+   log_config(filename)
+
+   expected <- "Line 6 [library_call_linter] Move all library calls to the top of the script."
+
+   expect_identical(write_lint_results(), expected)
+})
+
+test_that("library lint returns expected result when option is set", {
+   options("log.rx" = NULL)
+   withr::local_options(log.rx.lint = c(library_call_linter()))
+   filename <- test_path("ref", "ex7.R")
+
+   # get is called within log_config
+   log_config(filename)
+
+   expected <- "Line 6 [library_call_linter] Move all library calls to the top of the script."
+
+   expect_identical(write_lint_results(), expected)
+})
+
+test_that("library lint returns expected result when option is set", {
+   options("log.rx" = NULL)
+   withr::local_options(log.rx.lint = c(lintr::undesirable_operator_linter()))
+   filename <- test_path("ref", "ex7.R")
+
+   # get is called within log_config
+   log_config(filename)
+
+   expected <- paste0(
+      "Line 6 [library_call_linter] Move all library calls to the ",
+      "top of the script.\n\nLine 8 [undesirable_operator_linter] Operator ",
+      "`<<-` is undesirable. It\nassigns outside the current environment in a ",
+      "way that can be hard to reason\nabout. Prefer fully-encapsulated ",
+      "functions wherever possible, or, if\nnecessary, assign to a specific ",
+      "environment with assign(). Recall that you\ncan create an environment ",
+      "at the desired scope with new.env()."
+   )
+
+   expect_identical(write_lint_results(), expected)
+})
