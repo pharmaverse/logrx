@@ -40,6 +40,7 @@ reference:
 - contents:
    - build_approved
    - approved
+   - library_call_linter
 
 articles:
 - title: Use Cases
