@@ -145,7 +145,7 @@ writeLines(text, fileConn)
 close(fileConn)
 ```
 
-```{r results='hide'}
+```{r results='hide', echo = FALSE}
 fp <- file.path(dir,"mpg.R")
 log_config(fp)
 logrx:::run_safely_loudly(fp)
