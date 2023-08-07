@@ -35,7 +35,13 @@ axecute <- function(file, log_name = NA,
                     log_path = NA,
                     include_rds = FALSE,
                     quit_on_error = TRUE,
-                    to_report = c("messages", "output", "result")){
+                    to_report = c("messages", "output", "result"),
+                    ...){
+
+   # deprecations
+   if (!hasArg(remove_log_object)) {
+      lifecycle::deprecate_stop("0.3.0", "axecute(remove_log_object = )", "axecute(include_rds = )")
+   }
 
    # remove log object
    remove_log_object <- TRUE
