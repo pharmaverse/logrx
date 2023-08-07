@@ -81,7 +81,6 @@ test_that("show_repo_url works to show repo url elements", {
 
    axecute(scriptPath, log_name = "log_out_repo_url",
            log_path = logDir,
-           remove_log_object = FALSE,
            show_repo_url = TRUE
    )
    con <- file(file.path(logDir, "log_out_repo_url"), "r")
@@ -95,7 +94,6 @@ test_that("show_repo_url works to show repo url elements", {
 
    axecute(scriptPath, log_name = "log_out_repo_url2",
            log_path = logDir,
-           remove_log_object = FALSE,
            show_repo_url = FALSE
    )
    con <- file(file.path(logDir, "log_out_repo_url2"), "r")
