@@ -212,6 +212,17 @@ test_that("write_lint_results will return a formatted lint results element", {
 })
 
 test_that("write_lint_results works when linter is used but no lints found", {
+   filename <- test_path("ref", "ex6.R")
+   source(filename, local = TRUE)
 
+   options("log.rx" = NULL)
+   log_config(filename)
+   lint_results <- lintr::lint(filename, c(library_call_linter()))
+   assign('lint_results', lint_results, envir = getOption('log.rx'))
+
+   expect_identical(
+      write_lint_results(),
+      ""
+   )
 })
 
