@@ -7,6 +7,7 @@
 log_write(
   file = NA,
   remove_log_object = TRUE,
+  show_repo_url = FALSE,
   include_rds = FALSE,
   to_report = c("messages", "output", "result")
 )
@@ -16,6 +17,9 @@ log_write(
 
 \item{remove_log_object}{Boolean. Should the log object be removed after
 writing the log file? Defaults to TRUE}
+
+\item{show_repo_url}{Boolean. Should the repo URLs be reported
+Defaults to FALSE}
 
 \item{include_rds}{Boolean. Option to export log object as Rds file.
 Defaults to FALSE}
