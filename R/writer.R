@@ -63,6 +63,28 @@ write_session_info <- function(){
    return(session_info)
 }
 
+#' Format repo URLs for writing
+#'
+#' @return A vector of file name and path prefixed
+#'
+#' @noRd
+#'
+write_repo_urls <- function(){
+   repo_urls <- ifelse(is.na(get_log_element("repo_urls")),
+                       "Repo URLs not able to be determined",
+                       map2(
+                          names(get_log_element("repo_urls")),
+                          get_log_element("repo_urls"),
+                          ~paste(paste0(.x, ": "),
+                                 paste0(.y, collapse = ", "))
+                       ) %>%
+                          unname() %>%
+                          unlist()
+   )
+
+   return(repo_urls)
+}
+
 #' Format file name and path for writing
 #'
 #' @return A vector of file name and path prefixed
