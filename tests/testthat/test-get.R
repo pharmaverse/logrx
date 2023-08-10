@@ -142,7 +142,16 @@ test_that("parse does not fatal error when syntax issue occurs", {
    expect_identical(get_used_functions(filename), expected)
 })
 
-test_that("lint returns expected result when option is set", {
+test_that("lint returns expected result when option is not set", {
+   filename <- test_path("ref", "ex7.R")
+   source(filename, local = TRUE)
+
+   expected <- lint(filename, library_call_linter())
+
+   expect_identical(get_lint_results(filename), expected)
+})
+
+test_that("lint returns expected result when option is changed", {
    filename <- test_path("ref", "ex6.R")
    source(filename, local = TRUE)
 
@@ -153,43 +162,9 @@ test_that("lint returns expected result when option is set", {
    expect_identical(get_lint_results(filename), expected)
 })
 
-test_that("lint returns expected result when option is not set", {
-   filename <- test_path("ref", "ex6.R")
-   withr::local_options(log.rx.lint = FALSE)
-   source(filename, local = TRUE)
-
-   expect_identical(get_lint_results(filename), NULL)
-})
-
-test_that("library lint returns expected result when option is not set", {
+test_that("library lint returns expected result when additional option is set", {
    options("log.rx" = NULL)
-   withr::local_options(log.rx.lint = FALSE)
-   filename <- test_path("ref", "ex7.R")
-
-   # get is called within log_config
-   log_config(filename)
-
-   expected <- "Line 6 [library_call_linter] Move all library calls to the top of the script."
-
-   expect_identical(write_lint_results(), expected)
-})
-
-test_that("library lint returns expected result when option is set", {
-   options("log.rx" = NULL)
-   withr::local_options(log.rx.lint = c(library_call_linter()))
-   filename <- test_path("ref", "ex7.R")
-
-   # get is called within log_config
-   log_config(filename)
-
-   expected <- "Line 6 [library_call_linter] Move all library calls to the top of the script."
-
-   expect_identical(write_lint_results(), expected)
-})
-
-test_that("library lint returns expected result when option is set", {
-   options("log.rx" = NULL)
-   withr::local_options(log.rx.lint = c(lintr::undesirable_operator_linter()))
+   withr::local_options(log.rx.lint = c(getOption("log.rx.lint"), lintr::undesirable_operator_linter()))
    filename <- test_path("ref", "ex7.R")
 
    # get is called within log_config
@@ -206,4 +181,12 @@ test_that("library lint returns expected result when option is set", {
    )
 
    expect_identical(write_lint_results(), expected)
+})
+
+test_that("lint returns expected result when option is set to FALSE", {
+   filename <- test_path("ref", "ex6.R")
+   withr::local_options(log.rx.lint = FALSE)
+   source(filename, local = TRUE)
+
+   expect_identical(get_lint_results(filename), NULL)
 })

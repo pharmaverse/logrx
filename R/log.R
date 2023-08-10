@@ -106,22 +106,7 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
    set_log_element("start_time", strftime(Sys.time(), usetz = TRUE))
    # log name and path
    set_log_name_path(log_name, log_path)
-
    # lint results
-   # mandatory library lint if using the log.rx.approved option
-   # this is required due to how functions are found in logrx
-   # it requires a stable search path for the entire script
-   lints <- getOption("log.rx.lint")
-   lint_names <- purrr::map(lints, ~ attr(.x, "name"))
-   is_lint_present <- "library_call_linter" %in% lint_names
-
-   # lint defaults to a logical
-   if(is.logical(lints)){
-      options(log.rx.lint = c(library_call_linter()))
-   } else if(!is_lint_present){
-      options(log.rx.lint = c(lints, library_call_linter()))
-   }
-
    set_log_element("lint_results", get_lint_results(file))
 }
 

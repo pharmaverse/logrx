@@ -4,7 +4,7 @@ logrx_default_options <- list(
    log.rx.exec.env = NULL,
 
    # Initializes the logrx.lint option
-   log.rx.lint = FALSE,
+   log.rx.lint = library_call_linter(),
 
    # Initialises the logrx.approved option
    log.rx.approved = './approved.rds'
