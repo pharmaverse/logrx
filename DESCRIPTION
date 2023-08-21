@@ -51,7 +51,7 @@ Imports:
     tibble,
     digest,
     lintr,
-    readr
+    readr,
     lifecycle
 Suggests: 
     testthat (>= 3.0.0),
