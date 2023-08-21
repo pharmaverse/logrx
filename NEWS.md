@@ -3,6 +3,7 @@
 - Add `show_repo_url` option in `axecute()` to capture repo URL(s) into log file (#167)
 - Moved website theme to bootstarp 5, enabled search (#179)
 - Add `include_rds` argument to `axecute()` to export log as rds file
+- Remove argument for remove_log_object from `axecute()` still accessible via `log_write()` (#182)
 
 # logrx 0.2.2
 
