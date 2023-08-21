@@ -5,7 +5,7 @@
 - Moved website theme to bootstarp 5, enabled search (#179)
 - Add `include_rds` argument to `axecute()` to export log as rds file
 - Add `read_log_file()` to read previous logrx log file
-
+- Remove argument for remove_log_object from `axecute()` still accessible via `log_write()` (#182)
 
 # logrx 0.2.2
 

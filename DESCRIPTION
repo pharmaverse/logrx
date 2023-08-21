@@ -52,6 +52,7 @@ Imports:
     digest,
     lintr,
     readr
+    lifecycle
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
