@@ -42,7 +42,7 @@ axecute <- function(file, log_name = NA,
                     show_repo_url = FALSE,
                     ...){
    # deprecations
-   if (hasArg(remove_log_object)) {
+   if (methods::hasArg(remove_log_object)) {
       lifecycle::deprecate_stop("0.3.0", "axecute(remove_log_object = )", "axecute(include_rds = )")
    }
 
