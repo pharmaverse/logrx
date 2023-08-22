@@ -8,11 +8,11 @@ test_that("read_log_file will parse a logrx log file and create the necessary ob
   filePath <- file.path(logDir, "log_out_parse")
   expect_warning(expect_error(file(filePath, "r"), "cannot open the connection"))
 
-  axecute(scriptPath, log_name = "log_out_parse", log_path = logDir, remove_log_object = FALSE)
+  axecute(scriptPath, log_name = "log_out_parse", log_path = logDir)
 
   # check that the log file can be parsed
   parsedFile <- read_log_file(filePath)
-
+''
   expect_length(parsedFile, 9)
   expect_named(
     parsedFile,
