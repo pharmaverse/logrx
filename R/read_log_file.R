@@ -84,7 +84,7 @@ nest_sections <- function(adj_log_txt) {
 #' @noRd
 #'
 nest_subsections <- function(adj_log_txt, sect_info) {
-  subsect_headers <- na.omit(
+  subsect_headers <- stats::na.omit(
     stringr::str_extract(adj_log_txt, "\\-\\s\\w+\\s(\\w+\\s)?\\-{3,70}")
   )
   subset_sections <- function(section) {
@@ -178,7 +178,7 @@ parse_log <- function(nested_log) {
         into = c("setting", "value"),
         extra = "merge",
       ) %>%
-      mutate(across(where(is.character), stringr::str_trim))
+      dplyr::mutate(dplyr::across(dplyr::where(is.character), stringr::str_trim))
 
     parsed_log$`Session Information`$`Packages` <-
       nested_log$`Session Information`$`Packages` %>%
@@ -210,7 +210,7 @@ parse_log <- function(nested_log) {
         into = c("setting", "value"),
         extra = "merge",
       ) %>%
-      mutate(across(where(is.character), stringr::str_trim))
+      dplyr::mutate(dplyr::across(dplyr::where(is.character), stringr::str_trim))
   }
 
   if ("Masked Functions" %in% names(nested_log)) {
