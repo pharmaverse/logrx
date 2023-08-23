@@ -83,7 +83,8 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
       "unapproved_packages_functions",
       "lint_results",
       "log_name",
-      "log_path")
+      "log_path",
+      "repo_urls")
 
    # Add attributes to the log.rx environment, and set them to NA
    for (key in 1:length(keys)){
@@ -108,6 +109,8 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
    set_log_name_path(log_name, log_path)
    # lint results
    set_log_element("lint_results", get_lint_results(file))
+   # repo urls
+   set_log_element("repo_urls", get_repo_urls())
 }
 
 #' Cleaning-up of log.rx object
@@ -156,6 +159,8 @@ log_cleanup <- function() {
 #' writing the log file? Defaults to TRUE
 #' @param to_report String vector. Objects to optionally report; additional
 #' information in \code{\link{axecute}}
+#' @param show_repo_url Boolean. Should the repo URLs be reported
+#' Defaults to FALSE
 #'
 #' @return Nothing
 #' @export
@@ -179,6 +184,7 @@ log_cleanup <- function() {
 #' log_write(file)
 log_write <- function(file = NA,
                       remove_log_object = TRUE,
+                      show_repo_url = FALSE,
                       include_rds = FALSE,
                       to_report = c("messages", "output", "result")){
    # Set end time and run time
@@ -212,6 +218,12 @@ log_write <- function(file = NA,
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_header("Session Information"),
                         write_session_info())
+
+   if (show_repo_url) {
+      cleaned_log_vec <- c(cleaned_log_vec,
+                           write_log_header("Repo URLs"),
+                           write_repo_urls())
+   }
 
    if ("masked_functions" %in% names(log_cleanup())) {
       cleaned_log_vec <- c(cleaned_log_vec,

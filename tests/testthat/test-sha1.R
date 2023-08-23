@@ -25,11 +25,10 @@ test_that("Test 2: File HashSum generated for temp file", {
         "data.frame(c(8, 6, 7, 5, 3, 0, 9))"),
       con = scriptPath)
 
-   axecute(scriptPath,
-           log_name = "log_out_report",
-           log_path = logDir,
-           remove_log_object = FALSE,
-           to_report = c("messages", "result"))
+   log_config(scriptPath, log_name = "log_out_report", log_path = logDir)
+   logrx:::run_safely_loudly(scriptPath)
+   log_write(scriptPath, remove_log_object = FALSE, to_report = c("messages", "result"))
+
    con <- file(file.path(logDir, "log_out_report"), "r")
    flines <- readLines(con)
    close(con)
@@ -51,11 +50,11 @@ test_that("Test 3: Different File HashSum generated for similar temp file with s
         "data.frame(c(8, 6, 7, 5, 3, 0, 9))"),
       con = scriptPath)
 
-   axecute(scriptPath,
-           log_name = "log_out_report",
-           log_path = logDir,
-           remove_log_object = FALSE,
-           to_report = c("messages", "result"))
+   log_config(scriptPath, log_name = "log_out_report", log_path = logDir)
+   logrx:::run_safely_loudly(scriptPath)
+   log_write(scriptPath, remove_log_object = FALSE, to_report = c("messages", "result"))
+
+
    con <- file(file.path(logDir, "log_out_report"), "r")
    flines <- readLines(con)
    close(con)
@@ -76,11 +75,10 @@ test_that("Test 4: Same File HashSum generated for temp file in Test 2", {
         "data.frame(c(8, 6, 7, 5, 3, 0, 9))"),
       con = scriptPath)
 
-   axecute(scriptPath,
-           log_name = "log_out_report",
-           log_path = logDir,
-           remove_log_object = FALSE,
-           to_report = c("messages", "result"))
+   log_config(scriptPath, log_name = "log_out_report", log_path = logDir)
+   logrx:::run_safely_loudly(scriptPath)
+   log_write(scriptPath, remove_log_object = FALSE, to_report = c("messages", "result"))
+
    con <- file(file.path(logDir, "log_out_report"), "r")
    flines <- readLines(con)
    close(con)
