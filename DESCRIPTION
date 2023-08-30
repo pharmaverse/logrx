@@ -51,7 +51,8 @@ Imports:
     tibble,
     digest,
     lintr,
-    xml2
+    xml2,
+    lifecycle
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
