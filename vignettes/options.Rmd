@@ -30,7 +30,7 @@ table_ops <- tribble(
    ~option, ~value, ~description,
    "log.rx", "An empty R environment", "Used to store log elements during program exection",
    "log.rx.exec.env", "NULL", "The environment in which the program code is executed",
-   "[log.rx.lint]", "library_call_linter()", "A `lintr` object for use in lint checking",
+   "[log.rx.lint]", "FALSE", "A `lintr` object for use in lint checking",
    "[log.rx.approved]", "./approved.rds", "Location of an approved functions file"
 )
 
@@ -51,7 +51,7 @@ If you or your organization would like to implement any linters, you can set you
 
 <br>
 
-Be default, the `library_call_linter()` is used.  This is to ensure `logrx` will find the correct package and functions used.
+It is recommended to use the `library_call_linter()`.  This is to ensure `logrx` will find the correct package and functions used.
 
 <br>
 
