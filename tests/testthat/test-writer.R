@@ -215,6 +215,7 @@ test_that("write_lint_results will return a formatted lint results element", {
 
 test_that("write_lint_results works when linter is used but no lints found", {
    skip_if_not_installed("lintr")
+   skip_if_not_installed("xml2")
 
    filename <- test_path("ref", "ex6.R")
    source(filename, local = TRUE)
