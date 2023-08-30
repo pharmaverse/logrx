@@ -143,6 +143,8 @@ test_that("parse does not fatal error when syntax issue occurs", {
 })
 
 test_that("lint returns expected result when option is not set", {
+   skip_if_not_installed("lintr")
+
    filename <- test_path("ref", "ex7.R")
    source(filename, local = TRUE)
 
@@ -152,6 +154,8 @@ test_that("lint returns expected result when option is not set", {
 })
 
 test_that("lint returns expected result when option is changed", {
+   skip_if_not_installed("lintr")
+
    filename <- test_path("ref", "ex6.R")
    source(filename, local = TRUE)
 
@@ -163,6 +167,8 @@ test_that("lint returns expected result when option is changed", {
 })
 
 test_that("library lint returns expected result when additional option is set", {
+   skip_if_not_installed("lintr")
+
    options("log.rx" = NULL)
    withr::local_options(log.rx.lint = c(getOption("log.rx.lint"), lintr::undesirable_operator_linter()))
    filename <- test_path("ref", "ex7.R")

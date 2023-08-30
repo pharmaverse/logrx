@@ -278,16 +278,22 @@ get_unapproved_use <- function(approved_packages, used_packages) {
 #'
 #' @param file File path of file being run
 #'
-#' @importFrom lintr lint
-#'
 #' @return results from `lintr::lint()`
 #'
 #' @noRd
 #'
 get_lint_results <- function(file) {
+
+   if (!require(lintr)) {
+      message(strwrap("Linting will not be included in the log. Install the
+         lintr package to use the log.rx.lint feature.",
+         prefix = " ", initial = ""))
+      return(NULL)
+   }
+
    # lint file if option is turned on
    if (!is.logical(getOption('log.rx.lint'))) {
-      lint(file, getOption('log.rx.lint'))
+      lintr::lint(file, getOption('log.rx.lint'))
    }
 }
 

@@ -2,9 +2,6 @@
 #'
 #' Force library calls to all be at the top of the script.
 #'
-#' @importFrom lintr lint Linter xml_nodes_to_lints is_lint_level
-#' @importFrom xml2 xml_find_all
-#'
 #' @examples
 #' library(lintr)
 #'
@@ -45,8 +42,15 @@
 #'   linters = library_call_linter()
 #' )
 #'
-#' @export
+#' @noRd
 library_call_linter <- function() {
+
+   if (!require(lintr)) {
+      message(strwrap("Library calls will not be checked to confirm all are at
+         the top of the script. Install the lintr package to use this feature.",
+         prefix = " ", initial = ""))
+      return(NULL)
+   }
 
   xpath <- "
     (//SYMBOL_FUNCTION_CALL[text() = 'library'])[last()]
@@ -55,8 +59,8 @@ library_call_linter <- function() {
       /following::expr[SYMBOL_FUNCTION_CALL[text() = 'library']]
   "
 
-  Linter(function(source_expression) {
-    if (!is_lint_level(source_expression, "file")) {
+  lintr::Linter(function(source_expression) {
+    if (!lintr::is_lint_level(source_expression, "file")) {
       return(list())
     }
 
@@ -68,7 +72,7 @@ library_call_linter <- function() {
       return(list())
     }
 
-    xml_nodes_to_lints(
+    lintr::xml_nodes_to_lints(
       bad_expr,
       source_expression = source_expression,
       lint_message = "Move all library calls to the top of the script.",
