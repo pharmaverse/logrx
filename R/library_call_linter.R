@@ -45,11 +45,17 @@
 #' @noRd
 library_call_linter <- function() {
 
-   if (!require(lintr)) {
-      message(strwrap("Library calls will not be checked to confirm all are at
+   if (!requireNamespace("lintr", quietly = TRUE)) {
+      warning(strwrap("Library calls will not be checked to confirm all are at
          the top of the script. Install the lintr package to use this feature.",
          prefix = " ", initial = ""))
-      return(NULL)
+      return(list())
+   }
+   if (!requireNamespace("xml2", quietly = TRUE)) {
+      warning(strwrap("Library calls will not be checked to confirm all are at
+         the top of the script. Install the xml2 package to use this feature.",
+         prefix = " ", initial = ""))
+      return(list())
    }
 
   xpath <- "

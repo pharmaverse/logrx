@@ -142,15 +142,16 @@ test_that("parse does not fatal error when syntax issue occurs", {
    expect_identical(get_used_functions(filename), expected)
 })
 
-test_that("lint returns expected result when option is not set", {
+test_that("lint returns expected result when using the default log.rx.lint option", {
    skip_if_not_installed("lintr")
 
+   options("log.rx" = NULL)
    filename <- test_path("ref", "ex7.R")
-   source(filename, local = TRUE)
 
-   expected <- lint(filename, library_call_linter())
+   # get is called within log_config
+   log_config(filename)
 
-   expect_identical(get_lint_results(filename), expected)
+   expect_identical(get_lint_results(filename), NULL)
 })
 
 test_that("lint returns expected result when option is changed", {
@@ -159,18 +160,18 @@ test_that("lint returns expected result when option is changed", {
    filename <- test_path("ref", "ex6.R")
    source(filename, local = TRUE)
 
-   expected <- lint(filename, c(lintr::undesirable_operator_linter()))
+   expected <- lintr::lint(filename, c(lintr::undesirable_operator_linter()))
 
    withr::local_options(log.rx.lint = c(lintr::undesirable_operator_linter()))
 
    expect_identical(get_lint_results(filename), expected)
 })
 
-test_that("library lint returns expected result when additional option is set", {
+test_that("library lint returns expected result when multiple linters are set", {
    skip_if_not_installed("lintr")
 
    options("log.rx" = NULL)
-   withr::local_options(log.rx.lint = c(getOption("log.rx.lint"), lintr::undesirable_operator_linter()))
+   withr::local_options(log.rx.lint = c(library_call_linter(), lintr::undesirable_operator_linter()))
    filename <- test_path("ref", "ex7.R")
 
    # get is called within log_config
