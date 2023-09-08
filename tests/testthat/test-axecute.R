@@ -7,7 +7,7 @@ test_that("axecute will run a file and create the necessary log", {
    # check no log is currently written out
    expect_warning(expect_error(file(file.path(logDir, "log_out"), "r"), "cannot open the connection"))
 
-   axecute(scriptPath, log_name = "log_out", log_path = logDir, remove_log_object = FALSE)
+   axecute(scriptPath, log_name = "log_out", log_path = logDir)
    con <- file(file.path(logDir, "log_out"), "r")
    flines <- readLines(con)
    close(con)
@@ -53,7 +53,6 @@ test_that("to_report works to control log output elements", {
    axecute(scriptPath,
            log_name = "log_out_report",
            log_path = logDir,
-           remove_log_object = FALSE,
            to_report = c("messages", "result"))
    con <- file(file.path(logDir, "log_out_report"), "r")
    flines <- readLines(con)
@@ -65,6 +64,45 @@ test_that("to_report works to control log output elements", {
 
    rm(flines, con, scriptPath, logDir)
    log_remove()
+})
+
+test_that("show_repo_url works to show repo url elements", {
+   options("log.rx" = NULL)
+   scriptPath <- tempfile()
+   logDir <- tempdir()
+   writeLines(
+      c("message('hello logrx')",
+        "cat('this is output')",
+        "data.frame(c(8, 6, 7, 5, 3, 0, 9))"),
+      con = scriptPath)
+
+   # check no log is currently written out
+   expect_warning(expect_error(file(file.path(logDir, "log_out_repo_url"), "r"), "cannot open the connection"))
+
+   axecute(scriptPath, log_name = "log_out_repo_url",
+           log_path = logDir,
+           show_repo_url = TRUE
+   )
+   con <- file(file.path(logDir, "log_out_repo_url"), "r")
+   flines <- readLines(con)
+   close(con)
+
+   expect_true(grepl(paste(write_log_header("Repo URLs"), collapse = ','),
+                     paste(flines,collapse = ',')))
+   rm(flines, con)
+   log_remove()
+
+   axecute(scriptPath, log_name = "log_out_repo_url2",
+           log_path = logDir,
+           show_repo_url = FALSE
+   )
+   con <- file(file.path(logDir, "log_out_repo_url2"), "r")
+   flines <- readLines(con)
+   close(con)
+
+   expect_false(grepl(paste(write_log_header("Repo URLs"), collapse = ','),
+                      paste(flines,collapse = ',')))
+   rm(flines, con, scriptPath, logDir)
 })
 
 test_that("include_rds works to output log as rds", {
@@ -83,7 +121,6 @@ test_that("include_rds works to output log as rds", {
    axecute(scriptPath,
            log_name = "log_out_nested",
            log_path = logDir,
-           remove_log_object = FALSE,
            include_rds = TRUE,
            to_report = c("messages", "result"))
    con <- file(file.path(logDir, "log_out_nested.Rds"), "r")

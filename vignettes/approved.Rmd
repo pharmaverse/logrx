@@ -145,8 +145,11 @@ writeLines(text, fileConn)
 close(fileConn)
 ```
 
-```{r results='hide'}
-axecute(file.path(dir,"mpg.R"), remove_log_object = FALSE)
+```{r results='hide', echo = FALSE}
+fp <- file.path(dir,"mpg.R")
+log_config(fp)
+logrx:::run_safely_loudly(fp)
+log_write(fp, remove_log_object = FALSE)
 ```
 
 Here we have the log elements for "Used Package and Functions" and

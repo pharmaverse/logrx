@@ -298,15 +298,33 @@ get_unapproved_use <- function(approved_packages, used_packages) {
 #'
 #' @param file File path of file being run
 #'
-#' @importFrom lintr lint
-#'
 #' @return results from `lintr::lint()`
 #'
 #' @noRd
 #'
 get_lint_results <- function(file) {
+
+   if (!requireNamespace("lintr", quietly = TRUE)) {
+      message(strwrap("Linting will not be included in the log. Install the
+         lintr package to use the log.rx.lint feature.",
+         prefix = " ", initial = ""))
+      return()
+   }
+
    # lint file if option is turned on
    if (!is.logical(getOption('log.rx.lint'))) {
-      lint(file, getOption('log.rx.lint'))
+      lintr::lint(file, getOption('log.rx.lint'))
    }
+}
+
+#' Get repository URLs
+#'
+#' Obtain repository URLs possibly used to install packages in session
+#'
+#' @return results from `getOption("repos")` as list
+#'
+#' @noRd
+#'
+get_repo_urls <- function() {
+   as.list(getOption("repos"))
 }

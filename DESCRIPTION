@@ -50,7 +50,7 @@ Imports:
     waiter,
     tibble,
     digest,
-    lintr
+    lifecycle
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
@@ -60,6 +60,8 @@ Suggests:
     pkgdown,
     Tplyr,
     haven,
+    lintr,
+    xml2,
     here
 VignetteBuilder: knitr
 Config/testthat/edition: 3
