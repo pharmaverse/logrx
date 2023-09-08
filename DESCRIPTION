@@ -63,6 +63,8 @@ Suggests:
     pkgdown,
     Tplyr,
     haven,
+    lintr,
+    xml2,
     here
 VignetteBuilder: knitr
 Config/testthat/edition: 3
