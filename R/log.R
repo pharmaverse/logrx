@@ -1,6 +1,6 @@
 ### Functions to initialise, configure, cleanup, and write the log.rx environment
 
-#' Initialisation of the log.rx environment
+#' Initialization of the log.rx environment
 #'
 #' `log_init()` initialises the log.rx environment
 #'

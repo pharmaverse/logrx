@@ -2,7 +2,7 @@
 
 - Moved website theme to bootstrap 5, enabled search (#179)
 - Add `show_repo_url` option in `axecute()` to capture repo URL(s) into log file (#167)
-- Moved website theme to bootstarp 5, enabled search (#179)
+- Moved website theme to Bootstrap 5, enabled search (#179)
 - Add `include_rds` argument to `axecute()` to export log as rds file
 - Add `library_call_linter()` to ensure all library calls are at the top of the script (#163)
 - Remove argument for remove_log_object from `axecute()` still accessible via `log_write()` (#182)
