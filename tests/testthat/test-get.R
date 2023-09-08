@@ -142,19 +142,58 @@ test_that("parse does not fatal error when syntax issue occurs", {
    expect_identical(get_used_functions(filename), expected)
 })
 
-test_that("lint returns expected result when option is set", {
+test_that("lint returns expected result when using the default log.rx.lint option", {
+   skip_if_not_installed("lintr")
+
+   options("log.rx" = NULL)
+   filename <- test_path("ref", "ex7.R")
+
+   # get is called within log_config
+   log_config(filename)
+
+   expect_identical(get_lint_results(filename), NULL)
+})
+
+test_that("lint returns expected result when option is changed", {
+   skip_if_not_installed("lintr")
+
    filename <- test_path("ref", "ex6.R")
    source(filename, local = TRUE)
 
-   expected <- lint(filename, c(lintr::undesirable_operator_linter()))
+   expected <- lintr::lint(filename, c(lintr::undesirable_operator_linter()))
 
    withr::local_options(log.rx.lint = c(lintr::undesirable_operator_linter()))
 
    expect_identical(get_lint_results(filename), expected)
 })
 
-test_that("lint returns expected result when option is not set", {
+test_that("library lint returns expected result when multiple linters are set", {
+   skip_if_not_installed("lintr")
+   skip_if_not_installed("xml2")
+
+   options("log.rx" = NULL)
+   withr::local_options(log.rx.lint = c(library_call_linter(), lintr::undesirable_operator_linter()))
+   filename <- test_path("ref", "ex7.R")
+
+   # get is called within log_config
+   log_config(filename)
+
+   expected <- paste0(
+      "Line 6 [library_call_linter] Move all library calls to the ",
+      "top of the script.\n\nLine 8 [undesirable_operator_linter] Operator ",
+      "`<<-` is undesirable. It\nassigns outside the current environment in a ",
+      "way that can be hard to reason\nabout. Prefer fully-encapsulated ",
+      "functions wherever possible, or, if\nnecessary, assign to a specific ",
+      "environment with assign(). Recall that you\ncan create an environment ",
+      "at the desired scope with new.env()."
+   )
+
+   expect_identical(write_lint_results(), expected)
+})
+
+test_that("lint returns expected result when option is set to FALSE", {
    filename <- test_path("ref", "ex6.R")
+   withr::local_options(log.rx.lint = FALSE)
    source(filename, local = TRUE)
 
    expect_identical(get_lint_results(filename), NULL)

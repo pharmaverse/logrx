@@ -297,6 +297,10 @@ write_result <- function() {
 write_lint_results <- function(){
    lint_results <- get_log_element("lint_results")
 
+   if (length(lint_results) == 0) {
+      return("")
+   }
+
    lint_df <- as.data.frame(lint_results)
 
    lint_df$lint_messages <- paste0("Line ",

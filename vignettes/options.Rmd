@@ -51,6 +51,10 @@ If you or your organization would like to implement any linters, you can set you
 
 <br>
 
+It is recommended to use the `library_call_linter()`.  This is to ensure `logrx` will find the correct package and functions used.
+
+<br>
+
 Hester J, Angly F, Hyde R, Chirico M, Ren K, Rosenstock A, Patil I (2022). lintr: A 'Linter' for R Code. <https://github.com/r-lib/lintr>, <https://lintr.r-lib.org>.
 
 ## log.rx.approved
