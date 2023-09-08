@@ -145,7 +145,7 @@ test_that("axecute will run a markdown file and create the necessary log", {
    # check no log is currently written out
    expect_warning(expect_error(file(file.path(logDir, "rmd_log_out"), "r"), "cannot open the connection"))
 
-   axecute(scriptPath, log_name = "rmd_log_out", log_path = logDir, remove_log_object = FALSE)
+   axecute(scriptPath, log_name = "rmd_log_out", log_path = logDir)
    con <- file(file.path(logDir, "rmd_log_out"), "r")
    flines <- readLines(con)
    close(con)
