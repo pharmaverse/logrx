@@ -183,6 +183,8 @@ test_that("write_result will return a formatted log result element", {
 })
 
 test_that("write_lint_results will return a formatted lint results element", {
+   skip_if_not_installed("lintr")
+
    filename <- test_path("ref", "ex6.R")
    source(filename, local = TRUE)
 
@@ -210,3 +212,22 @@ test_that("write_lint_results will return a formatted lint results element", {
 
    log_remove()
 })
+
+test_that("write_lint_results works when linter is used but no lints found", {
+   skip_if_not_installed("lintr")
+   skip_if_not_installed("xml2")
+
+   filename <- test_path("ref", "ex6.R")
+   source(filename, local = TRUE)
+
+   options("log.rx" = NULL)
+   log_config(filename)
+   lint_results <- lintr::lint(filename, c(library_call_linter()))
+   assign('lint_results', lint_results, envir = getOption('log.rx'))
+
+   expect_identical(
+      write_lint_results(),
+      ""
+   )
+})
+
