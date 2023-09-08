@@ -6,6 +6,7 @@
 - Add `include_rds` argument to `axecute()` to export log as rds file
 - Add `library_call_linter()` to ensure all library calls are at the top of the script (#163)
 - Remove argument for remove_log_object from `axecute()` still accessible via `log_write()` (#182)
+- Added functionality so `axecute()` works with `.Rmd` files (#140)
 
 # logrx 0.2.2
 
