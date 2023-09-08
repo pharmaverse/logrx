@@ -23,6 +23,10 @@ Authors@R:
            family = "Masel",
            email = "nmasel@its.jnj.com",
            role = "aut"),
+    person(given = "Sam",
+           family = "Parmar",
+           email = "samir.parmar@pfizer.com",
+           role = "aut"),
     person(given = "GSK/Atorus JPT",
            role = c("cph", "fnd"))
     )
