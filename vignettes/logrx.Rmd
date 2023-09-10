@@ -67,7 +67,7 @@ list of packages and functions
 * **Messages, Output and Results (optional)** - List Messages, Outputs and Results
 * **Log Output File** - Name and path of the log
 
-Below we have a scrollabe example of what is included in a log file for an `adsl.R` script.  
+Below we have a scrollable example of what is included in a log file for an `adsl.R` script.  
 
 
 <style>
