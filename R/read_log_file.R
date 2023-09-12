@@ -133,7 +133,6 @@ nest_log <- function(adj_log_txt) {
 #' @importFrom tidyr separate
 #' @importFrom stringr str_replace_all
 #' @importFrom dplyr rename_with
-#' @importFrom readr read_table
 #' @importFrom dplyr mutate
 #'
 #' @return list with objects coerced as tibbles
@@ -293,5 +292,6 @@ read_log_file <- function(file) {
     reformat_subsections() %>%
     nest_log() %>%
     parse_log()
+
   return(parsed_log)
 }
