@@ -1,6 +1,6 @@
 Package: logrx
 Title: A Logging Utility Focus on Clinical Trial Programming Workflows
-Version: 0.3.0
+Version: 0.2.1
 Authors@R: 
     c(
     person(given = "Nathan",
@@ -23,10 +23,6 @@ Authors@R:
            family = "Masel",
            email = "nmasel@its.jnj.com",
            role = "aut"),
-    person(given = "Sam",
-           family = "Parmar",
-           email = "samir.parmar@pfizer.com",
-           role = "aut"),
     person(given = "GSK/Atorus JPT",
            role = c("cph", "fnd"))
     )
@@ -39,7 +35,7 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports:
-    dplyr (>= 1.0.0),
+    dplyr,
     magrittr,
     purrr,
     rlang,
@@ -54,10 +50,7 @@ Imports:
     waiter,
     tibble,
     digest,
-    lintr,
-    readr,
-    lifecycle,
-    methods
+    lintr
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
@@ -67,9 +60,8 @@ Suggests:
     pkgdown,
     Tplyr,
     haven,
-    lintr,
-    xml2,
-    here
+    here,
+    readr
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 Depends: 
