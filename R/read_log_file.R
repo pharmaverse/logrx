@@ -141,6 +141,12 @@ nest_log <- function(adj_log_txt) {
 #' @noRd
 #'
 parse_log <- function(nested_log) {
+  if (!requireNamespace("readr", quietly = TRUE)) {
+    warning(strwrap("Install the readr package to use log parsing feature.",
+         prefix = " ", initial = ""))
+    return(list())
+  }
+
   parsed_log <- nested_log
 
   if ("logrx Metadata" %in% names(nested_log)) {
@@ -272,6 +278,13 @@ read_log_file <- function(file) {
   if (!file.exists(file)) {
     stop("Path does not exist:", sQuote(file))
   }
+
+  if (!requireNamespace("readr", quietly = TRUE)) {
+    warning(strwrap("Install the readr package to use log parsing feature.",
+                 prefix = " ", initial = ""))
+    return(list())
+  }
+
   con <- file(file.path(file), "r")
   flines <- readLines(con)
   close(con)

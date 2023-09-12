@@ -5,7 +5,7 @@
 - Add `show_repo_url` option in `axecute()` to capture repo URL(s) into log file (#167)
 - Moved website theme to Bootstrap 5, enabled search (#179)
 - Add `include_rds` argument to `axecute()` to export log as rds file
-- Add `read_log_file()` to read previous logrx log file
+- Add `read_log_file()` to read previous logrx log file as optional function
 - Add `library_call_linter()` to ensure all library calls are at the top of the script (#163)
 - Remove argument for remove_log_object from `axecute()` still accessible via `log_write()` (#182)
 
