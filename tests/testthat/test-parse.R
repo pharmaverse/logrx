@@ -1,4 +1,5 @@
 test_that("read_log_file will parse a logrx log file and create the necessary object", {
+  skip_if_not_installed("readr")
   options("log.rx" = NULL)
   scriptPath <- tempfile()
   logDir <- tempdir()
