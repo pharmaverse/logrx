@@ -1,6 +1,6 @@
 Package: logrx
 Title: A Logging Utility Focus on Clinical Trial Programming Workflows
-Version: 0.2.1
+Version: 0.3.0
 Authors@R: 
     c(
     person(given = "Nathan",
@@ -35,7 +35,7 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports:
-    dplyr,
+    dplyr (>= 1.0.0),
     magrittr,
     purrr,
     rlang,
@@ -50,7 +50,6 @@ Imports:
     waiter,
     tibble,
     digest,
-    lintr,
     lifecycle,
     methods
 Suggests: 
@@ -62,9 +61,10 @@ Suggests:
     pkgdown,
     Tplyr,
     haven,
+    lintr,
+    xml2,
     here,
-    readr,
-    xml2
+    readr
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 Depends: 
