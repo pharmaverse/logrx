@@ -135,3 +135,42 @@ test_that("include_rds works to output log as rds", {
    rm(con, scriptPath, logDir, logRDS)
    log_remove()
 })
+
+test_that("axecute will run a markdown file and create the necessary log", {
+   options("log.rx" = NULL)
+
+   scriptPath <- test_path("ref", "ex1.Rmd")
+   logDir <- tempdir()
+
+   # check no log is currently written out
+   expect_warning(expect_error(file(file.path(logDir, "rmd_log_out"), "r"), "cannot open the connection"))
+
+   axecute(scriptPath, log_name = "rmd_log_out", log_path = logDir)
+   con <- file(file.path(logDir, "rmd_log_out"), "r")
+   flines <- readLines(con)
+   close(con)
+
+   # check that the output file is populated
+   expect_gt(length(flines), 1)
+   # check all the elements are there
+   expect_true(grepl(paste(write_log_header("logrx Metadata"), collapse = ','),
+      paste(flines,collapse = ',')))
+   expect_true(grepl(paste(write_log_header("User and File Information"), collapse = ','),
+      paste(flines,collapse = ',')))
+   expect_true(grepl(paste(write_log_header("Session Information"), collapse = ','),
+      paste(flines,collapse = ',')))
+   expect_true(grepl(paste(write_log_header("Masked Functions"), collapse = ','),
+      paste(flines,collapse = ',')))
+   expect_true(grepl(paste(write_log_header("Program Run Time Information"), collapse = ','),
+      paste(flines,collapse = ',')))
+   expect_true(grepl(paste(write_log_header("Errors and Warnings"), collapse = ','),
+      paste(flines,collapse = ',')))
+   expect_true(grepl(paste(write_log_header("Messages, Output, and Result"), collapse = ','),
+      paste(flines,collapse = ',')))
+   expect_true(grepl(paste(write_log_header("Log Output File"), collapse = ','),
+      paste(flines,collapse = ',')))
+
+   # remove all the stuff we added
+   rm(flines, con, scriptPath, logDir)
+   log_remove()
+})

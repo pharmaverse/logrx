@@ -198,3 +198,28 @@ test_that("lint returns expected result when option is set to FALSE", {
 
    expect_identical(get_lint_results(filename), NULL)
 })
+
+test_that("functions used are returned correctly for rmd files", {
+   filename <- test_path("ref", "ex1.Rmd")
+
+   tmpfile <- tempfile(fileext = ".R")
+
+   withr::local_options(list(knitr.purl.inline = TRUE))
+
+   knitr::purl(filename, tmpfile)
+
+   source(tmpfile, local = TRUE)
+
+   expected <- tibble::tribble(
+      ~function_name,           ~library,
+      "library",     "package:base",
+      "summary",     "package:base",
+      "plot", "package:graphics",
+      "%>%",    "package:dplyr",
+      "filter",    "package:dplyr",
+      "print",    "package:base"
+   )
+
+   expect_identical(get_used_functions(tmpfile), expected)
+
+})
