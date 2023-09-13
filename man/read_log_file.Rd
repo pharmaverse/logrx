@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_log_file.R
 \name{read_log_file}
 \alias{read_log_file}
-\title{Read and parse previous logrx file}
+\title{Read and parse logrx file}
 \usage{
 read_log_file(file)
 }
@@ -13,7 +13,7 @@ read_log_file(file)
 Tibble. Object that includes nested and parsed content
 }
 \description{
-Read and parse previous logrx file
+Read and parse logrx file
 }
 \examples{
 \dontrun{

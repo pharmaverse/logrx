@@ -262,7 +262,7 @@ parse_log <- function(nested_log) {
   return(parsed_log)
 }
 
-#' Read and parse previous logrx file
+#' Read and parse logrx file
 #'
 #' @param file String. Path to a logrx log file
 #'
