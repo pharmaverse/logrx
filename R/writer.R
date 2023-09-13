@@ -282,10 +282,14 @@ write_output <- function() {
 #'
 #' @noRd
 #'
-write_result <- function() {
+write_result <- function(file) {
    result <- get_log_element("result")
 
-   c("\nResult:", paste0("\t", capture.output(result$value)))
+   if (is_rmarkdown(file)) {
+      c("\nResult:", paste0("\t", capture.output(result)))
+   } else {
+      c("\nResult:", paste0("\t", capture.output(result$value)))
+   }
 }
 
 #' Format lint results for writing

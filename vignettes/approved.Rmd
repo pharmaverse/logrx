@@ -176,3 +176,9 @@ logrx::log_remove()
 
 unlink(dir, recursive = TRUE)
 ```
+
+# A Few Words of Caution
+
+All packages should be attached at the top of the script to set a consistent `?base::searchpaths()` throughout the entire script.  This will ensure the functions you use in your script are linked to the correct package.  A lint feature is available to test your scripts follow this best practice.
+
+Some functions are stored within a list, for example `knitr::opts_chunck$get()` and `knitr::opts_current$get()`.   We do not currently identify `get()` as a knitr function since it is not exported.
