@@ -267,6 +267,7 @@ parse_log <- function(nested_log) {
 #' @param file String. Path to a logrx log file
 #'
 #' @return Tibble. Object that includes nested and parsed content
+#' @export
 #'
 #' @examples
 #' \dontrun{
