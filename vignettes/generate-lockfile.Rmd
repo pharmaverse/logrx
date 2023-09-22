@@ -1,0 +1,72 @@
+---
+title: "Generate renv lockfile from log file"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{generate-lockfile}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(logrx)
+library(stringr)
+library(dplyr)
+library(renv)
+```
+
+
+```{r run-axecute, echo = FALSE}
+scriptPath <- tempfile()
+
+logDir <- tempdir()
+writeLines(
+  c(
+    "print('hello logrx')", 
+    "library(dplyr)",
+    "count(iris, Species)"
+  ),
+  con = scriptPath
+)
+
+filePath <- file.path(logDir, "log_out_parse")
+
+axecute(scriptPath, log_name = "log_out_parse", log_path = logDir)
+
+parsedFile <- read_log_file(filePath)
+```
+
+
+```{r read-previous-logfile}
+# check that the log file can be parsed
+parsedFile$`Used Package and Functions`
+```
+
+```{r lockfile}
+used_pgks <- parsedFile$`Used Package and Functions` %>%
+  transmute(package_name = str_extract(library, "(?<=package\\:).+"))
+
+temp_lockfile <- tempfile(fileext = ".lockfile")
+
+x <- renv::lockfile_create(
+  type = "custom",
+  packages = used_pgks
+)
+
+renv::lockfile_write(
+  lockfile = x,
+  file = temp_lockfile,
+  type = "custom",
+)
+
+readlines(temp_lockfile)
+```
+
