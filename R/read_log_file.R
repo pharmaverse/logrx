@@ -187,7 +187,7 @@ parse_log <- function(nested_log) {
         into = c("setting", "value"),
         extra = "merge",
       ) %>%
-      dplyr::mutate(dplyr::across(dplyr::where(is.character), stringr::str_trim))
+      dplyr::mutate(dplyr::across(tidyselect::where(is.character), stringr::str_trim))
 
     parsed_log$`Session Information`$`Packages` <-
       nested_log$`Session Information`$`Packages` %>%
@@ -219,7 +219,7 @@ parse_log <- function(nested_log) {
         into = c("setting", "value"),
         extra = "merge",
       ) %>%
-      dplyr::mutate(dplyr::across(dplyr::where(is.character), stringr::str_trim))
+      dplyr::mutate(dplyr::across(tidyselect::where(is.character), stringr::str_trim))
   }
 
   if ("Masked Functions" %in% names(nested_log)) {
