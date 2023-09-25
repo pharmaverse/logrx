@@ -5,6 +5,7 @@
 #' @importFrom stringr str_detect
 #' @importFrom stringr str_count
 #' @importFrom stringr str_remove
+#' @importFrom stringr str_replace_all
 #'
 #' @return tibble that ensures formatted subsections
 #'
@@ -30,6 +31,9 @@ reformat_subsections <- function(log_txt) {
           collapse = ""
         )
     }
+    # replace utf8 line and double line to ascii due to cli symbol variation
+    i <- stringr::str_replace_all(i, '\u2550', '=')
+    i <- stringr::str_replace_all(i, '\u2500', '-')
     adj_log_txt <- c(adj_log_txt, i)
   }
   return(adj_log_txt)
