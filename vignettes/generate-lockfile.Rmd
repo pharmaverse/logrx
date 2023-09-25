@@ -23,8 +23,9 @@ library(dplyr)
 library(renv)
 ```
 
+Axecute a script and get the logfile.
 
-```{r run-axecute, echo = FALSE}
+```{r run_axecute, echo = FALSE}
 scriptPath <- tempfile()
 
 logDir <- tempdir()
@@ -40,17 +41,17 @@ writeLines(
 filePath <- file.path(logDir, "log_out_parse")
 
 axecute(scriptPath, log_name = "log_out_parse", log_path = logDir)
+```
 
+Later on read (and parse) previous log file as list of objects. 
+
+```{r read_logfile}
 parsedFile <- read_log_file(filePath)
 ```
 
+Create a renv lockfile based on the used packages mentioned in the logfile.
 
-```{r read-previous-logfile}
-# check that the log file can be parsed
-parsedFile$`Used Package and Functions`
-```
-
-```{r lockfile}
+```{r gen_lockfile}
 used_pgks <- parsedFile$`Used Package and Functions` %>%
   transmute(package_name = str_extract(library, "(?<=package\\:).+"))
 
@@ -58,7 +59,7 @@ temp_lockfile <- tempfile(fileext = ".lockfile")
 
 x <- renv::lockfile_create(
   type = "custom",
-  packages = used_pgks
+  packages = used_pgks$package_name
 )
 
 renv::lockfile_write(
@@ -66,7 +67,5 @@ renv::lockfile_write(
   file = temp_lockfile,
   type = "custom",
 )
-
-readlines(temp_lockfile)
 ```
 
