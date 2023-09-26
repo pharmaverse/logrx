@@ -1,6 +1,7 @@
 ---
 title: "ex1"
 date: "2023-07-06"
+output: html_document
 ---
 
 ## R Markdown
@@ -19,6 +20,7 @@ summary(cars)
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
+pdf(NULL)
 plot(pressure)
 ```
 
