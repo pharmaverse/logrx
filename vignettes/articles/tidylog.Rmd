@@ -28,7 +28,7 @@ Below we have a simple script using the `us_rent_income` dataset.  We will explo
 
 <br>
 
-Using `axecute(ex1_tidylog.R)` we produce a log file.  Below we snapshot just the pertinent information for users interested in the `{tidylog}` feedback.  This feedback is placed by the `{logrx}` package into the `Messages, Output, and Result` section of the log.
+Using `axecute(ex1_tidylog.R)` we produce a log file.  Below we snapshot just the pertinent information for users interested in the `{tidylog}` feeback.  This feedback is placed by the `{logrx}` package into the `Messages, Output, and Result` section of the log.
 
 <br>
 

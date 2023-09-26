@@ -91,6 +91,12 @@ logrxAddin <- function() {
          shiny::fluidRow(
             shiny::column(
                12,
+               shiny::checkboxInput("rmLog", "Remove the log object after axecution?", TRUE)
+            )
+         ),
+         shiny::fluidRow(
+            shiny::column(
+               12,
                shiny::checkboxGroupInput("toReport", "Optional elements to report:",
                                          c("Messages" = "messages",
                                            "Output" = "output",
@@ -161,7 +167,7 @@ logrxAddin <- function() {
             html = spin_solar() # use a spinner
          )
          axecute(file = logInfo$file, log_name = logInfo$name,
-                 log_path = logInfo$location,
+                 log_path = logInfo$location, remove_log_object = input$rmLog,
                  to_report = input$toReport)
          doneCheck$data <- "Select a new file, if you wish to run more files"
          waiter_hide() # hide the waiter
