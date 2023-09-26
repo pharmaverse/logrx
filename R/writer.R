@@ -50,7 +50,6 @@ write_metadata <- function(){
 #'
 write_session_info <- function(){
    session_info <- get_log_element("session_info") %>%
-      capture.output() %>%
       # remove extra dashes on title lines
       map_chr(~ ifelse(nchar(.x) > 80 & grepl("\u2500\u2500\u2500\u2500", .x),
                    substring(.x, 1, 80),
@@ -61,28 +60,6 @@ write_session_info <- function(){
                  map_chr(~ str_c(.x, collapse = "\n\t", character(1))))
 
    return(session_info)
-}
-
-#' Format repo URLs for writing
-#'
-#' @return A vector of file name and path prefixed
-#'
-#' @noRd
-#'
-write_repo_urls <- function(){
-   repo_urls <- ifelse(is.na(get_log_element("repo_urls")),
-                       "Repo URLs not able to be determined",
-                       map2(
-                          names(get_log_element("repo_urls")),
-                          get_log_element("repo_urls"),
-                          ~paste(paste0(.x, ": "),
-                                 paste0(.y, collapse = ", "))
-                       ) %>%
-                          unname() %>%
-                          unlist()
-   )
-
-   return(repo_urls)
 }
 
 #' Format file name and path for writing
@@ -282,14 +259,10 @@ write_output <- function() {
 #'
 #' @noRd
 #'
-write_result <- function(file) {
+write_result <- function() {
    result <- get_log_element("result")
 
-   if (is_rmarkdown(file)) {
-      c("\nResult:", paste0("\t", capture.output(result)))
-   } else {
-      c("\nResult:", paste0("\t", capture.output(result$value)))
-   }
+   c("\nResult:", paste0("\t", capture.output(result$value)))
 }
 
 #' Format lint results for writing
@@ -300,10 +273,6 @@ write_result <- function(file) {
 #'
 write_lint_results <- function(){
    lint_results <- get_log_element("lint_results")
-
-   if (length(lint_results) == 0) {
-      return("")
-   }
 
    lint_df <- as.data.frame(lint_results)
 

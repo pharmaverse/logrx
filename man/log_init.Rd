@@ -2,7 +2,7 @@
 % Please edit documentation in R/log.R
 \name{log_init}
 \alias{log_init}
-\title{Initialization of the log.rx environment}
+\title{Initialisation of the log.rx environment}
 \usage{
 log_init()
 }

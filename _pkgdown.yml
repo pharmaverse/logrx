@@ -1,22 +1,9 @@
-url: https://pharmaverse.github.io/logrx/
+destination: docs
 
 template:
-  bootstrap: 5
   params:
-    bootswatch: sandstone
-search:
-  exclude: ["news/index.html"]
-news:
-  cran_dates: true
+    bootswatch: yeti
 
-navbar:
-  structure:
-    right: [slack, github]
-  components:
-    slack:
-      icon: fa-slack
-      href: https://pharmaverse.slack.com
-      aria-label: slack
 reference:
 - title: Source a file with Logging
   desc: Functionality for Creating logs from Scripts
@@ -35,10 +22,6 @@ reference:
    - write_log_header
    - write_unapproved_functions
    - write_used_functions
-- title: Read Log
-  desc: Functionality to Read Log Files
-- contents:
-   - read_log_file
 - title: Utilities
   desc: Utility functions
 - contents:

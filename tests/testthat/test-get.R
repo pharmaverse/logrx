@@ -22,7 +22,7 @@ test_that("when given a file as an argument a non-normalized file path to that f
 })
 
 test_that("session info is captured", {
-   expect_identical(capture.output(get_session_info()), capture.output(session_info(info = "all")))
+   expect_identical(get_session_info(), capture.output(session_info(info = "all")))
 })
 
 test_that("all functions that are masked are found and returned", {
@@ -142,84 +142,20 @@ test_that("parse does not fatal error when syntax issue occurs", {
    expect_identical(get_used_functions(filename), expected)
 })
 
-test_that("lint returns expected result when using the default log.rx.lint option", {
-   skip_if_not_installed("lintr")
-
-   options("log.rx" = NULL)
-   filename <- test_path("ref", "ex7.R")
-
-   # get is called within log_config
-   log_config(filename)
-
-   expect_identical(get_lint_results(filename), NULL)
-})
-
-test_that("lint returns expected result when option is changed", {
-   skip_if_not_installed("lintr")
-
+test_that("lint returns expected result when option is set", {
    filename <- test_path("ref", "ex6.R")
    source(filename, local = TRUE)
 
-   expected <- lintr::lint(filename, c(lintr::undesirable_operator_linter()))
+   expected <- lint(filename, c(lintr::undesirable_operator_linter()))
 
    withr::local_options(log.rx.lint = c(lintr::undesirable_operator_linter()))
 
    expect_identical(get_lint_results(filename), expected)
 })
 
-test_that("library lint returns expected result when multiple linters are set", {
-   skip_if_not_installed("lintr")
-   skip_if_not_installed("xml2")
-
-   options("log.rx" = NULL)
-   withr::local_options(log.rx.lint = c(library_call_linter(), lintr::undesirable_operator_linter()))
-   filename <- test_path("ref", "ex7.R")
-
-   # get is called within log_config
-   log_config(filename)
-
-   expected <- paste0(
-      "Line 6 [library_call_linter] Move all library calls to the ",
-      "top of the script.\n\nLine 8 [undesirable_operator_linter] Operator ",
-      "`<<-` is undesirable. It\nassigns outside the current environment in a ",
-      "way that can be hard to reason\nabout. Prefer fully-encapsulated ",
-      "functions wherever possible, or, if\nnecessary, assign to a specific ",
-      "environment with assign(). Recall that you\ncan create an environment ",
-      "at the desired scope with new.env()."
-   )
-
-   expect_identical(write_lint_results(), expected)
-})
-
-test_that("lint returns expected result when option is set to FALSE", {
+test_that("lint returns expected result when option is not set", {
    filename <- test_path("ref", "ex6.R")
-   withr::local_options(log.rx.lint = FALSE)
    source(filename, local = TRUE)
 
    expect_identical(get_lint_results(filename), NULL)
-})
-
-test_that("functions used are returned correctly for rmd files", {
-   filename <- test_path("ref", "ex1.Rmd")
-
-   tmpfile <- tempfile(fileext = ".R")
-
-   withr::local_options(list(knitr.purl.inline = TRUE))
-
-   knitr::purl(filename, tmpfile)
-
-   source(tmpfile, local = TRUE)
-
-   expected <- tibble::tribble(
-      ~function_name,           ~library,
-      "library",     "package:base",
-      "summary",     "package:base",
-      "plot", "package:graphics",
-      "%>%",    "package:dplyr",
-      "filter",    "package:dplyr",
-      "print",    "package:base"
-   )
-
-   expect_identical(get_used_functions(tmpfile), expected)
-
 })
