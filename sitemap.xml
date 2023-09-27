@@ -1,111 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://pharmaverse.github.io/logrx/404.html</loc>
+    <loc>/404.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/LICENSE-text.html</loc>
+    <loc>/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/LICENSE.html</loc>
+    <loc>/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/adsl_demo.html</loc>
+    <loc>/articles/adsl_demo.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/adsl_log.html</loc>
+    <loc>/articles/adsl_log.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/adsl_lst.html</loc>
+    <loc>/articles/adsl_lst.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/adsl_script.html</loc>
+    <loc>/articles/adsl_script.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/approved.html</loc>
+    <loc>/articles/approved.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/ex1_tidylog_R_file.html</loc>
+    <loc>/articles/ex1_tidylog_R_file.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/ex1_tidylog_log.html</loc>
+    <loc>/articles/ex1_tidylog_log.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/ex2_tidylog_adsl_R_file.html</loc>
+    <loc>/articles/ex2_tidylog_adsl_R_file.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/ex2_tidylog_adsl_log.html</loc>
+    <loc>/articles/ex2_tidylog_adsl_log.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/execution.html</loc>
+    <loc>/articles/execution.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/index.html</loc>
+    <loc>/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/logrx.html</loc>
+    <loc>/articles/logrx.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/options.html</loc>
+    <loc>/articles/options.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/risk_diff_log.html</loc>
+    <loc>/articles/risk_diff_log.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/risk_diff_script.html</loc>
+    <loc>/articles/risk_diff_script.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/tables.html</loc>
+    <loc>/articles/tables.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/articles/tidylog.html</loc>
+    <loc>/articles/tidylog.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/authors.html</loc>
+    <loc>/authors.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/index.html</loc>
+    <loc>/index.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/news/index.html</loc>
+    <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/pull_request_template.html</loc>
+    <loc>/pull_request_template.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/reference/approved.html</loc>
+    <loc>/reference/approved.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/reference/axecute.html</loc>
+    <loc>/reference/axecute.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/reference/build_approved.html</loc>
+    <loc>/reference/build_approved.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/reference/index.html</loc>
+    <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/reference/log_config.html</loc>
+    <loc>/reference/log_config.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/reference/log_init.html</loc>
+    <loc>/reference/log_init.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/reference/log_remove.html</loc>
+    <loc>/reference/log_remove.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/reference/log_write.html</loc>
+    <loc>/reference/log_write.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/reference/read_log_file.html</loc>
+    <loc>/reference/write_log_header.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/reference/write_log_header.html</loc>
+    <loc>/reference/write_unapproved_functions.html</loc>
   </url>
   <url>
-    <loc>https://pharmaverse.github.io/logrx/reference/write_unapproved_functions.html</loc>
-  </url>
-  <url>
-    <loc>https://pharmaverse.github.io/logrx/reference/write_used_functions.html</loc>
+    <loc>/reference/write_used_functions.html</loc>
   </url>
 </urlset>
