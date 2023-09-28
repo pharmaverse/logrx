@@ -1,6 +1,6 @@
 Package: logrx
 Title: A Logging Utility Focus on Clinical Trial Programming Workflows
-Version: 0.2.2
+Version: 0.3.0
 Authors@R: 
     c(
     person(given = "Nathan",
@@ -22,6 +22,10 @@ Authors@R:
     person(given = "Nicholas",
            family = "Masel",
            email = "nmasel@its.jnj.com",
+           role = "aut"),
+    person(given = "Sam",
+           family = "Parmar",
+           email = "samir.parmar@pfizer.com",
            role = "aut"),
     person(given = "GSK/Atorus JPT",
            role = c("cph", "fnd"))
@@ -50,7 +54,8 @@ Imports:
     waiter,
     tibble,
     digest,
-    lintr
+    lifecycle,
+    methods
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
@@ -60,8 +65,12 @@ Suggests:
     pkgdown,
     Tplyr,
     haven,
-    here
+    lintr,
+    xml2,
+    here,
+    readr,
+    tidyselect
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 Depends: 
-    R (>= 3.5.0)
+    R (>= 4.0.0)

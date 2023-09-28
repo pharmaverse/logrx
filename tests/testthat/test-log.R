@@ -13,7 +13,7 @@ test_that("log_config configures the log and all the necessary elements", {
                      "result","output","start_time", "end_time", "run_time",
                      "file_name","file_path","user", "hash_sum", "masked_functions",
                      "used_packages_functions", "unapproved_packages_functions",
-                     "lint_results", "log_name","log_path"))
+                     "lint_results", "log_name","log_path", "repo_urls"))
 
    expect_identical(getOption("log.rx")[['file_path']], dirname(get_file_path('./test-get.R')))
    expect_identical(getOption("log.rx")[['file_name']], basename(get_file_path('./test-get.R')))

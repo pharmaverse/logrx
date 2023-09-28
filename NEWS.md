@@ -1,3 +1,16 @@
+
+# logrx 0.3.0
+
+- Moved website theme to bootstrap 5, enabled search (#179)
+- Add `show_repo_url` option in `axecute()` to capture repo URL(s) into log file (#167)
+- Moved website theme to Bootstrap 5, enabled search (#179)
+- Add `include_rds` argument to `axecute()` to export log as rds file
+- Add `read_log_file()` to read logrx log file as optional function
+- Add `library_call_linter()` to ensure all library calls are at the top of the script (#163)
+- Remove argument for remove_log_object from `axecute()` still accessible via `log_write()` (#182)
+- Added functionality so `axecute()` works with `.Rmd` files (#140)
+- R Version switched from `>3.5` to `>4.0` in `DESCRIPTION` file (#198)
+
 # logrx 0.2.2
 
  - Hotfix to remove unnecessary `across()` and update `.data$var` top new syntax to match updates in source packages (#172)

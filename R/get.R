@@ -96,7 +96,7 @@ get_file_path <- function(file = NA, normalize = TRUE){
 #' @noRd
 #'
 get_session_info <- function(){
-   return(capture.output(session_info(info = "all")))
+   return(session_info(info = "all"))
 }
 
 
@@ -155,6 +155,16 @@ get_masked_functions <- function(){
 #'
 get_used_functions <- function(file){
 
+   # if markdown, write R code, including inline, to a script
+   # use this script to find functions used
+   if (grepl("*.Rmd$", file, ignore.case = TRUE)){
+      tmpfile <- tempfile(fileext = ".R")
+      on.exit(unlink(tmpfile))
+      withr::local_options(list(knitr.purl.inline = TRUE))
+      knitr::purl(file, tmpfile)
+      file <- tmpfile
+   }
+
    # catch error
    retfun <- safely(parse,
                     quiet = FALSE,
@@ -191,13 +201,23 @@ get_used_functions <- function(file){
                               names_from = "token") %>%
       ungroup()
 
-   combine_tokens <- wide_tokens %>%
+   # if package is present, but symbol or special is not, a function did not follow the ::
+   # ex. knitr::opts_chunk$set()
+   # for this case, remove row that contains the package
+   # set will still be captured but we will be able to link it to a package in this current version
+   wide_tokens_wo_orphans <- wide_tokens[!(!is.na(wide_tokens$SYMBOL_PACKAGE) & is.na(wide_tokens$SYMBOL_FUNCTION_CALL) & is.na(wide_tokens$SPECIAL)),]
+
+   combine_tokens <- wide_tokens_wo_orphans %>%
       mutate(function_name = coalesce(.data[["SYMBOL_FUNCTION_CALL"]],
                                       .data[["SPECIAL"]]))
 
-   get_library(combine_tokens) %>%
+   distinct_use <- get_library(combine_tokens) %>%
       select(all_of(c("function_name", "library"))) %>%
       distinct()
+
+   distinct_use[is.na(distinct_use)] <- "!!! NOT FOUND !!!"
+
+   distinct_use
 
 }
 
@@ -278,15 +298,33 @@ get_unapproved_use <- function(approved_packages, used_packages) {
 #'
 #' @param file File path of file being run
 #'
-#' @importFrom lintr lint
-#'
 #' @return results from `lintr::lint()`
 #'
 #' @noRd
 #'
 get_lint_results <- function(file) {
+
+   if (!requireNamespace("lintr", quietly = TRUE)) {
+      message(strwrap("Linting will not be included in the log. Install the
+         lintr package to use the log.rx.lint feature.",
+         prefix = " ", initial = ""))
+      return()
+   }
+
    # lint file if option is turned on
    if (!is.logical(getOption('log.rx.lint'))) {
-      lint(file, getOption('log.rx.lint'))
+      lintr::lint(file, getOption('log.rx.lint'))
    }
+}
+
+#' Get repository URLs
+#'
+#' Obtain repository URLs possibly used to install packages in session
+#'
+#' @return results from `getOption("repos")` as list
+#'
+#' @noRd
+#'
+get_repo_urls <- function() {
+   as.list(getOption("repos"))
 }
