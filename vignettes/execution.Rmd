@@ -22,10 +22,10 @@ library(logrx)
 `logrx` has been built with both the flexibility of code execution and a number of different use cases in mind.  While the basic case has been outlined in our [Get Started](https://pharmaverse.github.io/logrx/articles/logrx.html) vignette, here we will be discussing different methods of execution and creation of log files.  These examples are meant to guide users who wish to explore different methods of execution or for those using ```logrx``` to create scripting.
 
 # Methods of Execution
-Below you will find a number of examples for different methods of execution, these go in an increasing level of complexity and increasing level of technical knowledge.  The below examples are meant to be starting points for those interested in using ```logrx``` in more complex settings.
+Below you will find a number of examples for different methods of exectuion, these go in an increasing level of complexity and increasing level of technical knowledge.  The below examples are meant to be starting points for those interested in using ```logrx``` in more complex settings.
 
 ## `axecute()`
-The easiest of the execution methods to use is `axecute()`.  This function can be used to execute code from an R terminal or using command line scripts. A log is 
+The easiest of the execution methods to use is `axecute()`.  This function can be used to exeucte code from an R terminal or using command line scripts. A log is 
 set-up around the program, and its code is run safely and loudly (using `safely()` from `{purrr}`).
 ```{r axecute, eval = FALSE}
 axecute("my_script.R")
@@ -45,7 +45,7 @@ messages, output, and result.  This must be passed an executable R file to run a
 
 * `log_write()` to generate and format the log
 
-* `log_remove()` to remove the `log.rx` environment created by code execution
+* `log_remove()` to remove the `log.rx` environment created by code exeuction
 
 ```{r log_*, eval = FALSE}
 log_config("my_script.R")
@@ -55,7 +55,7 @@ log_remove()
 ```
 
 ## Command Line Execution
-While executing from an R terminal is nice if you have access to one, you can also execute your code using system command line.  This is done using the `Rscript -e` command which executes a file using the registered Rscript executable.  Below are a few examples of how to use the command line to execute a file and create a log as well as how to manipulate the outputs of the execution.  These are likely to be advanced examples for most users.
+While exeucting from an R terminal is nice if you have access to one, you can also execute your code using system command line.  This is done using the `Rscript -e` command which executes a file using the registered Rscript executable.  Below are a few examples of how to use the command line to execute a file and create a log as well as how to manipulate the outputs of the execution.  These are likely to be advanced examples for most users.
 
 The below chunk will run the file my_script.R and output any standard output that is created by the execution of the file to the default location.
 ```{r, engine = 'bash', eval = FALSE}
@@ -87,7 +87,7 @@ r_script_list <- list.files(path = ".", pattern = "\\.R$")
 lapply(r_script_list, axecute)
 ```
 
-Additionally, if you need your code to run using a shell scripting language such as bash these files can be created to run using the previously outlined Command Line Execution examples. The above scripting examples can be translated into a variety of different scripting languages.  Below is an example where the bash script is executed in a directory of R files, this should execute all R files in the directory using `axecute()` and create a corresponding set of log files.
+Additionally, if you need your code to run using a shell scripting language such as bash these files can be created to run using the previously outlined Command Line Execution examples.  The above scripting examples can be translated into a variety of different scritping languages.  Below is an example where the bash script is executed in a directory of R files, this should execute all R files in the directory using `axecute()` and create a corresponding set of log files.
 
 ```{r, engine = 'bash', eval = FALSE}
 for file in *.R; do
