@@ -160,7 +160,8 @@ parse_log <- function(nested_log) {
       tidyr::separate(".",
         sep = "\\: ",
         into = c("Variable", "Value"),
-        extra = "merge"
+        extra = "merge",
+        fill = "right"
       )
   }
 
@@ -186,6 +187,7 @@ parse_log <- function(nested_log) {
         sep = "\\s",
         into = c("setting", "value"),
         extra = "merge",
+        fill = "right"
       ) %>%
       dplyr::mutate(dplyr::across(tidyselect::where(is.character), stringr::str_trim))
 
@@ -218,6 +220,7 @@ parse_log <- function(nested_log) {
         sep = "\\s",
         into = c("setting", "value"),
         extra = "merge",
+        fill = "right"
       ) %>%
       dplyr::mutate(dplyr::across(tidyselect::where(is.character), stringr::str_trim))
   }

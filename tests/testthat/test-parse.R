@@ -13,7 +13,7 @@ test_that("read_log_file will parse a logrx log file and create the necessary ob
 
   # check that the log file can be parsed
   parsedFile <- read_log_file(filePath)
-''
+
   expect_length(parsedFile, 9)
   expect_named(
     parsedFile,
