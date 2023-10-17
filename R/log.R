@@ -1,6 +1,6 @@
 ### Functions to initialise, configure, cleanup, and write the log.rx environment
 
-#' Initialisation of the log.rx environment
+#' Initialization of the log.rx environment
 #'
 #' `log_init()` initialises the log.rx environment
 #'
@@ -83,7 +83,8 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
       "unapproved_packages_functions",
       "lint_results",
       "log_name",
-      "log_path")
+      "log_path",
+      "repo_urls")
 
    # Add attributes to the log.rx environment, and set them to NA
    for (key in 1:length(keys)){
@@ -108,6 +109,8 @@ log_config <- function(file = NA, log_name = NA, log_path = NA){
    set_log_name_path(log_name, log_path)
    # lint results
    set_log_element("lint_results", get_lint_results(file))
+   # repo urls
+   set_log_element("repo_urls", get_repo_urls())
 }
 
 #' Cleaning-up of log.rx object
@@ -150,10 +153,14 @@ log_cleanup <- function() {
 #' to a log file
 #'
 #' @param file String. Path to file executed
+#' @param include_rds Boolean. Option to export log object as Rds file.
+#' Defaults to FALSE
 #' @param remove_log_object Boolean. Should the log object be removed after
 #' writing the log file? Defaults to TRUE
 #' @param to_report String vector. Objects to optionally report; additional
 #' information in \code{\link{axecute}}
+#' @param show_repo_url Boolean. Should the repo URLs be reported
+#' Defaults to FALSE
 #'
 #' @return Nothing
 #' @export
@@ -177,6 +184,8 @@ log_cleanup <- function() {
 #' log_write(file)
 log_write <- function(file = NA,
                       remove_log_object = TRUE,
+                      show_repo_url = FALSE,
+                      include_rds = FALSE,
                       to_report = c("messages", "output", "result")){
    # Set end time and run time
    set_log_element("end_time", strftime(Sys.time(), usetz = TRUE))
@@ -209,6 +218,12 @@ log_write <- function(file = NA,
    cleaned_log_vec <- c(cleaned_log_vec,
                         write_log_header("Session Information"),
                         write_session_info())
+
+   if (show_repo_url) {
+      cleaned_log_vec <- c(cleaned_log_vec,
+                           write_log_header("Repo URLs"),
+                           write_repo_urls())
+   }
 
    if ("masked_functions" %in% names(log_cleanup())) {
       cleaned_log_vec <- c(cleaned_log_vec,
@@ -276,7 +291,7 @@ log_write <- function(file = NA,
    }
    if ("result" %in% to_report){
       cleaned_log_vec <- c(cleaned_log_vec,
-                           write_result())
+                           write_result(file))
    }
 
    cleaned_log_vec <- c(cleaned_log_vec,
@@ -285,8 +300,39 @@ log_write <- function(file = NA,
                         write_log_element("log_path", "Log path: "))
 
    writeLines(cleaned_log_vec,
-              con = file.path(get_log_element("log_path"),
-                              get_log_element("log_name")))
+                 con = file.path(get_log_element("log_path"),
+                                 get_log_element("log_name")))
+   if (include_rds){
+      rds_fields <- c(
+         "end_time", "start_time", "run_time", "user", "hash_sum",
+         "log_path", "log_name", "file_path", "file_name",
+         "unapproved_packages_functions", "errors", "warnings",
+         "session_info"
+      )
+      log_options <- as.list(getOption('log.rx'))
+      cleaned_log_list <- purrr::map2(
+         log_options,
+         names(log_options),
+         function(i, x){
+            if(x %in% c("messages", "output", "result")){
+               if(x %in% to_report){
+                  return(i)
+               }
+            } else if(x %in% c(names(log_cleanup()), rds_fields)){
+               return(i)
+            }
+         }
+      )
+      saveRDS(cleaned_log_list,
+              file = file.path(
+                 get_log_element("log_path"),
+                 paste0(tools::file_path_sans_ext(
+                    get_log_element("log_name")
+                    ),".Rds")
+                 )
+              )
+   }
+
    if (remove_log_object) {
       log_remove()
    }
