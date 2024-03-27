@@ -1,4 +1,8 @@
 
+# logrx 0.3.1
+
+ - Hotfix to update used and unapproved packages and functions writing (#218)
+ 
 # logrx 0.3.0
 
 - Moved website theme to bootstrap 5, enabled search (#179)

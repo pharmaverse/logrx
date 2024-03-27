@@ -142,6 +142,7 @@ write_masked_functions <- function(){
 #' @return Formatted vector of used package functions
 #' @export
 #'
+#' @importFrom dplyr summarize
 #' @importFrom purrr map2
 #' @importFrom stats aggregate
 #'
@@ -153,7 +154,9 @@ write_masked_functions <- function(){
 write_used_functions <- function(){
    used_functions_list <- get_log_element("used_packages_functions")
 
-   combined <- aggregate(function_name~library, used_functions_list, paste)
+   combined <- used_functions_list %>%
+      group_by(library) %>%
+      summarize(function_name = paste0(.data[["function_name"]], collapse = ", "))
 
    map2(combined$library, combined$function_name, ~paste(paste0("{", .x, "}"), paste0(.y, collapse = ", "))) %>%
       unname() %>%
@@ -183,7 +186,9 @@ write_unapproved_functions <- function(){
       return("No unapproved packages or functions used")
    }
 
-   combined <- aggregate(function_name~library, unapproved_functions_list, paste)
+   combined <- unapproved_functions_list %>%
+      group_by(library) %>%
+      summarize(function_name = paste0(.data[["function_name"]], collapse = ", "))
 
    map2(combined$library, combined$function_name, ~paste(paste0("{", .x, "}"), paste0(.y, collapse = ", "))) %>%
       unname() %>%
