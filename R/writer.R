@@ -156,7 +156,7 @@ write_used_functions <- function(){
 
    combined <- used_functions_list %>%
       group_by(library) %>%
-      summarize(function_name = paste0(.data[[function_name]], collapse = ", "))
+      summarize(function_name = paste0(.data[["function_name"]], collapse = ", "))
 
    map2(combined$library, combined$function_name, ~paste(paste0("{", .x, "}"), paste0(.y, collapse = ", "))) %>%
       unname() %>%
@@ -188,7 +188,7 @@ write_unapproved_functions <- function(){
 
    combined <- unapproved_functions_list %>%
       group_by(library) %>%
-      summarize(function_name = paste0(.data[[function_name]], collapse = ", "))
+      summarize(function_name = paste0(.data[["function_name"]], collapse = ", "))
 
    map2(combined$library, combined$function_name, ~paste(paste0("{", .x, "}"), paste0(.y, collapse = ", "))) %>%
       unname() %>%
