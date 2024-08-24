@@ -50,6 +50,7 @@ write_metadata <- function(){
 #'
 write_session_info <- function(){
    session_info <- get_log_element("session_info") %>%
+      capture.output() %>%
       # remove extra dashes on title lines
       map_chr(~ ifelse(nchar(.x) > 80 & grepl("\u2500\u2500\u2500\u2500", .x),
                    substring(.x, 1, 80),
@@ -60,6 +61,28 @@ write_session_info <- function(){
                  map_chr(~ str_c(.x, collapse = "\n\t", character(1))))
 
    return(session_info)
+}
+
+#' Format repo URLs for writing
+#'
+#' @return A vector of file name and path prefixed
+#'
+#' @noRd
+#'
+write_repo_urls <- function(){
+   repo_urls <- ifelse(is.na(get_log_element("repo_urls")),
+                       "Repo URLs not able to be determined",
+                       map2(
+                          names(get_log_element("repo_urls")),
+                          get_log_element("repo_urls"),
+                          ~paste(paste0(.x, ": "),
+                                 paste0(.y, collapse = ", "))
+                       ) %>%
+                          unname() %>%
+                          unlist()
+   )
+
+   return(repo_urls)
 }
 
 #' Format file name and path for writing
@@ -119,6 +142,7 @@ write_masked_functions <- function(){
 #' @return Formatted vector of used package functions
 #' @export
 #'
+#' @importFrom dplyr summarize
 #' @importFrom purrr map2
 #' @importFrom stats aggregate
 #'
@@ -130,7 +154,9 @@ write_masked_functions <- function(){
 write_used_functions <- function(){
    used_functions_list <- get_log_element("used_packages_functions")
 
-   combined <- aggregate(function_name~library, used_functions_list, paste)
+   combined <- used_functions_list %>%
+      group_by(library) %>%
+      summarize(function_name = paste0(.data[["function_name"]], collapse = ", "))
 
    map2(combined$library, combined$function_name, ~paste(paste0("{", .x, "}"), paste0(.y, collapse = ", "))) %>%
       unname() %>%
@@ -160,7 +186,9 @@ write_unapproved_functions <- function(){
       return("No unapproved packages or functions used")
    }
 
-   combined <- aggregate(function_name~library, unapproved_functions_list, paste)
+   combined <- unapproved_functions_list %>%
+      group_by(library) %>%
+      summarize(function_name = paste0(.data[["function_name"]], collapse = ", "))
 
    map2(combined$library, combined$function_name, ~paste(paste0("{", .x, "}"), paste0(.y, collapse = ", "))) %>%
       unname() %>%
@@ -259,10 +287,14 @@ write_output <- function() {
 #'
 #' @noRd
 #'
-write_result <- function() {
+write_result <- function(file) {
    result <- get_log_element("result")
 
-   c("\nResult:", paste0("\t", capture.output(result$value)))
+   if (is_rmarkdown(file)) {
+      c("\nResult:", paste0("\t", capture.output(result)))
+   } else {
+      c("\nResult:", paste0("\t", capture.output(result$value)))
+   }
 }
 
 #' Format lint results for writing
@@ -273,6 +305,10 @@ write_result <- function() {
 #'
 write_lint_results <- function(){
    lint_results <- get_log_element("lint_results")
+
+   if (length(lint_results) == 0) {
+      return("")
+   }
 
    lint_df <- as.data.frame(lint_results)
 
