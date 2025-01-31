@@ -1,3 +1,6 @@
+# logrx (development version)
+
+- Items go here with issue number - remove this later (#209)
 
 # logrx 0.3.1
 
