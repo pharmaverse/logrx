@@ -168,7 +168,7 @@ test_that("lint returns expected result when option is changed", {
 })
 
 test_that("library lint returns expected result when multiple linters are set", {
-   skip_if_not_installed("lintr")
+   skip_if_not_installed("lintr", "3.2.0")
    skip_if_not_installed("xml2")
 
    options("log.rx" = NULL)
@@ -178,14 +178,15 @@ test_that("library lint returns expected result when multiple linters are set", 
    # get is called within log_config
    log_config(filename)
 
-   expected <- paste0(
-      "Line 6 [library_call_linter] Move all library calls to the ",
-      "top of the script.\n\nLine 8 [undesirable_operator_linter] Operator ",
-      "`<<-` is undesirable. It\nassigns outside the current environment in a ",
-      "way that can be hard to reason\nabout. Prefer fully-encapsulated ",
-      "functions wherever possible, or, if\nnecessary, assign to a specific ",
-      "environment with assign(). Recall that you\ncan create an environment ",
-      "at the desired scope with new.env()."
+   expected <- paste(
+      "Line 6 [library_call_linter] Move all library calls to the top of the script.",
+      "",
+      "Line 8 [undesirable_operator_linter] Avoid undesirable operator `<<-`. It",
+      "assigns outside the current environment in a way that can be hard to reason",
+      "about. Prefer fully-encapsulated functions wherever possible, or, if",
+      "necessary, assign to a specific environment with assign(). Recall that you",
+      "can create an environment at the desired scope with new.env().",
+      sep = "\n"
    )
 
    expect_identical(write_lint_results(), expected)
