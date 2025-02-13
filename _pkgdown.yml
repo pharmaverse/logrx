@@ -9,6 +9,10 @@ search:
 news:
   cran_dates: true
 
+development:
+  mode: auto
+  version_label: default
+
 navbar:
   structure:
     right: [slack, github]
