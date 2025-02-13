@@ -183,7 +183,7 @@ test_that("write_result will return a formatted log result element", {
 })
 
 test_that("write_lint_results will return a formatted lint results element", {
-   skip_if_not_installed("lintr")
+   skip_if_not_installed("lintr", "3.2.0")
 
    filename <- test_path("ref", "ex6.R")
    source(filename, local = TRUE)
@@ -195,18 +195,19 @@ test_that("write_lint_results will return a formatted lint results element", {
 
    expect_identical(
       write_lint_results(),
-      paste0(
-         "Line 3 [undesirable_operator_linter] Operator `<<-` is undesirable.",
-         " It\nassigns outside the current environment in a way that can be hard",
-         " to reason\nabout. Prefer fully-encapsulated functions wherever possible,",
-         " or, if\nnecessary, assign to a specific environment with assign(). ",
-         "Recall that you\ncan create an environment at the desired scope with",
-         " new.env().\n\nLine 4 [undesirable_operator_linter] Operator `<<-` is",
-         " undesirable. It\nassigns outside the current environment in a way that",
-         " can be hard to reason\nabout. Prefer fully-encapsulated functions",
-         " wherever possible, or, if\nnecessary, assign to a specific environment",
-         " with assign(). Recall that you\ncan create an environment at the",
-         " desired scope with new.env()."
+      paste(
+         "Line 3 [undesirable_operator_linter] Avoid undesirable operator `<<-`. It",
+         "assigns outside the current environment in a way that can be hard to reason",
+         "about. Prefer fully-encapsulated functions wherever possible, or, if",
+         "necessary, assign to a specific environment with assign(). Recall that you",
+         "can create an environment at the desired scope with new.env().",
+         "",
+         "Line 4 [undesirable_operator_linter] Avoid undesirable operator `<<-`. It",
+         "assigns outside the current environment in a way that can be hard to reason",
+         "about. Prefer fully-encapsulated functions wherever possible, or, if",
+         "necessary, assign to a specific environment with assign(). Recall that you",
+         "can create an environment at the desired scope with new.env().",
+         sep = "\n"
             )
       )
 
