@@ -36,7 +36,7 @@ install.packages("logrx")
 To get the latest development version use:
 
 ```{r, eval = FALSE}
-devtools::install_github("pharmaverse/logrx", ref = "dev")
+devtools::install_github("pharmaverse/logrx")
 ```
 
 ## What is ```{logrx}``` ?
