@@ -1,6 +1,6 @@
-# logrx (development version)
+# logrx 0.3.2
 
-- Items go here with issue number - remove this later (#209)
+ - Hotfix to update tests (#231)
 
 # logrx 0.3.1
 
