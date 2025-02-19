@@ -304,15 +304,16 @@ get_unapproved_use <- function(approved_packages, used_packages) {
 #'
 get_lint_results <- function(file) {
 
-   if (!requireNamespace("lintr", quietly = TRUE)) {
-      message(strwrap("Linting will not be included in the log. Install the
-         lintr package to use the log.rx.lint feature.",
-         prefix = " ", initial = ""))
-      return()
-   }
-
    # lint file if option is turned on
    if (!is.logical(getOption('log.rx.lint'))) {
+
+      if (!requireNamespace("lintr", quietly = TRUE)) {
+         message(strwrap("Linting will not be included in the log. Install the
+         lintr package to use the log.rx.lint feature.",
+            prefix = " ", initial = ""))
+         return()
+      }
+
       lintr::lint(file, getOption('log.rx.lint'))
    }
 }

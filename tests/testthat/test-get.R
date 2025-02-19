@@ -174,6 +174,12 @@ test_that("lint returns expected result when using the default log.rx.lint optio
    expect_identical(get_lint_results(filename), NULL)
 })
 
+test_that("get_lint_results does not return a message if the option set to FALSE", {
+   options(log.rx.lint = FALSE)
+   filename <- test_path("ref", "ex6.R")
+   expect_no_message(get_lint_results(filename))
+})
+
 test_that("lint returns expected result when option is changed", {
    skip_if_not_installed("lintr")
 
