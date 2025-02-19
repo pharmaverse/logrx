@@ -1,3 +1,7 @@
+# logrx 0.3.3
+
+ - Swap in `lintr::library_call_linter()` for local version of `library_call_linter()` (#221)
+
 # logrx 0.3.2
 
  - Hotfix to update tests (#231)

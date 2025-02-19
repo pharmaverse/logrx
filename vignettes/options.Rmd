@@ -51,7 +51,7 @@ If you or your organization would like to implement any linters, you can set you
 
 <br>
 
-It is recommended to use the `library_call_linter()`.  This is to ensure `logrx` will find the correct package and functions used.
+It is recommended to use the `lintr::library_call_linter()`.  This is to ensure `logrx` will find the correct package and functions used.
 
 <br>
 
