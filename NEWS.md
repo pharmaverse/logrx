@@ -1,3 +1,7 @@
+# logrx 0.3.3
+
+ - Extend testing unexported function use (#208)
+
 # logrx 0.3.2
 
  - Hotfix to update tests (#231)

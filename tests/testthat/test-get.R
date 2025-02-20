@@ -60,6 +60,26 @@ test_that("get used functions returns NULL when no functions are used", {
    expect_identical(get_used_functions(r_path), NULL)
 })
 
+
+test_that("::: parses correctly", {
+   filename <- test_path("ref", "ex8.R")
+   source(filename, local = TRUE)
+
+   expected <- tibble::tribble(
+      ~function_name,        ~library,
+      "library",  "package:base",
+      "%>%", "package:dplyr",
+      "group_by", "package:dplyr",
+      "summarize", "package:dplyr",
+      "mean",  "package:base",
+      "pivot_wider", "package:tidyr",
+      "commas", "package:dplyr",
+      "c", "package:base"
+   )
+
+   expect_identical(get_used_functions(filename), expected)
+})
+
 test_that("unapproved packages and functions found in ex2.R", {
    filename <- test_path("ref", "ex2.R")
    source(filename, local = TRUE)
