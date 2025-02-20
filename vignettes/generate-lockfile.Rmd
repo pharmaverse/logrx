@@ -23,7 +23,7 @@ library(dplyr)
 library(renv)
 ```
 
-Axecute a script and get the logfile.
+Axecute a script and get the log file.
 
 ```{r run_axecute, echo = FALSE}
 scriptPath <- tempfile()
@@ -49,7 +49,7 @@ Later on read (and parse) previous log file as list of objects.
 parsedFile <- read_log_file(filePath)
 ```
 
-Create a renv lockfile based on the used packages mentioned in the logfile.
+Create a renv lockfile based on the used packages mentioned in the log file.
 
 ```{r gen_lockfile}
 used_pgks <- parsedFile$`Used Package and Functions` %>%
