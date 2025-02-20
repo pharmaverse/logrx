@@ -73,8 +73,8 @@ test_that("::: parses correctly", {
       "summarize", "package:dplyr",
       "mean",  "package:base",
       "pivot_wider", "package:tidyr",
-      "generate_collate", "package:roxygen2",
-      "test_path", "package:testthat"
+      "commas", "package:dplyr",
+      "c", "package:base"
    )
 
    expect_identical(get_used_functions(filename), expected)

@@ -7,5 +7,5 @@ results <- mtcars %>%
 wide_results <- results %>%
    tidyr::pivot_wider(names_from = cyl, values_from = mean)
 
-# add ::: example to see how
-roxygen2:::generate_collate(testthat::test_path("ref"))
+# add ::: example
+dplyr:::commas(c("a", "b"))
