@@ -1,5 +1,6 @@
 # logrx 0.3.3
 
+ - Extend testing unexported function use (#208)
  - Swap in `lintr::library_call_linter()` for local version of `library_call_linter()` (#221)
 
 # logrx 0.3.2
