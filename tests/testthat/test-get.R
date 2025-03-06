@@ -172,7 +172,7 @@ test_that("library lint returns expected result when multiple linters are set", 
    skip_if_not_installed("xml2")
 
    options("log.rx" = NULL)
-   withr::local_options(log.rx.lint = c(library_call_linter(), lintr::undesirable_operator_linter()))
+   withr::local_options(log.rx.lint = c(lintr::library_call_linter(), lintr::undesirable_operator_linter()))
    filename <- test_path("ref", "ex7.R")
 
    # get is called within log_config
