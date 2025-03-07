@@ -21,8 +21,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        install.packages('remotes')
-        remotes::install_cran('urlchecker')
+        install.packages("remotes")
+        remotes::install_cran("urlchecker")
 
     - name: Check links
       run: |
