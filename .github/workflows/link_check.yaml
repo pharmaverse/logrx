@@ -24,6 +24,10 @@ jobs:
         R -e 'install.packages("remotes")'
         R -e 'remotes::install_cran("urlchecker")'
 
+    - name: Check urlchecker Installation
+      run: |
+        R -e 'if (!requireNamespace("urlchecker")) quit("no", 1)'
+    
     - name: Check links
       run: |
         urlchecker::url_check()
