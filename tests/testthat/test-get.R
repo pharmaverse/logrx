@@ -60,6 +60,26 @@ test_that("get used functions returns NULL when no functions are used", {
    expect_identical(get_used_functions(r_path), NULL)
 })
 
+
+test_that("::: parses correctly", {
+   filename <- test_path("ref", "ex8.R")
+   source(filename, local = TRUE)
+
+   expected <- tibble::tribble(
+      ~function_name,        ~library,
+      "library",  "package:base",
+      "%>%", "package:dplyr",
+      "group_by", "package:dplyr",
+      "summarize", "package:dplyr",
+      "mean",  "package:base",
+      "pivot_wider", "package:tidyr",
+      "commas", "package:dplyr",
+      "c", "package:base"
+   )
+
+   expect_identical(get_used_functions(filename), expected)
+})
+
 test_that("unapproved packages and functions found in ex2.R", {
    filename <- test_path("ref", "ex2.R")
    source(filename, local = TRUE)
@@ -154,6 +174,12 @@ test_that("lint returns expected result when using the default log.rx.lint optio
    expect_identical(get_lint_results(filename), NULL)
 })
 
+test_that("get_lint_results does not return a message if the option set to FALSE", {
+   options(log.rx.lint = FALSE)
+   filename <- test_path("ref", "ex6.R")
+   expect_no_message(get_lint_results(filename))
+})
+
 test_that("lint returns expected result when option is changed", {
    skip_if_not_installed("lintr")
 
@@ -172,7 +198,7 @@ test_that("library lint returns expected result when multiple linters are set", 
    skip_if_not_installed("xml2")
 
    options("log.rx" = NULL)
-   withr::local_options(log.rx.lint = c(library_call_linter(), lintr::undesirable_operator_linter()))
+   withr::local_options(log.rx.lint = c(lintr::library_call_linter(), lintr::undesirable_operator_linter()))
    filename <- test_path("ref", "ex7.R")
 
    # get is called within log_config
