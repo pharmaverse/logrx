@@ -20,6 +20,7 @@ knitr::opts_chunk$set(
 library(logrx)
 library(stringr)
 library(dplyr)
+library(tidyr)
 library(renv)
 ```
 
@@ -31,7 +32,7 @@ scriptPath <- tempfile()
 logDir <- tempdir()
 writeLines(
   c(
-    "print('hello logrx')", 
+    "print('hello logrx')",
     "library(dplyr)",
     "count(iris, Species)"
   ),
@@ -40,7 +41,7 @@ writeLines(
 
 filePath <- file.path(logDir, "log_out_parse")
 
-axecute(scriptPath, log_name = "log_out_parse", log_path = logDir)
+axecute(scriptPath, log_name = "log_out_parse", log_path = logDir, show_repo_url = TRUE)
 ```
 
 Later on read (and parse) previous log file as list of objects. 
@@ -52,20 +53,52 @@ parsedFile <- read_log_file(filePath)
 Create a renv lockfile based on the used packages mentioned in the log file.
 
 ```{r gen_lockfile}
-used_pgks <- parsedFile$`Used Package and Functions` %>%
+pkgs <- parsedFile$`Used Package and Functions` %>%
   transmute(package_name = str_extract(library, "(?<=package\\:).+"))
+
+used_pkgs <- parsedFile$`Session Information`$Packages %>%
+  filter(package %in% pkgs$package_name)
+
+repo_urls <- tibble(repo_urls = parsedFile$`Repo URLs`[[1]]) %>%
+  separate_wider_delim(cols = repo_urls, delim = ":  ", names = c("repo_name", "repo_url"))
 
 temp_lockfile <- tempfile(fileext = ".lockfile")
 
+# Create lockfile based on used packages
 x <- renv::lockfile_create(
-  type = "custom",
-  packages = used_pgks$package_name
+  packages = c(
+    Package = used_pkgs$package
+  )
 )
 
+# Update repo URL for lockfile
+lockfile_repos <- repo_urls$repo_name
+names(lockfile_repos) <- repo_urls$repo_url
+x <- renv::lockfile_modify(
+   lockfile = x,
+   repos = lockfile_repos
+)
+
+# Write lockfile
 renv::lockfile_write(
   lockfile = x,
   file = temp_lockfile,
   type = "custom",
 )
-```
 
+# Update package versions based on session info
+renv::record(
+  records = list(
+    digest = list(
+      Package = used_pkgs$package,
+      Version = used_pkgs$version,
+      Source = "Repository",
+      Repository = used_pkgs$source
+    )
+  ),
+  lockfile = temp_lockfile
+)
+
+# Open the lockfile you just created to confirm it looks as expected
+rstudioapi::documentOpen(temp_lockfile)
+```
