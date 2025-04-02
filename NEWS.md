@@ -1,7 +1,7 @@
 # logrx 0.4
 
 - Adds `extra_info` parameter to `axecute()` which allows users to use a list 
-   object to add on to end of log in a special extra info section.
+   object to add on to end of log in a special extra info section (#180)
 
 # logrx 0.3.3
 
