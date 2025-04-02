@@ -56,7 +56,7 @@ The following attributes are recorded in the log:
    + Language and timezone
    + Packages - List of all available packages in the environment
    + External Software - List of all external software
-* **Repo URLs** - URLs of the repositories for use by `install.packages()` and `updated.packages()`
+* **Repo URLs (optional)** - URLs of the repositories for use by `install.packages()` and `updated.packages()`
 * **Masked Functions** - List of all functions masked by packages
 * **Program Run Time Information** - Start, end, and run times
 * **Used Package and Functions (optional)** - List of all packages and functions used in the 
