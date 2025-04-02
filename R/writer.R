@@ -341,7 +341,7 @@ write_extra_info <- function() {
          if (is.null(names(x)) || all(names(x) == "")) {
             # For unnamed lists, don't include prefix
             purrr::imap(x, \(sub_x, idx) {
-               format_nested(sub_x, paste0(prefix))
+               format_nested(sub_x, paste0(prefix, collapse = ", "))
             }) %>% unlist()
          } else {
             # For named lists, use the names as before
@@ -349,8 +349,16 @@ write_extra_info <- function() {
                format_nested(sub_x, paste0(prefix, idx, ": "))
             }) %>% unlist()
          }
+         # Handle named and unnamed vectors
       } else {
-         paste0(prefix, as.character(x))
+         if (is.null(names) || all(names(x) == "")) {
+            paste0(prefix, as.character(x), collapse = ", ")
+         } else {
+            # For named vectors, use the names as before
+            purrr::imap(x, \(sub_x, idx) {
+               format_nested(sub_x, paste0(prefix, idx, ": "))
+            }) %>% unlist()
+         }
       }
    }
 
