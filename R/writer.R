@@ -182,7 +182,7 @@ write_used_functions <- function(){
 write_unapproved_functions <- function(){
    unapproved_functions_list <- get_log_element("unapproved_packages_functions")
 
-   if(nrow(unapproved_functions_list) == 0) {
+   if (nrow(unapproved_functions_list) == 0) {
       return("No unapproved packages or functions used")
    }
 
@@ -339,7 +339,7 @@ write_extra_info <- function() {
       if (is.list(x)) {
          # Handle both named and unnamed lists
          if (is.null(names(x)) || all(names(x) == "")) {
-            # For unnamed lists, use index numbers
+            # For unnamed lists, don't include prefix
             purrr::imap(x, \(sub_x, idx) {
                format_nested(sub_x, paste0(prefix))
             }) %>% unlist()

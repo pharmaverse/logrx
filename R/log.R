@@ -53,7 +53,10 @@ log_init <- function(){
 #'
 #' # Write the log
 #' log_write(file)
-log_config <- function(file = NA, log_name = NA, log_path = NA, extra_info = NA){
+log_config <- function(file = NA,
+                       log_name = NA,
+                       log_path = NA,
+                       extra_info = NA) {
    # If the log.rx environment is not NULL or empty, warn the user
    if (!is.null(getOption("log.rx"))) {
       if (!(identical(ls(getOption("log.rx")), character(0)))) {
@@ -196,7 +199,7 @@ log_write <- function(file = NA,
                       show_repo_url = FALSE,
                       include_rds = FALSE,
                       extra_info = NA,
-                      to_report = c("messages", "output", "result")){
+                      to_report = c("messages", "output", "result")) {
    # Set end time and run time
    set_log_element("end_time", strftime(Sys.time(), usetz = TRUE))
    set_log_element("run_time",

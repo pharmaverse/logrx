@@ -44,7 +44,8 @@
 #' close(fileConn)
 #'
 #' axecute(file.path(dir, "hello.Rmd"))
-axecute <- function(file, log_name = NA,
+axecute <- function(file,
+                    log_name = NA,
                     log_path = NA,
                     include_rds = FALSE,
                     quit_on_error = TRUE,
@@ -65,8 +66,12 @@ axecute <- function(file, log_name = NA,
    match.arg(to_report, several.ok = TRUE)
 
    # initialize log
-   log_config(file = file, log_name = log_name, log_path = log_path,
-              extra_info = extra_info)
+   log_config(
+      file = file,
+      log_name = log_name,
+      log_path = log_path,
+      extra_info = extra_info
+   )
 
    # run the code
    run_safely_loudly(file)
@@ -75,12 +80,14 @@ axecute <- function(file, log_name = NA,
    any_errors <- get_log_element("errors")
 
    # write log
-   log_write(file = file,
-             remove_log_object = remove_log_object,
-             show_repo_url = show_repo_url,
-             include_rds = include_rds,
-             to_report = to_report,
-             extra_info = extra_info)
+   log_write(
+      file = file,
+      remove_log_object = remove_log_object,
+      show_repo_url = show_repo_url,
+      include_rds = include_rds,
+      to_report = to_report,
+      extra_info = extra_info
+   )
 
    # if error, quit with status = 1 if not interactive
    if(!interactive() & !is.null(any_errors) & quit_on_error) {
