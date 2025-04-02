@@ -1,3 +1,8 @@
+# logrx 0.4
+
+- Adds `extra_info` parameter to `axecute()` which allows users to use a list 
+   object to add on to end of log in a special extra info section.
+
 # logrx 0.3.3
 
  - Extend testing unexported function use (#208)
