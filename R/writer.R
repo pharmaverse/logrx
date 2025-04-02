@@ -323,3 +323,41 @@ write_lint_results <- function(){
 
    paste(strwrap(break_rows, width = 78), collapse = "\n")
 }
+
+
+#' Format extra info for writing
+#'
+#' @return A list of log element names and element values
+#'
+#' @noRd
+#'
+write_extra_info <- function() {
+   extra_info <- get_log_element("extra_info")
+
+   # Recursive function to handle nested structures
+   format_nested <- function(x, prefix = "") {
+      if (is.list(x)) {
+         # Handle both named and unnamed lists
+         if (is.null(names(x)) || all(names(x) == "")) {
+            # For unnamed lists, use index numbers
+            purrr::imap(x, \(sub_x, idx) {
+               format_nested(sub_x, paste0(prefix))
+            }) %>% unlist()
+         } else {
+            # For named lists, use the names as before
+            purrr::imap(x, \(sub_x, idx) {
+               format_nested(sub_x, paste0(prefix, idx, ": "))
+            }) %>% unlist()
+         }
+      } else {
+         paste0(prefix, as.character(x))
+      }
+   }
+
+   results <- format_nested(extra_info) %>%
+      unname() %>%
+      unlist()
+
+   return(results)
+}
+
