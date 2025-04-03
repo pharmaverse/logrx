@@ -31,18 +31,22 @@ test_that("read_log_file will parse a logrx log file and create the necessary ob
   )
   expect_true(all(sapply(
     parsedFile[!names(parsedFile) %in%
-                 c("Session Information",
-                   "Messages, Output, and Result",
-                   "Errors and Warnings")],
+      c(
+        "Session Information",
+        "Messages, Output, and Result",
+        "Errors and Warnings"
+      )],
     is.data.frame
   )))
 
   expect_true(
     all(sapply(
       parsedFile[!names(parsedFile) %in%
-                   c("Session Information",
-                     "Messages, Output, and Result",
-                     "Errors and Warnings")],
+        c(
+          "Session Information",
+          "Messages, Output, and Result",
+          "Errors and Warnings"
+        )],
       nrow
     ) > 0)
   )

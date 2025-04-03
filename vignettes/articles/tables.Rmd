@@ -44,10 +44,10 @@ adae <- read_xpt("adae.xpt")
 Finally, we write a script (`risk_diff.R`) to build the risk-difference table, 
 using the [`Typlr`](https://atorus-research.github.io/Tplyr/) package.
 ```{r results='hide', warning=FALSE}
-t <- tplyr_table(adae, TRTA) %>% 
+t <- tplyr_table(adae, TRTA) %>%
   add_layer(
-    group_count(RACE) %>% 
-      set_distinct_by(USUBJID) %>% 
+    group_count(RACE) %>%
+      set_distinct_by(USUBJID) %>%
       add_risk_diff(
         c("Xanomeline High Dose", "Placebo"),
         c("Xanomeline Low Dose", "Placebo")
@@ -60,10 +60,10 @@ build(t)
 ```{r echo = FALSE}
 # write this to the temp directory so we have a script to axecute
 
-text <- 't <- tplyr_table(adae, TRTA) %>% 
+text <- 't <- tplyr_table(adae, TRTA) %>%
      add_layer(
-       group_count(RACE) %>% 
-         set_distinct_by(USUBJID) %>% 
+       group_count(RACE) %>%
+         set_distinct_by(USUBJID) %>%
          add_risk_diff(
            c("Xanomeline High Dose", "Placebo"),
            c("Xanomeline Low Dose", "Placebo")
@@ -71,12 +71,11 @@ text <- 't <- tplyr_table(adae, TRTA) %>%
      )
 
    build(t)'
-   
+
 dir <- tempdir()
-fileConn <- file(file.path(dir,"risk_diff.R"))
+fileConn <- file(file.path(dir, "risk_diff.R"))
 writeLines(text, fileConn)
 close(fileConn)
-
 ```
 
 ## 4. Axecute the script
@@ -86,7 +85,7 @@ We will `axecute` the following script.
 <iframe width="700" height="400" src='risk_diff_script.html'/>
 
 ```{r results='hide', warning=FALSE}
-axecute(file.path(dir,"risk_diff.R"))
+axecute(file.path(dir, "risk_diff.R"))
 ```
 
 Below is the log. Pay special attention to the Warnings and Result sections.

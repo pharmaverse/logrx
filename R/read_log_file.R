@@ -32,8 +32,8 @@ reformat_subsections <- function(log_txt) {
         )
     }
     # replace utf8 line and double line to ascii due to cli symbol variation
-    i <- stringr::str_replace_all(i, '\u2550', '=')
-    i <- stringr::str_replace_all(i, '\u2500', '-')
+    i <- stringr::str_replace_all(i, "\u2550", "=")
+    i <- stringr::str_replace_all(i, "\u2500", "-")
     adj_log_txt <- c(adj_log_txt, i)
   }
   return(adj_log_txt)
@@ -146,7 +146,8 @@ nest_log <- function(adj_log_txt) {
 parse_log <- function(nested_log) {
   if (!requireNamespace("readr", quietly = TRUE)) {
     warning(strwrap("Install the readr package to use log parsing feature.",
-         prefix = " ", initial = ""))
+      prefix = " ", initial = ""
+    ))
     return(list())
   }
 
@@ -288,7 +289,8 @@ read_log_file <- function(file) {
 
   if (!requireNamespace("readr", quietly = TRUE)) {
     warning(strwrap("Install the readr package to use log parsing feature.",
-                 prefix = " ", initial = ""))
+      prefix = " ", initial = ""
+    ))
     return(list())
   }
 

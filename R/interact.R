@@ -9,19 +9,19 @@
 #'
 #' @noRd
 #'
-set_log_element <- function(el_key, el_value){
-   # check if key is currently in the log.rx environment
-   if (!(el_key %in% names(getOption('log.rx')))) {
-      stop("element key provided must already exist in log.rx")
-   }
+set_log_element <- function(el_key, el_value) {
+  # check if key is currently in the log.rx environment
+  if (!(el_key %in% names(getOption("log.rx")))) {
+    stop("element key provided must already exist in log.rx")
+  }
 
-   # check if element is currently not empty
-   if (!is.na(getOption('log.rx')[[el_key]])) {
-      stop("element can not already have a value")
-   }
+  # check if element is currently not empty
+  if (!is.na(getOption("log.rx")[[el_key]])) {
+    stop("element can not already have a value")
+  }
 
-   # assign element value to specified element key
-   assign(el_key, el_value, envir = getOption('log.rx'))
+  # assign element value to specified element key
+  assign(el_key, el_value, envir = getOption("log.rx"))
 }
 
 
@@ -33,16 +33,16 @@ set_log_element <- function(el_key, el_value){
 #'
 #' @noRd
 #'
-get_log_element <- function(el_key){
-   if (!(el_key %in% names(getOption('log.rx')))) {
-      stop("element key provided must already exist in log.rx")
-   }
+get_log_element <- function(el_key) {
+  if (!(el_key %in% names(getOption("log.rx")))) {
+    stop("element key provided must already exist in log.rx")
+  }
 
-   # assign element value to specified element key
-   el_value <- getOption('log.rx')[[el_key]]
+  # assign element value to specified element key
+  el_value <- getOption("log.rx")[[el_key]]
 
-   # return value to user
-   return(el_value)
+  # return value to user
+  return(el_value)
 }
 
 
@@ -63,47 +63,51 @@ get_log_element <- function(el_key){
 #' @noRd
 #'
 set_log_name_path <- function(log_name = NA, log_path = NA) {
-   # If log_name was previously assigned, generate warning
-   # else assign log_name
-   log_name_value <- get_log_element("log_name")
-   if (!is.na(log_name_value)) {
-      warning("log_name already assigned, will not be overwritten")
-   } else {
-      if (!is.na(log_name)) {
-         set_log_element("log_name", log_name)
+  # If log_name was previously assigned, generate warning
+  # else assign log_name
+  log_name_value <- get_log_element("log_name")
+  if (!is.na(log_name_value)) {
+    warning("log_name already assigned, will not be overwritten")
+  } else {
+    if (!is.na(log_name)) {
+      set_log_element("log_name", log_name)
+    } else {
+      file_name <- get_log_element("file_name")
+
+      if (!is.na(file_name)) {
+        set_log_element(
+          "log_name",
+          sub(
+            pattern = "(?<=\\.).*",
+            replacement = "log",
+            x = file_name,
+            perl = TRUE
+          )
+        )
       } else {
-         file_name <- get_log_element("file_name")
-
-         if (!is.na(file_name)) {
-            set_log_element("log_name",
-                            sub(pattern = "(?<=\\.).*",
-                                replacement = "log",
-                                x = file_name,
-                                perl = TRUE))
-         } else {
-            set_log_element("log_name", "logrx_log.log")
-         }
+        set_log_element("log_name", "logrx_log.log")
       }
-   }
+    }
+  }
 
-   # If log_path was previously assigned, generate warning
-   # else assign log_path
-   log_path_value <- get_log_element("log_path")
-   if (!is.na(log_path_value)) {
-      warning("log_path already assigned, will not be overwritten")
-   } else {
-      if (!is.na(log_path)) {
-         set_log_element("log_path", log_path)
+  # If log_path was previously assigned, generate warning
+  # else assign log_path
+  log_path_value <- get_log_element("log_path")
+  if (!is.na(log_path_value)) {
+    warning("log_path already assigned, will not be overwritten")
+  } else {
+    if (!is.na(log_path)) {
+      set_log_element("log_path", log_path)
+    } else {
+      file_path <- get_log_element("file_path")
+
+      if (!is.na(file_path)) {
+        set_log_element("log_path", file_path)
       } else {
-         file_path <- get_log_element("file_path")
-
-         if (!is.na(file_path)) {
-            set_log_element("log_path", file_path)
-         } else {
-            set_log_element("log_path", ".")
-         }
+        set_log_element("log_path", ".")
       }
-   }
+    }
+  }
 }
 
 #' Dummy function for running a file safely
@@ -114,24 +118,23 @@ run_safely <- function(file) "dummy"
 #' @param file String. Path to file to execute
 #' @noRd
 is_rmarkdown <- function(file) {
-   grepl("*.Rmd$", file, ignore.case = TRUE)
+  grepl("*.Rmd$", file, ignore.case = TRUE)
 }
 
 #' Dummy function for running a file
 #' @noRd
-run_file <- function(file){
-   if (is.null(getOption("log.rx.exec.env"))){
-      exec_env <- new.env(parent=globalenv())
-   } else{
-      exec_env <- getOption("log.rx.exec.env")
-   }
+run_file <- function(file) {
+  if (is.null(getOption("log.rx.exec.env"))) {
+    exec_env <- new.env(parent = globalenv())
+  } else {
+    exec_env <- getOption("log.rx.exec.env")
+  }
 
-   if(is_rmarkdown(file)){
-      rmarkdown::render(file, envir = exec_env)
-   } else{
-      source(file, local = exec_env)
-   }
-
+  if (is_rmarkdown(file)) {
+    rmarkdown::render(file, envir = exec_env)
+  } else {
+    source(file, local = exec_env)
+  }
 }
 
 #' Safely run an R script and record results, outputs, messages, errors, warnings
@@ -146,15 +149,14 @@ run_file <- function(file){
 #' @noRd
 #'
 run_safely_loudly <- function(file) {
-   ret <- loudly(run_safely(file))
-   set_log_element("messages", discard(ret$messages, ~ str_starts(.x, "Error")))
-   set_log_element("output", ret$output)
-   set_log_element("result", ret$result$result)
-   set_log_element("warnings", ret$warnings)
-   set_log_element("errors", ret$result$error)
-   set_log_element("hash_sum", digest::sha1(readLines(file, warn = FALSE)))
+  ret <- loudly(run_safely(file))
+  set_log_element("messages", discard(ret$messages, ~ str_starts(.x, "Error")))
+  set_log_element("output", ret$output)
+  set_log_element("result", ret$result$result)
+  set_log_element("warnings", ret$warnings)
+  set_log_element("errors", ret$result$error)
+  set_log_element("hash_sum", digest::sha1(readLines(file, warn = FALSE)))
 
-   # Session Info
-   set_log_element("session_info", get_session_info())
+  # Session Info
+  set_log_element("session_info", get_session_info())
 }
-
