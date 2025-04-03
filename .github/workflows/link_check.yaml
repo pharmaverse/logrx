@@ -3,35 +3,41 @@ name: Link Checker
 on:
   push:
     branches:
-      - main
+      - main  # Correct indentation under 'push'
   pull_request:
     branches:
-      - main
+      - main  # Correct indentation under 'pull_request'
 
 jobs:
   check-links:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install libcurl on Linux
-      if: runner.os == 'Linux'
-      run: sudo apt-get update -y && sudo apt-get install -y libcurl4-openssl-dev
+      - name: Install libcurl on Linux
+        if: runner.os == 'Linux'
+        run: sudo apt-get update -y && sudo apt-get install -y libcurl4-openssl-dev
+        # Note: steps here are indented correctly under 'check-links'
         
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        # Correct indentation
 
-    - name: Set up R
-      uses: r-lib/actions/setup-r@v2
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        # Correct indentation
 
-    - name: Install dependencies
-      run: |
-        R -e 'install.packages("remotes")'
-        R -e 'remotes::install_cran("urlchecker")'
+      - name: Install dependencies
+        run: |
+          R -e 'install.packages("remotes")'
+          R -e 'remotes::install_cran("urlchecker")'
+        # Correct indentation
 
-    - name: Check urlchecker Installation
-      run: |
-        R -e 'if (!requireNamespace("urlchecker")) quit("no", 1)'
+      - name: Check urlchecker Installation
+        run: |
+          R -e 'if (!requireNamespace("urlchecker")) quit("no", 1)'
+        # Correct indentation
     
-    - name: Check links
-      run: |
-        urlchecker::url_check()
+      - name: Check links
+        run: |
+          R -e 'urlchecker::url_check()'
+        # Ensure 'url_check()' is within the R command
