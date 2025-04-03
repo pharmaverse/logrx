@@ -23,8 +23,8 @@ on:
     inputs:
       auto-update:
         description: If R code style is not up-to-date, styling will automatically be applied and restyled files will be automatically committed o the branch.
-        required: false
-        default: false
+        required: true
+        default: true
         type: boolean
       package-subdirectory:
         description: Subdirectory in the repository, where the R package is located.
