@@ -28,7 +28,7 @@
 #'
 #' @examples
 #' dir <- tempdir()
-#' text <- 'print("Hello, logrxperson!")'
+#' text <- 'print("Hello, logrx-person!")'
 #' fileConn <- file(file.path(dir, "hello.R"))
 #' writeLines(text, fileConn)
 #' close(fileConn)
