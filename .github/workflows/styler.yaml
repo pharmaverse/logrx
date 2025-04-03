@@ -1,28 +1,200 @@
-name: Style Check
+---
+name: Style 🎽
 
 on:
   push:
     branches:
       - main
   pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
     branches:
       - main
+  workflow_dispatch:
+  workflow_call:
+    secrets:
+      REPO_GITHUB_TOKEN:
+        description: |
+          Github token with write access to the repo
+        required: false
+    inputs:
+      auto-update:
+        description: If R code style is not up-to-date, styling will automatically be applied and restyled files will be automatically committed o the branch.
+        required: false
+        default: false
+        type: boolean
+      package-subdirectory:
+        description: Subdirectory in the repository, where the R package is located.
+        required: false
+        type: string
+        default: "."
+
+concurrency:
+  group: style-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  check-style:
+  style:
+    name: Check code style 🔠
     runs-on: ubuntu-latest
+    if: >
+      !contains(github.event.commits[0].message, '[skip style]')
+        && github.event.pull_request.draft == false
+    container:
+      image: ghcr.io/insightsengineering/rstudio:latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Setup token 🔑
+        id: github-token
+        run: |
+          if [ "${{ secrets.REPO_GITHUB_TOKEN }}" == "" ]; then
+            echo "REPO_GITHUB_TOKEN is empty. Substituting it with GITHUB_TOKEN."
+            echo "token=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_OUTPUT
+          else
+            echo "Using REPO_GITHUB_TOKEN."
+            echo "token=${{ secrets.REPO_GITHUB_TOKEN }}" >> $GITHUB_OUTPUT
+          fi
+        shell: bash
 
-    - name: Set up R
-      uses: r-lib/actions/setup-r@v2
+      - name: Get branch names 🌿
+        id: branch-name
+        uses: tj-actions/branch-names@v7
 
-    - name: Install dependencies
-      run: |
-        R -e 'install.packages("styler")'
+      - name: Checkout repo (PR) 🛎
+        uses: actions/checkout@v4.1.1
+        if: github.event_name == 'pull_request'
+        with:
+          ref: ${{ steps.branch-name.outputs.head_ref_branch }}
+          path: ${{ github.event.repository.name }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          fetch-depth: 0
+          token: ${{ steps.github-token.outputs.token }}
 
-    - name: Lint R code with styler
-      run: |
-        R -e 'styler::style_pkg(style = styler::tidyverse_style(), strict = TRUE, dry = "fail")'
+      - name: Checkout repo 🛎
+        uses: actions/checkout@v4.1.1
+        if: github.event_name != 'pull_request'
+        with:
+          ref: ${{ steps.branch-name.outputs.head_ref_branch }}
+          path: ${{ github.event.repository.name }}
+          token: ${{ steps.github-token.outputs.token }}
+
+      - name: Check commit message 💬
+        run: |
+          git config --global --add safe.directory $(pwd)
+          export head_commit_message="$(git show -s --format=%B | tr '\r\n' ' ' | tr '\n' ' ')"
+          echo "head_commit_message = $head_commit_message"
+          if [[ $head_commit_message == *"$SKIP_INSTRUCTION"* ]]; then
+            echo "Skip instruction detected - cancelling the workflow."
+            exit 1
+          fi
+        shell: bash
+        working-directory: ${{ github.event.repository.name }}
+        env:
+          SKIP_INSTRUCTION: "[skip style]"
+
+      - name: Install styler 👚
+        run: |
+          install.packages("styler", repos = "https://cloud.r-project.org")
+        shell: Rscript {0}
+
+      - name: Get changed files 🗞
+        id: changed-files
+        # v45.0.8
+        uses: tj-actions/changed-files@a284dc1814e3fd07f2e34267fc8f81227ed29fb8
+        with:
+          path: ${{ github.event.repository.name }}
+          separator: ","
+          files: |
+            **/*.R
+            **/*.Rmd
+            **/*.Rnw
+            **/*.Rmarkdown
+            **/*.qmd
+        continue-on-error: true
+
+      - name: Run styler 👟
+        run: |
+          changed_files <- unlist(strsplit(
+            "${{ steps.changed-files.outputs.all_changed_files }}",
+            split=","
+          ))
+          is_r_file <- function(x) {
+              ext <- tools::file_ext(x)
+              ext %in% c("R", "Rmd", "Rnw", "Rmarkdown", "qmd")
+          }
+          changed_r_files <- Filter(is_r_file, changed_files)
+          dry <- if(isTRUE(as.logical("${{ inputs.auto-update }}"))) "off" else "on"
+          detect <- styler::style_file(changed_r_files, dry = dry)
+          if (TRUE %in% detect$changed) {
+            problems <- subset(detect$file, detect$changed == T)
+            dput(problems, file = "/tmp/style-problems.R")
+            writeLines(
+              problems,
+              con = "/tmp/style-problems.txt",
+              sep = " "
+            )
+          }
+        shell: Rscript {0}
+        working-directory: ${{ github.event.repository.name }}/${{ inputs.package-subdirectory }}
+        env:
+          LANG: en_US.UTF-8
+
+      - name: Check file existence 🤔
+        id: check_files
+        uses: andstor/file-existence-action@v3
+        with:
+          files: "/tmp/style-problems.R, /tmp/style-problems.txt"
+
+      - name: Get problematic files 🧟‍♂️
+        id: problem-files
+        if: steps.check_files.outputs.files_exists  == 'true'
+        run: |
+          perl -p -i -e 's/\R//g;' /tmp/style-problems.R
+          echo "unstyled-files=$(cat /tmp/style-problems.txt)" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: Autocommit styled files ↗️
+        id: autocommit-styled-files
+        if: >
+          inputs.auto-update
+            && steps.check_files.outputs.files_exists == 'true'
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config pull.rebase false
+          git pull origin ${{ steps.branch-name.outputs.head_ref_branch }} || true
+          git add ${{ steps.problem-files.outputs.unstyled-files }}
+          git commit -m '[skip style] [skip vbump] Restyle files'
+          git push -v origin HEAD:${{ steps.branch-name.outputs.head_ref_branch }} || \
+            echo "⚠️ Could not push to ${BRANCH_NAME} on $(git remote -v show -n origin | grep Push)"
+        shell: bash
+        working-directory: ${{ github.event.repository.name }}/${{ inputs.package-subdirectory }}
+        continue-on-error: true
+
+      - name: Styler check summary 🅾
+        if: >
+          (inputs.auto-update != true
+            && steps.check_files.outputs.files_exists == 'true')
+            || (steps.autocommit-styled-files.outcome != 'success'
+            && steps.autocommit-styled-files.outcome != 'skipped')
+        run: |
+          cat(paste(
+            "☠ One or more files had styling errors.",
+            "Please see the log above for remediations,",
+            "or simply run the following commands",
+            "for an immediate fix:\n"
+          ))
+          if (file.exists("/tmp/style-problems.R")) {
+            cat("────────────────────────────────────────\n")
+            cat(paste0(
+              "styler::style_file(",
+                readLines("/tmp/style-problems.R", warn=FALSE),
+              ")\n"
+            ))
+            cat("────────────────────────────────────────\n")
+          }
+          quit(status = 1)
+        shell: Rscript {0}
