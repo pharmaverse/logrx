@@ -28,7 +28,7 @@
 #'
 #' @examples
 #' dir <- tempdir()
-#' text <- 'print("Hello, logrxperson!")'
+#' text <- 'print("Hello, logrx-person!")'
 #' fileConn <- file(file.path(dir, "hello.R"))
 #' writeLines(text, fileConn)
 #' close(fileConn)
@@ -47,38 +47,39 @@ axecute <- function(file, log_name = NA,
                     quit_on_error = TRUE,
                     to_report = c("messages", "output", "result"),
                     show_repo_url = FALSE,
-                    ...){
-   # deprecations
-   if (methods::hasArg(remove_log_object)) {
-      lifecycle::deprecate_stop("0.3.0", "axecute(remove_log_object = )", "axecute(include_rds = )")
-   }
+                    ...) {
+  # deprecations
+  if (methods::hasArg(remove_log_object)) {
+    lifecycle::deprecate_stop("0.3.0", "axecute(remove_log_object = )", "axecute(include_rds = )")
+  }
 
-   # remove log object
-   remove_log_object <- TRUE
+  # remove log object
+  remove_log_object <- TRUE
 
   # lower everything for consistency and check values
-   to_report <- map_chr(to_report, tolower)
-   match.arg(to_report, several.ok = TRUE)
+  to_report <- map_chr(to_report, tolower)
+  match.arg(to_report, several.ok = TRUE)
 
-   # initialize log
-   log_config(file = file, log_name = log_name, log_path = log_path)
+  # initialize log
+  log_config(file = file, log_name = log_name, log_path = log_path)
 
-   # run the code
-   run_safely_loudly(file)
+  # run the code
+  run_safely_loudly(file)
 
-   # check for errors prior to log_write() since this can remove the log
-   any_errors <- get_log_element("errors")
+  # check for errors prior to log_write() since this can remove the log
+  any_errors <- get_log_element("errors")
 
-   # write log
-   log_write(file = file,
-             remove_log_object = remove_log_object,
-             show_repo_url = show_repo_url,
-             include_rds = include_rds,
-             to_report = to_report)
+  # write log
+  log_write(
+    file = file,
+    remove_log_object = remove_log_object,
+    show_repo_url = show_repo_url,
+    include_rds = include_rds,
+    to_report = to_report
+  )
 
-   # if error, quit with status = 1 if not interactive
-   if(!interactive() & !is.null(any_errors) & quit_on_error) {
-      quit(status = 1)
-   }
-
+  # if error, quit with status = 1 if not interactive
+  if (!interactive() & !is.null(any_errors) & quit_on_error) {
+    quit(status = 1)
+  }
 }

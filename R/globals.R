@@ -1,5 +1,5 @@
 globalVariables(c(
-   "lang",
-   "r_version",
-   "."
+  "lang",
+  "r_version",
+  "."
 ))
