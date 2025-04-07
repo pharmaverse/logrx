@@ -182,7 +182,7 @@ write_used_functions <- function(){
 write_unapproved_functions <- function(){
    unapproved_functions_list <- get_log_element("unapproved_packages_functions")
 
-   if(nrow(unapproved_functions_list) == 0) {
+   if (nrow(unapproved_functions_list) == 0) {
       return("No unapproved packages or functions used")
    }
 
@@ -323,3 +323,36 @@ write_lint_results <- function(){
 
    paste(strwrap(break_rows, width = 78), collapse = "\n")
 }
+
+
+#' Format extra info for writing
+#'
+#' @return A list of log element names and element values
+#'
+#' @noRd
+#'
+write_extra_info <- function() {
+   if (!requireNamespace("yaml", quietly = TRUE)) {
+      stop(
+         "Package \"yaml\" must be installed to use this function.",
+         call. = FALSE
+      )
+   }
+   if (!requireNamespace("stringr", quietly = TRUE)) {
+      stop(
+         "Package \"stringr\" must be installed to use this function.",
+         call. = FALSE
+      )
+   }
+   extra_info <- get_log_element("extra_info")
+   results <- yaml::as.yaml(
+      extra_info,
+      indent.mapping.sequence = TRUE,
+      handlers = list(
+         logical = yaml::verbatim_logical
+      )
+   )
+   results <- stringr::str_split(results, pattern = "\n")[[1]]
+   return(results)
+}
+

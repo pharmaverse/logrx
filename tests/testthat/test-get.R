@@ -250,3 +250,15 @@ test_that("functions used are returned correctly for rmd files", {
    expect_identical(get_used_functions(tmpfile), expected)
 
 })
+
+test_that("get_repo_urls returns correct list of repos", {
+   original_repos <- options("repos")
+   test_repos <- c(
+      binary = "https://packagemanager.rstudio.com/all/__linux__/focal/latest",
+      source = "https://packagemanager.rstudio.com/all/latest",
+      CRAN = "https://cloud.r-project.org"
+   )
+   options("repos" = test_repos)
+   expect_identical(get_repo_urls(), as.list(options("repos")$repos))
+   options("repos" = original_repos)
+})
