@@ -1,8 +1,9 @@
 # logrx 0.4
 
-- Adds `extra_info` parameter to `axecute()` which allows users to use a list 
-   object to add on to end of log in a special extra info section that has YAML 
-   formatting (#180)
+- Adds the optional `extra_info` parameter to `axecute()` which lets users pass a list 
+   object through to the extra info section of the log. The object will be printed 
+   according to the YAML format (#180)
+- Adds unit tests for `write_repo_urls()` and `get_repo_urls()` internal functions.
 
 # logrx 0.3.3
 
