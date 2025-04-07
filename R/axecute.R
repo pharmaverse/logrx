@@ -20,8 +20,7 @@
 #' @param show_repo_url Boolean. Should the repository URLs be reported
 #' Defaults to FALSE
 #' @param extra_info List. Objects to optionally add on to end of log
-#' in a special extra info section. The key of a list element represents
-#' the string to be placed before the element value during formatting. Optional
+#' in a special extra info section. List printed in YAML format. Optional
 #' @param ... Not used
 #'
 #' @importFrom purrr map_chr

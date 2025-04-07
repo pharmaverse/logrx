@@ -41,8 +41,7 @@ many as necessary:
 Defaults to FALSE}
 
 \item{extra_info}{List. Objects to optionally add on to end of log
-in a special extra info section. The key of a list element represents
-the string to be placed before the element value during formatting. Optional}
+in a special extra info section. List printed in YAML format. Optional}
 
 \item{...}{Not used}
 }

@@ -171,8 +171,7 @@ log_cleanup <- function() {
 #' @param show_repo_url Boolean. Should the repo URLs be reported
 #' Defaults to FALSE
 #' @param extra_info List. Objects to add on to end of log
-#' in a special extra info section. The key of a list element represents
-#' the string to be placed before the element value during formatting. Optional
+#' in a special extra info section. Optional
 #'
 #' @return Nothing
 #' @export

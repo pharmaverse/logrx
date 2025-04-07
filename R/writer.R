@@ -332,40 +332,27 @@ write_lint_results <- function(){
 #' @noRd
 #'
 write_extra_info <- function() {
-   extra_info <- get_log_element("extra_info")
-
-   # Recursive function to handle nested structures
-   format_nested <- function(x, prefix = "") {
-      if (is.list(x)) {
-         # Handle both named and unnamed lists
-         if (is.null(names(x)) || all(names(x) == "")) {
-            # For unnamed lists, don't include prefix
-            purrr::imap(x, \(sub_x, idx) {
-               format_nested(sub_x, paste0(prefix, collapse = ", "))
-            }) %>% unlist()
-         } else {
-            # For named lists, use the names as before
-            purrr::imap(x, \(sub_x, idx) {
-               format_nested(sub_x, paste0(prefix, idx, ": "))
-            }) %>% unlist()
-         }
-         # Handle named and unnamed vectors
-      } else {
-         if (is.null(names) || all(names(x) == "")) {
-            paste0(prefix, as.character(x), collapse = ", ")
-         } else {
-            # For named vectors, use the names as before
-            purrr::imap(x, \(sub_x, idx) {
-               format_nested(sub_x, paste0(prefix, idx, ": "))
-            }) %>% unlist()
-         }
-      }
+   if (!requireNamespace("yaml", quietly = TRUE)) {
+      stop(
+         "Package \"yaml\" must be installed to use this function.",
+         call. = FALSE
+      )
    }
-
-   results <- format_nested(extra_info) %>%
-      unname() %>%
-      unlist()
-
+   if (!requireNamespace("stringr", quietly = TRUE)) {
+      stop(
+         "Package \"stringr\" must be installed to use this function.",
+         call. = FALSE
+      )
+   }
+   extra_info <- get_log_element("extra_info")
+   results <- yaml::as.yaml(
+      extra_info,
+      indent.mapping.sequence = TRUE,
+      handlers = list(
+         logical = yaml::verbatim_logical
+      )
+   )
+   results <- stringr::str_split(results, pattern = "\n")[[1]]
    return(results)
 }
 

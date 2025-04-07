@@ -26,8 +26,7 @@ Defaults to FALSE}
 Defaults to FALSE}
 
 \item{extra_info}{List. Objects to add on to end of log
-in a special extra info section. The key of a list element represents
-the string to be placed before the element value during formatting. Optional}
+in a special extra info section. Optional}
 
 \item{to_report}{String vector. Objects to optionally report; additional
 information in \code{\link{axecute}}}

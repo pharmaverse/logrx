@@ -171,8 +171,9 @@ test_that("extra_info works to output extra info list", {
    close(con)
 
    expect_true(grepl("a: 1", paste(flines,collapse = ',')))
-   expect_true(grepl("b: c: 2", paste(flines,collapse = ',')))
-   expect_true(grepl("b: d: 3", paste(flines,collapse = ',')))
+   expect_true(grepl("b:", paste(flines,collapse = ',')))
+   expect_true(grepl("c: 2", paste(flines,collapse = ',')))
+   expect_true(grepl("- 3", paste(flines,collapse = ',')))
    rm(flines, con)
 
    axecute(scriptPath, log_name = "log_out_extra_info3",
