@@ -101,10 +101,10 @@
 </h2>
 <p>Finally, we write a script (<code>risk_diff.R</code>) to build the risk-difference table, using the <a href="https://atorus-research.github.io/Tplyr/" class="external-link"><code>Typlr</code></a> package.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/tplyr_table.html" class="external-link">tplyr_table</a></span><span class="op">(</span><span class="va">adae</span>, <span class="va">TRTA</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/tplyr_table.html" class="external-link">tplyr_table</a></span><span class="op">(</span><span class="va">adae</span>, <span class="va">TRTA</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/layer_attachment.html" class="external-link">add_layer</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/layer_constructors.html" class="external-link">group_count</a></span><span class="op">(</span><span class="va">RACE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>      <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/set_distinct_by.html" class="external-link">set_distinct_by</a></span><span class="op">(</span><span class="va">USUBJID</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/layer_constructors.html" class="external-link">group_count</a></span><span class="op">(</span><span class="va">RACE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/set_distinct_by.html" class="external-link">set_distinct_by</a></span><span class="op">(</span><span class="va">USUBJID</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>      <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/add_risk_diff.html" class="external-link">add_risk_diff</a></span><span class="op">(</span></span>
 <span>        <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Xanomeline High Dose"</span>, <span class="st">"Placebo"</span><span class="op">)</span>,</span>
 <span>        <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Xanomeline Low Dose"</span>, <span class="st">"Placebo"</span><span class="op">)</span></span>
@@ -119,7 +119,7 @@
 <p>We will <code>axecute</code> the following script.</p>
 <iframe width="700" height="400" src="risk_diff_script.html"></iframe>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/axecute.html">axecute</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dir</span>,<span class="st">"risk_diff.R"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/axecute.html">axecute</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="st">"risk_diff.R"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Below is the log. Pay special attention to the Warnings and Result sections.</p>
 <iframe width="700" height="400" src="risk_diff_log.html"></iframe>
 </div>
