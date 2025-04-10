@@ -49,7 +49,7 @@ Imports:
     miniUI,
     rstudioapi,
     shiny,
-    sessioninfo (== 1.2.2),
+    sessioninfo (<= 1.2.2),
     stringi,
     waiter,
     tibble,
