@@ -1,4 +1,7 @@
 test_that("axecute will run a file and create the necessary log", {
+   invisible(
+      capture.output({
+
   options("log.rx" = NULL)
   scriptPath <- tempfile()
   logDir <- tempdir()
@@ -52,9 +55,14 @@ test_that("axecute will run a file and create the necessary log", {
   rm(flines, con, scriptPath, logDir)
   log_remove()
 })
+)
+})
+
 
 test_that("to_report works to control log output elements", {
-  options("log.rx" = NULL)
+   invisible(
+      capture.output({
+         options("log.rx" = NULL)
   scriptPath <- tempfile()
   logDir <- tempdir()
   writeLines(
@@ -84,10 +92,14 @@ test_that("to_report works to control log output elements", {
 
   rm(flines, con, scriptPath, logDir)
   log_remove()
+      })
+   )
 })
 
 test_that("show_repo_url works to show repo url elements", {
-  options("log.rx" = NULL)
+   invisible(
+      capture.output({
+   options("log.rx" = NULL)
   scriptPath <- tempfile()
   logDir <- tempdir()
   writeLines(
@@ -132,10 +144,14 @@ test_that("show_repo_url works to show repo url elements", {
     paste(flines, collapse = ",")
   ))
   rm(flines, con, scriptPath, logDir)
+      })
+   )
 })
 
 test_that("include_rds works to output log as rds", {
-  options("log.rx" = NULL)
+   invisible(
+      capture.output({
+         options("log.rx" = NULL)
   scriptPath <- tempfile()
   logDir <- tempdir()
   writeLines(
@@ -167,10 +183,14 @@ test_that("include_rds works to output log as rds", {
 
   rm(con, scriptPath, logDir, logRDS)
   log_remove()
+      })
+   )
 })
 
 test_that("axecute will run a markdown file and create the necessary log", {
-  options("log.rx" = NULL)
+   invisible(
+      capture.output({
+         options("log.rx" = NULL)
 
   scriptPath <- test_path("ref", "ex1.Rmd")
   logDir <- tempdir()
@@ -222,4 +242,6 @@ test_that("axecute will run a markdown file and create the necessary log", {
   # remove all the stuff we added
   rm(flines, con, scriptPath, logDir)
   log_remove()
+      })
+   )
 })
