@@ -204,14 +204,16 @@ parse_log <- function(nested_log) {
         "version",
         "date",
         "lib",
-        "source",
-        "lang",
-        "r_version"
-      )) %>%
-      dplyr::mutate(
-        lang = stringr::str_remove(lang, "\\("),
-        r_version = stringr::str_remove(r_version, "\\)")
-      )
+        "source"
+        #,
+        #"lang",
+        #"r_version"
+      ))
+      #%>%
+      #dplyr::mutate(
+      #  lang = stringr::str_remove(lang, "\\("),
+      #  r_version = stringr::str_remove(r_version, "\\)")
+      #)
 
     parsed_log$`Session Information`$`External software` <-
       nested_log$`Session Information`$`External software` %>%
