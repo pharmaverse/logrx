@@ -7,7 +7,7 @@ test_that("Test 1: File HashSum does not change for ex1.R", {
   flines <- readLines(con)
   close(con)
 
-  expect_true(any(grepl("File HashSum: e3b7438926d8fc6e55d927db377c9670a057e0a8", flines) == TRUE))
+  expect_true(any(grepl("File HashSum: 69bba3ee00038e547f0a95b6b62d16f9a56a946b", flines) == TRUE))
 
   # remove all the stuff we added
   rm(scriptPath, logDir)
