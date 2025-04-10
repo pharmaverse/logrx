@@ -204,9 +204,7 @@ parse_log <- function(nested_log) {
         "version",
         "date",
         "lib",
-        "source",
-        "lang",
-        "r_version"
+        "source"
       )) %>%
       dplyr::mutate(
         lang = stringr::str_remove(lang, "\\("),
