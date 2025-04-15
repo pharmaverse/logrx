@@ -10,14 +10,14 @@
 #' @noRd
 #'
 write_log_element <- function(el_key, prefix = NULL) {
-   # get element from log
-   el <- get_log_element(el_key)
+  # get element from log
+  el <- get_log_element(el_key)
 
-   # format element with prefix
-   fmtd_el <- paste0(prefix, el)
+  # format element with prefix
+  fmtd_el <- paste0(prefix, el)
 
-   # return formatted element
-   return(fmtd_el)
+  # return formatted element
+  return(fmtd_el)
 }
 
 #' Format log.rx's metadata attributes for writing
@@ -26,15 +26,17 @@ write_log_element <- function(el_key, prefix = NULL) {
 #'
 #' @noRd
 #'
-write_metadata <- function(){
-   metadata <- get_log_element("metadata")
+write_metadata <- function() {
+  metadata <- get_log_element("metadata")
 
-   metadata <- c(metadata$info,
-                 paste0("logrx package version: ", metadata$version),
-                 paste0("logrx build: ", metadata$built),
-                 paste0("logrx link to repository: ", metadata$repository_link))
+  metadata <- c(
+    metadata$info,
+    paste0("logrx package version: ", metadata$version),
+    paste0("logrx build: ", metadata$built),
+    paste0("logrx link to repository: ", metadata$repository_link)
+  )
 
-   return(metadata)
+  return(metadata)
 }
 
 
@@ -48,19 +50,22 @@ write_metadata <- function(){
 #'
 #' @noRd
 #'
-write_session_info <- function(){
-   session_info <- get_log_element("session_info") %>%
-      capture.output() %>%
-      # remove extra dashes on title lines
-      map_chr(~ ifelse(nchar(.x) > 80 & grepl("\u2500\u2500\u2500\u2500", .x),
-                   substring(.x, 1, 80),
-                   .x)) %>%
-      # wrap any other elements over 80 characters
-      map_chr(~ stri_wrap(.x, width = 80, exdent = 2, simplify = FALSE, use_length = TRUE,
-                          normalize = FALSE, whitespace_only = TRUE) %>%
-                 map_chr(~ str_c(.x, collapse = "\n\t", character(1))))
+write_session_info <- function() {
+  session_info <- get_log_element("session_info") %>%
+    capture.output() %>%
+    # remove extra dashes on title lines
+    map_chr(~ ifelse(nchar(.x) > 80 & grepl("\u2500\u2500\u2500\u2500", .x),
+      substring(.x, 1, 80),
+      .x
+    )) %>%
+    # wrap any other elements over 80 characters
+    map_chr(~ stri_wrap(.x,
+      width = 80, exdent = 2, simplify = FALSE, use_length = TRUE,
+      normalize = FALSE, whitespace_only = TRUE
+    ) %>%
+      map_chr(~ str_c(.x, collapse = "\n\t", character(1))))
 
-   return(session_info)
+  return(session_info)
 }
 
 #' Format repo URLs for writing
@@ -69,20 +74,22 @@ write_session_info <- function(){
 #'
 #' @noRd
 #'
-write_repo_urls <- function(){
-   repo_urls <- ifelse(is.na(get_log_element("repo_urls")),
-                       "Repo URLs not able to be determined",
-                       map2(
-                          names(get_log_element("repo_urls")),
-                          get_log_element("repo_urls"),
-                          ~paste(paste0(.x, ": "),
-                                 paste0(.y, collapse = ", "))
-                       ) %>%
-                          unname() %>%
-                          unlist()
-   )
+write_repo_urls <- function() {
+  repo_urls <- ifelse(is.na(get_log_element("repo_urls")),
+    "Repo URLs not able to be determined",
+    map2(
+      names(get_log_element("repo_urls")),
+      get_log_element("repo_urls"),
+      ~ paste(
+        paste0(.x, ": "),
+        paste0(.y, collapse = ", ")
+      )
+    ) %>%
+      unname() %>%
+      unlist()
+  )
 
-   return(repo_urls)
+  return(repo_urls)
 }
 
 #' Format file name and path for writing
@@ -91,18 +98,20 @@ write_repo_urls <- function(){
 #'
 #' @noRd
 #'
-write_file_name_path <- function(){
-   file_name <- ifelse(is.na(get_log_element("file_name")),
-                       "File name not able to be determined",
-                       get_log_element("file_name"))
-   file_path <- ifelse(is.na(get_log_element("file_path")),
-                       "File path not able to be determined",
-                       get_log_element("file_path"))
+write_file_name_path <- function() {
+  file_name <- ifelse(is.na(get_log_element("file_name")),
+    "File name not able to be determined",
+    get_log_element("file_name")
+  )
+  file_path <- ifelse(is.na(get_log_element("file_path")),
+    "File path not able to be determined",
+    get_log_element("file_path")
+  )
 
-   file_name_path <- c(
-      paste0("File Name: ", file_name),
-      paste0("File Path: ", file_path)
-   )
+  file_name_path <- c(
+    paste0("File Name: ", file_name),
+    paste0("File Path: ", file_path)
+  )
 }
 
 #' Format hashsums for writing
@@ -110,8 +119,8 @@ write_file_name_path <- function(){
 #' @return A string
 #' @noRd
 #'
-write_hash_sum <- function(){
-      paste0("File HashSum: ", get_log_element("hash_sum"))
+write_hash_sum <- function() {
+  paste0("File HashSum: ", get_log_element("hash_sum"))
 }
 
 #' Format masked functions attribute for writing
@@ -122,16 +131,18 @@ write_hash_sum <- function(){
 #'
 #' @noRd
 #'
-write_masked_functions <- function(){
-   masked_functions_list <- get_log_element("masked_functions")
+write_masked_functions <- function() {
+  masked_functions_list <- get_log_element("masked_functions")
 
-   masked_functions <- imap(masked_functions_list, ~ paste0("function `", .y,
-      "` from {", paste(.x$masks, collapse = ", "), "} by ", .x$source)) %>%
-      unname() %>%
-      unlist()
+  masked_functions <- imap(masked_functions_list, ~ paste0(
+    "function `", .y,
+    "` from {", paste(.x$masks, collapse = ", "), "} by ", .x$source
+  )) %>%
+    unname() %>%
+    unlist()
 
 
-   return(masked_functions)
+  return(masked_functions)
 }
 
 #' Formats and returns a vector of used package functions
@@ -151,16 +162,16 @@ write_masked_functions <- function(){
 #' write_used_functions()
 #' }
 #'
-write_used_functions <- function(){
-   used_functions_list <- get_log_element("used_packages_functions")
+write_used_functions <- function() {
+  used_functions_list <- get_log_element("used_packages_functions")
 
-   combined <- used_functions_list %>%
-      group_by(library) %>%
-      summarize(function_name = paste0(.data[["function_name"]], collapse = ", "))
+  combined <- used_functions_list %>%
+    group_by(library) %>%
+    summarize(function_name = paste0(.data[["function_name"]], collapse = ", "))
 
-   map2(combined$library, combined$function_name, ~paste(paste0("{", .x, "}"), paste0(.y, collapse = ", "))) %>%
-      unname() %>%
-      unlist()
+  map2(combined$library, combined$function_name, ~ paste(paste0("{", .x, "}"), paste0(.y, collapse = ", "))) %>%
+    unname() %>%
+    unlist()
 }
 
 
@@ -179,20 +190,20 @@ write_used_functions <- function(){
 #' \dontrun{
 #' write_unapproved_functions()
 #' }
-write_unapproved_functions <- function(){
-   unapproved_functions_list <- get_log_element("unapproved_packages_functions")
+write_unapproved_functions <- function() {
+  unapproved_functions_list <- get_log_element("unapproved_packages_functions")
 
-   if (nrow(unapproved_functions_list) == 0) {
-      return("No unapproved packages or functions used")
-   }
+  if (nrow(unapproved_functions_list) == 0) {
+    return("No unapproved packages or functions used")
+  }
 
-   combined <- unapproved_functions_list %>%
-      group_by(library) %>%
-      summarize(function_name = paste0(.data[["function_name"]], collapse = ", "))
+  combined <- unapproved_functions_list %>%
+    group_by(library) %>%
+    summarize(function_name = paste0(.data[["function_name"]], collapse = ", "))
 
-   map2(combined$library, combined$function_name, ~paste(paste0("{", .x, "}"), paste0(.y, collapse = ", "))) %>%
-      unname() %>%
-      unlist()
+  map2(combined$library, combined$function_name, ~ paste(paste0("{", .x, "}"), paste0(.y, collapse = ", "))) %>%
+    unname() %>%
+    unlist()
 }
 
 #' Formatting of log file section headers
@@ -209,16 +220,18 @@ write_unapproved_functions <- function(){
 #' \dontrun{
 #' write_log_header("Section Header")
 #' }
-write_log_header <- function(title_string){
-   # create left and right pad length
-   rpad <- ceiling((78 - nchar(title_string))/2)
-   lpad <- floor((78 - nchar(title_string))/2)
-   # make the vector
-   head_vec <- c(paste(rep('-', 80), collapse = ""),
-                 paste0('-', paste(rep(' ', lpad), collapse = ""), title_string, paste(rep(' ', rpad), collapse = ""), '-'),
-                 paste(rep('-', 80), collapse = ""))
-   # return the formatted vector
-   return(head_vec)
+write_log_header <- function(title_string) {
+  # create left and right pad length
+  rpad <- ceiling((78 - nchar(title_string)) / 2)
+  lpad <- floor((78 - nchar(title_string)) / 2)
+  # make the vector
+  head_vec <- c(
+    paste(rep("-", 80), collapse = ""),
+    paste0("-", paste(rep(" ", lpad), collapse = ""), title_string, paste(rep(" ", rpad), collapse = ""), "-"),
+    paste(rep("-", 80), collapse = "")
+  )
+  # return the formatted vector
+  return(head_vec)
 }
 
 #' Format errors attribute for writing
@@ -230,10 +243,12 @@ write_log_header <- function(title_string){
 #' @noRd
 #'
 write_errors <- function() {
-   errors <- get_log_element("errors")
+  errors <- get_log_element("errors")
 
-   paste0("Errors:\n\t",
-          str_replace_all(errors$message, "\n", "\n\t"))
+  paste0(
+    "Errors:\n\t",
+    str_replace_all(errors$message, "\n", "\n\t")
+  )
 }
 
 #' Format warnings attribute for writing
@@ -243,10 +258,12 @@ write_errors <- function() {
 #' @noRd
 #'
 write_warnings <- function() {
-   warnings <- get_log_element("warnings")
+  warnings <- get_log_element("warnings")
 
-   paste0("\nWarnings:\n\t",
-          paste0(warnings, collapse = "\n\t"))
+  paste0(
+    "\nWarnings:\n\t",
+    paste0(warnings, collapse = "\n\t")
+  )
 }
 
 #' Format messages attribute for writing
@@ -259,11 +276,13 @@ write_warnings <- function() {
 #' @noRd
 #'
 write_messages <- function() {
-   messages <- get_log_element("messages") %>%
-      map(~ str_remove_all(.x, "\n"))
+  messages <- get_log_element("messages") %>%
+    map(~ str_remove_all(.x, "\n"))
 
-   paste0("Messages:\n\t",
-          paste0(messages, collapse = "\n\t"))
+  paste0(
+    "Messages:\n\t",
+    paste0(messages, collapse = "\n\t")
+  )
 }
 
 #' Format output attribute for writing
@@ -275,10 +294,12 @@ write_messages <- function() {
 #' @noRd
 #'
 write_output <- function() {
-   output <- get_log_element("output")
+  output <- get_log_element("output")
 
-   paste0("Output:\n\t",
-          str_replace_all(output, "\n", "\n\t"))
+  paste0(
+    "Output:\n\t",
+    str_replace_all(output, "\n", "\n\t")
+  )
 }
 
 #' Format result attribute for writing
@@ -288,13 +309,13 @@ write_output <- function() {
 #' @noRd
 #'
 write_result <- function(file) {
-   result <- get_log_element("result")
+  result <- get_log_element("result")
 
-   if (is_rmarkdown(file)) {
-      c("\nResult:", paste0("\t", capture.output(result)))
-   } else {
-      c("\nResult:", paste0("\t", capture.output(result$value)))
-   }
+  if (is_rmarkdown(file)) {
+    c("\nResult:", paste0("\t", capture.output(result)))
+  } else {
+    c("\nResult:", paste0("\t", capture.output(result$value)))
+  }
 }
 
 #' Format lint results for writing
@@ -303,25 +324,27 @@ write_result <- function(file) {
 #'
 #' @noRd
 #'
-write_lint_results <- function(){
-   lint_results <- get_log_element("lint_results")
+write_lint_results <- function() {
+  lint_results <- get_log_element("lint_results")
 
-   if (length(lint_results) == 0) {
-      return("")
-   }
+  if (length(lint_results) == 0) {
+    return("")
+  }
 
-   lint_df <- as.data.frame(lint_results)
+  lint_df <- as.data.frame(lint_results)
 
-   lint_df$lint_messages <- paste0("Line ",
-                                   lint_df$line_number,
-                                   " [",
-                                   lint_df$linter,
-                                   "] ",
-                                   lint_df$message)
+  lint_df$lint_messages <- paste0(
+    "Line ",
+    lint_df$line_number,
+    " [",
+    lint_df$linter,
+    "] ",
+    lint_df$message
+  )
 
-   break_rows <- paste(lint_df$lint_messages, collapse = "\n\n")
+  break_rows <- paste(lint_df$lint_messages, collapse = "\n\n")
 
-   paste(strwrap(break_rows, width = 78), collapse = "\n")
+  paste(strwrap(break_rows, width = 78), collapse = "\n")
 }
 
 

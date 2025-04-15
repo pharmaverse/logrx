@@ -10,36 +10,36 @@
 #'
 #' @noRd
 #'
-loudly <- function(code){
-   warnings <- character()
-   wHandler <- function(w) {
-      warnings <<- c(warnings, w$message)
-   }
+loudly <- function(code) {
+  warnings <- character()
+  wHandler <- function(w) {
+    warnings <<- c(warnings, w$message)
+  }
 
-   messages <- character()
-   mHandler <- function(m) {
-      messages <<- c(messages, m$message)
-   }
+  messages <- character()
+  mHandler <- function(m) {
+    messages <<- c(messages, m$message)
+  }
 
-   temp <- file()
-   sink(temp, split = TRUE)
-   on.exit({
-      sink()
-      close(temp)
-   })
+  temp <- file()
+  sink(temp, split = TRUE)
+  on.exit({
+    sink()
+    close(temp)
+  })
 
-   result <- withCallingHandlers(
-      code,
-      warning = wHandler,
-      message = mHandler
-   )
+  result <- withCallingHandlers(
+    code,
+    warning = wHandler,
+    message = mHandler
+  )
 
-   output <- paste0(readLines(temp, warn = FALSE), collapse = "\n")
+  output <- paste0(readLines(temp, warn = FALSE), collapse = "\n")
 
-   list(
-      result = result,
-      output = output,
-      warnings = warnings,
-      messages = messages
-   )
+  list(
+    result = result,
+    output = output,
+    warnings = warnings,
+    messages = messages
+  )
 }

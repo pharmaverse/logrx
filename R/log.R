@@ -13,12 +13,12 @@
 #'
 #' # Remove the log.rx environment
 #' log_remove()
-log_init <- function(){
-   log.rx <- new.env()
+log_init <- function() {
+  log.rx <- new.env()
 
-   if(!('log.rx' %in% names(options()))) {
-      options('log.rx' = log.rx)
-   }
+  if (!("log.rx" %in% names(options()))) {
+    options("log.rx" = log.rx)
+  }
 }
 
 
@@ -132,27 +132,27 @@ log_config <- function(file = NA,
 #' @noRd
 #'
 log_cleanup <- function() {
-   # check the log.rx environment exists
-   if (!('log.rx' %in% names(options()))) {
-      stop("environment log.rx must exist")
-   }
+  # check the log.rx environment exists
+  if (!("log.rx" %in% names(options()))) {
+    stop("environment log.rx must exist")
+  }
 
-   # get all names of elements in the log
-   log_env <- getOption('log.rx')
-   el_names <- names(log_env)
+  # get all names of elements in the log
+  log_env <- getOption("log.rx")
+  el_names <- names(log_env)
 
-   # check if element is not NA and add to list to return
-   el_populated <- list()
-   for (i in 1:length(el_names)) {
-      el_name <- el_names[i]
-      el_value <- get_log_element(el_names[i])
-      if (!(anyNA(el_value))) {
-         el_populated[[el_name]] <- el_value
-      }
-   }
+  # check if element is not NA and add to list to return
+  el_populated <- list()
+  for (i in 1:length(el_names)) {
+    el_name <- el_names[i]
+    el_value <- get_log_element(el_names[i])
+    if (!(anyNA(el_value))) {
+      el_populated[[el_name]] <- el_value
+    }
+  }
 
-   # return list of populated elements
-   return(el_populated)
+  # return list of populated elements
+  return(el_populated)
 }
 
 
@@ -369,7 +369,7 @@ log_write <- function(file = NA,
 #' # Remove the log.rx environment
 #' log_remove()
 log_remove <- function() {
-   if (!is.null(getOption("log.rx"))) {
-      options("log.rx" = NULL)
-   }
+  if (!is.null(getOption("log.rx"))) {
+    options("log.rx" = NULL)
+  }
 }
