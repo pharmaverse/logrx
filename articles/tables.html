@@ -68,7 +68,8 @@
 
 
 
-<script src="tables_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Logging for Summary Display Table</h1>
             
@@ -79,11 +80,16 @@
 
     
     
-<p>In this section, we write a script to create a risk-difference table from the <a href="https://github.com/phuse-org/TestDataFactory" class="external-link">PHUSE Test Data Factory ADaM dataset</a>, using the <a href="https://atorus-research.github.io/Tplyr/" class="external-link"><code>Typlr</code></a> package. We use the <code>logrx</code> package to generate a log upon the script execution for reproducibility and traceability.</p>
+<p>In this section, we write a script to create a risk-difference table
+from the <a href="https://github.com/phuse-org/TestDataFactory" class="external-link">PHUSE
+Test Data Factory ADaM dataset</a>, using the <a href="https://atorus-research.github.io/Tplyr/" class="external-link"><code>Typlr</code></a>
+package. We use the <code>logrx</code> package to generate a log upon
+the script execution for reproducibility and traceability.</p>
 <div class="section level2">
 <h2 id="load-the-packages">1. Load the packages<a class="anchor" aria-label="anchor" href="#load-the-packages"></a>
 </h2>
-<p>First, we load the packages that we will use to generate the risk-difference table.</p>
+<p>First, we load the packages that we will use to generate the
+risk-difference table.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span>
@@ -92,14 +98,19 @@
 <div class="section level2">
 <h2 id="load-the-data">2. Load the data<a class="anchor" aria-label="anchor" href="#load-the-data"></a>
 </h2>
-<p>Then we load the Adverse Event Analysis Dataset from the <a href="https://github.com/phuse-org/TestDataFactory" class="external-link">PHUSE Test Data Factory ADaM dataset</a>. The data are stored in a transport file format and we use the <a href="https://haven.tidyverse.org" class="external-link"><code>haven</code></a> package to load them.</p>
+<p>Then we load the Adverse Event Analysis Dataset from the <a href="https://github.com/phuse-org/TestDataFactory" class="external-link">PHUSE Test Data
+Factory ADaM dataset</a>. The data are stored in a transport file format
+and we use the <a href="https://haven.tidyverse.org" class="external-link"><code>haven</code></a> package to
+load them.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">adae</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_xpt.html" class="external-link">read_xpt</a></span><span class="op">(</span><span class="st">"adae.xpt"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="build-the-risk-difference-table">3. Build the risk-difference table<a class="anchor" aria-label="anchor" href="#build-the-risk-difference-table"></a>
 </h2>
-<p>Finally, we write a script (<code>risk_diff.R</code>) to build the risk-difference table, using the <a href="https://atorus-research.github.io/Tplyr/" class="external-link"><code>Typlr</code></a> package.</p>
+<p>Finally, we write a script (<code>risk_diff.R</code>) to build the
+risk-difference table, using the <a href="https://atorus-research.github.io/Tplyr/" class="external-link"><code>Typlr</code></a>
+package.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/tplyr_table.html" class="external-link">tplyr_table</a></span><span class="op">(</span><span class="va">adae</span>, <span class="va">TRTA</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/layer_attachment.html" class="external-link">add_layer</a></span><span class="op">(</span></span>
@@ -120,7 +131,8 @@
 <iframe width="700" height="400" src="risk_diff_script.html"></iframe>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/axecute.html">axecute</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="st">"risk_diff.R"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Below is the log. Pay special attention to the Warnings and Result sections.</p>
+<p>Below is the log. Pay special attention to the Warnings and Result
+sections.</p>
 <iframe width="700" height="400" src="risk_diff_log.html"></iframe>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
