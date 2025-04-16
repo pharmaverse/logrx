@@ -179,7 +179,7 @@ parse_log <- function(nested_log) {
   }
 
   if ("Session Information" %in% names(nested_log)) {
-     parsed_log$`Session Information`$`Session info` <-
+    parsed_log$`Session Information`$`Session info` <-
       nested_log$`Session Information`$`Session info` %>%
       unlist() %>%
       stringr::str_trim() %>%
@@ -199,34 +199,34 @@ parse_log <- function(nested_log) {
       stringr::str_replace_all(" P ", "   ") %>%
       readr::read_table(skip = 1, col_names = FALSE)
 
-   # handle case where log is has 7 columns due to sessioninfo v1.2.2 or earlier
-   if(ncol(parsed_log$`Session Information`$`Packages`) == 7){
+    # handle case where log is has 7 columns due to sessioninfo v1.2.2 or earlier
+    if (ncol(parsed_log$`Session Information`$`Packages`) == 7) {
       parsed_log$`Session Information`$`Packages` <-
-         parsed_log$`Session Information`$`Packages` %>%
-         dplyr::rename_with( ~ c(
-            "package",
-            "version",
-            "date",
-            "lib",
-            "source",
-            "lang",
-            "r_version"
-         )) %>%
-         dplyr::mutate(
-            lang = stringr::str_remove(lang, "\\("),
-            r_version = stringr::str_remove(r_version, "\\)")
-         )
-      } else {
-         parsed_log$`Session Information`$`Packages` <-
-            parsed_log$`Session Information`$`Packages` %>%
-            dplyr::rename_with( ~ c(
-               "package",
-               "version",
-               "date",
-               "lib",
-               "source"
-            ))
-      }
+        parsed_log$`Session Information`$`Packages` %>%
+        dplyr::rename_with(~ c(
+          "package",
+          "version",
+          "date",
+          "lib",
+          "source",
+          "lang",
+          "r_version"
+        )) %>%
+        dplyr::mutate(
+          lang = stringr::str_remove(lang, "\\("),
+          r_version = stringr::str_remove(r_version, "\\)")
+        )
+    } else {
+      parsed_log$`Session Information`$`Packages` <-
+        parsed_log$`Session Information`$`Packages` %>%
+        dplyr::rename_with(~ c(
+          "package",
+          "version",
+          "date",
+          "lib",
+          "source"
+        ))
+    }
 
     parsed_log$`Session Information`$`External software` <-
       nested_log$`Session Information`$`External software` %>%
