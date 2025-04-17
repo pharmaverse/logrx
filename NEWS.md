@@ -2,7 +2,10 @@
 
  - Extend testing unexported function use (#208)
  - Swap in `lintr::library_call_linter()` for local version of `library_call_linter()` (#221)
- - Remove Shiny Addin from Package (#207)
+ 
+ - The Shiny Addin has been removed from this Package (#207)
+   - A standalone package for the Shiny Addin has been created
+   - See [logrxaddin](https://github.com/pharmaverse/logrxaddin) for more information
 
 # logrx 0.3.2
 
