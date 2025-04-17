@@ -1,9 +1,9 @@
 # logrx (development version)
 
-- Adds the optional `extra_info` parameter to `axecute()` which lets users pass a list 
+ - Adds the optional `extra_info` parameter to `axecute()` which lets users pass a list 
    object through to the extra info section of the log. The object will be printed 
    according to the YAML format (#180)
-- Adds unit tests for `write_repo_urls()` and `get_repo_urls()` internal functions.
+ - Adds unit tests for `write_repo_urls()` and `get_repo_urls()` internal functions.
 
  - Extend testing unexported function use (#208)
  - Swap in `lintr::library_call_linter()` for local version of `library_call_linter()` (#221)
