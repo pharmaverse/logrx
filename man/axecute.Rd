@@ -12,6 +12,7 @@ axecute(
   quit_on_error = TRUE,
   to_report = c("messages", "output", "result"),
   show_repo_url = FALSE,
+  extra_info = NA,
   ...
 )
 }
@@ -38,6 +39,9 @@ many as necessary:
 
 \item{show_repo_url}{Boolean. Should the repository URLs be reported
 Defaults to FALSE}
+
+\item{extra_info}{List. Objects to optionally add on to end of log
+in a special extra info section. List printed in YAML format. Optional}
 
 \item{...}{Not used}
 }
