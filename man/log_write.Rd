@@ -9,6 +9,7 @@ log_write(
   remove_log_object = TRUE,
   show_repo_url = FALSE,
   include_rds = FALSE,
+  extra_info = NA,
   to_report = c("messages", "output", "result")
 )
 }
@@ -23,6 +24,9 @@ Defaults to FALSE}
 
 \item{include_rds}{Boolean. Option to export log object as Rds file.
 Defaults to FALSE}
+
+\item{extra_info}{List. Objects to add on to end of log
+in a special extra info section. Optional}
 
 \item{to_report}{String vector. Objects to optionally report; additional
 information in \code{\link{axecute}}}

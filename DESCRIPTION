@@ -65,7 +65,8 @@ Suggests:
     xml2,
     here,
     readr,
-    tidyselect
+    tidyselect,
+    yaml
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 Depends: 

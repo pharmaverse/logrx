@@ -186,6 +186,59 @@ test_that("include_rds works to output log as rds", {
   )
 })
 
+test_that("extra_info works to output extra info list", {
+   scriptPath <- tempfile()
+   logDir <- tempdir()
+   writeLines(
+      c("message('hello logrx')",
+        "cat('this is output')",
+        "data.frame(c(8, 6, 7, 5, 3, 0, 9))"),
+      con = scriptPath)
+
+   axecute(scriptPath, log_name = "log_out_extra_info1",
+           log_path = logDir,
+           extra_info = list("orange",paste0("green eggs and ham"))
+   )
+   con <- file(file.path(logDir, "log_out_extra_info1"), "r")
+   flines <- readLines(con)
+   close(con)
+
+   expect_true(grepl(paste(write_log_header("Extra info"), collapse = ','),
+                     paste(flines,collapse = ',')))
+   expect_true(grepl("orange",
+                     paste(flines,collapse = ',')))
+   expect_true(grepl("green eggs and ham",
+                     paste(flines,collapse = ',')))
+   rm(flines, con)
+   log_remove()
+
+   axecute(scriptPath, log_name = "log_out_extra_info2",
+           log_path = logDir,
+           extra_info = list(a = 1, b = list(c = 2, d = list(3, 4)))
+   )
+   con <- file(file.path(logDir, "log_out_extra_info2"), "r")
+   flines <- readLines(con)
+   close(con)
+
+   expect_true(grepl("a: 1", paste(flines,collapse = ',')))
+   expect_true(grepl("b:", paste(flines,collapse = ',')))
+   expect_true(grepl("c: 2", paste(flines,collapse = ',')))
+   expect_true(grepl("- 3", paste(flines,collapse = ',')))
+   rm(flines, con)
+
+   axecute(scriptPath, log_name = "log_out_extra_info3",
+           log_path = logDir,
+           extra_info = NA
+   )
+   con <- file(file.path(logDir, "log_out_extra_info3"), "r")
+   flines <- readLines(con)
+   close(con)
+
+   expect_false(grepl(paste(write_log_header("Extra info"), collapse = ','),
+                     paste(flines,collapse = ',')))
+   rm(flines, con, scriptPath, logDir)
+})
+
 test_that("axecute will run a markdown file and create the necessary log", {
   invisible(
     capture.output({
