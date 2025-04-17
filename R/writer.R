@@ -355,27 +355,26 @@ write_lint_results <- function() {
 #' @noRd
 #'
 write_extra_info <- function() {
-   if (!requireNamespace("yaml", quietly = TRUE)) {
-      stop(
-         "Package \"yaml\" must be installed to use this function.",
-         call. = FALSE
-      )
-   }
-   if (!requireNamespace("stringr", quietly = TRUE)) {
-      stop(
-         "Package \"stringr\" must be installed to use this function.",
-         call. = FALSE
-      )
-   }
-   extra_info <- get_log_element("extra_info")
-   results <- yaml::as.yaml(
-      extra_info,
-      indent.mapping.sequence = TRUE,
-      handlers = list(
-         logical = yaml::verbatim_logical
-      )
-   )
-   results <- stringr::str_split(results, pattern = "\n")[[1]]
-   return(results)
+  if (!requireNamespace("yaml", quietly = TRUE)) {
+    stop(
+      "Package \"yaml\" must be installed to use this function.",
+      call. = FALSE
+    )
+  }
+  if (!requireNamespace("stringr", quietly = TRUE)) {
+    stop(
+      "Package \"stringr\" must be installed to use this function.",
+      call. = FALSE
+    )
+  }
+  extra_info <- get_log_element("extra_info")
+  results <- yaml::as.yaml(
+    extra_info,
+    indent.mapping.sequence = TRUE,
+    handlers = list(
+      logical = yaml::verbatim_logical
+    )
+  )
+  results <- stringr::str_split(results, pattern = "\n")[[1]]
+  return(results)
 }
-

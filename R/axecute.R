@@ -51,11 +51,11 @@ axecute <- function(file,
                     to_report = c("messages", "output", "result"),
                     show_repo_url = FALSE,
                     extra_info = NA,
-                    ...){
-   # deprecations
-   if (methods::hasArg(remove_log_object)) {
-      lifecycle::deprecate_stop("0.3.0", "axecute(remove_log_object = )", "axecute(include_rds = )")
-   }
+                    ...) {
+  # deprecations
+  if (methods::hasArg(remove_log_object)) {
+    lifecycle::deprecate_stop("0.3.0", "axecute(remove_log_object = )", "axecute(include_rds = )")
+  }
 
   # remove log object
   remove_log_object <- TRUE
@@ -64,13 +64,13 @@ axecute <- function(file,
   to_report <- map_chr(to_report, tolower)
   match.arg(to_report, several.ok = TRUE)
 
-   # initialize log
-   log_config(
-      file = file,
-      log_name = log_name,
-      log_path = log_path,
-      extra_info = extra_info
-   )
+  # initialize log
+  log_config(
+    file = file,
+    log_name = log_name,
+    log_path = log_path,
+    extra_info = extra_info
+  )
 
   # run the code
   run_safely_loudly(file)
@@ -80,12 +80,12 @@ axecute <- function(file,
 
   # write log
   log_write(
-      file = file,
-      remove_log_object = remove_log_object,
-      show_repo_url = show_repo_url,
-      include_rds = include_rds,
-      to_report = to_report,
-      extra_info = extra_info
+    file = file,
+    remove_log_object = remove_log_object,
+    show_repo_url = show_repo_url,
+    include_rds = include_rds,
+    to_report = to_report,
+    extra_info = extra_info
   )
 
   # if error, quit with status = 1 if not interactive
