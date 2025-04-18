@@ -70,6 +70,7 @@ Suggests:
     here,
     readr,
     tidyselect,
+    renv,
     yaml
 VignetteBuilder: knitr
 Config/testthat/edition: 3
