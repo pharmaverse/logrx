@@ -30,6 +30,8 @@ log_init <- function() {
 #' @param file String. Path to file executed. Optional
 #' @param log_name String. Name of log file. Optional
 #' @param log_path String. Path to log file. Optional
+#' @param extra_info List. Objects to add on to end of log
+#' in a special extra info section. Optional
 #'
 #' @return Nothing
 #' @export
@@ -51,7 +53,10 @@ log_init <- function() {
 #'
 #' # Write the log
 #' log_write(file)
-log_config <- function(file = NA, log_name = NA, log_path = NA) {
+log_config <- function(file = NA,
+                       log_name = NA,
+                       log_path = NA,
+                       extra_info = NA) {
   # If the log.rx environment is not NULL or empty, warn the user
   if (!is.null(getOption("log.rx"))) {
     if (!(identical(ls(getOption("log.rx")), character(0)))) {
@@ -85,7 +90,8 @@ log_config <- function(file = NA, log_name = NA, log_path = NA) {
     "lint_results",
     "log_name",
     "log_path",
-    "repo_urls"
+    "repo_urls",
+    "extra_info"
   )
 
   # Add attributes to the log.rx environment, and set them to NA
@@ -116,6 +122,8 @@ log_config <- function(file = NA, log_name = NA, log_path = NA) {
   set_log_element("lint_results", get_lint_results(file))
   # repo urls
   set_log_element("repo_urls", get_repo_urls())
+  # extra info
+  set_log_element("extra_info", extra_info)
 }
 
 #' Cleaning-up of log.rx object
@@ -166,6 +174,8 @@ log_cleanup <- function() {
 #' information in \code{\link{axecute}}
 #' @param show_repo_url Boolean. Should the repo URLs be reported
 #' Defaults to FALSE
+#' @param extra_info List. Objects to add on to end of log
+#' in a special extra info section. Optional
 #'
 #' @return Nothing
 #' @export
@@ -191,6 +201,7 @@ log_write <- function(file = NA,
                       remove_log_object = TRUE,
                       show_repo_url = FALSE,
                       include_rds = FALSE,
+                      extra_info = NA,
                       to_report = c("messages", "output", "result")) {
   # Set end time and run time
   set_log_element("end_time", strftime(Sys.time(), usetz = TRUE))
@@ -333,6 +344,13 @@ log_write <- function(file = NA,
       write_result(file)
     )
   }
+  if (is.list(extra_info)) {
+    cleaned_log_vec <- c(
+      cleaned_log_vec,
+      write_log_header("Extra info"),
+      write_extra_info()
+    )
+  }
 
   cleaned_log_vec <- c(
     cleaned_log_vec,
@@ -340,7 +358,6 @@ log_write <- function(file = NA,
     write_log_element("log_name", "Log name: "),
     write_log_element("log_path", "Log path: ")
   )
-
   writeLines(cleaned_log_vec,
     con = file.path(
       get_log_element("log_path"),
@@ -377,7 +394,6 @@ log_write <- function(file = NA,
       )
     )
   }
-
   if (remove_log_object) {
     log_remove()
   }

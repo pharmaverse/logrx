@@ -4,7 +4,7 @@
 \alias{log_config}
 \title{Configuration of the log.rx environment}
 \usage{
-log_config(file = NA, log_name = NA, log_path = NA)
+log_config(file = NA, log_name = NA, log_path = NA, extra_info = NA)
 }
 \arguments{
 \item{file}{String. Path to file executed. Optional}
@@ -12,6 +12,9 @@ log_config(file = NA, log_name = NA, log_path = NA)
 \item{log_name}{String. Name of log file. Optional}
 
 \item{log_path}{String. Path to log file. Optional}
+
+\item{extra_info}{List. Objects to add on to end of log
+in a special extra info section. Optional}
 }
 \value{
 Nothing

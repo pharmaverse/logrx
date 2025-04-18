@@ -269,3 +269,48 @@ test_that("write_lint_results works when linter is used but no lints found", {
     ""
   )
 })
+
+test_that("write_repo_urls will return a formatted log output element", {
+  options("log.rx" = NULL)
+  original_repos <- options("repos")
+  test_repos <- c(
+    binary = "https://packagemanager.rstudio.com/all/__linux__/focal/latest",
+    source = "https://packagemanager.rstudio.com/all/latest",
+    CRAN = "https://cloud.r-project.org"
+  )
+  options("repos" = test_repos)
+  log_config("./test-writer.R")
+
+  expect_identical(
+    getOption("log.rx")[["repo_urls"]],
+    as.list(options("repos")$repos)
+  )
+
+  log_remove()
+  options("repos" = original_repos)
+})
+
+test_that("write_extra_info will return a formatted log output element", {
+  skip_if_not_installed("yaml")
+  skip_if_not_installed("stringr")
+  options("log.rx" = NULL)
+  ref_extra_info1 <- list("some info", "more info")
+  fp <- test_path("ref", "safely_loudly_test_file_result.R")
+  log_config(fp, extra_info = ref_extra_info1)
+  expect_identical(getOption("log.rx")[["extra_info"]], ref_extra_info1)
+  expect_identical(
+    write_extra_info(),
+    c("- some info", "- more info", "")
+  )
+  log_remove()
+
+  options("log.rx" = NULL)
+  ref_extra_info2 <- list(a = "some info", more_info = c(1, 2, 3))
+  log_config(fp, extra_info = ref_extra_info2)
+  expect_identical(getOption("log.rx")[["extra_info"]], ref_extra_info2)
+  expect_identical(
+    write_extra_info(),
+    c("a: some info", "more_info:", "  - 1.0", "  - 2.0", "  - 3.0", "")
+  )
+  log_remove()
+})
