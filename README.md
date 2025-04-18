@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![R build
-status](https://github.com/pharmaverse/logrx/workflows/R-CMD-check/badge.svg)](https://github.com/pharmaverse/logrx/actions?workflow=R-CMD-check)
+status](https://github.com/pharmaverse/logrx/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pharmaverse/logrx/actions?workflow=R-CMD-check.yaml)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/logrx)](https://CRAN.R-project.org/package=logrx)
 [<img src="https://img.shields.io/codecov/c/github/pharmaverse/logrx">](https://app.codecov.io/gh/pharmaverse/logrx)
@@ -29,7 +29,7 @@ install.packages("logrx")
 To get the latest development version use:
 
 ``` r
-devtools::install_github("pharmaverse/logrx", ref = "dev")
+devtools::install_github("pharmaverse/logrx")
 ```
 
 ## What is `{logrx}` ?
@@ -41,7 +41,15 @@ Started](https://pharmaverse.github.io/logrx/articles/logrx.html) and we
 have several vignettes that show specific use cases for using the
 package.
 
-<img src="https://pharmaverse.s3.us-east-2.amazonaws.com/gifs/logrx.gif" alt="logrx Addin in Action" width="100%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+
+<img src="https://pharmaverse.s3.us-east-2.amazonaws.com/gifs/logrx.gif" alt="logrx Addin in Action" width="100%" />
+<p class="caption">
+
+logrx Addin in Action
+</p>
+
+</div>
 
 While many packages to facilitate the logging of code already exist in
 the R ecosystem, it is hard to find a solution that works well for
