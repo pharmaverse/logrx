@@ -75,8 +75,8 @@ x <- renv::lockfile_create(
 lockfile_repos <- repo_urls$repo_name
 names(lockfile_repos) <- repo_urls$repo_url
 x <- renv::lockfile_modify(
-   lockfile = x,
-   repos = lockfile_repos
+  lockfile = x,
+  repos = lockfile_repos
 )
 
 # Write lockfile
@@ -100,5 +100,7 @@ renv::record(
 )
 
 # Open the lockfile you just created to confirm it looks as expected
-rstudioapi::documentOpen(temp_lockfile)
+if (rstudioapi::isAvailable()) {
+  rstudioapi::documentOpen(temp_lockfile)
+}
 ```
