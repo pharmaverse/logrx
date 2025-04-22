@@ -47,7 +47,6 @@ Imports:
     tidyr,
     stringr,
     miniUI,
-    rstudioapi,
     shiny,
     sessioninfo (>= 1.2),
     stringi,
@@ -69,6 +68,7 @@ Suggests:
     xml2,
     here,
     readr,
+    rstudioapi,
     tidyselect,
     renv,
     yaml
