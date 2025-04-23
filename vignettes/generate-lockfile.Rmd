@@ -100,7 +100,7 @@ renv::record(
 )
 
 # Open the lockfile you just created to confirm it looks as expected
-if (rstudioapi::isAvailable()) {
+if (require("rstudioapi") && rstudioapi::isAvailable()) {
   rstudioapi::documentOpen(temp_lockfile)
 }
 ```
