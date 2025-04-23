@@ -99,8 +99,9 @@ renv::record(
   lockfile = temp_lockfile
 )
 
-# Open the lockfile you just created to confirm it looks as expected
-if (require("rstudioapi") && rstudioapi::isAvailable()) {
-  rstudioapi::documentOpen(temp_lockfile)
-}
+# Open the lockfile you just created to confirm it looks as expected 
+# uncomment the lines below to open the lockfile in RStudio
+# if (require("rstudioapi") && rstudioapi::isAvailable()) {
+#   rstudioapi::documentOpen(temp_lockfile)
+# }
 ```
