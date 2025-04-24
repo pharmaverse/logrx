@@ -1,14 +1,16 @@
-# logrx 0.4
+# logrx (development version)
 
-- Adds the optional `extra_info` parameter to `axecute()` which lets users pass a list 
+ - Adds the optional `extra_info` parameter to `axecute()` which lets users pass a list 
    object through to the extra info section of the log. The object will be printed 
    according to the YAML format (#180)
-- Adds unit tests for `write_repo_urls()` and `get_repo_urls()` internal functions.
-
-# logrx 0.3.3
+ - Adds unit tests for `write_repo_urls()` and `get_repo_urls()` internal functions.
 
  - Extend testing unexported function use (#208)
  - Swap in `lintr::library_call_linter()` for local version of `library_call_linter()` (#221)
+ 
+ - The Shiny Addin has been removed from this Package (#207)
+   - A standalone package for the Shiny Addin has been created
+   - See [logrxaddin](https://github.com/pharmaverse/logrxaddin) for more information
 
 # logrx 0.3.2
 
