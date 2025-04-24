@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">logrx</a>
 
-    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.3.1.9000</small>
+    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.3.2.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,10 +48,24 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="logrx-development-version">logrx (development version)<a class="anchor" aria-label="anchor" href="#logrx-development-version"></a></h2>
-<ul><li>Items go here with issue number - remove this later (<a href="https://github.com/pharmaverse/logrx/issues/209" class="external-link">#209</a>)</li></ul></div>
+<ul><li><p>Adds the optional <code>extra_info</code> parameter to <code><a href="../reference/axecute.html">axecute()</a></code> which lets users pass a list object through to the extra info section of the log. The object will be printed according to the YAML format (<a href="https://github.com/pharmaverse/logrx/issues/180" class="external-link">#180</a>)</p></li>
+<li><p>Adds unit tests for <code>write_repo_urls()</code> and <code>get_repo_urls()</code> internal functions.</p></li>
+<li><p>Extend testing unexported function use (<a href="https://github.com/pharmaverse/logrx/issues/208" class="external-link">#208</a>)</p></li>
+<li><p>Swap in <code><a href="https://lintr.r-lib.org/reference/library_call_linter.html" class="external-link">lintr::library_call_linter()</a></code> for local version of <code>library_call_linter()</code> (<a href="https://github.com/pharmaverse/logrx/issues/221" class="external-link">#221</a>)</p></li>
+<li>
+<p>The Shiny Addin has been removed from this Package (<a href="https://github.com/pharmaverse/logrx/issues/207" class="external-link">#207</a>)</p>
+<ul><li>A standalone package for the Shiny Addin has been created</li>
+<li>See <a href="https://github.com/pharmaverse/logrxaddin" class="external-link">logrxaddin</a> for more information</li>
+</ul></li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.2" id="logrx-032">logrx 0.3.2<a class="anchor" aria-label="anchor" href="#logrx-032"></a></h2><p class="text-muted">CRAN release: 2025-02-18</p>
+<ul><li>Hotfix to update tests (<a href="https://github.com/pharmaverse/logrx/issues/231" class="external-link">#231</a>)</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.1" id="logrx-031">logrx 0.3.1<a class="anchor" aria-label="anchor" href="#logrx-031"></a></h2><p class="text-muted">CRAN release: 2024-04-12</p>
-<ul><li>Hotfix to update used and unapproved packages and functions writing (<a href="https://github.com/pharmaverse/logrx/issues/218" class="external-link">#218</a>)</li></ul></div>
+<ul><li>Hotfix to update used and unapproved packages and functions writing (<a href="https://github.com/pharmaverse/logrx/issues/218" class="external-link">#218</a>)</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.0" id="logrx-030">logrx 0.3.0<a class="anchor" aria-label="anchor" href="#logrx-030"></a></h2><p class="text-muted">CRAN release: 2023-10-17</p>
 <ul><li>Moved website theme to bootstrap 5, enabled search (<a href="https://github.com/pharmaverse/logrx/issues/179" class="external-link">#179</a>)</li>
@@ -71,7 +85,8 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.1" id="logrx-021">logrx 0.2.1<a class="anchor" aria-label="anchor" href="#logrx-021"></a></h2><p class="text-muted">CRAN release: 2023-02-03</p>
-<ul><li>non-function objects are no longer returned as functions by <code>get_used_functions</code> (<a href="https://github.com/pharmaverse/logrx/issues/154" class="external-link">#154</a>)</li></ul></div>
+<ul><li>non-function objects are no longer returned as functions by <code>get_used_functions</code> (<a href="https://github.com/pharmaverse/logrx/issues/154" class="external-link">#154</a>)</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="logrx-020">logrx 0.2.0<a class="anchor" aria-label="anchor" href="#logrx-020"></a></h2><p class="text-muted">CRAN release: 2023-01-18</p>
 <ul><li><p>Major update release for logrx</p></li>
@@ -79,7 +94,8 @@
 </ul><div class="section level3">
 <h3 id="new-features-0-2-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-2-0"></a></h3>
 <ul><li>
-<a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> now produces a unique hash sum for each log file and script (<a href="https://github.com/pharmaverse/logrx/issues/29" class="external-link">#29</a>)</li></ul></div>
+<a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> now produces a unique hash sum for each log file and script (<a href="https://github.com/pharmaverse/logrx/issues/29" class="external-link">#29</a>)</li>
+</ul></div>
 <div class="section level3">
 <h3 id="updates-0-2-0">Updates<a class="anchor" aria-label="anchor" href="#updates-0-2-0"></a></h3>
 <ul><li><p>Updated the run environment to be a child of the global environment instead of a child of the <code>logrx</code> package namespace. This fixes the issue of <code>logrx</code> using internally imported versions of functions in the place of user imported version of functions. (<a href="https://github.com/pharmaverse/logrx/issues/104" class="external-link">#104</a>)</p></li>
@@ -110,7 +126,8 @@
 </ul></div>
 <div class="section level3">
 <h3 id="documentation-0-1-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-0-1-0"></a></h3>
-<ul><li>Add example articles for adsl and a risk difference table</li></ul></div>
+<ul><li>Add example articles for adsl and a risk difference table</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.1" id="logrx-001">logrx 0.0.1<a class="anchor" aria-label="anchor" href="#logrx-001"></a></h2>

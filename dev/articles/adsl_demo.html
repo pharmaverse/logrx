@@ -27,7 +27,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">logrx</a>
 
-    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.3.1.9000</small>
+    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.3.2.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,8 @@
 
 
 
-<script src="adsl_demo_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Logging for an ADSL dataset</h1>
             
@@ -80,46 +81,69 @@
 
     
     
-<p>In this section, we will <code><a href="../reference/axecute.html">axecute()</a></code> an R script that creates and <code>ADSL</code> to get a log file. This file was taken from the <code>admiral::use_ad_template("adsl")</code> with a few changes to its contents to showcase certain features of the <code>logrx</code> package’s log file.</p>
-<p>Users wishing to run a similar script will need to do the following:</p>
+<p>In this section, we will <code><a href="../reference/axecute.html">axecute()</a></code> an R script that
+creates and <code>ADSL</code> to get a log file. This file was taken
+from the <code>admiral::use_ad_template("adsl")</code> with a few
+changes to its contents to showcase certain features of the
+<code>logrx</code> package’s log file.</p>
+<p>Users wishing to run a similar script will need to do the
+following:</p>
 <ul>
 <li>Install the logrx package</li>
-<li>Copy the below script or use <code>admiral::use_ad_template("adsl")</code> to generate it.</li>
-<li>Note this script differs from the template with a call to <code>diffdf</code> to do a compare, a simple custom message is used and results are manipulated for illustrative purposes.<br>
+<li>Copy the below script or use
+<code>admiral::use_ad_template("adsl")</code> to generate it.</li>
+<li>Note this script differs from the template with a call to
+<code>diffdf</code> to do a compare, a simple custom message is used and
+results are manipulated for illustrative purposes.<br>
 </li>
-<li>Users will also need to make the decision on whether they want to use the Addin of <code>logrx</code> or use the <code>aexcute()</code> directly in a script or in the console to get a log file.</li>
+<li>Users will also need to make the decision on whether they want to
+use the Addin of <code>logrx</code> or use the <code>aexcute()</code>
+directly in a script or in the console to get a log file.</li>
 </ul>
 <div class="section level2">
 <h2 id="axecute-the-adsl-r-script">axecute the adsl.R script<a class="anchor" aria-label="anchor" href="#axecute-the-adsl-r-script"></a>
 </h2>
-<p>Below is a simple <code>adsl.R</code> script generated from the <code>admiral</code> package. Notable features of the script are as follows:</p>
+<p>Below is a simple <code>adsl.R</code> script generated from the
+<code>admiral</code> package. Notable features of the script are as
+follows:</p>
 <ul>
-<li>Calls for getting SDTM datasets, e.g. <code>DM</code>, <code>EX</code>, <code>DS</code>
+<li>Calls for getting SDTM datasets, e.g. <code>DM</code>,
+<code>EX</code>, <code>DS</code>
 </li>
 <li>Converting SAS blanks to NAs</li>
-<li>Typical derivations you would need to get treatment groups, start/end dates, duration</li>
-<li>Typical derivation for Screen Failures, Screen Flags, Death Flags</li>
+<li>Typical derivations you would need to get treatment groups,
+start/end dates, duration</li>
+<li>Typical derivation for Screen Failures, Screen Flags, Death
+Flags</li>
 <li>Creating numeric variables with custom format functions</li>
-<li>A call to <code>diffdf::diffdf()</code> to do a simple compare between two datasets
+<li>A call to <code>diffdf::diffdf()</code> to do a simple compare
+between two datasets
 <ul>
-<li>Note: The compare will create a warning that the two objects being compared have different columns. This warning will appear in the log</li>
+<li>Note: The compare will create a warning that the two objects being
+compared have different columns. This warning will appear in the
+log</li>
 </ul>
 </li>
-<li>Simple message inserted for illustration. This message will appear in the log.</li>
+<li>Simple message inserted for illustration. This message will appear
+in the log.</li>
 <li>Manipulated results that will appear in the log file.</li>
 </ul>
 <div class="section level3">
 <h3 id="inspect-adsl-r-script">Inspect adsl.R script<a class="anchor" aria-label="anchor" href="#inspect-adsl-r-script"></a>
 </h3>
-<p>Feel free to explore the script. The next section showcases the output for log file for the this script.</p>
+<p>Feel free to explore the script. The next section showcases the
+output for log file for the this script.</p>
 <iframe width="700" height="400" src="adsl_script.html"></iframe>
 <p><br></p>
-<p><strong>NOTE:</strong> Users can do the following to axecute their script:</p>
+<p><strong>NOTE:</strong> Users can do the following to axecute their
+script:</p>
 <ol style="list-style-type: decimal">
 <li>Use the Addin</li>
-<li>Use <code>logrx::axecute("file.R")</code> directly in their script [See Vignette TODO]</li>
+<li>Use <code>logrx::axecute("file.R")</code> directly in their script
+[See Vignette TODO]</li>
 <li>Use <code>logrx::axecute("file.R")</code> in the console</li>
-<li>Use <code>logrx::axecute("file.R")</code> in a batch script [See Vignette TODO]</li>
+<li>Use <code>logrx::axecute("file.R")</code> in a batch script [See
+Vignette TODO]</li>
 </ol>
 </div>
 </div>
@@ -127,9 +151,16 @@
 <h2 id="log-output-adsl-r">Log Output adsl.R<a class="anchor" aria-label="anchor" href="#log-output-adsl-r"></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li>logrx Metadata and User and File Information, of the log contains information about the version of logrx used to create this log as well as user and file information.</li>
-<li>Session Information, Packages , External software, Masked Functions, Used Package and Functions and Program Run Time Information of the log file contains information for everything used to run the R script. We believe this information suffices to re-create the environment needed for re-running the script.</li>
-<li>Errors and Warnings and Messages, Output, and Result are the final sections of the log file. Please note the following
+<li>logrx Metadata and User and File Information, of the log contains
+information about the version of logrx used to create this log as well
+as user and file information.</li>
+<li>Session Information, Packages , External software, Masked Functions,
+Used Package and Functions and Program Run Time Information of the log
+file contains information for everything used to run the R script. We
+believe this information suffices to re-create the environment needed
+for re-running the script.</li>
+<li>Errors and Warnings and Messages, Output, and Result are the final
+sections of the log file. Please note the following
 <ul>
 <li>Warning from the comparison file.</li>
 <li>Message sent from the script to the log file</li>
@@ -141,7 +172,12 @@
 <div class="section level3">
 <h3 id="comparison-between-production-and-qc-datasets">Comparison between Production and QC datasets<a class="anchor" aria-label="anchor" href="#comparison-between-production-and-qc-datasets"></a>
 </h3>
-<p>For illustrative purposes, we have included the comparison file between the two datasets. Here we can see that <code>diffdf::diffdf()</code> correctly picked up the differences in the dataset. The log file picked up the warning from <code>diffdf::diffdf()</code> and placed it in the appropriate section of the above log file.</p>
+<p>For illustrative purposes, we have included the comparison file
+between the two datasets. Here we can see that
+<code>diffdf::diffdf()</code> correctly picked up the differences in the
+dataset. The log file picked up the warning from
+<code>diffdf::diffdf()</code> and placed it in the appropriate section
+of the above log file.</p>
 <iframe width="700" height="250" src="adsl_lst.html"></iframe>
 </div>
 </div>
