@@ -14,6 +14,9 @@ Coverage](https://raw.githubusercontent.com/pharmaverse/logrx/badges/main/test-c
 [<img src="https://img.shields.io/badge/License-MIT-blue.svg">](https://github.com/pharmaverse/logrx/blob/master/LICENSE.md)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental-1)
+[![Test
+Coverage](https://raw.githubusercontent.com/pharmaverse/logrx/badges/main/test-coverage.svg)](https://github.com/pharmaverse/logrx/actions/workflows/code-coverage.yml)
+
 <!-- badges: end -->
 
 The goal of `{logrx}` is to facilitate logging in a clinical environment
