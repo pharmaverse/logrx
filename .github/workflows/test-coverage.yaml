@@ -1,44 +1,61 @@
+---
+# Source: https://github.com/pharmaverse/admiralci
+# Common workflows designed for Admiral
+# but can be easily used by any other R package
+name: logrx CI/CD Workflows
+
 on:
+  # 'workflow_dispatch' gives you the ability
+  # to run this workflow on demand, anytime
+  workflow_dispatch:
+  # 'push' events are triggered when commits
+  # are pushed to one of these branches
   push:
+    tags:
+      - "v*"
     branches:
       - main
+      - patch
+  # 'pull_request' events are triggered when PRs are
+  # created against one of these target branches.
+  pull_request:
+    branches:
+      - main
+      - patch
+  # 'release' events are triggered when...
+  # you guessed it - when releases are made.
+  release:
+    types: [published]
 
-name: test-coverage
+# Docs on concurrency:
+# https://docs.github.com/en/actions/using-jobs/using-concurrency
+concurrency:
+  group: logrx-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  R_VERSION: "release"
 
 jobs:
-  test-coverage:
+  get_r_version:
+    name: Get R version
     runs-on: ubuntu-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      r-version: ${{ steps.get_r_version.outputs.R_VERSION }}
     steps:
-      - uses: actions/checkout@v2
-
-      - uses: r-lib/actions/setup-r@v2
-
-      - uses: r-lib/actions/setup-pandoc@v1
-
-      - name: Query dependencies
-        run: |
-          install.packages('remotes')
-          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
-          writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
-        shell: Rscript {0}
-
-      - name: Install system dependencies
-        run: |
-          while read -r cmd
-          do
-            eval sudo $cmd
-          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
-
-      - name: Install dependencies
-        run: |
-          install.packages(c("remotes"))
-          remotes::install_deps(dependencies = TRUE)
-          remotes::install_cran("covr")
-        shell: Rscript {0}
-
-      - name: Test coverage
-        run: |
-          covr::codecov(function_exclusions = "\\.onLoad")
-        shell: Rscript {0}
+      - name: Get R Version for Downstream Container Jobs
+        id: get_r_version
+        run: echo "R_VERSION=$R_VERSION" >> $GITHUB_OUTPUT
+        shell: bash
+  coverage:
+    name: Code Coverage
+    uses: pharmaverse/admiralci/.github/workflows/code-coverage.yml@main
+    if: >
+      github.event_name != 'release'
+    needs: get_r_version
+    with:
+      r-version: "${{ needs.get_r_version.outputs.r-version }}"
+      # Whether to skip code coverage badge creation
+      # Setting to 'false' will require you to create
+      # an orphan branch called 'badges' in your repository
+      skip-coverage-badges: false
