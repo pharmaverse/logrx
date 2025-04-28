@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>A Logging Utility Focus on Clinical Trial Programming Workflows • logrx</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" sizes="any" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -92,9 +91,9 @@
 <div class="section level2">
 <h2 id="what-is-logrx-">What is <code>{logrx}</code> ?<a class="anchor" aria-label="anchor" href="#what-is-logrx-"></a>
 </h2>
-<p>Simple! The <a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> package makes a log file for a R script!. Below we have a short gif of making a log file for a <code>adsl.R</code> script using the Addin. More details on the parts of the log script are found in <a href="https://pharmaverse.github.io/logrx/articles/logrx.html">Get Started</a> and we have several vignettes that show specific use cases for using the package.</p>
+<p>Simple! The <a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> package makes a log file for a R script!. Below we have a short gif of making a log file for a <code>adsl.R</code> script using the Addin which can be found in the <a href="https://github.com/pharmaverse/logrxaddin" class="external-link">logrxaddin package</a>. More details on the parts of the log script are found in <a href="https://pharmaverse.github.io/logrx/articles/logrx.html">Get Started</a> and we have several vignettes that show specific use cases for using the package.</p>
 <div class="figure" style="text-align: center">
-<img src="https://pharmaverse.s3.us-east-2.amazonaws.com/gifs/logrx.gif" alt="logrx Addin in Action" width="100%"><p class="caption">
+<img src="https://github.com/pharmaverse/logrxaddin/blob/assets/logrx_gif.gif?raw=true" alt="logrx Addin in Action" width="100%"><p class="caption">
 logrx Addin in Action
 </p>
 </div>
@@ -135,22 +134,22 @@ logrx Addin in Action
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Nathan Kosiba <br><small class="roles"> Author, maintainer </small>  </li>
-<li>Thomas Bermudez <br><small class="roles"> Author </small>  </li>
-<li>Ben Straub <br><small class="roles"> Author </small>  </li>
-<li>Michael Rimler <br><small class="roles"> Author </small>  </li>
-<li>Nicholas Masel <br><small class="roles"> Author </small>  </li>
-<li>Sam Parmar <br><small class="roles"> Author </small>  </li>
-<li>GSK/Atorus JPT <br><small class="roles"> Copyright holder, funder </small>  </li>
+<li>Nathan Kosiba <br><small class="roles"> Author, maintainer </small>   </li>
+<li>Thomas Bermudez <br><small class="roles"> Author </small>   </li>
+<li>Ben Straub <br><small class="roles"> Author </small>   </li>
+<li>Michael Rimler <br><small class="roles"> Author </small>   </li>
+<li>Nicholas Masel <br><small class="roles"> Author </small>   </li>
+<li>Sam Parmar <br><small class="roles"> Author </small>   </li>
+<li>GSK/Atorus JPT <br><small class="roles"> Copyright holder, funder </small>   </li>
 </ul>
 </div>
 
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/pharmaverse/logrx/actions?workflow=R-CMD-check" class="external-link"><img src="https://github.com/pharmaverse/logrx/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://github.com/pharmaverse/logrx/actions?workflow=R-CMD-check.yaml" class="external-link"><img src="https://github.com/pharmaverse/logrx/workflows/R-CMD-check.yaml/badge.svg" alt="R build status"></a></li>
 <li><a href="https://CRAN.R-project.org/package=logrx" class="external-link"><img src="https://www.r-pkg.org/badges/version/logrx" alt="CRAN status"></a></li>
-<li><a href="https://app.codecov.io/gh/pharmaverse/logrx" class="external-link"><img src="https://img.shields.io/codecov/c/github/pharmaverse/logrx"></a></li>
+<li><a href="https://github.com/pharmaverse/logrx/actions/workflows/code-coverage.yml" class="external-link"><img src="https://raw.githubusercontent.com/pharmaverse/logrx/badges/main/test-coverage.svg" alt="Test Coverage"></a></li>
 <li><a href="https://github.com/pharmaverse/logrx/blob/master/LICENSE.md" class="external-link"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental-1" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 <li><a href="https://github.com/pharmaverse/logrx/actions/workflows/code-coverage.yml" class="external-link"><img src="https://raw.githubusercontent.com/pharmaverse/logrx/badges/main/test-coverage.svg" alt="Test Coverage"></a></li>
@@ -166,7 +165,7 @@ logrx Addin in Action
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>
