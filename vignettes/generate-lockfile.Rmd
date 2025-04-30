@@ -26,7 +26,7 @@ library(renv)
 
 Axecute a script and get the log file.
 
-```{r run_axecute, echo = FALSE}
+```{r run_axecute, echo = TRUE}
 scriptPath <- tempfile()
 
 logDir <- tempdir()
@@ -46,7 +46,7 @@ axecute(scriptPath, log_name = "log_out_parse", log_path = logDir, show_repo_url
 
 Later on read (and parse) previous log file as list of objects. 
 
-```{r read_logfile}
+```{r read_logfile, warning = FALSE}
 parsedFile <- read_log_file(filePath)
 ```
 
