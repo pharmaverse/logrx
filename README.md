@@ -3,7 +3,7 @@
 
 # logrx <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
-<!-- badges: start -->
+<!-- start badges -->
 
 [![R build
 status](https://github.com/pharmaverse/logrx/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pharmaverse/logrx/actions?workflow=R-CMD-check.yaml)
@@ -15,9 +15,9 @@ Badge](http://pharmaverse.org/shields/logrx.svg)](https://pharmaverse.org)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental-1)
 [![Test
-Coverage](https://raw.githubusercontent.com/pharmaverse/logrx/badges/main/test-coverage.svg)](https://github.com/pharmaverse/logrx/actions/workflows/code-coverage.yml)
+Coverage](https://raw.githubusercontent.com/pharmaverse/logrx/refs/heads/badges/test-coverage.svg)](https://github.com/pharmaverse/logrx/actions/workflows/test-coverage.yaml)
 
-<!-- badges: end -->
+<!-- end badges -->
 
 The goal of `{logrx}` is to facilitate logging in a clinical environment
 with the goal of making code easily traceable and reproducible.
