@@ -11,7 +11,7 @@ logrx link to repository: https://github.com/pharmaverse/logrx
 User: r590548
 File Name: adsl.R
 File Path: /cloud/project/data-raw/adsl
-File HashSum: 78c15f9dad659de20a0d1bae1a3a80cb45345fa8
+File HashSum: 8fc6a1151e2e8129a2a9e10586484e2e09655362
 --------------------------------------------------------------------------------
 -                             Session Information                              -
 --------------------------------------------------------------------------------
@@ -35,6 +35,7 @@ File HashSum: 78c15f9dad659de20a0d1bae1a3a80cb45345fa8
  admiral         * 1.2.0      2025-01-15 [1] RSPM (R 4.2.0)
  admiral.test    * 0.7.0      2023-09-10 [1] RSPM (R 4.2.0)
  admiraldev        1.2.0      2025-01-15 [1] RSPM (R 4.2.0)
+ assertthat        0.2.1      2019-03-21 [1] RSPM (R 4.2.0)
  cli               3.6.4      2025-02-13 [1] RSPM (R 4.2.0)
  diffdf          * 1.1.1      2024-09-24 [1] RSPM (R 4.2.0)
  digest            0.6.37     2024-08-19 [1] RSPM (R 4.2.0)
@@ -125,16 +126,17 @@ function `kronecker` from {package:base} by package:methods
 -                          Used Package and Functions                          -
 --------------------------------------------------------------------------------
 {package:admiral} convert_blanks_to_na, derive_vars_dtm, derive_vars_merged, exprs, derive_vars_dtm_to_dt, derive_var_trtdurd, derive_vars_dt, derive_vars_duration, derive_vars_extreme_event, event, convert_dtc_to_dt, derive_var_merged_exist_flag
-{package:base} library, c, %in%, is.na, list, grepl, file.exists, dir.create, save, file.path
-{package:dplyr} case_when, between, mutate, if_else
+{package:base} library, c, %in%, is.na, list, grepl, file.exists, dir.create, save, file.path, message
+{package:diffdf} diffdf
+{package:dplyr} case_when, between, mutate, if_else, slice, glimpse, select
 {package:stringr} %>%, str_detect
 {package:tools} R_user_dir
 --------------------------------------------------------------------------------
 -                         Program Run Time Information                         -
 --------------------------------------------------------------------------------
-Start time: 2025-04-30 15:11:12 UTC
-End time: 2025-04-30 15:11:16 UTC
-Run time: 4 seconds
+Start time: 2025-04-30 15:15:52 UTC
+End time: 2025-04-30 15:15:57 UTC
+Run time: 5 seconds
 --------------------------------------------------------------------------------
 -                             Errors and Warnings                              -
 --------------------------------------------------------------------------------
@@ -143,13 +145,69 @@ Errors:
 
 Warnings:
 	
+There are columns in BASE that are not in COMPARE !!
 --------------------------------------------------------------------------------
 -                         Messages, Output, and Result                         -
 --------------------------------------------------------------------------------
 Messages:
-	
+	Please check for this important message!!
 Output:
-	
+	Rows: 3
+	Columns: 54
+	$ STUDYID  <chr> "CDISCPILOT01", "CDISCPILOT01", "CDISCPILOT01"
+	$ USUBJID  <chr> "01-701-1015", "01-701-1023", "01-701-1028"
+	$ SUBJID   <chr> "1015", "1023", "1028"
+	$ RFSTDTC  <chr> "2014-01-02", "2012-08-05", "2013-07-19"
+	$ RFENDTC  <chr> "2014-07-02", "2012-09-02", "2014-01-14"
+	$ RFXSTDTC <chr> "2014-01-02", "2012-08-05", "2013-07-19"
+	$ RFXENDTC <chr> "2014-07-02", "2012-09-01", "2014-01-14"
+	$ RFICDTC  <chr> NA, NA, NA
+	$ RFPENDTC <chr> "2014-07-02T11:45", "2013-02-18", "2014-01-14T11:10"
+	$ DTHDTC   <chr> NA, NA, NA
+	$ DTHFL    <chr> NA, NA, NA
+	$ SITEID   <chr> "701", "701", "701"
+	$ AGE      <dbl> 63, 64, 71
+	$ AGEU     <chr> "YEARS", "YEARS", "YEARS"
+	$ SEX      <chr> "F", "M", "M"
+	$ RACE     <chr> "WHITE", "WHITE", "WHITE"
+	$ ETHNIC   <chr> "HISPANIC OR LATINO", "HISPANIC OR LATINO", "NOT HISPANIC OR LATINO"
+	$ ARMCD    <chr> "Pbo", "Pbo", "Xan_Hi"
+	$ ARM      <chr> "Placebo", "Placebo", "Xanomeline High Dose"
+	$ ACTARMCD <chr> "Pbo", "Pbo", "Xan_Hi"
+	$ ACTARM   <chr> "Placebo", "Placebo", "Xanomeline High Dose"
+	$ COUNTRY  <chr> "USA", "USA", "USA"
+	$ DMDTC    <chr> "2013-12-26", "2012-07-22", "2013-07-11"
+	$ DMDY     <dbl> -7, -14, -8
+	$ TRT01P   <chr> "Placebo", "Placebo", "Xanomeline High Dose"
+	$ TRT01A   <chr> "Placebo", "Placebo", "Xanomeline High Dose"
+	$ TRTSDTM  <dttm> 2014-01-02, 2012-08-05, 2013-07-19
+	$ TRTSTMF  <chr> "H", "H", "H"
+	$ TRTEDTM  <dttm> 2014-07-02 23:59:59, 2012-09-01 23:59:59, 2014-01-14 23:59:59
+	$ TRTETMF  <chr> "H", "H", "H"
+	$ TRTSDT   <date> 2014-01-02, 2012-08-05, 2013-07-19
+	$ TRTEDT   <date> 2014-07-02, 2012-09-01, 2014-01-14
+	$ TRTDURD  <dbl> 182, 28, 180
+	$ SCRFDT   <date> NA, NA, NA
+	$ EOSDT    <date> 2014-07-02, 2012-09-02, 2014-01-14
+	$ EOSSTT   <chr> "COMPLETED", "DISCONTINUED", "COMPLETED"
+	$ FRVDT    <date> NA, 2013-02-18, NA
+	$ RANDDT   <date> 2014-01-02, 2012-08-05, 2013-07-19
+	$ DTHDT    <date> NA, NA, NA
+	$ DTHDTF   <chr> NA, NA, NA
+	$ DTHADY   <dbl> NA, NA, NA
+	$ LDDTHELD <dbl> NA, NA, NA
+	$ DTHCAUS  <chr> NA, NA, NA
+	$ DTHDOM   <chr> NA, NA, NA
+	$ DTHCGR1  <chr> NA, NA, NA
+	$ LSTALVDT <date> 2014-07-02, 2012-09-02, 2014-01-14
+	$ SAFFL    <chr> "Y", "Y", "Y"
+	$ RACEGR1  <chr> "White", "White", "White"
+	$ AGEGR1   <chr> "18-64", "18-64", ">64"
+	$ REGION1  <chr> "NA", "NA", "NA"
+	$ LDDTHGR1 <chr> NA, NA, NA
+	$ DTH30FL  <chr> NA, NA, NA
+	$ DTHA30FL <chr> NA, NA, NA
+	$ DTHB30FL <chr> NA, NA, NA
 
 Result:
 	NULL

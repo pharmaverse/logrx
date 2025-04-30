@@ -295,3 +295,20 @@ if (!file.exists(dir)) {
    dir.create(dir, recursive = TRUE, showWarnings = FALSE)
 }
 save(adsl, file = file.path(dir, "adsl.rda"), compress = "bzip2")
+
+adsl %>%
+   slice(1:3) %>%
+glimpse()
+
+# We create a mock QC/Double Programming  dataset to showcase diffdf and the use of
+# the package for capturing warnings for differences in the datasets
+
+# Variable removed.
+adsl_qc <- adsl %>% select(-ETHNIC)
+
+# Simple comparision between objects.  Check the file for what was captured.
+adsl_lst <- diffdf(adsl, adsl_qc, file = "adsl.lst")
+
+message("Please check for this important message!!")
+
+
