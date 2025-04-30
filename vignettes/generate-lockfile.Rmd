@@ -59,8 +59,7 @@ pkgs <- parsedFile$`Used Package and Functions` %>%
 used_pkgs <- parsedFile$`Session Information`$Packages %>%
   filter(package %in% pkgs$package_name)
 
-repo_urls <- tibble(repo_urls = parsedFile$`Repo URLs`[[1]]) %>%
-  separate_wider_delim(cols = repo_urls, delim = ":  ", names = c("repo_name", "repo_url"))
+repo_urls <- parsedFile$`Repo URLs`
 
 temp_lockfile <- tempfile(fileext = ".lockfile")
 
@@ -72,8 +71,8 @@ x <- renv::lockfile_create(
 )
 
 # Update repo URL for lockfile
-lockfile_repos <- repo_urls$repo_name
-names(lockfile_repos) <- repo_urls$repo_url
+lockfile_repos <- repo_urls$Name
+names(lockfile_repos) <- repo_urls$URL
 x <- renv::lockfile_modify(
   lockfile = x,
   repos = lockfile_repos
