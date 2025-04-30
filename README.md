@@ -6,13 +6,17 @@
 <!-- badges: start -->
 
 [![R build
-status](https://github.com/pharmaverse/logrx/workflows/R-CMD-check/badge.svg)](https://github.com/pharmaverse/logrx/actions?workflow=R-CMD-check)
+status](https://github.com/pharmaverse/logrx/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pharmaverse/logrx/actions?workflow=R-CMD-check.yaml)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/logrx)](https://CRAN.R-project.org/package=logrx)
-[<img src="https://img.shields.io/codecov/c/github/pharmaverse/logrx">](https://app.codecov.io/gh/pharmaverse/logrx)
+[![Test
+Coverage](https://raw.githubusercontent.com/pharmaverse/logrx/badges/main/test-coverage.svg)](https://github.com/pharmaverse/logrx/actions/workflows/code-coverage.yml)
 [<img src="https://img.shields.io/badge/License-MIT-blue.svg">](https://github.com/pharmaverse/logrx/blob/master/LICENSE.md)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental-1)
+[![Test
+Coverage](https://raw.githubusercontent.com/pharmaverse/logrx/badges/main/test-coverage.svg)](https://github.com/pharmaverse/logrx/actions/workflows/code-coverage.yml)
+
 <!-- badges: end -->
 
 The goal of `{logrx}` is to facilitate logging in a clinical environment
@@ -29,19 +33,29 @@ install.packages("logrx")
 To get the latest development version use:
 
 ``` r
-devtools::install_github("pharmaverse/logrx", ref = "dev")
+devtools::install_github("pharmaverse/logrx")
 ```
 
 ## What is `{logrx}` ?
 
 Simple! The `{logrx}` package makes a log file for a R script!. Below we
 have a short gif of making a log file for a `adsl.R` script using the
-Addin. More details on the parts of the log script are found in [Get
+Addin which can be found in the [logrxaddin
+package](https://github.com/pharmaverse/logrxaddin). More details on the
+parts of the log script are found in [Get
 Started](https://pharmaverse.github.io/logrx/articles/logrx.html) and we
 have several vignettes that show specific use cases for using the
 package.
 
-<img src="https://pharmaverse.s3.us-east-2.amazonaws.com/gifs/logrx.gif" alt="logrx Addin in Action" width="100%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+
+<img src="https://github.com/pharmaverse/logrxaddin/blob/assets/logrx_gif.gif?raw=true" alt="logrx Addin in Action" width="100%" />
+<p class="caption">
+
+logrx Addin in Action
+</p>
+
+</div>
 
 While many packages to facilitate the logging of code already exist in
 the R ecosystem, it is hard to find a solution that works well for
