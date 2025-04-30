@@ -65,7 +65,9 @@ Suggests:
     xml2,
     here,
     readr,
+    rstudioapi,
     tidyselect,
+    renv,
     yaml
 VignetteBuilder: knitr
 Config/testthat/edition: 3
