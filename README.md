@@ -73,7 +73,7 @@ flexible logging utility that could provide the necessary information to
 anyone reviewing the code execution so they can recreate the execution
 environment and run the code for themselves. While we strive to create a
 comprehensive and accurate log, we also want to keep the package light
-and unintrusive in a coding environemnt. `{logrx}` is purpose-built for
+and unintrusive in a coding environment. `{logrx}` is purpose-built for
 the needs of clinical programming to capture necessary elements of the
 environment and execution to be able to create a complete view of the
 program execution and environment.
