@@ -51,9 +51,11 @@ are found in [Get Started](https://pharmaverse.github.io/logrx/articles/logrx.ht
 knitr::include_graphics("https://github.com/pharmaverse/logrxaddin/blob/assets/logrx_gif.gif?raw=true")
 ```
 
-While many packages to facilitate the logging of code already exist in the R ecosystem, it is hard to find a solution that works well for clinical programming applications.  Many logging implementations are more implicit and rely on user input to create the log for the execution of a script.  While this is useful for logging specific events of an application, in clinical programming a log has a set purpose.  
+## ```{logrx}``` Mission and Methodology
 
-```{logrx}``` is built around the concept of creating a log for the execution of an R script that provides an overview of what happened as well as the environment that it happened in.  We set out to create a flexible logging utility that could provide the necessary information to anyone reviewing the code execution so they can recreate the execution environment and run the code for themselves.  ```{logrx}``` is purpose-built for the needs of clinical programming to capture necessary elements of the environment and execution to be able to create a complete view of the program execution.
+While many packages to facilitate the logging of code already exist in the R ecosystem, it is hard to find a solution that works well for clinical programming applications.  Many logging implementations are more implicit and rely on user input to create the log for the execution of a script.  While this is useful for logging specific events of an application, in clinical programming a log has a set purpose.
+
+```{logrx}``` is built around the concept of creating a log for the execution of an R script that provides an overview of what happened as well as the environment that it happened in.  We set out to create a flexible logging utility that could provide the necessary information to anyone reviewing the code execution so they can recreate the execution environment and run the code for themselves.  While we strive to create a comprehensive and accurate log, we also want to keep the package light and unintrusive in a coding environemnt.  ```{logrx}``` is purpose-built for the needs of clinical programming to capture necessary elements of the environment and execution to be able to create a complete view of the program execution and environment.
 
 ## Using logrx
 

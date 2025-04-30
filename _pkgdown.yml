@@ -55,6 +55,7 @@ articles:
   contents:
   - logrx
   - execution
+  - generate-lockfile
   - articles/tables
   - articles/adsl_demo
   - articles/tidylog
