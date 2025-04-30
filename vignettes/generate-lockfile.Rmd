@@ -2,7 +2,7 @@
 title: "Generate renv lockfile from log file"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{generate-lockfile}
+  %\VignetteIndexEntry{Generate renv lockfile from log file}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, message = FALSE}
 library(logrx)
 library(stringr)
 library(dplyr)
