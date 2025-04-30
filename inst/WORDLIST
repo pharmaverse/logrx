@@ -10,10 +10,12 @@ PHUSE
 Patil
 Rds
 Ren
+Repo
 Rosenstock
 Rscript
 SDTM
 Tibble
+YAML
 addin
 adsl
 axecute
@@ -30,11 +32,10 @@ logrxaddin
 logrxpackage
 mtcars
 param
-Patil
-Ren
-renv
+pharmaverse
 pre
 rds
+renv
 repo
 reproducibility
 rx
