@@ -9,9 +9,9 @@
 status](https://github.com/pharmaverse/logrx/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pharmaverse/logrx/actions?workflow=R-CMD-check.yaml)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/logrx)](https://CRAN.R-project.org/package=logrx)
-[![Test
-Coverage](https://raw.githubusercontent.com/pharmaverse/logrx/badges/main/test-coverage.svg)](https://github.com/pharmaverse/logrx/actions/workflows/code-coverage.yml)
 [<img src="https://img.shields.io/badge/License-MIT-blue.svg">](https://github.com/pharmaverse/logrx/blob/master/LICENSE.md)
+[![pharmaverse logrx
+Badge](http://pharmaverse.org/shields/logrx.svg)](https://pharmaverse.org)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental-1)
 [![Test
@@ -51,7 +51,6 @@ package.
 
 <img src="https://github.com/pharmaverse/logrxaddin/blob/assets/logrx_gif.gif?raw=true" alt="logrx Addin in Action" width="100%" />
 <p class="caption">
-
 logrx Addin in Action
 </p>
 
