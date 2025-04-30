@@ -32,7 +32,7 @@ Authors@R:
     )
 Description: A utility to facilitate the logging and review of R programs in clinical trial programming workflows.
 License: MIT + file LICENSE
-URL: https://github.com/pharmaverse/logrx
+URL: https://pharmaverse.github.io/logrx, https://github.com/pharmaverse/logrx
 BugReports: https://github.com/pharmaverse/logrx/issues
 Encoding: UTF-8
 LazyData: true
