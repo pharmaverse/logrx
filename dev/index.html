@@ -46,6 +46,7 @@
 <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Use Cases</h6></li>
     <li><a class="dropdown-item" href="articles/execution.html">Generating a Log</a></li>
+    <li><a class="dropdown-item" href="articles/generate-lockfile.html">Generate renv lockfile from log file</a></li>
     <li><a class="dropdown-item" href="articles/tables.html">Logging for Summary Display Table</a></li>
     <li><a class="dropdown-item" href="articles/adsl_demo.html">Logging for an ADSL dataset</a></li>
     <li><a class="dropdown-item" href="articles/tidylog.html">Logging with {tidylog}</a></li>
@@ -77,7 +78,7 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p>The goal of <a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> is to facilitate logging in a clinical environment with the goal of making code easily traceable and reproducible.</p>
+<p>The goal of <a href="https://pharmaverse.github.io/logrx">logrx</a> is to facilitate logging in a clinical environment with the goal of making code easily traceable and reproducible.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -91,19 +92,24 @@
 <div class="section level2">
 <h2 id="what-is-logrx-">What is <code>{logrx}</code> ?<a class="anchor" aria-label="anchor" href="#what-is-logrx-"></a>
 </h2>
-<p>Simple! The <a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> package makes a log file for a R script!. Below we have a short gif of making a log file for a <code>adsl.R</code> script using the Addin which can be found in the <a href="https://github.com/pharmaverse/logrxaddin" class="external-link">logrxaddin package</a>. More details on the parts of the log script are found in <a href="https://pharmaverse.github.io/logrx/articles/logrx.html">Get Started</a> and we have several vignettes that show specific use cases for using the package.</p>
+<p>Simple! The <a href="https://pharmaverse.github.io/logrx">logrx</a> package makes a log file for a R script!. Below we have a short gif of making a log file for a <code>adsl.R</code> script using the Addin which can be found in the <a href="https://github.com/pharmaverse/logrxaddin" class="external-link">logrxaddin package</a>. More details on the parts of the log script are found in <a href="https://pharmaverse.github.io/logrx/articles/logrx.html">Get Started</a> and we have several vignettes that show specific use cases for using the package.</p>
 <div class="figure" style="text-align: center">
 <img src="https://github.com/pharmaverse/logrxaddin/blob/assets/logrx_gif.gif?raw=true" alt="logrx Addin in Action" width="100%"><p class="caption">
 logrx Addin in Action
 </p>
 </div>
+</div>
+<div class="section level2">
+<h2 id="logrx-mission-and-methodology">
+<code>{logrx}</code> Mission and Methodology<a class="anchor" aria-label="anchor" href="#logrx-mission-and-methodology"></a>
+</h2>
 <p>While many packages to facilitate the logging of code already exist in the R ecosystem, it is hard to find a solution that works well for clinical programming applications. Many logging implementations are more implicit and rely on user input to create the log for the execution of a script. While this is useful for logging specific events of an application, in clinical programming a log has a set purpose.</p>
-<p><a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> is built around the concept of creating a log for the execution of an R script that provides an overview of what happened as well as the environment that it happened in. We set out to create a flexible logging utility that could provide the necessary information to anyone reviewing the code execution so they can recreate the execution environment and run the code for themselves. <a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> is purpose-built for the needs of clinical programming to capture necessary elements of the environment and execution to be able to create a complete view of the program execution.</p>
+<p><a href="https://pharmaverse.github.io/logrx">logrx</a> is built around the concept of creating a log for the execution of an R script that provides an overview of what happened as well as the environment that it happened in. We set out to create a flexible logging utility that could provide the necessary information to anyone reviewing the code execution so they can recreate the execution environment and run the code for themselves. While we strive to create a comprehensive and accurate log, we also want to keep the package light and unintrusive in a coding environment. <a href="https://pharmaverse.github.io/logrx">logrx</a> is purpose-built for the needs of clinical programming to capture necessary elements of the environment and execution to be able to create a complete view of the program execution and environment.</p>
 </div>
 <div class="section level2">
 <h2 id="using-logrx">Using logrx<a class="anchor" aria-label="anchor" href="#using-logrx"></a>
 </h2>
-<p><code>logrx</code> can be used in a file or through scripting. More information on how to use <a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> can be found in <a href="https://pharmaverse.github.io/logrx/articles/logrx.html">Get Started</a> and in our Articles on Execution and Use Cases.</p>
+<p><code>logrx</code> can be used in a file or through scripting. More information on how to use <a href="https://pharmaverse.github.io/logrx">logrx</a> can be found in <a href="https://pharmaverse.github.io/logrx/articles/logrx.html">Get Started</a> and in our Articles on Execution and Use Cases.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

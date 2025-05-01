@@ -43,6 +43,7 @@
 <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Use Cases</h6></li>
     <li><a class="dropdown-item" href="../articles/execution.html">Generating a Log</a></li>
+    <li><a class="dropdown-item" href="../articles/generate-lockfile.html">Generate renv lockfile from log file</a></li>
     <li><a class="dropdown-item" href="../articles/tables.html">Logging for Summary Display Table</a></li>
     <li><a class="dropdown-item" href="../articles/adsl_demo.html">Logging for an ADSL dataset</a></li>
     <li><a class="dropdown-item" href="../articles/tidylog.html">Logging with {tidylog}</a></li>
@@ -88,10 +89,10 @@ simple wrapper functions that provide feedback for almost all
 <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a> and <a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a> functions, such as
 <code>filter</code>, <code>mutate</code>, <code>select</code>,
 <code>full_join</code>, and <code>group_by</code>.</p>
-<p>Using <a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> we will now capture this feedback on
+<p>Using <a href="https://pharmaverse.github.io/logrx">logrx</a> we will now capture this feedback on
 <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a> and <a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a> functions and place it
 into the <code>Messages, Output, and Result</code> of our
-<a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> log file. We will look at two cases in this
+<a href="https://pharmaverse.github.io/logrx">logrx</a> log file. We will look at two cases in this
 vignette.</p>
 <div class="section level2">
 <h2 id="logging-a-simple-script-with-logrx-and-tidylog">Logging a simple script with <code>{logrx}</code> and
@@ -108,7 +109,7 @@ dataset. We will explore just a few functions available in
 <p>Using <code>axecute(ex1_tidylog.R)</code> we produce a log file.
 Below we snapshot just the pertinent information for users interested in
 the <a href="https://github.com/elbersb/tidylog/" class="external-link">tidylog</a> feedback. This feedback is placed by the
-<a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> package into the
+<a href="https://pharmaverse.github.io/logrx">logrx</a> package into the
 <code>Messages, Output, and Result</code> section of the log.</p>
 <p><br></p>
 <iframe width="700" height="400" src="ex1_tidylog_log.html"></iframe>
@@ -130,14 +131,14 @@ script.</p>
 <iframe width="700" height="400" src="ex2_tidylog_adsl_R_file.html"></iframe>
 <p><br></p>
 <p>We only showcase the feedback in the script relevant to our
-discussion on <a href="https://github.com/elbersb/tidylog/" class="external-link">tidylog</a>. Again, the <a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a>
+discussion on <a href="https://github.com/elbersb/tidylog/" class="external-link">tidylog</a>. Again, the <a href="https://pharmaverse.github.io/logrx">logrx</a>
 package places feedback from <a href="https://github.com/elbersb/tidylog/" class="external-link">tidylog</a> into the
 <code>Messages, Output, and Result</code>section of the log file.</p>
 <p><br></p>
 <iframe width="700" height="400" src="ex2_tidylog_adsl_log.html"></iframe>
 <p><br></p>
 <p>Success!! We just <code>axecuted</code> two scripts using
-<a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> and <a href="https://github.com/elbersb/tidylog/" class="external-link">tidylog</a>. Remember that feedback
+<a href="https://pharmaverse.github.io/logrx">logrx</a> and <a href="https://github.com/elbersb/tidylog/" class="external-link">tidylog</a>. Remember that feedback
 from <a href="https://github.com/elbersb/tidylog/" class="external-link">tidylog</a> is placed into the
 <code>Messages, Output, and Result</code> section of the log file.</p>
 </div>
