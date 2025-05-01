@@ -8,5 +8,5 @@ description: ""
 ---
 
 ```{r engine='bash', comment='', echo=FALSE}
-sed -n 251,267p ex2_tidylog_adsl.log
+cat ex2_tidylog_adsl.log
 ```

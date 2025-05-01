@@ -11,7 +11,7 @@ logrx link to repository: https://github.com/pharmaverse/logrx
 User: r590548
 File Name: ex2_tidylog_adsl.R
 File Path: /cloud/project/data-raw/tidylog
-File HashSum: 78c15f9dad659de20a0d1bae1a3a80cb45345fa8
+File HashSum: 6a57fbe7ae218950d534034dd2847816845c6f5e
 --------------------------------------------------------------------------------
 -                             Session Information                              -
 --------------------------------------------------------------------------------
@@ -25,21 +25,30 @@ File HashSum: 78c15f9dad659de20a0d1bae1a3a80cb45345fa8
  collate  C.UTF-8
  ctype    C.UTF-8
  tz       UTC
- date     2025-04-30
+ date     2025-05-01
  rstudio  2024.04.2+764.pro1 Chocolate Cosmos (server)
- pandoc   NA
- quarto   1.6.42 @ /usr/bin/quarto
+ pandoc   3.1.11 @ /usr/lib/rstudio-server/bin/quarto/bin/tools/x86_64/ (via
+	  rmarkdown)
+ quarto   1.7.29 @ /usr/bin/quarto
 
 ─ Packages ─────────────────────────────────────────────────────────────────────
  package         * version    date (UTC) lib source
  admiral         * 1.2.0      2025-01-15 [1] RSPM (R 4.2.0)
  admiraldev        1.2.0      2025-01-15 [1] RSPM (R 4.2.0)
+ callr             3.7.6      2024-03-25 [1] RSPM (R 4.2.0)
  cli               3.6.4      2025-02-13 [1] RSPM (R 4.2.0)
+ clisymbols        1.2.0      2017-05-21 [1] RSPM (R 4.2.0)
+ desc              1.4.3      2023-12-10 [1] RSPM (R 4.2.0)
  digest            0.6.37     2024-08-19 [1] RSPM (R 4.2.0)
  dplyr           * 1.1.4      2023-11-17 [1] RSPM (R 4.2.0)
+ evaluate          1.0.3      2025-01-10 [1] RSPM (R 4.2.0)
+ fastmap           1.2.0      2024-05-15 [1] RSPM (R 4.2.0)
+ fs                1.6.5      2024-10-30 [1] RSPM (R 4.2.0)
  generics          0.1.3      2022-07-05 [1] RSPM (R 4.2.0)
  glue              1.8.0      2024-09-30 [1] RSPM (R 4.2.0)
  hms               1.1.3      2023-03-21 [1] RSPM (R 4.2.0)
+ htmltools         0.5.8.1    2024-04-04 [1] RSPM (R 4.2.0)
+ knitr             1.49       2024-11-08 [1] RSPM (R 4.2.0)
  lifecycle         1.0.4      2023-11-07 [1] RSPM (R 4.2.0)
  logrx             0.3.2.9000 2025-04-30 [1] local
  lubridate       * 1.9.4      2024-12-08 [1] RSPM (R 4.2.0)
@@ -47,19 +56,27 @@ File HashSum: 78c15f9dad659de20a0d1bae1a3a80cb45345fa8
  pharmaversesdtm * 1.2.0      2025-01-23 [1] RSPM (R 4.2.0)
  pillar            1.10.1     2025-01-07 [1] RSPM (R 4.2.0)
  pkgconfig         2.0.3      2019-09-22 [1] RSPM (R 4.2.0)
+ pkgdown           2.1.1      2024-09-17 [1] RSPM (R 4.2.0)
+ processx          3.8.6      2025-02-21 [1] RSPM (R 4.2.0)
+ ps                1.9.0      2025-02-18 [1] RSPM (R 4.2.0)
  purrr             1.0.4      2025-02-05 [1] RSPM (R 4.2.0)
  R6                2.6.1      2025-02-15 [1] RSPM (R 4.2.0)
+ renv              1.1.4      2025-03-20 [1] RSPM (R 4.2.0)
  rlang             1.1.5      2025-01-17 [1] RSPM (R 4.2.0)
+ rmarkdown         2.29       2024-11-04 [1] RSPM (R 4.2.0)
  rstudioapi        0.17.1     2024-10-22 [1] RSPM (R 4.2.0)
  sessioninfo       1.2.3      2025-02-05 [1] RSPM (R 4.2.0)
  stringi           1.8.4      2024-05-06 [1] RSPM (R 4.2.0)
  stringr         * 1.5.1      2023-11-14 [1] RSPM (R 4.2.0)
  tibble            3.2.1      2023-03-20 [1] RSPM (R 4.2.0)
+ tidylog         * 1.1.0      2024-05-08 [1] RSPM (R 4.2.0)
  tidyr             1.3.1      2024-01-24 [1] RSPM (R 4.2.0)
  tidyselect        1.2.1      2024-03-11 [1] RSPM (R 4.2.0)
  timechange        0.3.0      2024-01-18 [1] RSPM (R 4.2.0)
  vctrs             0.6.5      2023-12-01 [1] RSPM (R 4.2.0)
  withr             3.0.2      2024-10-28 [1] RSPM (R 4.2.0)
+ xfun              0.51       2025-02-19 [1] RSPM (R 4.2.0)
+ yaml              2.3.10     2024-07-26 [1] RSPM (R 4.2.0)
 
  [1] /cloud/lib/x86_64-pc-linux-gnu-library/4.2
  [2] /opt/R/4.2.3/lib/R/library
@@ -104,15 +121,16 @@ function `kronecker` from {package:base} by package:methods
 --------------------------------------------------------------------------------
 {package:admiral} convert_blanks_to_na, derive_vars_dtm, derive_vars_merged, exprs, derive_vars_dtm_to_dt, derive_var_trtdurd, derive_vars_dt, derive_vars_duration, derive_vars_extreme_event, event, convert_dtc_to_dt, derive_var_merged_exist_flag
 {package:base} library, c, %in%, is.na, list, grepl, file.exists, dir.create, save, file.path
-{package:dplyr} case_when, between, mutate, if_else
+{package:dplyr} case_when, between, if_else
 {package:stringr} %>%, str_detect
+{package:tidylog} mutate
 {package:tools} R_user_dir
 --------------------------------------------------------------------------------
 -                         Program Run Time Information                         -
 --------------------------------------------------------------------------------
-Start time: 2025-04-30 15:18:27 UTC
-End time: 2025-04-30 15:18:36 UTC
-Run time: 9 seconds
+Start time: 2025-05-01 16:31:17 UTC
+End time: 2025-05-01 16:31:21 UTC
+Run time: 4 seconds
 --------------------------------------------------------------------------------
 -                             Errors and Warnings                              -
 --------------------------------------------------------------------------------
@@ -130,6 +148,20 @@ Messages:
 	The following objects are masked from ‘package:base’:    intersect, setdiff, setequal, union
 	Attaching package: ‘lubridate’
 	The following objects are masked from ‘package:base’:    date, intersect, setdiff, union
+	Attaching package: ‘tidylog’
+	The following objects are masked from ‘package:dplyr’:    add_count, add_tally, anti_join, count, distinct, distinct_all, distinct_at,    distinct_if, filter, filter_all, filter_at, filter_if, full_join, group_by,    group_by_all, group_by_at, group_by_if, inner_join, left_join, mutate, mutate_all,    mutate_at, mutate_if, relocate, rename, rename_all, rename_at, rename_if,    rename_with, right_join, sample_frac, sample_n, select, select_all, select_at,    select_if, semi_join, slice, slice_head, slice_max, slice_min, slice_sample,    slice_tail, summarise, summarise_all, summarise_at, summarise_if, summarize,    summarize_all, summarize_at, summarize_if, tally, top_frac, top_n, transmute,    transmute_all, transmute_at, transmute_if, ungroup
+	The following object is masked from ‘package:stats’:    filter
+	mutate: new variable 'TRT01P' (character) with 4 unique values and 0% NA
+	        new variable 'TRT01A' (character) with 4 unique values and 0% NA
+	mutate: new variable 'DTHCGR1' (character) with 2 unique values and 99% NA
+	mutate: dropped one variable (DOMAIN)
+	mutate: new variable 'RACEGR1' (character) with 2 unique values and 0% NA
+	        new variable 'AGEGR1' (character) with 2 unique values and 0% NA
+	        new variable 'REGION1' (character) with one unique value and 0% NA
+	        new variable 'LDDTHGR1' (character) with 2 unique values and 99% NA
+	        new variable 'DTH30FL' (character) with 2 unique values and 99% NA
+	        new variable 'DTHA30FL' (character) with one unique value and 100% NA
+	        new variable 'DTHB30FL' (character) with 2 unique values and >99% NA
 Output:
 	
 
