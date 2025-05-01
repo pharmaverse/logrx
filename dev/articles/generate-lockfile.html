@@ -103,25 +103,20 @@
 <span></span>
 <span><span class="va">filePath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">logDir</span>, <span class="st">"log_out_parse"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/axecute.html">axecute</a></span><span class="op">(</span><span class="va">scriptPath</span>, log_name <span class="op">=</span> <span class="st">"log_out_parse"</span>, log_path <span class="op">=</span> <span class="va">logDir</span>, show_repo_url <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "hello logrx"</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/axecute.html">axecute</a></span><span class="op">(</span><span class="va">scriptPath</span>, log_name <span class="op">=</span> <span class="st">"log_out_parse"</span>, log_path <span class="op">=</span> <span class="va">logDir</span>, show_repo_url <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Later on read (and parse) previous log file as list of objects.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">parsedFile</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_log_file.html">read_log_file</a></span><span class="op">(</span><span class="va">filePath</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in if (length(x) &gt; 1 || grepl("\n", x)) {: missing value where TRUE/FALSE needed</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">parsedFile</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_log_file.html">read_log_file</a></span><span class="op">(</span><span class="va">filePath</span><span class="op">)</span></span></code></pre></div>
 <p>Create a renv lockfile based on the used packages mentioned in the
 log file.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pkgs</span> <span class="op">&lt;-</span> <span class="va">parsedFile</span><span class="op">$</span><span class="va">`Used Package and Functions`</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html" class="external-link">transmute</a></span><span class="op">(</span>package_name <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html" class="external-link">str_extract</a></span><span class="op">(</span><span class="va">library</span>, <span class="st">"(?&lt;=package\\:).+"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error: object 'parsedFile' not found</span></span>
 <span></span>
 <span><span class="va">used_pkgs</span> <span class="op">&lt;-</span> <span class="va">parsedFile</span><span class="op">$</span><span class="va">`Session Information`</span><span class="op">$</span><span class="va">Packages</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">package</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">pkgs</span><span class="op">$</span><span class="va">package_name</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error: object 'parsedFile' not found</span></span>
 <span></span>
 <span><span class="va">repo_urls</span> <span class="op">&lt;-</span> <span class="va">parsedFile</span><span class="op">$</span><span class="va">`Repo URLs`</span></span>
-<span><span class="co">#&gt; Error: object 'parsedFile' not found</span></span>
 <span></span>
 <span><span class="va">temp_lockfile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".lockfile"</span><span class="op">)</span></span>
 <span></span>
@@ -131,18 +126,14 @@ log file.</p>
 <span>    Package <span class="op">=</span> <span class="va">used_pkgs</span><span class="op">$</span><span class="va">package</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error: object 'used_pkgs' not found</span></span>
 <span></span>
 <span><span class="co"># Update repo URL for lockfile</span></span>
 <span><span class="va">lockfile_repos</span> <span class="op">&lt;-</span> <span class="va">repo_urls</span><span class="op">$</span><span class="va">Name</span></span>
-<span><span class="co">#&gt; Error: object 'repo_urls' not found</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">lockfile_repos</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">repo_urls</span><span class="op">$</span><span class="va">URL</span></span>
-<span><span class="co">#&gt; Error: object 'repo_urls' not found</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">renv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/renv/reference/lockfiles.html" class="external-link">lockfile_modify</a></span><span class="op">(</span></span>
 <span>  lockfile <span class="op">=</span> <span class="va">x</span>,</span>
 <span>  repos <span class="op">=</span> <span class="va">lockfile_repos</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error: object 'x' not found</span></span>
 <span></span>
 <span><span class="co"># Write lockfile</span></span>
 <span><span class="fu">renv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/renv/reference/lockfiles.html" class="external-link">lockfile_write</a></span><span class="op">(</span></span>
@@ -150,7 +141,6 @@ log file.</p>
 <span>  file <span class="op">=</span> <span class="va">temp_lockfile</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"custom"</span>,</span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error: object 'x' not found</span></span>
 <span></span>
 <span><span class="co"># Update package versions based on session info</span></span>
 <span><span class="fu">renv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/renv/reference/record.html" class="external-link">record</a></span><span class="op">(</span></span>
@@ -164,7 +154,6 @@ log file.</p>
 <span>  <span class="op">)</span>,</span>
 <span>  lockfile <span class="op">=</span> <span class="va">temp_lockfile</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error: object 'used_pkgs' not found</span></span>
 <span></span>
 <span><span class="co"># Open the lockfile you just created to confirm it looks as expected</span></span>
 <span><span class="co"># uncomment the lines below to open the lockfile in RStudio</span></span>
