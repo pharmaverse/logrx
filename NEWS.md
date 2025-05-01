@@ -1,16 +1,26 @@
-# logrx (development version)
+# logrx 0.4.0
 
+## New Features
  - Adds the optional `extra_info` parameter to `axecute()` which lets users pass a list 
    object through to the extra info section of the log. The object will be printed 
    according to the YAML format (#180)
- - Adds unit tests for `write_repo_urls()` and `get_repo_urls()` internal functions.
 
- - Extend testing unexported function use (#208)
- - Swap in `lintr::library_call_linter()` for local version of `library_call_linter()` (#221)
- 
+## Updates
  - The Shiny Addin has been removed from this Package (#207)
    - A standalone package for the Shiny Addin has been created
    - See [logrxaddin](https://github.com/pharmaverse/logrxaddin) for more information
+   
+ - Adds unit tests for `write_repo_urls()` and `get_repo_urls()` internal functions.
+
+ - Extend testing unexported function use (#208)
+ 
+ - Swap in `lintr::library_call_linter()` for local version of `library_call_linter()` (#221)
+
+ - Update `read_log_file()` for updated version of `{sessioninfo}` #246
+
+
+## Documentation
+ - Add vignette for creating a lockfile (#233)
 
 # logrx 0.3.2
 
@@ -23,13 +33,21 @@
 # logrx 0.3.0
 
 - Moved website theme to bootstrap 5, enabled search (#179)
+
 - Add `show_repo_url` option in `axecute()` to capture repo URL(s) into log file (#167)
+
 - Moved website theme to Bootstrap 5, enabled search (#179)
+
 - Add `include_rds` argument to `axecute()` to export log as rds file
+
 - Add `read_log_file()` to read logrx log file as optional function
+
 - Add `library_call_linter()` to ensure all library calls are at the top of the script (#163)
+
 - Remove argument for remove_log_object from `axecute()` still accessible via `log_write()` (#182)
+
 - Added functionality so `axecute()` works with `.Rmd` files (#140)
+
 - R Version switched from `>3.5` to `>4.0` in `DESCRIPTION` file (#198)
 
 # logrx 0.2.2

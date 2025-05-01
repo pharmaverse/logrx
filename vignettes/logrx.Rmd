@@ -69,18 +69,6 @@ list of packages and functions.
 * **Extra Info (optional)** - Extra info that use can manually add via a list object
 * **Log Output File** - Name and path of the log
 
-Below we have a scrollable example of what is included in a log file for an `adsl.R` script.  
+Below we have an example of what is included in a log file for an `adsl.R` script.  
 
-
-<style>
-  .scrolled {
-    overflow-y: scroll !important;
-    white-space: nowrap;
-    max-height: 400px;
-  }
-</style>
-
-<div class = "scrolled">
- <img src='`r here::here("man/figures/log.png")`'/>
-</div>
-
+<iframe width="700" height="400" src='articles/adsl_log.html'/>
