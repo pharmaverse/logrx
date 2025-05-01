@@ -298,23 +298,17 @@ overflow-y: auto;
 border: 1px solid #ddd;
 border-radius: 4px;
 }
-.tabset-dropdown > .nav-tabs > li.active:before {
-content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+content: "\e259";
 font-family: 'Glyphicons Halflings';
 display: inline-block;
 padding: 10px;
 border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-content: "";
-border: none;
-}
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-content: "";
+content: "\e258";
 font-family: 'Glyphicons Halflings';
-display: inline-block;
-padding: 10px;
-border-right: 1px solid #ddd;
+border: none;
 }
 .tabset-dropdown > .nav-tabs > li.active {
 display: block;
@@ -362,117 +356,96 @@ display: none;
 <pre><code>--------------------------------------------------------------------------------
 -                                logrx Metadata                                -
 --------------------------------------------------------------------------------
-This log was generated using logrx 0.1.1.9002
-logrx package version: 0.1.1.9002
+This log was generated using logrx 0.3.2.9000
+logrx package version: 0.3.2.9000
 logrx build: local
 logrx link to repository: https://github.com/pharmaverse/logrx
 --------------------------------------------------------------------------------
 -                          User and File Information                           -
 --------------------------------------------------------------------------------
-User: thomaspb
+User: r590548
 File Name: adsl.R
-File Path: /Users/thomaspb/Projects/logrx/data-raw
-File HashSum: 1e529cde562616cf52ef6090eb932ca07f82e474
+File Path: /cloud/project/data-raw/adsl
+File HashSum: 8fc6a1151e2e8129a2a9e10586484e2e09655362
 --------------------------------------------------------------------------------
 -                             Session Information                              -
 --------------------------------------------------------------------------------
 ─ Session info ─────────────────────────────────────────────────────────────────
  setting  value
- version  R version 4.2.1 (2022-06-23)
- os       macOS Ventura 13.0.1
- system   aarch64, darwin20
+ version  R version 4.2.3 (2023-03-15)
+ os       Ubuntu 20.04.6 LTS
+ system   x86_64, linux-gnu
  ui       RStudio
  language (EN)
- collate  en_GB.UTF-8
- ctype    en_GB.UTF-8
- tz       Europe/London
- date     2022-12-08
- rstudio  2022.07.2+576 Spotted Wakerobin (desktop)
+ collate  C.UTF-8
+ ctype    C.UTF-8
+ tz       UTC
+ date     2025-04-30
+ rstudio  2024.04.2+764.pro1 Chocolate Cosmos (server)
  pandoc   NA
+ quarto   1.6.42 @ /usr/bin/quarto
 
 ─ Packages ─────────────────────────────────────────────────────────────────────
- package      * version    date (UTC) lib source
- admiral      * 0.8.4      2022-10-14 [1] CRAN (R 4.2.0)
- admiral.test * 0.3.0      2022-09-01 [1] CRAN (R 4.2.0)
- admiraldev     0.1.0      2022-08-26 [1] CRAN (R 4.2.0)
- assertthat     0.2.1      2019-03-21 [1] CRAN (R 4.2.0)
- callr          3.7.2      2022-08-22 [1] CRAN (R 4.2.0)
- cli            3.4.1      2022-09-23 [1] CRAN (R 4.2.0)
- crayon         1.5.2      2022-09-29 [1] CRAN (R 4.2.0)
- cyclocomp      1.1.0      2016-09-10 [1] CRAN (R 4.2.0)
- desc           1.4.2      2022-09-08 [1] CRAN (R 4.2.0)
- diffdf       * 1.0.4      2020-03-17 [1] CRAN (R 4.2.0)
- digest         0.6.29     2021-12-01 [1] CRAN (R 4.2.0)
- dplyr        * 1.0.10     2022-09-01 [1] CRAN (R 4.2.0)
- ellipsis       0.3.2      2021-04-29 [1] CRAN (R 4.2.0)
- fansi          1.0.3      2022-03-24 [1] CRAN (R 4.2.0)
- fastmap        1.1.0      2021-01-25 [1] CRAN (R 4.2.0)
- generics       0.1.3      2022-07-05 [1] CRAN (R 4.2.0)
- glue           1.6.2      2022-02-24 [1] CRAN (R 4.2.0)
- hms            1.1.2      2022-08-19 [1] CRAN (R 4.2.0)
- htmltools      0.5.3      2022-07-18 [1] CRAN (R 4.2.0)
- httpuv         1.6.6      2022-09-08 [1] CRAN (R 4.2.0)
- later          1.3.0      2021-08-18 [1] CRAN (R 4.2.0)
- lazyeval       0.2.2      2019-03-15 [1] CRAN (R 4.2.0)
- lifecycle      1.0.3      2022-10-07 [1] CRAN (R 4.2.0)
- lintr          3.0.1      2022-09-13 [1] CRAN (R 4.2.0)
- logrx        * 0.1.1.9002 2022-12-08 [1] local
- lubridate    * 1.9.0      2022-11-06 [1] CRAN (R 4.2.0)
- magrittr       2.0.3      2022-03-30 [1] CRAN (R 4.2.0)
- mime           0.12       2021-09-28 [1] CRAN (R 4.2.0)
- miniUI         0.1.1.1    2018-05-18 [1] CRAN (R 4.2.0)
- pillar         1.8.1      2022-08-19 [1] CRAN (R 4.2.0)
- pkgconfig      2.0.3      2019-09-22 [1] CRAN (R 4.2.0)
- processx       3.7.0      2022-07-07 [1] CRAN (R 4.2.0)
- promises       1.2.0.1    2021-02-11 [1] CRAN (R 4.2.0)
- ps             1.7.1      2022-06-18 [1] CRAN (R 4.2.0)
- purrr          0.3.5      2022-10-06 [1] CRAN (R 4.2.0)
- R6             2.5.1      2021-08-19 [1] CRAN (R 4.2.0)
- Rcpp           1.0.9      2022-07-08 [1] CRAN (R 4.2.0)
- remotes        2.4.2      2021-11-30 [1] CRAN (R 4.2.0)
- rex            1.2.1      2021-11-26 [1] CRAN (R 4.2.0)
- rlang          1.0.6      2022-09-24 [1] CRAN (R 4.2.0)
- rprojroot      2.0.3      2022-04-02 [1] CRAN (R 4.2.0)
- rstudioapi     0.14       2022-08-22 [1] CRAN (R 4.2.0)
- sessioninfo    1.2.2      2021-12-06 [1] CRAN (R 4.2.0)
- shiny          1.7.2      2022-07-19 [1] CRAN (R 4.2.0)
- stringi        1.7.8      2022-07-11 [1] CRAN (R 4.2.0)
- stringr      * 1.4.1      2022-08-20 [1] CRAN (R 4.2.0)
- tibble         3.1.8      2022-07-22 [1] CRAN (R 4.2.0)
- tidyr          1.2.1      2022-09-08 [1] CRAN (R 4.2.0)
- tidyselect     1.2.0      2022-10-10 [1] CRAN (R 4.2.0)
- timechange   * 0.1.1      2022-11-04 [1] CRAN (R 4.2.0)
- utf8           1.2.2      2021-07-24 [1] CRAN (R 4.2.0)
- vctrs          0.4.2      2022-09-29 [1] CRAN (R 4.2.0)
- waiter         0.2.5      2022-01-03 [1] CRAN (R 4.2.0)
- withr          2.5.0      2022-03-03 [1] CRAN (R 4.2.0)
- xml2           1.3.3      2021-11-30 [1] CRAN (R 4.2.0)
- xtable         1.8-4      2019-04-21 [1] CRAN (R 4.2.0)
+ package         * version    date (UTC) lib source
+ admiral         * 1.2.0      2025-01-15 [1] RSPM (R 4.2.0)
+ admiral.test    * 0.7.0      2023-09-10 [1] RSPM (R 4.2.0)
+ admiraldev        1.2.0      2025-01-15 [1] RSPM (R 4.2.0)
+ assertthat        0.2.1      2019-03-21 [1] RSPM (R 4.2.0)
+ cli               3.6.4      2025-02-13 [1] RSPM (R 4.2.0)
+ diffdf          * 1.1.1      2024-09-24 [1] RSPM (R 4.2.0)
+ digest            0.6.37     2024-08-19 [1] RSPM (R 4.2.0)
+ dplyr           * 1.1.4      2023-11-17 [1] RSPM (R 4.2.0)
+ generics          0.1.3      2022-07-05 [1] RSPM (R 4.2.0)
+ glue              1.8.0      2024-09-30 [1] RSPM (R 4.2.0)
+ hms               1.1.3      2023-03-21 [1] RSPM (R 4.2.0)
+ lifecycle         1.0.4      2023-11-07 [1] RSPM (R 4.2.0)
+ logrx             0.3.2.9000 2025-04-30 [1] local
+ lubridate       * 1.9.4      2024-12-08 [1] RSPM (R 4.2.0)
+ magrittr          2.0.3      2022-03-30 [1] RSPM (R 4.2.0)
+ pharmaversesdtm * 1.2.0      2025-01-23 [1] RSPM (R 4.2.0)
+ pillar            1.10.1     2025-01-07 [1] RSPM (R 4.2.0)
+ pkgconfig         2.0.3      2019-09-22 [1] RSPM (R 4.2.0)
+ purrr             1.0.4      2025-02-05 [1] RSPM (R 4.2.0)
+ R6                2.6.1      2025-02-15 [1] RSPM (R 4.2.0)
+ rlang             1.1.5      2025-01-17 [1] RSPM (R 4.2.0)
+ rstudioapi        0.17.1     2024-10-22 [1] RSPM (R 4.2.0)
+ sessioninfo       1.2.3      2025-02-05 [1] RSPM (R 4.2.0)
+ stringi           1.8.4      2024-05-06 [1] RSPM (R 4.2.0)
+ stringr         * 1.5.1      2023-11-14 [1] RSPM (R 4.2.0)
+ tibble            3.2.1      2023-03-20 [1] RSPM (R 4.2.0)
+ tidyr             1.3.1      2024-01-24 [1] RSPM (R 4.2.0)
+ tidyselect        1.2.1      2024-03-11 [1] RSPM (R 4.2.0)
+ timechange        0.3.0      2024-01-18 [1] RSPM (R 4.2.0)
+ vctrs             0.6.5      2023-12-01 [1] RSPM (R 4.2.0)
+ withr             3.0.2      2024-10-28 [1] RSPM (R 4.2.0)
 
- [1] /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library
+ [1] /cloud/lib/x86_64-pc-linux-gnu-library/4.2
+ [2] /opt/R/4.2.3/lib/R/library
+ * ── Packages attached to the search path.
 
 ─ External software ────────────────────────────────────────────────────────────
  setting        value
- cairo
+ cairo          1.16.0
  cairoFT
- pango
- png
- jpeg
- tiff
- tcl
- curl           7.84.0
+ pango          1.44.7
+ png            1.6.37
+ jpeg           8.0
+ tiff           LIBTIFF, Version 4.1.0
+ tcl            8.6.10
+ curl           7.68.0
  zlib           1.2.11
  bzlib          1.0.8, 13-Jul-2019
- xz             5.2.5
- PCRE           10.39 2021-10-29
- ICU            70.1
+ xz             5.2.4
+ PCRE           10.34 2019-11-21
+ ICU            66.1
  TRE            TRE 0.8.0 R_fixes (BSD)
- iconv          GNU libiconv 1.11
- readline       5.2
- BLAS
+ iconv          glibc 2.31
+ readline       8.0
 
-      lapack         /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib
- lapack_version 3.10.1
+      BLAS           /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
+
+      lapack         /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
+ lapack_version 3.9.0
 
 ─ Python configuration ─────────────────────────────────────────────────────────
  Python is not available
@@ -481,15 +454,44 @@ File HashSum: 1e529cde562616cf52ef6090eb932ca07f82e474
 --------------------------------------------------------------------------------
 -                               Masked Functions                               -
 --------------------------------------------------------------------------------
+function `admiral_ae` from {package:admiral.test} by .GlobalEnv
+function `admiral_dm` from {package:admiral.test} by .GlobalEnv
+function `admiral_ds` from {package:admiral.test} by .GlobalEnv
+function `admiral_ex` from {package:admiral.test} by .GlobalEnv
+function `admiral_lb` from {package:admiral.test} by .GlobalEnv
+function `ts` from {package:stats} by package:pharmaversesdtm
+function `cm` from {package:grDevices} by package:pharmaversesdtm
+function `%&gt;%` from {package:dplyr, package:admiral} by package:stringr
+function `intersect` from {package:dplyr, package:base} by package:lubridate
+function `setdiff` from {package:dplyr, package:base} by package:lubridate
+function `union` from {package:dplyr, package:base} by package:lubridate
+function `Arith` from {package:methods} by package:lubridate
+function `Compare` from {package:methods} by package:lubridate
+function `show` from {package:methods} by package:lubridate
+function `as.difftime` from {package:base} by package:lubridate
+function `date` from {package:base} by package:lubridate
+function `desc` from {package:admiral} by package:dplyr
+function `filter` from {package:stats} by package:dplyr
+function `lag` from {package:stats} by package:dplyr
+function `setequal` from {package:base} by package:dplyr
 function `plot` from {package:base} by package:graphics
 function `body&lt;-` from {package:base} by package:methods
 function `kronecker` from {package:base} by package:methods
 --------------------------------------------------------------------------------
+-                          Used Package and Functions                          -
+--------------------------------------------------------------------------------
+{package:admiral} convert_blanks_to_na, derive_vars_dtm, derive_vars_merged, exprs, derive_vars_dtm_to_dt, derive_var_trtdurd, derive_vars_dt, derive_vars_duration, derive_vars_extreme_event, event, convert_dtc_to_dt, derive_var_merged_exist_flag
+{package:base} library, c, %in%, is.na, list, grepl, file.exists, dir.create, save, file.path, message
+{package:diffdf} diffdf
+{package:dplyr} case_when, between, mutate, if_else, slice, glimpse, select
+{package:stringr} %&gt;%, str_detect
+{package:tools} R_user_dir
+--------------------------------------------------------------------------------
 -                         Program Run Time Information                         -
 --------------------------------------------------------------------------------
-Start time: 2022-12-08 10:27:31 GMT
-End time: 2022-12-08 10:27:32 GMT
-Run time: 1 seconds
+Start time: 2025-04-30 15:15:52 UTC
+End time: 2025-04-30 15:15:57 UTC
+Run time: 5 seconds
 --------------------------------------------------------------------------------
 -                             Errors and Warnings                              -
 --------------------------------------------------------------------------------
@@ -503,17 +505,10 @@ There are columns in BASE that are not in COMPARE !!
 -                         Messages, Output, and Result                         -
 --------------------------------------------------------------------------------
 Messages:
-    Attaching package: ‘dplyr’
-    The following object is masked from ‘package:admiral’:    filter_if
-    The following objects are masked from ‘package:stats’:    filter, lag
-    The following objects are masked from ‘package:base’:    intersect, setdiff, setequal, union
-    Loading required package: timechange
-    Attaching package: ‘lubridate’
-    The following objects are masked from ‘package:base’:    date, intersect, setdiff, union
     Please check for this important message!!
 Output:
     Rows: 3
-    Columns: 51
+    Columns: 54
     $ STUDYID  &lt;chr&gt; &quot;CDISCPILOT01&quot;, &quot;CDISCPILOT01&quot;, &quot;CDISCPILOT01&quot;
     $ USUBJID  &lt;chr&gt; &quot;01-701-1015&quot;, &quot;01-701-1023&quot;, &quot;01-701-1028&quot;
     $ SUBJID   &lt;chr&gt; &quot;1015&quot;, &quot;1023&quot;, &quot;1028&quot;
@@ -556,6 +551,9 @@ Output:
     $ DTHDTF   &lt;chr&gt; NA, NA, NA
     $ DTHADY   &lt;dbl&gt; NA, NA, NA
     $ LDDTHELD &lt;dbl&gt; NA, NA, NA
+    $ DTHCAUS  &lt;chr&gt; NA, NA, NA
+    $ DTHDOM   &lt;chr&gt; NA, NA, NA
+    $ DTHCGR1  &lt;chr&gt; NA, NA, NA
     $ LSTALVDT &lt;date&gt; 2014-07-02, 2012-09-02, 2014-01-14
     $ SAFFL    &lt;chr&gt; &quot;Y&quot;, &quot;Y&quot;, &quot;Y&quot;
     $ RACEGR1  &lt;chr&gt; &quot;White&quot;, &quot;White&quot;, &quot;White&quot;
@@ -572,7 +570,7 @@ Result:
 -                               Log Output File                                -
 --------------------------------------------------------------------------------
 Log name: adsl.log
-Log path: /Users/thomaspb/Projects/logrx/data-raw</code></pre>
+Log path: /cloud/project/data-raw/adsl</code></pre>
 
 
 
