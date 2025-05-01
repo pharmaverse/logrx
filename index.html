@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>A Logging Utility Focus on Clinical Trial Programming Workflows • logrx</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" sizes="any" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -29,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">logrx</a>
 
-    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.2</small>
+    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,6 +45,7 @@
 <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Use Cases</h6></li>
     <li><a class="dropdown-item" href="articles/execution.html">Generating a Log</a></li>
+    <li><a class="dropdown-item" href="articles/generate-lockfile.html">Generate renv lockfile from log file</a></li>
     <li><a class="dropdown-item" href="articles/tables.html">Logging for Summary Display Table</a></li>
     <li><a class="dropdown-item" href="articles/adsl_demo.html">Logging for an ADSL dataset</a></li>
     <li><a class="dropdown-item" href="articles/tidylog.html">Logging with {tidylog}</a></li>
@@ -74,9 +74,10 @@
 <img src="logo.png" class="logo" alt=""><h1 id="logrx-">logrx <a class="anchor" aria-label="anchor" href="#logrx-"></a>
 </h1>
 </div>
-<!-- badges: start -->
-
-<p>The goal of <a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> is to facilitate logging in a clinical environment with the goal of making code easily traceable and reproducible.</p>
+<!-- start badges -->
+<p><a href="https://github.com/pharmaverse/logrx/actions?workflow=R-CMD-check.yaml" class="external-link"><img src="https://github.com/pharmaverse/logrx/workflows/R-CMD-check.yaml/badge.svg" alt="R build status"></a> <a href="https://CRAN.R-project.org/package=logrx" class="external-link"><img src="https://www.r-pkg.org/badges/version/logrx" alt="CRAN status"></a> <a href="https://github.com/pharmaverse/logrx/blob/master/LICENSE.md" class="external-link"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a> <a href="https://pharmaverse.org" class="external-link"><img src="http://pharmaverse.org/shields/logrx.svg" alt="pharmaverse logrx Badge"></a> <a href="https://github.com/pharmaverse/logrx/actions/workflows/test-coverage.yaml" class="external-link"><img src="https://raw.githubusercontent.com/pharmaverse/logrx/refs/heads/badges/test-coverage.svg" alt="Test Coverage"></a></p>
+<!-- end badges -->
+<p>The goal of <a href="https://pharmaverse.github.io/logrx">logrx</a> is to facilitate logging in a clinical environment with the goal of making code easily traceable and reproducible.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -85,20 +86,29 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"logrx"</span><span class="op">)</span></span></code></pre></div>
 <p>To get the latest development version use:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"pharmaverse/logrx"</span>, ref <span class="op">=</span> <span class="st">"dev"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"pharmaverse/logrx"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="what-is-logrx-">What is <code>{logrx}</code> ?<a class="anchor" aria-label="anchor" href="#what-is-logrx-"></a>
 </h2>
-<p>Simple! The <a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> package makes a log file for a R script!. Below we have a short gif of making a log file for a <code>adsl.R</code> script using the Addin. More details on the parts of the log script are found in <a href="https://pharmaverse.github.io/logrx/articles/logrx.html">Get Started</a> and we have several vignettes that show specific use cases for using the package.</p>
-<p><img src="https://pharmaverse.s3.us-east-2.amazonaws.com/gifs/logrx.gif" alt="logrx Addin in Action" width="100%" style="display: block; margin: auto;"></p>
+<p>Simple! The <a href="https://pharmaverse.github.io/logrx">logrx</a> package makes a log file for a R script!. Below we have a short gif of making a log file for a <code>adsl.R</code> script using the Addin which can be found in the <a href="https://github.com/pharmaverse/logrxaddin" class="external-link">logrxaddin package</a>. More details on the parts of the log script are found in <a href="https://pharmaverse.github.io/logrx/articles/logrx.html">Get Started</a> and we have several vignettes that show specific use cases for using the package.</p>
+<div class="figure" style="text-align: center">
+<img src="https://github.com/pharmaverse/logrxaddin/blob/assets/logrx_gif.gif?raw=true" alt="logrx Addin in Action" width="100%"><p class="caption">
+logrx Addin in Action
+</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="logrx-mission-and-methodology">
+<code>{logrx}</code> Mission and Methodology<a class="anchor" aria-label="anchor" href="#logrx-mission-and-methodology"></a>
+</h2>
 <p>While many packages to facilitate the logging of code already exist in the R ecosystem, it is hard to find a solution that works well for clinical programming applications. Many logging implementations are more implicit and rely on user input to create the log for the execution of a script. While this is useful for logging specific events of an application, in clinical programming a log has a set purpose.</p>
-<p><a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> is built around the concept of creating a log for the execution of an R script that provides an overview of what happened as well as the environment that it happened in. We set out to create a flexible logging utility that could provide the necessary information to anyone reviewing the code execution so they can recreate the execution environment and run the code for themselves. <a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> is purpose-built for the needs of clinical programming to capture necessary elements of the environment and execution to be able to create a complete view of the program execution.</p>
+<p><a href="https://pharmaverse.github.io/logrx">logrx</a> is built around the concept of creating a log for the execution of an R script that provides an overview of what happened as well as the environment that it happened in. We set out to create a flexible logging utility that could provide the necessary information to anyone reviewing the code execution so they can recreate the execution environment and run the code for themselves. While we strive to create a comprehensive and accurate log, we also want to keep the package light and unintrusive in a coding environment. <a href="https://pharmaverse.github.io/logrx">logrx</a> is purpose-built for the needs of clinical programming to capture necessary elements of the environment and execution to be able to create a complete view of the program execution and environment.</p>
 </div>
 <div class="section level2">
 <h2 id="using-logrx">Using logrx<a class="anchor" aria-label="anchor" href="#using-logrx"></a>
 </h2>
-<p><code>logrx</code> can be used in a file or through scripting. More information on how to use <a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> can be found in <a href="https://pharmaverse.github.io/logrx/articles/logrx.html">Get Started</a> and in our Articles on Execution and Use Cases.</p>
+<p><code>logrx</code> can be used in a file or through scripting. More information on how to use <a href="https://pharmaverse.github.io/logrx">logrx</a> can be found in <a href="https://pharmaverse.github.io/logrx/articles/logrx.html">Get Started</a> and in our Articles on Execution and Use Cases.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -129,13 +139,13 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Nathan Kosiba <br><small class="roles"> Author, maintainer </small>  </li>
-<li>Thomas Bermudez <br><small class="roles"> Author </small>  </li>
-<li>Ben Straub <br><small class="roles"> Author </small>  </li>
-<li>Michael Rimler <br><small class="roles"> Author </small>  </li>
-<li>Nicholas Masel <br><small class="roles"> Author </small>  </li>
-<li>Sam Parmar <br><small class="roles"> Author </small>  </li>
-<li>GSK/Atorus JPT <br><small class="roles"> Copyright holder, funder </small>  </li>
+<li>Nathan Kosiba <br><small class="roles"> Author, maintainer </small>   </li>
+<li>Thomas Bermudez <br><small class="roles"> Author </small>   </li>
+<li>Ben Straub <br><small class="roles"> Author </small>   </li>
+<li>Michael Rimler <br><small class="roles"> Author </small>   </li>
+<li>Nicholas Masel <br><small class="roles"> Author </small>   </li>
+<li>Sam Parmar <br><small class="roles"> Author </small>   </li>
+<li>GSK/Atorus JPT <br><small class="roles"> Copyright holder, funder </small>   </li>
 </ul>
 </div>
 
@@ -150,7 +160,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>

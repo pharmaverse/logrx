@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Logging with {tidylog} • logrx</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -26,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">logrx</a>
 
-    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.2</small>
+    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,6 +42,7 @@
 <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Use Cases</h6></li>
     <li><a class="dropdown-item" href="../articles/execution.html">Generating a Log</a></li>
+    <li><a class="dropdown-item" href="../articles/generate-lockfile.html">Generate renv lockfile from log file</a></li>
     <li><a class="dropdown-item" href="../articles/tables.html">Logging for Summary Display Table</a></li>
     <li><a class="dropdown-item" href="../articles/adsl_demo.html">Logging for an ADSL dataset</a></li>
     <li><a class="dropdown-item" href="../articles/tidylog.html">Logging with {tidylog}</a></li>
@@ -88,10 +88,10 @@ simple wrapper functions that provide feedback for almost all
 <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a> and <a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a> functions, such as
 <code>filter</code>, <code>mutate</code>, <code>select</code>,
 <code>full_join</code>, and <code>group_by</code>.</p>
-<p>Using <a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> we will now capture this feedback on
+<p>Using <a href="https://pharmaverse.github.io/logrx">logrx</a> we will now capture this feedback on
 <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a> and <a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a> functions and place it
 into the <code>Messages, Output, and Result</code> of our
-<a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> log file. We will look at two cases in this
+<a href="https://pharmaverse.github.io/logrx">logrx</a> log file. We will look at two cases in this
 vignette.</p>
 <div class="section level2">
 <h2 id="logging-a-simple-script-with-logrx-and-tidylog">Logging a simple script with <code>{logrx}</code> and
@@ -108,7 +108,7 @@ dataset. We will explore just a few functions available in
 <p>Using <code>axecute(ex1_tidylog.R)</code> we produce a log file.
 Below we snapshot just the pertinent information for users interested in
 the <a href="https://github.com/elbersb/tidylog/" class="external-link">tidylog</a> feedback. This feedback is placed by the
-<a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> package into the
+<a href="https://pharmaverse.github.io/logrx">logrx</a> package into the
 <code>Messages, Output, and Result</code> section of the log.</p>
 <p><br></p>
 <iframe width="700" height="400" src="ex1_tidylog_log.html"></iframe>
@@ -130,14 +130,14 @@ script.</p>
 <iframe width="700" height="400" src="ex2_tidylog_adsl_R_file.html"></iframe>
 <p><br></p>
 <p>We only showcase the feedback in the script relevant to our
-discussion on <a href="https://github.com/elbersb/tidylog/" class="external-link">tidylog</a>. Again, the <a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a>
+discussion on <a href="https://github.com/elbersb/tidylog/" class="external-link">tidylog</a>. Again, the <a href="https://pharmaverse.github.io/logrx">logrx</a>
 package places feedback from <a href="https://github.com/elbersb/tidylog/" class="external-link">tidylog</a> into the
 <code>Messages, Output, and Result</code>section of the log file.</p>
 <p><br></p>
 <iframe width="700" height="400" src="ex2_tidylog_adsl_log.html"></iframe>
 <p><br></p>
 <p>Success!! We just <code>axecuted</code> two scripts using
-<a href="https://github.com/pharmaverse/logrx" class="external-link">logrx</a> and <a href="https://github.com/elbersb/tidylog/" class="external-link">tidylog</a>. Remember that feedback
+<a href="https://pharmaverse.github.io/logrx">logrx</a> and <a href="https://github.com/elbersb/tidylog/" class="external-link">tidylog</a>. Remember that feedback
 from <a href="https://github.com/elbersb/tidylog/" class="external-link">tidylog</a> is placed into the
 <code>Messages, Output, and Result</code> section of the log file.</p>
 </div>
@@ -152,7 +152,7 @@ from <a href="https://github.com/elbersb/tidylog/" class="external-link">tidylog
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>
