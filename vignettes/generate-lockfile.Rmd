@@ -46,13 +46,13 @@ axecute(scriptPath, log_name = "log_out_parse", log_path = logDir, show_repo_url
 
 Later on read (and parse) previous log file as list of objects. 
 
-```{r read_logfile, warning = FALSE}
+```{r read_logfile, warning = FALSE, error = TRUE}
 parsedFile <- read_log_file(filePath)
 ```
 
 Create a renv lockfile based on the used packages mentioned in the log file.
 
-```{r gen_lockfile}
+```{r gen_lockfile, error = TRUE}
 pkgs <- parsedFile$`Used Package and Functions` %>%
   transmute(package_name = str_extract(library, "(?<=package\\:).+"))
 
