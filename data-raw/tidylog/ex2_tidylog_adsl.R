@@ -8,6 +8,7 @@ library(pharmaversesdtm) # Contains example datasets from the CDISC pilot projec
 library(dplyr)
 library(lubridate)
 library(stringr)
+library(tidylog)
 
 # Load source datasets ----
 

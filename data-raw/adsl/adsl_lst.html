@@ -298,23 +298,17 @@ overflow-y: auto;
 border: 1px solid #ddd;
 border-radius: 4px;
 }
-.tabset-dropdown > .nav-tabs > li.active:before {
-content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+content: "\e259";
 font-family: 'Glyphicons Halflings';
 display: inline-block;
 padding: 10px;
 border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-content: "";
-border: none;
-}
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-content: "";
+content: "\e258";
 font-family: 'Glyphicons Halflings';
-display: inline-block;
-padding: 10px;
-border-right: 1px solid #ddd;
+border: none;
 }
 .tabset-dropdown > .nav-tabs > li.active {
 display: block;
@@ -361,11 +355,18 @@ display: none;
 
 <pre><code>Differences found between the objects!
 
-A summary is given below.
+Summary of BASE and COMPARE
+  ==================================================================
+    PROPERTY             BASE                       COMP            
+  ------------------------------------------------------------------
+      Name               adsl                      adsl_qc          
+     Class     &quot;tbl_df, tbl, data.frame&quot;  &quot;tbl_df, tbl, data.frame&quot; 
+    Rows(#)               306                        306            
+   Columns(#)             54                         53             
+  ------------------------------------------------------------------
+
 
 There are columns in BASE that are not in COMPARE !!
-All rows are shown in table below
-
   =========
    COLUMNS 
   ---------
