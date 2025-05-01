@@ -63,9 +63,9 @@ The following attributes are recorded in the log:
 script for which the log was generated
 * **Unapproved Package and Functions (optional)** - List of all packages and functions used in 
 the script for which the log was generated that are not part of the approved 
-list of packages and functions
-* **Errors and Warnings** - List of Errors and Warnings from the Script
-* **Messages, Output and Results (optional)** - List Messages, Outputs and Results
+list of packages and functions.
+* **Errors and Warnings** - List of Errors and Warnings created during execution of the script. Since R does not return line numbers along with error or warning messages we do not include them in the log. The R programming language uses a call stack during execution making finding the exact location of an error without human interaction complicated.  
+* **Messages, Output and Results (optional)** - List of Messages, Outputs and Results created during execution of the script.  In certain situations the log will not capture these if they are redirected to a different location.
 * **Extra Info (optional)** - Extra info that use can manually add via a list object
 * **Log Output File** - Name and path of the log
 

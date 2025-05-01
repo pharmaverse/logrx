@@ -1,5 +1,3 @@
-### Functions to setup and run code using logrx
-
 #' Creation of a log and axecution of a file
 #'
 #' `axecute()` creates a log, executes a file, and returns 0 if there are no
