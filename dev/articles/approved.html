@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">logrx</a>
 
-    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.3.2.9000</small>
+    <small class="nav-text text-default me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -145,20 +145,20 @@ your tibble. We create a temp directory to save this for
 illustration.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/build_approved.html">build_approved</a></span><span class="op">(</span><span class="va">approved_pkgs</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 294 × 2</span></span></span>
-<span><span class="co">#&gt;    function_name         library      </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> mean                  package:base </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> slice_max             package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> expr                  package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> src                   package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> db_desc               package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> group_by_drop_default package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> db_commit             package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> coalesce              package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> data_frame            package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> summarize_if          package:dplyr</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 284 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 285 × 2</span></span></span>
+<span><span class="co">#&gt;    function_name library      </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> mean          package:base </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> db_drop_table package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> group_split   package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> mutate_at     package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> db_commit     package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> tally_        package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> dense_rank    package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> summarise_all package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> any_vars      package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> as.tbl        package:dplyr</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 275 more rows</span></span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="save-as-approved-rds">3. Save as <code>approved.rds</code><a class="anchor" aria-label="anchor" href="#save-as-approved-rds"></a>
@@ -252,7 +252,7 @@ follow this best practice.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
