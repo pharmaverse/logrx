@@ -4,7 +4,6 @@ Addin
 Angly
 Axecute
 Hotfix
-Lifecycle
 Linter
 PHUSE
 Patil
@@ -21,6 +20,7 @@ adsl
 axecute
 axecution
 customizable
+dcf
 devtools
 hashsum
 initialises
@@ -39,7 +39,6 @@ renv
 repo
 reproducibility
 rx
-scrollable
 sessionInfo
 tibble
 tidylog

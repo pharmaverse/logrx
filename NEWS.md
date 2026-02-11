@@ -1,3 +1,13 @@
+# logrx (development version)
+
+## New Features
+
+## Updates
+
+- Removed .dcf file for old Addin (#280)
+
+## Documentation
+
 # logrx 0.4.0
 
 ## New Features
