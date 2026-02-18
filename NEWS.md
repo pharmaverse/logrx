@@ -4,6 +4,11 @@
 
 ## Updates
 
+- Improved error messaging when a log.rx environment already exists (#[issue_number])
+  - In non-interactive mode, provides clear guidance on how to resolve the issue
+  - In interactive mode, offers users the option to automatically remove the existing environment or handle it manually
+  - Added comprehensive tests for both interactive and non-interactive scenarios
+
 - Removed .dcf file for old Addin (#280)
 
 ## Documentation
