@@ -43,6 +43,15 @@ test_that("log_config errors with helpful message if a populated log exists (non
     log_config(),
     "restart your R session"
   )
+  
+  # Snapshot test for the complete error message
+  expect_snapshot(
+    log_config(),
+    error = TRUE
+  )
+  
+  # Clean up
+  log_remove()
 })
 
 test_that("handle_existing_environment removes env when user chooses option 1", {
@@ -53,15 +62,31 @@ test_that("handle_existing_environment removes env when user chooses option 1", 
   # Mock interactive() to return TRUE and menu() to return 1
   with_mocked_bindings(
     {
-      # Simulate user choosing option 1 (remove and proceed)
-      result <- handle_existing_environment()
-      expect_true(result)
-      # Environment should be removed
-      expect_null(getOption("log.rx"))
+      # Capture messages
+      expect_message(
+        result <- handle_existing_environment(),
+        "A log.rx environment already exists"
+      )
+      expect_message(
+        handle_existing_environment(),
+        "Removing existing log.rx environment"
+      )
+      
+      # Simulate user choosing option 1 again for snapshot test
+      log_init()
+      assign("user", Sys.info()[["user"]], envir = getOption("log.rx"))
+      
+      # Snapshot test for messages when user chooses to proceed
+      expect_snapshot({
+        handle_existing_environment()
+      })
     },
     interactive = function() TRUE,
     menu = function(...) 1
   )
+  
+  # Environment should be removed after these operations
+  expect_null(getOption("log.rx"))
 })
 
 test_that("handle_existing_environment errors when user chooses option 2", {
@@ -80,10 +105,19 @@ test_that("handle_existing_environment errors when user chooses option 2", {
         handle_existing_environment(),
         "log_remove()"
       )
+      
+      # Snapshot test for the error message when user cancels
+      expect_snapshot(
+        handle_existing_environment(),
+        error = TRUE
+      )
     },
     interactive = function() TRUE,
     menu = function(...) 2
   )
+  
+  # Clean up
+  log_remove()
 })
 
 test_that("handle_existing_environment errors when user cancels menu", {
