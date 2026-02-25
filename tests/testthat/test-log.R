@@ -25,40 +25,27 @@ test_that("log_config configures the log and all the necessary elements", {
 })
 
 test_that("log_config errors with helpful message if a populated log exists (non-interactive)", {
-  options("log.rx" = NULL)
-  log_init()
-  assign("user", Sys.info()[["user"]], envir = getOption("log.rx"))
-  expect_identical(getOption("log.rx")[["user"]], Sys.info()[["user"]])
-  
-  # Test that error contains helpful information
-  expect_error(
-    log_config(),
-    "A log.rx environment already exists"
-  )
-  expect_error(
-    log_config(),
-    "log_remove()"
-  )
-  expect_error(
-    log_config(),
-    "restart your R session"
-  )
-  
-  # Snapshot test for the complete error message
-  expect_snapshot(
-    log_config(),
-    error = TRUE
-  )
-  
-  # Clean up
-  log_remove()
+   # 1. Setup the environment to trigger the error condition
+   options("log.rx" = NULL)
+   log_init()
+   assign("user", Sys.info()[["user"]], envir = getOption("log.rx"))
+   expect_identical(getOption("log.rx")[["user"]], Sys.info()[["user"]])
+
+   # 2. Use expect_snapshot(error = TRUE) to capture the complete error message
+   #    This will call log_config(), trigger the error, and save its output to a snapshot.
+   expect_snapshot({
+      log_config()
+   }, error = TRUE) # Indicate that an error is expected and should be snapshotted
+
+   # 3. Clean up
+   log_remove()
 })
 
 test_that("handle_existing_environment removes env when user chooses option 1", {
   options("log.rx" = NULL)
   log_init()
   assign("user", Sys.info()[["user"]], envir = getOption("log.rx"))
-  
+
   # Mock interactive() to return TRUE and menu() to return 1
   with_mocked_bindings(
     {
@@ -71,11 +58,11 @@ test_that("handle_existing_environment removes env when user chooses option 1", 
         handle_existing_environment(),
         "Removing existing log.rx environment"
       )
-      
+
       # Simulate user choosing option 1 again for snapshot test
       log_init()
       assign("user", Sys.info()[["user"]], envir = getOption("log.rx"))
-      
+
       # Snapshot test for messages when user chooses to proceed
       expect_snapshot({
         handle_existing_environment()
@@ -84,7 +71,7 @@ test_that("handle_existing_environment removes env when user chooses option 1", 
     interactive = function() TRUE,
     menu = function(...) 1
   )
-  
+
   # Environment should be removed after these operations
   expect_null(getOption("log.rx"))
 })
@@ -93,7 +80,7 @@ test_that("handle_existing_environment errors when user chooses option 2", {
   options("log.rx" = NULL)
   log_init()
   assign("user", Sys.info()[["user"]], envir = getOption("log.rx"))
-  
+
   # Mock interactive() to return TRUE and menu() to return 2
   with_mocked_bindings(
     {
@@ -105,7 +92,7 @@ test_that("handle_existing_environment errors when user chooses option 2", {
         handle_existing_environment(),
         "log_remove()"
       )
-      
+
       # Snapshot test for the error message when user cancels
       expect_snapshot(
         handle_existing_environment(),
@@ -115,7 +102,7 @@ test_that("handle_existing_environment errors when user chooses option 2", {
     interactive = function() TRUE,
     menu = function(...) 2
   )
-  
+
   # Clean up
   log_remove()
 })
@@ -124,7 +111,7 @@ test_that("handle_existing_environment errors when user cancels menu", {
   options("log.rx" = NULL)
   log_init()
   assign("user", Sys.info()[["user"]], envir = getOption("log.rx"))
-  
+
   # Mock interactive() to return TRUE and menu() to return 0 (cancelled)
   with_mocked_bindings(
     {
@@ -142,13 +129,13 @@ test_that("log_config works after environment is removed interactively", {
   options("log.rx" = NULL)
   log_init()
   assign("user", Sys.info()[["user"]], envir = getOption("log.rx"))
-  
+
   # Mock interactive mode with user choosing to remove environment
   with_mocked_bindings(
     {
       # This should succeed as the environment will be removed
       log_config("./test-get.R")
-      
+
       # Verify the environment was re-initialized properly
       expect_setequal(
         names(getOption("log.rx")),
@@ -164,7 +151,7 @@ test_that("log_config works after environment is removed interactively", {
     interactive = function() TRUE,
     menu = function(...) 1
   )
-  
+
   # Clean up
   log_remove()
 })

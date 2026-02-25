@@ -5,6 +5,8 @@
 #' `handle_existing_environment()` provides helpful messaging and options
 #' when a log.rx environment already exists
 #'
+#' @importFrom utils menu
+#'
 #' @return TRUE if environment was handled and can proceed, FALSE otherwise
 #'
 #' @noRd
@@ -18,7 +20,7 @@ handle_existing_environment <- function() {
     "  - The log.rx environment was not cleaned up after a previous run\n\n",
     "To resolve this issue, you have the following options:\n"
   )
-  
+
   if (interactive()) {
     # Interactive mode: provide user options
     msg <- paste0(
@@ -26,9 +28,9 @@ handle_existing_environment <- function() {
       "  1. Allow logrx to remove the environment and proceed with execution\n",
       "  2. Manually remove the environment using log_remove() or restart your R session\n"
     )
-    
+
     message(msg)
-    
+
     # Use menu() for interactive selection
     choice <- menu(
       choices = c(
@@ -37,7 +39,7 @@ handle_existing_environment <- function() {
       ),
       title = "Please select an option:"
     )
-    
+
     if (choice == 1) {
       # User chose to remove environment and proceed
       message("Removing existing log.rx environment and proceeding...")
