@@ -25,20 +25,23 @@ test_that("log_config configures the log and all the necessary elements", {
 })
 
 test_that("log_config errors with helpful message if a populated log exists (non-interactive)", {
-   # 1. Setup the environment to trigger the error condition
-   options("log.rx" = NULL)
-   log_init()
-   assign("user", Sys.info()[["user"]], envir = getOption("log.rx"))
-   expect_identical(getOption("log.rx")[["user"]], Sys.info()[["user"]])
+  # 1. Setup the environment to trigger the error condition
+  options("log.rx" = NULL)
+  log_init()
+  assign("user", Sys.info()[["user"]], envir = getOption("log.rx"))
+  expect_identical(getOption("log.rx")[["user"]], Sys.info()[["user"]])
 
-   # 2. Use expect_snapshot(error = TRUE) to capture the complete error message
-   #    This will call log_config(), trigger the error, and save its output to a snapshot.
-   expect_snapshot({
+  # 2. Use expect_snapshot(error = TRUE) to capture the complete error message
+  #    This will call log_config(), trigger the error, and save its output to a snapshot.
+  expect_snapshot(
+    {
       log_config()
-   }, error = TRUE) # Indicate that an error is expected and should be snapshotted
+    },
+    error = TRUE
+  ) # Indicate that an error is expected and should be snapshotted
 
-   # 3. Clean up
-   log_remove()
+  # 3. Clean up
+  log_remove()
 })
 
 test_that("handle_existing_environment removes env when user chooses option 1", {
