@@ -17,7 +17,7 @@ logrx_default_options <- list(
 
   # This overwrite is to correctly build purrr adverb function
   # outlined in purrr best practices for exporting adverb-wrapped functions
-  run_safely <<- purrr::safely(run_file, quiet = FALSE, visible = TRUE)
+  run_safely <<- purrr::safely(run_file, quiet = FALSE)
 
   # set warn to 1 to have warnings be output as they happen
   options(warn = 1)
