@@ -313,8 +313,10 @@ write_result <- function(file) {
 
   if (is_rmarkdown(file)) {
     c("\nResult:", paste0("\t", capture.output(result)))
-  } else {
+  } else if (isTRUE(result$visible)) {
     c("\nResult:", paste0("\t", capture.output(result$value)))
+  } else {
+    character(0)
   }
 }
 
