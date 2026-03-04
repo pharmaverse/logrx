@@ -15,6 +15,23 @@ test_that("invisibly returned results are not written to the log", {
   log_remove()
 })
 
+test_that("invisibly returned results in Rmd files are not written to the log", {
+  options("log.rx" = NULL)
+  scriptPath <- test_path("ref", "invisible_returned_obj.Rmd")
+  logDir <- tempdir()
+
+  axecute(scriptPath, log_name = "log_invisible_rmd", log_path = logDir)
+
+  con <- file(file.path(logDir, "log_invisible_rmd"), "r")
+  flines <- readLines(con)
+  close(con)
+
+  expect_false(any(grepl("do not print this", flines)))
+
+  rm(flines, con, logDir)
+  log_remove()
+})
+
 test_that("visibly returned results are written to the log", {
   options("log.rx" = NULL)
   scriptPath <- test_path("ref", "safely_loudly_test_file_result.R")
