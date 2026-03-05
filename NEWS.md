@@ -8,6 +8,8 @@
 
 ## Documentation
 
+- Updated `axecute()` documentation to correctly reflect return behavior (#288)
+
 # logrx 0.4.0
 
 ## New Features
