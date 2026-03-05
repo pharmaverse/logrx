@@ -1,7 +1,6 @@
 #' Creation of a log and axecution of a file
 #'
-#' `axecute()` creates a log, executes a file, and returns 0 if there are no
-#' errors or 1 if there are any errors
+#' `axecute()` executes a file and creates a log
 #'
 #' @param file String. Path to file to execute
 #' @param log_name String. Name of log file
@@ -23,7 +22,8 @@
 #'
 #' @importFrom purrr map_chr
 #'
-#' @return 0 if there are no errors or 1 if there are any errors
+#' @return NULL. Function is called for side effects. In non-interactive sessions,
+#'   exits with status 1 if errors occur and \code{quit_on_error} is TRUE.
 #' @export
 #'
 #' @examples
