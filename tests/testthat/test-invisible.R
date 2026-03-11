@@ -48,3 +48,20 @@ test_that("visibly returned results are written to the log", {
   rm(flines, con, logDir)
   log_remove()
 })
+
+test_that("gt table HTML content is not written to the result portion of the log", {
+  options("log.rx" = NULL)
+  scriptPath <- test_path("ref", "invisible_returned_gt.R")
+  logDir <- tempdir()
+
+  axecute(scriptPath, log_name = "log_gt", log_path = logDir)
+
+  con <- file(file.path(logDir, "log_gt"), "r")
+  flines <- readLines(con)
+  close(con)
+
+  expect_false(any(grepl("<table", flines, fixed = TRUE)))
+
+  rm(flines, con, logDir)
+  log_remove()
+})
