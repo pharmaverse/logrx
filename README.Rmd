@@ -56,6 +56,8 @@ While many packages to facilitate the logging of code already exist in the R eco
 
 ```{logrx}``` is built around the concept of creating a log for the execution of an R script that provides an overview of what happened as well as the environment that it happened in.  We set out to create a flexible logging utility that could provide the necessary information to anyone reviewing the code execution so they can recreate the execution environment and run the code for themselves.  While we strive to create a comprehensive and accurate log, we also want to keep the package light and unintrusive in a coding environment.  ```{logrx}``` is purpose-built for the needs of clinical programming to capture necessary elements of the environment and execution to be able to create a complete view of the program execution and environment.
 
+While ```{logrx}``` is one solution to logging in clinical programming, [this article on the Pharmaverse page](https://pharmaverse.github.io/examples/logging/logging.html) explains the differences between  ```{logr}```, ```{logrx}```, and ```{whirl}```.
+
 ## Using logrx
 
 ```logrx``` can be used in a file or through scripting.  More information on how to use ```{logrx}``` can be found in [Get Started](https://pharmaverse.github.io/logrx/articles/logrx.html) and in our Articles on Execution and Use Cases.
