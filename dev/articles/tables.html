@@ -94,7 +94,7 @@ risk-difference table.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/atorus-research/Tplyr" class="external-link">Tplyr</a></span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://atorus-research.github.io/Tplyr/" class="external-link">Tplyr</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="load-the-data">2. Load the data<a class="anchor" aria-label="anchor" href="#load-the-data"></a>
@@ -113,17 +113,17 @@ load them.</p>
 risk-difference table, using the <a href="https://atorus-research.github.io/Tplyr/" class="external-link"><code>Typlr</code></a>
 package.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/tplyr_table.html" class="external-link">tplyr_table</a></span><span class="op">(</span><span class="va">adae</span>, <span class="va">TRTA</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/layer_attachment.html" class="external-link">add_layer</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/layer_constructors.html" class="external-link">group_count</a></span><span class="op">(</span><span class="va">RACE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/set_distinct_by.html" class="external-link">set_distinct_by</a></span><span class="op">(</span><span class="va">USUBJID</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/add_risk_diff.html" class="external-link">add_risk_diff</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://atorus-research.github.io/Tplyr/reference/tplyr_table.html" class="external-link">tplyr_table</a></span><span class="op">(</span><span class="va">adae</span>, <span class="va">TRTA</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://atorus-research.github.io/Tplyr/reference/layer_attachment.html" class="external-link">add_layer</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://atorus-research.github.io/Tplyr/reference/layer_constructors.html" class="external-link">group_count</a></span><span class="op">(</span><span class="va">RACE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://atorus-research.github.io/Tplyr/reference/set_distinct_by.html" class="external-link">set_distinct_by</a></span><span class="op">(</span><span class="va">USUBJID</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://atorus-research.github.io/Tplyr/reference/add_risk_diff.html" class="external-link">add_risk_diff</a></span><span class="op">(</span></span>
 <span>        <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Xanomeline High Dose"</span>, <span class="st">"Placebo"</span><span class="op">)</span>,</span>
 <span>        <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Xanomeline Low Dose"</span>, <span class="st">"Placebo"</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/Tplyr/man/build.html" class="external-link">build</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://atorus-research.github.io/Tplyr/reference/build.html" class="external-link">build</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="axecute-the-script">4. Axecute the script<a class="anchor" aria-label="anchor" href="#axecute-the-script"></a>
