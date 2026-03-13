@@ -11,6 +11,11 @@
 
 ### Documentation
 
+- Updated
+  [`axecute()`](https://pharmaverse.github.io/logrx/dev/reference/axecute.md)
+  documentation to correctly reflect return behavior
+  ([\#288](https://github.com/pharmaverse/logrx/issues/288))
+
 ## logrx 0.4.0
 
 CRAN release: 2025-05-05

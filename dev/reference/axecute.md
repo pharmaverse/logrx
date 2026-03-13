@@ -93,12 +93,12 @@ axecute(file.path(dir, "hello.Rmd"))
 #> processing file: hello.Rmd
 #> 1/1
 #> output file: hello.knit.md
-#> /usr/bin/pandoc +RTS -K512m -RTS hello.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output hello.html --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --embed-resources --standalone --variable bs3=TRUE --section-divs --template /home/runner/work/_temp/Library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmpBPe1yz/rmarkdown-str5f356f2996a5.html 
+#> /usr/bin/pandoc +RTS -K512m -RTS hello.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output hello.html --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --embed-resources --standalone --variable bs3=TRUE --section-divs --template /home/runner/work/_temp/Library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmpqYF74l/rmarkdown-str5f2b13201335.html 
 #> 
 #> Output created: hello.html
 #> 
 #> 
-#> processing file: /tmp/RtmpBPe1yz/hello.Rmd
+#> processing file: /tmp/RtmpqYF74l/hello.Rmd
 #> 1/1
-#> output file: /tmp/RtmpBPe1yz/file5f35672e3fec.R
+#> output file: /tmp/RtmpqYF74l/file5f2b597accef.R
 ```
