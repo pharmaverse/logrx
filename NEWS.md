@@ -4,6 +4,8 @@
 
 ## Updates
 
+- Invisibly returned objects are no longer captured in the "Result" section of the log (#275)
+
 - Removed .dcf file for old Addin (#280)
 
 ## Documentation

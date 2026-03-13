@@ -1,0 +1,11 @@
+---
+title: "invisible_returned_obj"
+output: html_document
+---
+
+```{r}
+my_fun <- function(x) {
+  return(invisible(x))
+}
+my_fun("do not print this")
+```
