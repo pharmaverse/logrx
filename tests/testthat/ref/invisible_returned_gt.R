@@ -1,4 +1,4 @@
 library(gt)
 
-gt_tbl <- gt(head(mtcars))
+gt_tbl <- gt::gt(head(mtcars))
 gt_tbl
