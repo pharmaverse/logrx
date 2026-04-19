@@ -78,11 +78,11 @@ nest_sections <- function(adj_log_txt) {
 nest_subsections <- function(adj_log_txt, sect_info) {
   # Extract the first regex match from each string and return NA when no match exists.
   extract_match <- function(x, pattern) {
-    reg_match <- regexpr(pattern, x, perl = TRUE)
+    match_positions <- regexpr(pattern, x, perl = TRUE)
     result <- rep(NA_character_, length(x))
-    has_match <- reg_match != -1
+    has_match <- match_positions != -1
     if (any(has_match)) {
-      result[has_match] <- regmatches(x[has_match], reg_match[has_match])
+      result[has_match] <- regmatches(x[has_match], match_positions[has_match])
     }
     result
   }
