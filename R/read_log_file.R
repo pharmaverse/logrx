@@ -2,11 +2,6 @@
 #'
 #' @param log_txt String vector. Object with log text lines
 #'
-#' @importFrom stringr str_detect
-#' @importFrom stringr str_count
-#' @importFrom stringr str_remove
-#' @importFrom stringr str_replace_all
-#'
 #' @return tibble that ensures formatted subsections
 #'
 #' @examples
@@ -19,21 +14,21 @@
 reformat_subsections <- function(log_txt) {
   adj_log_txt <- c()
   for (i in log_txt) {
-    adj_tf <- stringr::str_detect(
-      i,
-      "Errors:|Warnings:|Messages:|Output:|Result:"
+    adj_tf <- grepl(
+      "Errors:|Warnings:|Messages:|Output:|Result:",
+      i
     )
     if (adj_tf) {
-      nrem <- stringr::str_count(i)
-      i <- stringr::str_remove(i, ":")
+      nrem <- nchar(i)
+      i <- sub(":", "", i)
       i <-
         paste("-", i, paste(rep("-", 54 - nrem), collapse = ""),
           collapse = ""
         )
     }
     # replace utf8 line and double line to ascii due to cli symbol variation
-    i <- stringr::str_replace_all(i, "\u2550", "=")
-    i <- stringr::str_replace_all(i, "\u2500", "=")
+    i <- gsub("\u2550", "=", i, fixed = TRUE)
+    i <- gsub("\u2500", "=", i, fixed = TRUE)
     adj_log_txt <- c(adj_log_txt, i)
   }
   return(adj_log_txt)
@@ -42,8 +37,6 @@ reformat_subsections <- function(log_txt) {
 #' Nest sections in log lines vector
 #'
 #' @param adj_log_txt String vector. Object with formatted log text lines
-#'
-#' @importFrom stringr str_remove_all
 #'
 #' @return list that includes nested log sections
 #'
@@ -67,8 +60,7 @@ nest_sections <- function(adj_log_txt) {
       }
     }
   }
-  sect_headers <-
-    stringr::str_remove_all(sect_headers, "-?\\s{3,}-?")
+  sect_headers <- gsub("-?\\s{3,}-?", "", sect_headers)
   names(sect_info) <- sect_headers
 
   return(sect_info)
@@ -79,26 +71,27 @@ nest_sections <- function(adj_log_txt) {
 #' @param adj_log_txt String vector. Object with formatted log text lines
 #' @param sect_info String vector. Object with nested sections
 #'
-#' @importFrom stringr str_extract
-#' @importFrom stringr str_trim
-#' @importFrom stringr str_remove_all
-#'
 #' @return list that includes nested log subsections
 #'
 #' @noRd
 #'
 nest_subsections <- function(adj_log_txt, sect_info) {
+  extract_match <- function(x, pattern) {
+    reg_match <- regexpr(pattern, x, perl = TRUE)
+    result <- regmatches(x, reg_match)
+    result[reg_match == -1] <- NA_character_
+    result
+  }
+
   subsect_headers <- stats::na.omit(
-    stringr::str_extract(adj_log_txt, "[\\-|\\=]\\s\\w+\\s(\\w+\\s)?[\\-|\\=]{3,70}")
+    extract_match(adj_log_txt, "[\\-|\\=]\\s\\w+\\s(\\w+\\s)?[\\-|\\=]{3,70}")
   )
   subset_sections <- function(section) {
     subsect_status <- FALSE
     subsect_info <- list()
     for (i in section) {
       if (i %in% subsect_headers) {
-        latest_subsect <- stringr::str_trim(
-          stringr::str_remove_all(i, "[\\-|\\=]")
-        )
+        latest_subsect <- trimws(gsub("[\\-|\\=]", "", i))
         subsect_status <- TRUE
       } else if (subsect_status) {
         subsect_info[[latest_subsect]] <-
@@ -135,7 +128,6 @@ nest_log <- function(adj_log_txt) {
 #'
 #' @importFrom tibble tibble
 #' @importFrom tidyr separate
-#' @importFrom stringr str_replace_all
 #' @importFrom dplyr rename_with
 #' @importFrom dplyr mutate
 #'
@@ -170,7 +162,7 @@ parse_log <- function(nested_log) {
     parsed_log$`User and File Information` <-
       nested_log$`User and File Information` %>%
       unlist() %>%
-      stringr::str_trim() %>%
+      trimws() %>%
       tibble::tibble() %>%
       tidyr::separate(".",
         sep = "\\: ",
@@ -182,7 +174,7 @@ parse_log <- function(nested_log) {
     parsed_log$`Session Information`$`Session info` <-
       nested_log$`Session Information`$`Session info` %>%
       unlist() %>%
-      stringr::str_trim() %>%
+      trimws() %>%
       tibble::tibble() %>%
       tidyr::separate(".",
         sep = "\\s",
@@ -190,13 +182,13 @@ parse_log <- function(nested_log) {
         extra = "merge",
         fill = "right"
       ) %>%
-      dplyr::mutate(dplyr::across(tidyselect::where(is.character), stringr::str_trim))
+      dplyr::mutate(dplyr::across(tidyselect::where(is.character), trimws))
     parsed_log$`Session Information`$`Packages` <-
       nested_log$`Session Information`$`Packages` %>%
       # remove indicator whether the package is attached to the search path
-      stringr::str_replace_all("\\*", " ") %>%
+      gsub("\\*", " ", x = .) %>%
       # account for loaded packages due to load_all()
-      stringr::str_replace_all(" P ", "   ") %>%
+      gsub(" P ", "   ", x = .) %>%
       readr::read_table(skip = 1, col_names = FALSE)
 
     # handle case where log is has 7 columns due to sessioninfo v1.2.2 or earlier
@@ -213,8 +205,8 @@ parse_log <- function(nested_log) {
           "r_version"
         )) %>%
         dplyr::mutate(
-          lang = stringr::str_remove(lang, "\\("),
-          r_version = stringr::str_remove(r_version, "\\)")
+          lang = sub("\\(", "", lang),
+          r_version = sub("\\)", "", r_version)
         )
     } else {
       parsed_log$`Session Information`$`Packages` <-
@@ -230,7 +222,7 @@ parse_log <- function(nested_log) {
 
     parsed_log$`Session Information`$`External software` <-
       nested_log$`Session Information`$`External software` %>%
-      stringr::str_trim() %>%
+      trimws() %>%
       tibble::tibble() %>%
       tidyr::separate(".",
         sep = "\\s",
@@ -238,14 +230,14 @@ parse_log <- function(nested_log) {
         extra = "merge",
         fill = "right"
       ) %>%
-      dplyr::mutate(dplyr::across(tidyselect::where(is.character), stringr::str_trim))
+      dplyr::mutate(dplyr::across(tidyselect::where(is.character), trimws))
   }
 
   if ("Repo URLs" %in% names(nested_log)) {
     parsed_log$`Repo URLs` <-
       nested_log$`Repo URLs` %>%
       unlist() %>%
-      stringr::str_trim() %>%
+      trimws() %>%
       tibble::tibble() %>%
       tidyr::separate(".",
         sep = "\\:\\s+",
@@ -269,7 +261,7 @@ parse_log <- function(nested_log) {
         sep = "\\} ",
         into = c("library", "function_names")
       ) %>%
-      dplyr::mutate(library = stringr::str_remove(library, "\\{"))
+      dplyr::mutate(library = sub("\\{", "", library))
   }
 
   if ("Program Run Time Information" %in% names(nested_log)) {
