@@ -19,8 +19,8 @@ reformat_subsections <- function(log_txt) {
       i
     )
     if (adj_tf) {
-      char_count <- nchar(i)
       i <- sub(":", "", i)
+      char_count <- nchar(i)
       i <-
         paste("-", i, paste(rep("-", 54 - char_count), collapse = ""),
           collapse = ""
