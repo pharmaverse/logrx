@@ -76,7 +76,8 @@ nest_sections <- function(adj_log_txt) {
 #' @noRd
 #'
 nest_subsections <- function(adj_log_txt, sect_info) {
-  # Extract the first regex match from each string and return NA when no match exists.
+  # Extract the first regex match from each string in `x` using `pattern`.
+  # Returns a character vector the same length as `x`, with `NA` for no match.
   extract_match <- function(x, pattern) {
     match_positions <- regexpr(pattern, x, perl = TRUE)
     result <- rep(NA_character_, length(x))
@@ -190,9 +191,9 @@ parse_log <- function(nested_log) {
     parsed_log$`Session Information`$`Packages` <-
       nested_log$`Session Information`$`Packages` %>%
       # remove indicator whether the package is attached to the search path
-      gsub("*", " ", x = ., fixed = TRUE) %>%
+      gsub("\\*", " ", ., fixed = TRUE) %>%
       # account for loaded packages due to load_all()
-      gsub(" P ", "   ", x = ., fixed = TRUE) %>%
+      gsub(" P ", "   ", ., fixed = TRUE) %>%
       readr::read_table(skip = 1, col_names = FALSE)
 
     # handle case where log is has 7 columns due to sessioninfo v1.2.2 or earlier
