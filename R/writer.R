@@ -57,7 +57,7 @@ write_session_info <- function() {
       .x
     )) %>%
     # wrap any other elements over 80 characters
-    map_chr(~ strwrap(.x, width = 80, exdent = 2, whitespace = FALSE) %>%
+    map_chr(~ strwrap(.x, width = 80, exdent = 2) %>%
       paste(collapse = "\n\t"))
 
   return(session_info)

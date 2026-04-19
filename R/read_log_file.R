@@ -190,9 +190,9 @@ parse_log <- function(nested_log) {
     parsed_log$`Session Information`$`Packages` <-
       nested_log$`Session Information`$`Packages` %>%
       # remove indicator whether the package is attached to the search path
-      gsub("\\*", " ", x = .) %>%
+      gsub("*", " ", x = ., fixed = TRUE) %>%
       # account for loaded packages due to load_all()
-      gsub(" P ", "   ", x = .) %>%
+      gsub(" P ", "   ", x = ., fixed = TRUE) %>%
       readr::read_table(skip = 1, col_names = FALSE)
 
     # handle case where log is has 7 columns due to sessioninfo v1.2.2 or earlier
