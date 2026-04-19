@@ -19,8 +19,8 @@ reformat_subsections <- function(log_txt) {
       i
     )
     if (adj_tf) {
-      i <- sub(":", "", i)
       char_count <- nchar(i)
+      i <- sub(":", "", i)
       i <-
         paste("-", i, paste(rep("-", 54 - char_count), collapse = ""),
           collapse = ""
@@ -79,8 +79,11 @@ nest_subsections <- function(adj_log_txt, sect_info) {
   # Extract the first regex match from each string and return NA when no match exists.
   extract_match <- function(x, pattern) {
     reg_match <- regexpr(pattern, x, perl = TRUE)
-    result <- regmatches(x, reg_match)
-    result[reg_match == -1] <- NA_character_
+    result <- rep(NA_character_, length(x))
+    has_match <- reg_match != -1
+    if (any(has_match)) {
+      result[has_match] <- regmatches(x[has_match], reg_match[has_match])
+    }
     result
   }
 
