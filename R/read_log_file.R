@@ -77,6 +77,8 @@ nest_sections <- function(adj_log_txt) {
 #'
 nest_subsections <- function(adj_log_txt, sect_info) {
   # Extract the first regex match from each string in `x` using `pattern`.
+  # x: character vector of strings to inspect.
+  # pattern: regular expression pattern to extract.
   # Returns a character vector the same length as `x`, with `NA` for no match.
   extract_match <- function(x, pattern) {
     match_positions <- regexpr(pattern, x, perl = TRUE)
