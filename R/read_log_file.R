@@ -76,6 +76,7 @@ nest_sections <- function(adj_log_txt) {
 #' @noRd
 #'
 nest_subsections <- function(adj_log_txt, sect_info) {
+  # Extract the first regex match from each string, returning NA for no match.
   extract_match <- function(x, pattern) {
     reg_match <- regexpr(pattern, x, perl = TRUE)
     result <- regmatches(x, reg_match)
