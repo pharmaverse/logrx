@@ -4,7 +4,7 @@
 
 ## Updates
 
-- Improved error messaging when a log.rx environment already exists (#[issue_number])
+- Improved error messaging when a log.rx environment already exists (#276)
   - In non-interactive mode, provides clear guidance on how to resolve the issue
   - In interactive mode, offers users the option to automatically remove the existing environment or handle it manually
   - Added comprehensive tests for both interactive and non-interactive scenarios
