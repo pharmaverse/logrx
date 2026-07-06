@@ -19,9 +19,13 @@
 #' Defaults to FALSE
 #' @param extra_info List. Objects to optionally add on to end of log
 #' in a special extra info section. List printed in YAML format. Optional
+#' @param execution_method String. How should the logging be executed:
+#' * callr: uses callr::r() to create a background session to run script
+#' * local: uses source() to run script in current session
 #' @param ... Not used
 #'
 #' @importFrom purrr map_chr
+#' @importFrom callr r
 #'
 #' @return 0 if there are no errors or 1 if there are any errors
 #' @export
@@ -49,6 +53,7 @@ axecute <- function(file,
                     to_report = c("messages", "output", "result"),
                     show_repo_url = FALSE,
                     extra_info = NA,
+                    execution_method = "callr",
                     ...) {
   # deprecations
   if (methods::hasArg(remove_log_object)) {
@@ -62,29 +67,21 @@ axecute <- function(file,
   to_report <- map_chr(to_report, tolower)
   match.arg(to_report, several.ok = TRUE)
 
-  # initialize log
-  log_config(
-    file = file,
-    log_name = log_name,
-    log_path = log_path,
-    extra_info = extra_info
-  )
+  # create temp run file 
+  temp_exec_file <- make_temp_exec_file(file, log_name, log_path, include_rds, quit_on_error, to_report, show_repo_url, extra_info)
 
-  # run the code
-  run_safely_loudly(file)
+  # dispatch out to execution method
+  if (tolower(execution_method) == "callr") {
+    r(function() source(temp_exec_file))
+  } else if (tolower(execution_method) == "local") {
+    source(temp_exec_file)
+  } else {
+    stop("Currently supported execution methods are callr and local")
+  }
 
   # check for errors prior to log_write() since this can remove the log
-  any_errors <- get_log_element("errors")
-
-  # write log
-  log_write(
-    file = file,
-    remove_log_object = remove_log_object,
-    show_repo_url = show_repo_url,
-    include_rds = include_rds,
-    to_report = to_report,
-    extra_info = extra_info
-  )
+  # UPDATE TO READ IN LOG AND CHECK
+  any_errors <- read_log_file()
 
   # if error, quit with status = 1 if not interactive
   if (!interactive() & !is.null(any_errors) & quit_on_error) {
