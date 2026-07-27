@@ -129,23 +129,22 @@ make_temp_exec_file <- function(file,
   temp_exec_con <- file(temp_exec)
 
   # create list of lines for file
-  logrx_lines <- list(
-    "library(logrx)",
+  logrx_lines <- c(
     # initialize log
-    "log_config(",
-    paste0("file = '", file, "',"),
+    "logrx::log_config(",
+    paste0("file = '", normalizePath(file, winslash = "/"), "',"),
     paste0("log_name = '", log_name, "',"),
-    paste0("log_path = '", log_path, "',"),
+    paste0("log_path = '", normalizePath(log_path, winslash = "/"), "',"),
     paste0("extra_info = ", extra_info),
     ")",
     # run the code
-    paste0("run_safely_loudly('", file, "')"),
+    paste0("logrx:::run_safely_loudly('", normalizePath(file, winslash = "/"), "')"),
     # write log
-    "log_write(",
-    paste0("file = '", file, "',"),
+    "logrx::log_write(",
+    paste0("file = '", normalizePath(file, winslash = "/"), "',"),
     paste0("show_repo_url = ", show_repo_url, ","),
     paste0("include_rds = ", include_rds, ","),
-    paste0("to_report = ", to_report, ","),
+    #paste0("to_report = ", to_report, ","),
     paste0("extra_info = ", extra_info),
     ")"
   )
@@ -153,5 +152,5 @@ make_temp_exec_file <- function(file,
   writeLines(logrx_lines, temp_exec_con)
   close(temp_exec_con)
 
-  return(temp_run)
+  return(normalizePath(temp_exec, winslash = "/"))
 }

@@ -46,6 +46,5 @@ in a special extra info section. List printed in YAML format. Optional}
 name of tempfile created for running
 }
 \description{
-\code{axecute()} creates a log, executes a file, and returns 0 if there are no
-errors or 1 if there are any errors
+Creation of a execution of a file
 }

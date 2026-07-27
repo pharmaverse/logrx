@@ -55,24 +55,18 @@ axecute <- function(file,
                     extra_info = NA,
                     execution_method = "callr",
                     ...) {
-  # deprecations
-  if (methods::hasArg(remove_log_object)) {
-    lifecycle::deprecate_stop("0.3.0", "axecute(remove_log_object = )", "axecute(include_rds = )")
-  }
-
-  # remove log object
-  remove_log_object <- TRUE
-
   # lower everything for consistency and check values
   to_report <- map_chr(to_report, tolower)
   match.arg(to_report, several.ok = TRUE)
 
   # create temp run file 
   temp_exec_file <- make_temp_exec_file(file, log_name, log_path, include_rds, quit_on_error, to_report, show_repo_url, extra_info)
-
+  
   # dispatch out to execution method
   if (tolower(execution_method) == "callr") {
-    r(function() source(temp_exec_file))
+    child <- r(function(x) source(x), 
+      args = list(temp_exec_file),
+      error = "stack", show = TRUE)
   } else if (tolower(execution_method) == "local") {
     source(temp_exec_file)
   } else {
@@ -81,10 +75,10 @@ axecute <- function(file,
 
   # check for errors prior to log_write() since this can remove the log
   # UPDATE TO READ IN LOG AND CHECK
-  any_errors <- read_log_file()
+  #any_errors <- read_log_file()
 
   # if error, quit with status = 1 if not interactive
-  if (!interactive() & !is.null(any_errors) & quit_on_error) {
-    quit(status = 1)
-  }
+  #if (!interactive() & !is.null(any_errors) & quit_on_error) {
+  #  quit(status = 1)
+  #}
 }
