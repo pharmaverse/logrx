@@ -1,0 +1,4 @@
+base: "_all_"
+dplyr: ["mutate", "filter", "select", "summarize", "group_by", "arrange"]
+ggplot2: "_all_"
+tidyr: ["pivot_wider", "pivot_longer"]
