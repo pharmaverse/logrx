@@ -76,6 +76,11 @@ the needs of clinical programming to capture necessary elements of the
 environment and execution to be able to create a complete view of the
 program execution and environment.
 
+While `{logrx}` is one solution to logging in clinical programming,
+[this article on the Pharmaverse
+page](https://pharmaverse.github.io/examples/logging/logging.html)
+explains the differences between `{logr}`, `{logrx}`, and `{whirl}`.
+
 ## Using logrx
 
 `logrx` can be used in a file or through scripting. More information on
