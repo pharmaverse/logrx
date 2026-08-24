@@ -6,6 +6,14 @@
 
 ### Updates
 
+- Improved error messaging when a log.rx environment already exists
+  ([\#276](https://github.com/pharmaverse/logrx/issues/276))
+  - In non-interactive mode, provides clear guidance on how to resolve
+    the issue
+  - In interactive mode, offers users the option to automatically remove
+    the existing environment or handle it manually
+  - Added comprehensive tests for both interactive and non-interactive
+    scenarios
 - Removed .dcf file for old Addin
   ([\#280](https://github.com/pharmaverse/logrx/issues/280))
 
@@ -50,8 +58,7 @@ CRAN release: 2025-05-05
 
 - Update
   [`read_log_file()`](https://pharmaverse.github.io/logrx/dev/reference/read_log_file.md)
-  for updated version of
-  [sessioninfo](https://github.com/r-lib/sessioninfo#readme)
+  for updated version of [sessioninfo](https://sessioninfo.r-lib.org)
   [\#246](https://github.com/pharmaverse/logrx/issues/246)
 
 ### Documentation

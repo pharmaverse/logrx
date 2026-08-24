@@ -70,6 +70,33 @@ axecute(
 
 0 if there are no errors or 1 if there are any errors
 
+## Handling Existing log.rx Environments
+
+If a log.rx environment already exists when `axecute()` is called, the
+function will detect this and provide helpful guidance on how to resolve
+the issue. This typically occurs when a previous execution did not
+complete properly or the environment was not cleaned up.
+
+**In interactive mode**, you will be presented with a menu offering two
+options:
+
+1.  Allow logrx to automatically remove the existing environment and
+    proceed with execution
+
+2.  Cancel execution and manually remove the environment using
+    [`log_remove()`](https://pharmaverse.github.io/logrx/dev/reference/log_remove.md)
+    or by restarting your R session
+
+**In non-interactive mode** (e.g., batch scripts), an error will be
+raised with detailed instructions on how to resolve the issue, including
+using
+[`log_remove()`](https://pharmaverse.github.io/logrx/dev/reference/log_remove.md)
+to programmatically clear the environment or restarting your R session.
+
+See the [Execution
+vignette](https://pharmaverse.github.io/logrx/articles/execution.html)
+for more details on handling existing environments.
+
 ## Examples
 
 ``` r
@@ -93,12 +120,12 @@ axecute(file.path(dir, "hello.Rmd"))
 #> processing file: hello.Rmd
 #> 1/1
 #> output file: hello.knit.md
-#> /usr/bin/pandoc +RTS -K512m -RTS hello.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output hello.html --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --embed-resources --standalone --variable bs3=TRUE --section-divs --template /home/runner/work/_temp/Library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmpqYF74l/rmarkdown-str5f2b13201335.html 
+#> /usr/bin/pandoc +RTS -K512m -RTS hello.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output hello.html --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --embed-resources --standalone --variable bs3=TRUE --section-divs --template /home/runner/work/_temp/Library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/Rtmp92boCZ/rmarkdown-str208b5469a7c5.html 
 #> 
 #> Output created: hello.html
 #> 
 #> 
-#> processing file: /tmp/RtmpqYF74l/hello.Rmd
+#> processing file: /tmp/Rtmp92boCZ/hello.Rmd
 #> 1/1
-#> output file: /tmp/RtmpqYF74l/file5f2b597accef.R
+#> output file: /tmp/Rtmp92boCZ/file208b7a858e5c.R
 ```

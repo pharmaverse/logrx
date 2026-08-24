@@ -12,8 +12,8 @@
 <link rel="icon" sizes="any" href="../favicon.ico">
 <link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Generating a Log">
 <meta name="robots" content="noindex">
@@ -137,6 +137,41 @@ environment created by code execution</p></li>
 <span><span class="fu">run_safely_loudly</span><span class="op">(</span><span class="st">"my_script.R"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/log_write.html">log_write</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/log_remove.html">log_remove</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="section level4">
+<h4 id="handling-existing-environments">Handling Existing Environments<a class="anchor" aria-label="anchor" href="#handling-existing-environments"></a>
+</h4>
+<p>If a <code>log.rx</code> environment already exists when you attempt
+to run <code><a href="../reference/log_config.html">log_config()</a></code> or <code><a href="../reference/axecute.html">axecute()</a></code>,
+<code>logrx</code> will provide helpful guidance on how to resolve the
+issue:</p>
+<ul>
+<li>
+<strong>In interactive mode</strong>: You will be presented with a
+menu offering two options:
+<ol style="list-style-type: decimal">
+<li>Allow <code>logrx</code> to automatically remove the existing
+environment and proceed with execution</li>
+<li>Cancel execution and manually remove the environment using
+<code><a href="../reference/log_remove.html">log_remove()</a></code> or by restarting your R session</li>
+</ol>
+</li>
+<li>
+<strong>In non-interactive mode</strong>: An error will be raised
+with clear instructions on how to resolve the issue, including using
+<code><a href="../reference/log_remove.html">log_remove()</a></code> to programmatically clear the environment or
+restarting your R session.</li>
+</ul>
+<p>This typically happens when a previous logrx execution did not
+complete properly or the environment was not cleaned up after a previous
+run. The interactive options make it easy to recover from this situation
+without having to restart your R session.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># If an environment exists, manually remove it</span></span>
+<span><span class="fu"><a href="../reference/log_remove.html">log_remove</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Then proceed with your execution</span></span>
+<span><span class="fu"><a href="../reference/axecute.html">axecute</a></span><span class="op">(</span><span class="st">"my_script.R"</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level3">
 <h3 id="command-line-execution">Command Line Execution<a class="anchor" aria-label="anchor" href="#command-line-execution"></a>
@@ -151,19 +186,19 @@ advanced examples for most users.</p>
 <p>The below chunk will run the file my_script.R and output any standard
 output that is created by the execution of the file to the default
 location.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"logrx::axecute('my_script.R', log_name = 'my_script.log', log_path = '.')"</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"logrx::axecute('my_script.R', log_name = 'my_script.log', log_path = '.')"</span></span></code></pre></div>
 <p>The below chunk will run the file <code>my_script.R</code> and output
 any standard output that is created by the execution of the file to a
 file called <code>temp.log</code>. This output can then later be
 accessed should the user want to check the output of the file
 execution.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"logrx::axecute('my_script.R', log_name = 'my_script.log', log_path = '.')"</span> <span class="op">&gt;</span> temp.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"logrx::axecute('my_script.R', log_name = 'my_script.log', log_path = '.')"</span> <span class="op">&gt;</span> temp.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div>
 <p>The below chunk will run the file <code>my_script.R</code> and output
 any standard output that is created by the execution of the file to a
 file called <code>temp.log</code>. It will then take the contents of the
 <code>temp.log</code> file and add those to the end of the log file
 generated by the file execution and remove the temporary output log.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"logrx::axecute('my_script.R', log_name = 'my_script.log', log_path = '.')"</span> <span class="op">&gt;</span> temp.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span><span class="kw">;</span> <span class="fu">cat</span> my_script.log <span class="op">&gt;&gt;</span> my_script.log<span class="kw">;</span> <span class="fu">rm</span> my_script.log</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"logrx::axecute('my_script.R', log_name = 'my_script.log', log_path = '.')"</span> <span class="op">&gt;</span> temp.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span><span class="kw">;</span> <span class="fu">cat</span> my_script.log <span class="op">&gt;&gt;</span> my_script.log<span class="kw">;</span> <span class="fu">rm</span> my_script.log</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -176,7 +211,7 @@ execution and scripted file execution in mind. With the use of simple
 functions such as <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> scripting is easy. Below is some
 sample code of how <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> can be used with
 <code><a href="../reference/axecute.html">axecute()</a></code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"file.R"</span>, <span class="st">"otherfile.R"</span><span class="op">)</span>, <span class="va">axecute</span><span class="op">)</span></span></code></pre></div>
 <p>If your scripting needs to work on the contents of a directory
 instead of a pre-defined list, functions such as <code>list.files</code>
@@ -185,7 +220,7 @@ this can be applied in practice by getting all files ending in
 <code>.R</code> in the current working directory using a regular
 expression, and then using <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code> to run the files using
 <code><a href="../reference/axecute.html">axecute()</a></code>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">r_script_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"."</span>, pattern <span class="op">=</span> <span class="st">"\\.R$"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">r_script_list</span>, <span class="va">axecute</span><span class="op">)</span></span></code></pre></div>
 <p>Additionally, if you need your code to run using a shell scripting
@@ -196,10 +231,10 @@ languages. Below is an example where the bash script is executed in a
 directory of R files, this should execute all R files in the directory
 using <code><a href="../reference/axecute.html">axecute()</a></code> and create a corresponding set of log
 files.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="cf">for</span> file <span class="kw">in</span> <span class="pp">*</span>.R<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>    <span class="bu">[</span> <span class="ot">-f</span> <span class="st">"</span><span class="va">$file</span><span class="st">"</span> <span class="bu">]</span> <span class="kw">||</span> <span class="cf">continue</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>    <span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"logrx::axecute('</span><span class="va">$file</span><span class="st">')"</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="cf">for</span> file <span class="kw">in</span> <span class="pp">*</span>.R<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>    <span class="bu">[</span> <span class="ot">-f</span> <span class="st">"</span><span class="va">$file</span><span class="st">"</span> <span class="bu">]</span> <span class="kw">||</span> <span class="cf">continue</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>    <span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"logrx::axecute('</span><span class="va">$file</span><span class="st">')"</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -212,7 +247,7 @@ files.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>
