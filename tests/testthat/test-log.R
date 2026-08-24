@@ -224,7 +224,7 @@ test_that("log_write reads approved list from rds", {
   build_approved(setNames(lapply(pkgs, function(x) "_all_"), pkgs), approved)
   withr::local_options(list(log.rx.approved = approved))
   log_write(fp)
-  
+
   # log should report no unapproved packages or functions
   expect_true(any(grepl("No unapproved packages or functions used", readLines(log_out))))
 })
