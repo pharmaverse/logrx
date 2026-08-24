@@ -52,6 +52,30 @@ exits with status 1 if errors occur and \code{quit_on_error} is TRUE.
 \description{
 \code{axecute()} executes a file and creates a log
 }
+\section{Handling Existing log.rx Environments}{
+
+If a log.rx environment already exists when \code{axecute()} is called, the
+function will detect this and provide helpful guidance on how to resolve
+the issue. This typically occurs when a previous execution did not complete
+properly or the environment was not cleaned up.
+
+\strong{In interactive mode}, you will be presented with a menu offering two options:
+\enumerate{
+\item Allow logrx to automatically remove the existing environment and
+proceed with execution
+\item Cancel execution and manually remove the environment using
+\code{log_remove()} or by restarting your R session
+}
+
+\strong{In non-interactive mode} (e.g., batch scripts), an error will be raised
+with detailed instructions on how to resolve the issue, including using
+\code{log_remove()} to programmatically clear the environment or restarting
+your R session.
+
+See the \href{https://pharmaverse.github.io/logrx/articles/execution.html}{Execution vignette}
+for more details on handling existing environments.
+}
+
 \examples{
 dir <- tempdir()
 text <- 'print("Hello, logrx-person!")'
