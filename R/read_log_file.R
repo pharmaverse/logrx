@@ -60,7 +60,7 @@ nest_sections <- function(adj_log_txt) {
       }
     }
   }
-  sect_headers <- gsub("-?\\s{3,}-?", "", sect_headers)
+  sect_headers <- gsub("-?\\s{3,}-?", "", sect_headers, perl = TRUE)
   names(sect_info) <- sect_headers
 
   return(sect_info)
