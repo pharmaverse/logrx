@@ -68,7 +68,8 @@ Suggests:
     rstudioapi,
     tidyselect,
     renv,
-    yaml
+    yaml,
+    common
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 Depends: 
