@@ -362,5 +362,8 @@ write_extra_info <- function() {
     )
   )
   results <- strsplit(results, split = "\n", fixed = TRUE)[[1]]
+  if (length(results) == 0 || results[length(results)] != "") {
+    results <- c(results, "")
+  }
   return(results)
 }

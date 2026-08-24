@@ -85,7 +85,7 @@ nest_subsections <- function(adj_log_txt, sect_info) {
     result <- rep(NA_character_, length(x))
     has_match <- match_positions != -1
     if (any(has_match)) {
-      result[has_match] <- regmatches(x[has_match], match_positions[has_match])
+      result[has_match] <- regmatches(x, match_positions)
     }
     result
   }
