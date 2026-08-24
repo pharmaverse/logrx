@@ -160,7 +160,7 @@ test_that("build_approved round-trips yaml with _all_", {
 test_that("normalize_approved_yaml handles inline format with bare names and _all_", {
   yaml_list <- yaml::read_yaml(testthat::test_path("ref", "approved_example.yaml"))
   result <- logrx:::normalize_approved_yaml(yaml_list)
-  expect_true(all(result$library %in% c("package:base", "package:dplyr", "package:ggplot2", "package:tidyr")))
+  expect_true(all(result$library %in% c("package:base", "package:dplyr", "package:tidyr")))
   expect_true("mutate" %in% result$function_name)
   expect_true("pivot_wider" %in% result$function_name)
   expect_true(all(result$library[result$library == "package:base"] == "package:base"))
@@ -170,7 +170,7 @@ test_that("normalize_approved_yaml handles inline format with bare names and _al
 test_that("normalize_approved_yaml handles block format with prefixed names and _all_", {
   yaml_list <- yaml::read_yaml(testthat::test_path("ref", "approved_example2.yaml"))
   result <- logrx:::normalize_approved_yaml(yaml_list)
-  expect_true(all(result$library %in% c("package:base", "package:dplyr", "package:ggplot2", "package:tidyr")))
+  expect_true(all(result$library %in% c("package:base", "package:dplyr", "package:tidyr")))
   expect_true("mutate" %in% result$function_name)
   expect_true("pivot_wider" %in% result$function_name)
   expect_true(nrow(result[result$library == "package:base", ]) > 1)

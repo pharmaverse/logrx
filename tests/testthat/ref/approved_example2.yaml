@@ -7,8 +7,6 @@ package:dplyr:
 - summarize
 - group_by
 - arrange
-package:ggplot2:
-- _all_
 package:tidyr:
 - pivot_wider
 - pivot_longer
