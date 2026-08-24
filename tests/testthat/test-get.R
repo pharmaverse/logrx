@@ -255,27 +255,26 @@ test_that("functions used are returned correctly for rmd files", {
 })
 
 test_that("replacement functions are attributed to the correct package", {
-  skip_if_not_installed("common")
-
-  # common must be loaded before calling get_used_functions because the function
-  # resolves package attribution by searching the current search path. In normal
-  # usage, axecute() runs the script first (which calls library(common)), and
-  # then calls get_used_functions() against the populated search path. We
-  # replicate that here by loading common explicitly before the call.
-  library(common)
-  withr::defer(detach("package:common", unload = TRUE))
+  # Attach a local environment to the search path that exports labels<-,
+  # replicating the scenario where a package provides a replacement form of a
+  # function that also exists in base (e.g. common::labels<-). This avoids
+  # declaring common as a dependency while still testing the disambiguation.
+  e <- new.env(parent = emptyenv())
+  assign("labels<-", function(x, value) { attr(x, "labels") <- value; x }, envir = e)
+  attach(e, name = "package:fakelabels", warn.conflicts = FALSE)
+  withr::defer(detach("package:fakelabels"))
 
   r_path <- tempfile(fileext = ".R")
   withr::defer(unlink(r_path))
 
   writeLines(
     c(
-      "library(common)",
+      "library(fakelabels)",
       "df <- data.frame(a = 1, b = 2)",
-      # labels() exists in both base and common. common exports labels<- as a
-      # replacement function. The parser captures the token as "labels" (the <-
-      # is a separate token), so without checking the namespace for replacement
-      # forms, the attribution would incorrectly resolve to base.
+      # labels<- exists in fakelabels (on search path). The parser captures the
+      # token as "labels" (the <- is a separate token), so without checking the
+      # namespace for replacement forms, attribution would incorrectly resolve
+      # to base.
       "labels(df) <- list(a = 'A1', b = 'B1')",
       # A plain call to labels() (no assignment) should still resolve to base.
       "labels(df)"
@@ -287,7 +286,7 @@ test_that("replacement functions are attributed to the correct package", {
 
   labels_result <- result[result$function_name == "labels", ]$library
 
-  expect_equal(labels_result[1], "package:common")
+  expect_equal(labels_result[1], "package:fakelabels")
   expect_equal(labels_result[2], "package:base")
 })
 

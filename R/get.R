@@ -275,7 +275,9 @@ get_library <- function(df) {
     if (pkg_name != .x && isNamespaceLoaded(pkg_name)) {
       getNamespaceExports(pkg_name)
     } else {
-      character(0)
+      # For non-package environments attached to the search path (e.g. in tests),
+      # fall back to ls() so replacement functions like labels<- are visible.
+      tryCatch(ls(as.environment(.x)), error = function(e) character(0))
     }
   }
 
@@ -309,6 +311,8 @@ get_library <- function(df) {
 
 
 get_first <- function(func, search_lookup, namespace_lookup, is_replacement = FALSE) {
+  # strip backticks so explicit calls like `colnames<-`(x, y) match exported names
+  func <- gsub("`", "", func)
   flag_found <- map(search_lookup, ~ func %in% .)
   found_any <- any(unlist(flag_found))
 
@@ -328,7 +332,9 @@ get_first <- function(func, search_lookup, namespace_lookup, is_replacement = FA
     }
   }
 
-  if (!found_any) return(NA)
+  if (!found_any) {
+    return(NA)
+  }
   names(flag_found[flag_found == TRUE][1])
 }
 
