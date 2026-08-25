@@ -2,6 +2,10 @@
 
 ## New Features
 
+## Bug Fixes
+
+- Fixed package detection failure for backtick-quoted and replacement functions in `get_used_functions()` (#271)
+
 ## Updates
 
 - Removed .dcf file for old Addin (#280)
