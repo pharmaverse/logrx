@@ -15,6 +15,8 @@
 
 - Updated `axecute()` documentation to correctly reflect return behavior (#288)
 
+- Added `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md` (#287)
+
 # logrx 0.4.0
 
 ## New Features
