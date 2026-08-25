@@ -112,6 +112,28 @@ and functions will be compared to `approved.rds` and if any unapproved
 use is found, it will be logged within the "Unapproved Package and
 Functions" section of the log file.
 
+# Stopping Execution on Unapproved Packages
+
+By default, `axecute()` will log unapproved package use *after* the script runs.
+If you want to prevent execution entirely when unapproved packages are detected,
+use `error_on_unapproved = TRUE`.
+
+This performs a **pre-execution check** by parsing the script's AST to identify
+packages referenced via `library()`, `require()`, or `pkg::fun()` namespacing,
+before any code is run. If any of those packages are not in your `approved.rds`,
+execution is stopped and a log is written capturing the unapproved packages found.
+
+```r
+axecute("mpg.R", error_on_unapproved = TRUE)
+```
+
+This is useful in validated environments where running a script with unapproved
+dependencies is not acceptable, even transiently.
+
+> **Note:** `error_on_unapproved` requires the `log.rx.approved` option to be
+> set. If no approved list is configured, the pre-execution check is skipped
+> and execution proceeds normally.
+
 # Example
 
 Let's write a simple script summarizing mean mpg from mtcars. We save
