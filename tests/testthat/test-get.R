@@ -260,7 +260,10 @@ test_that("replacement functions are attributed to the correct package", {
   # function that also exists in base (e.g. common::labels<-). This avoids
   # declaring common as a dependency while still testing the disambiguation.
   e <- new.env(parent = emptyenv())
-  assign("labels<-", function(x, value) { attr(x, "labels") <- value; x }, envir = e)
+  assign("labels<-", function(x, value) {
+    attr(x, "labels") <- value
+    x
+  }, envir = e)
   attach(e, name = "package:fakelabels", warn.conflicts = FALSE)
   withr::defer(detach("package:fakelabels"))
 
