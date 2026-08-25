@@ -163,7 +163,6 @@ test_that("normalize_approved_yaml handles inline format with bare names and _al
   expect_true(all(result$library %in% c("package:base", "package:dplyr", "package:tidyr")))
   expect_true("mutate" %in% result$function_name)
   expect_true("pivot_wider" %in% result$function_name)
-  expect_true(all(result$library[result$library == "package:base"] == "package:base"))
   expect_true(nrow(result[result$library == "package:base", ]) > 1)
 })
 
