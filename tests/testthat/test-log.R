@@ -164,68 +164,30 @@ test_that("log_config works after environment is removed interactively", {
 })
 
 test_that("log_write reads approved list from yaml", {
-  # get packages used in the reference script to build the approved list
   fp <- test_path("ref", "ex1.R")
-  used <- logrx:::get_used_functions(fp)
-  pkgs <- unique(sub("^package:", "", used$library[grepl("^package:", used$library)]))
 
-  # configure the log and run the script
   options("log.rx" = NULL)
   log_out <- tempfile(fileext = ".log")
   log_config(fp, log_path = dirname(log_out), log_name = basename(log_out))
   run_safely_loudly(fp)
 
-  # write approved list as .yaml and point the option to it
-  approved <- tempfile(fileext = ".yaml")
-  build_approved(setNames(lapply(pkgs, function(x) "_all_"), pkgs), approved)
-  withr::local_options(list(log.rx.approved = approved))
+  withr::local_options(list(log.rx.approved = test_path("ref", "approved_example2.yaml")))
   log_write(fp)
 
-  # log should report no unapproved packages or functions
-  expect_true(any(grepl("No unapproved packages or functions used", readLines(log_out))))
-})
-
-test_that("log_write reads approved list from yml", {
-  # get packages used in the reference script to build the approved list
-  fp <- test_path("ref", "ex1.R")
-  used <- logrx:::get_used_functions(fp)
-  pkgs <- unique(sub("^package:", "", used$library[grepl("^package:", used$library)]))
-
-  # configure the log and run the script
-  options("log.rx" = NULL)
-  log_out <- tempfile(fileext = ".log")
-  log_config(fp, log_path = dirname(log_out), log_name = basename(log_out))
-  run_safely_loudly(fp)
-
-  # write approved list as .yml and point the option to it
-  approved <- tempfile(fileext = ".yml")
-  build_approved(setNames(lapply(pkgs, function(x) "_all_"), pkgs), approved)
-  withr::local_options(list(log.rx.approved = approved))
-  log_write(fp)
-
-  # log should report no unapproved packages or functions
   expect_true(any(grepl("No unapproved packages or functions used", readLines(log_out))))
 })
 
 test_that("log_write reads approved list from rds", {
-  # get packages used in the reference script to build the approved list
   fp <- test_path("ref", "ex1.R")
-  used <- logrx:::get_used_functions(fp)
-  pkgs <- unique(sub("^package:", "", used$library[grepl("^package:", used$library)]))
 
-  # configure the log and run the script
   options("log.rx" = NULL)
   log_out <- tempfile(fileext = ".log")
   log_config(fp, log_path = dirname(log_out), log_name = basename(log_out))
   run_safely_loudly(fp)
 
-  # write approved list as .rds and point the option to it
-  approved <- tempfile(fileext = ".rds")
-  build_approved(setNames(lapply(pkgs, function(x) "_all_"), pkgs), approved)
-  withr::local_options(list(log.rx.approved = approved))
+  withr::local_options(list(log.rx.approved = test_path("ref", "approved.rds")))
   log_write(fp)
 
-  # log should report no unapproved packages or functions
   expect_true(any(grepl("No unapproved packages or functions used", readLines(log_out))))
 })
 
