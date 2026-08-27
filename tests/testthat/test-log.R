@@ -11,6 +11,8 @@ test_that("log_write reads approved list from yaml", {
   withr::local_options(list(log.rx.approved = test_path("ref", "approved_example2.yaml")))
   log_write(fp)
 
+  print(readLines(log_out))
+
   expect_true(any(grepl("No unapproved packages or functions used", readLines(log_out))))
   
   # Clean up
@@ -27,6 +29,8 @@ test_that("log_write reads approved list from rds", {
 
   withr::local_options(list(log.rx.approved = test_path("ref", "approved.rds")))
   log_write(fp)
+
+  print(readLines(log_out))
 
   expect_true(any(grepl("No unapproved packages or functions used", readLines(log_out))))
   
