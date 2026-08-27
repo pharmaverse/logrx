@@ -44,3 +44,5 @@ tibble
 tidylog
 tidyr
 unintrusive
+AST
+namespacing

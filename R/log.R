@@ -346,7 +346,13 @@ log_write <- function(file = NA,
   if (file.exists(getOption("log.rx.approved"))) {
     approved_functions <- readRDS(getOption("log.rx.approved"))
     unapproved_functions <- get_unapproved_use(used_functions, approved_functions)
-    set_log_element("unapproved_packages_functions", unapproved_functions)
+    pre_exec_unapproved <- get_log_element("unapproved_packages_functions")
+    if (is.data.frame(pre_exec_unapproved)) {
+      unapproved_functions <- unique(rbind(pre_exec_unapproved, unapproved_functions))
+      assign("unapproved_packages_functions", unapproved_functions, envir = getOption("log.rx"))
+    } else {
+      set_log_element("unapproved_packages_functions", unapproved_functions)
+    }
 
     cleaned_log_vec <- c(
       cleaned_log_vec,
