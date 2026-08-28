@@ -1,6 +1,7 @@
 library(dplyr)
-#library(magrittr)
+library(magrittr)
 
 mtcars %>%
   select(cyl, am) %>%
   arrange(cyl)
+
