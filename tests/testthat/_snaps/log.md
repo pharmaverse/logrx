@@ -1,3 +1,22 @@
+# log_config errors with helpful message if a populated log exists (non-interactive)
+
+    Code
+      log_config()
+    Condition
+      Error:
+      ! 
+      A log.rx environment already exists and cannot be used for a new execution.
+      
+      This typically happens when:
+        - A previous logrx execution did not complete properly
+        - The log.rx environment was not cleaned up after a previous run
+      
+      To resolve this issue, you have the following options:
+      In non-interactive mode, please ensure the environment is cleared before execution:
+        - Use log_remove() to remove the environment programmatically
+        - Restart your R session to clear all environments
+        - Ensure previous logrx executions complete properly
+
 # handle_existing_environment removes env when user chooses option 1
 
     Code
