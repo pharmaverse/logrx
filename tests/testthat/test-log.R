@@ -50,6 +50,7 @@ test_that("log_config configures the log and all the necessary elements", {
       "lint_results", "log_name", "log_path", "repo_urls", "extra_info"
     )
   )
+
   expect_identical(getOption("log.rx")[["file_path"]], dirname(get_file_path("./test-get.R")))
   expect_identical(getOption("log.rx")[["file_name"]], basename(get_file_path("./test-get.R")))
   expect_identical(getOption("log.rx")[["user"]], Sys.info()[["user"]])
@@ -191,11 +192,10 @@ test_that("log_config works after environment is removed interactively", {
 })
 
 test_that("log_remove removes a log if one exists", {
-  # ensure a log environment exists before removal
   options("log.rx" = NULL)
   log_init()
   expect_type(getOption("log.rx"), "environment")
-  # after removal the option should be NULL
+  
   log_remove()
   expect_null(getOption("log.rx"))
 })
