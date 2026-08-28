@@ -1,5 +1,3 @@
-
-
 test_that("log_write reads approved list from yaml", {
   fp <- test_path("ref", "ex1.R")
   log_out <- tempfile(fileext = ".log")
@@ -10,7 +8,7 @@ test_that("log_write reads approved list from yaml", {
   print(readLines(log_out))
 
   expect_true(any(grepl("No unapproved packages or functions used", readLines(log_out))))
-  
+
   # Clean up
   log_remove()
 })
@@ -27,7 +25,7 @@ test_that("log_write reads approved list from rds", {
   print(readLines(log_out))
 
   expect_true(any(grepl("No unapproved packages or functions used", readLines(log_out))))
-  
+
   # Clean up
   log_remove()
 })

@@ -160,7 +160,7 @@ test_that("run_file makes no changes are made to the global environment or optio
 
   expect_identical(pre_global, post_global)
   expect_identical(pre_ops, post_ops)
-  
+
   # run_file adds magrittr to the search path via run_file_test.R, so remove it
   detach("package:magrittr")
 })
