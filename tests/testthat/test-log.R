@@ -195,7 +195,7 @@ test_that("log_remove removes a log if one exists", {
   options("log.rx" = NULL)
   log_init()
   expect_type(getOption("log.rx"), "environment")
-  
+
   log_remove()
   expect_null(getOption("log.rx"))
 })
