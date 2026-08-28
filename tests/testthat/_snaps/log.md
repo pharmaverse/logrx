@@ -56,3 +56,4 @@
     Condition
       Error:
       ! Execution cancelled. Please use log_remove() to remove the environment or restart your R session.
+
