@@ -98,7 +98,7 @@ nest_subsections <- function(adj_log_txt, sect_info) {
     subsect_info <- list()
     for (i in section) {
       if (i %in% subsect_headers) {
-        latest_subsect <- trimws(gsub("[\\-|\\=]", "", i))
+        latest_subsect <- trimws(gsub("[\\-|\\=]", "", i, perl = TRUE))
         subsect_status <- TRUE
       } else if (subsect_status) {
         subsect_info[[latest_subsect]] <-
@@ -193,7 +193,7 @@ parse_log <- function(nested_log) {
     parsed_log$`Session Information`$`Packages` <-
       nested_log$`Session Information`$`Packages` %>%
       # remove indicator whether the package is attached to the search path
-      gsub("\\*", " ", ., fixed = TRUE) %>%
+      gsub("\\*", " ", .) %>%
       # account for loaded packages due to load_all()
       gsub(" P ", "   ", ., fixed = TRUE) %>%
       readr::read_table(skip = 1, col_names = FALSE)
