@@ -5,7 +5,7 @@
 ## Updates
 
 - Removed .dcf file for old Addin (#280)
-- Reworked string handling to use base R and removed `{stringr}`/`{stringi}` dependencies.
+- Reworked string handling to use base R and removed `{stringr}`/`{stringi}` dependencies. (#294)
 
 ## Documentation
 
