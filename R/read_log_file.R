@@ -198,7 +198,7 @@ parse_log <- function(nested_log) {
       gsub(" P ", "   ", ., fixed = TRUE) %>%
       readr::read_table(skip = 1, col_names = FALSE)
 
-    # handle case where log is has 7 columns due to sessioninfo v1.2.2 or earlier
+    # handle case where log has 7 columns due to sessioninfo v1.2.2 or earlier
     if (ncol(parsed_log$`Session Information`$`Packages`) == 7) {
       parsed_log$`Session Information`$`Packages` <-
         parsed_log$`Session Information`$`Packages` %>%
@@ -216,15 +216,16 @@ parse_log <- function(nested_log) {
           r_version = sub("\\)", "", r_version)
         )
     } else {
+      standard_names <- c("package", "version", "date", "lib", "source")
+      actual_n <- ncol(parsed_log$`Session Information`$`Packages`)
+      final_names <- if (actual_n <= 5) {
+        standard_names[seq_len(actual_n)]
+      } else {
+        c(standard_names, paste0("extra_", seq_len(actual_n - 5)))
+      }
       parsed_log$`Session Information`$`Packages` <-
         parsed_log$`Session Information`$`Packages` %>%
-        dplyr::rename_with(~ c(
-          "package",
-          "version",
-          "date",
-          "lib",
-          "source"
-        ))
+        dplyr::rename_with(~ final_names)
     }
 
     parsed_log$`Session Information`$`External software` <-
