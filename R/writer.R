@@ -43,8 +43,6 @@ write_metadata <- function() {
 #' Format log.rx's session info attribute for writing
 #'
 #' @importFrom purrr map_chr
-#' @importFrom stringi stri_wrap
-#' @importFrom stringr str_c
 #'
 #' @return A vector of log.rx's session info attribute
 #'
@@ -59,11 +57,8 @@ write_session_info <- function() {
       .x
     )) %>%
     # wrap any other elements over 80 characters
-    map_chr(~ stri_wrap(.x,
-      width = 80, exdent = 2, simplify = FALSE, use_length = TRUE,
-      normalize = FALSE, whitespace_only = TRUE
-    ) %>%
-      map_chr(~ str_c(.x, collapse = "\n\t", character(1))))
+    map_chr(~ strwrap(.x, width = 80, exdent = 2) %>%
+      paste(collapse = "\n\t"))
 
   return(session_info)
 }
@@ -247,7 +242,7 @@ write_errors <- function() {
 
   paste0(
     "Errors:\n\t",
-    str_replace_all(errors$message, "\n", "\n\t")
+    gsub("\n", "\n\t", errors$message, fixed = TRUE)
   )
 }
 
@@ -269,7 +264,6 @@ write_warnings <- function() {
 #' Format messages attribute for writing
 #'
 #' @importFrom purrr map
-#' @importFrom stringr str_remove_all
 #'
 #' @return A formatted vector of messages
 #'
@@ -277,7 +271,7 @@ write_warnings <- function() {
 #'
 write_messages <- function() {
   messages <- get_log_element("messages") %>%
-    map(~ str_remove_all(.x, "\n"))
+    map(~ gsub("\n", "", .x, fixed = TRUE))
 
   paste0(
     "Messages:\n\t",
@@ -286,8 +280,6 @@ write_messages <- function() {
 }
 
 #' Format output attribute for writing
-#'
-#' @importFrom stringr str_replace_all
 #'
 #' @return A formatted vector of output
 #'
@@ -298,7 +290,7 @@ write_output <- function() {
 
   paste0(
     "Output:\n\t",
-    str_replace_all(output, "\n", "\n\t")
+    gsub("\n", "\n\t", output, fixed = TRUE)
   )
 }
 
@@ -361,12 +353,6 @@ write_extra_info <- function() {
       call. = FALSE
     )
   }
-  if (!requireNamespace("stringr", quietly = TRUE)) {
-    stop(
-      "Package \"stringr\" must be installed to use this function.",
-      call. = FALSE
-    )
-  }
   extra_info <- get_log_element("extra_info")
   results <- yaml::as.yaml(
     extra_info,
@@ -375,6 +361,9 @@ write_extra_info <- function() {
       logical = yaml::verbatim_logical
     )
   )
-  results <- stringr::str_split(results, pattern = "\n")[[1]]
+  results <- strsplit(results, split = "\n", fixed = TRUE)[[1]]
+  if (length(results) == 0 || results[length(results)] != "") {
+    results <- c(results, "")
+  }
   return(results)
 }

@@ -292,7 +292,6 @@ test_that("write_repo_urls will return a formatted log output element", {
 
 test_that("write_extra_info will return a formatted log output element", {
   skip_if_not_installed("yaml")
-  skip_if_not_installed("stringr")
   options("log.rx" = NULL)
   ref_extra_info1 <- list("some info", "more info")
   fp <- test_path("ref", "safely_loudly_test_file_result.R")
