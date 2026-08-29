@@ -46,11 +46,11 @@ in a special extra info section. List printed in YAML format. Optional}
 \item{...}{Not used}
 }
 \value{
-0 if there are no errors or 1 if there are any errors
+NULL. Function is called for side effects. In non-interactive sessions,
+exits with status 1 if errors occur and \code{quit_on_error} is TRUE.
 }
 \description{
-\code{axecute()} creates a log, executes a file, and returns 0 if there are no
-errors or 1 if there are any errors
+\code{axecute()} executes a file and creates a log
 }
 \section{Handling Existing log.rx Environments}{
 
