@@ -24,6 +24,8 @@
 - Updated `axecute()` documentation to describe behaviour when a log.rx environment already exists
 - Updated `build_approved()` documentation to reflect YAML support and new arguments
 
+- Added `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md` (#287)
+
 # logrx 0.4.0
 
 ## New Features
