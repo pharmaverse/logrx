@@ -24,6 +24,9 @@
   documentation to correctly reflect return behavior
   ([\#288](https://github.com/pharmaverse/logrx/issues/288))
 
+- Added `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md`
+  ([\#287](https://github.com/pharmaverse/logrx/issues/287))
+
 ## logrx 0.4.0
 
 CRAN release: 2025-05-05
