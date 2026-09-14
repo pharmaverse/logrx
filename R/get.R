@@ -297,6 +297,74 @@ get_unapproved_use <- function(approved_packages, used_packages) {
 }
 
 
+#' Get packages referenced in a file before execution
+#'
+#' Parses the file AST to extract package names from `library()`/`require()`
+#' calls and explicit `pkg::fun()` namespacing. Compares against the approved
+#' list and returns any unapproved package names.
+#'
+#' @param file File path of file to check
+#'
+#' @return Character vector of unapproved package names, or NULL if all approved
+#'
+#' @importFrom purrr safely
+#' @importFrom utils getParseData
+#'
+#' @noRd
+#'
+get_pre_execution_packages <- function(file) {
+  if (!file.exists(getOption("log.rx.approved"))) {
+    return(NULL)
+  }
+
+  retfun <- safely(parse, quiet = FALSE, otherwise = NULL)
+  ret <- retfun(file, keep.source = TRUE)
+
+  if (is.null(ret$result)) {
+    return(NULL)
+  }
+
+  tokens <- getParseData(ret$result)
+
+  # packages from pkg::fun() namespacing
+  pkg_tokens <- tokens[tokens$token == "SYMBOL_PACKAGE", "text"]
+
+  # packages from library(pkg) / require(pkg) calls
+  # find row indices of library/require calls, then get the next SYMBOL token
+  call_rows <- which(
+    tokens$token == "SYMBOL_FUNCTION_CALL" &
+      tokens$text %in% c("library", "require")
+  )
+  lib_pkgs <- character()
+  for (i in call_rows) {
+    # the SYMBOL_FUNCTION_CALL parent is the function call expr;
+    # the grandparent expr contains arguments as direct children (SYMBOL)
+    # or wrapped in an expr child (STR_CONST)
+    call_expr_id <- tokens$parent[i]
+    grandparent_id <- tokens$parent[tokens$id == call_expr_id]
+    children <- tokens[tokens$parent == grandparent_id & tokens$id != call_expr_id, ]
+    # SYMBOL and STR_CONST args are both wrapped in an expr grandchild
+    grandchildren <- tokens[tokens$parent %in% children$id, ]
+    pkg_child <- grandchildren[grandchildren$token %in% c("SYMBOL", "STR_CONST"), "text"]
+    if (length(pkg_child) > 0) {
+      lib_pkgs <- c(lib_pkgs, gsub('["\']', "", pkg_child[1]))
+    }
+  }
+
+  all_packages <- unique(c(pkg_tokens, lib_pkgs))
+
+  if (length(all_packages) == 0) {
+    return(NULL)
+  }
+
+  approved <- readRDS(getOption("log.rx.approved"))
+  approved_pkgs <- unique(gsub("^package:", "", approved$library))
+
+  unapproved <- setdiff(all_packages, approved_pkgs)
+
+  if (length(unapproved) == 0) NULL else unapproved
+}
+
 #' Get lint results
 #'
 #' Pass linters specified in the `log.rx.lint` option to `lintr::lint`

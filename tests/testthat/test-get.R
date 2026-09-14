@@ -254,6 +254,120 @@ test_that("functions used are returned correctly for rmd files", {
   expect_identical(get_used_functions(tmpfile), expected)
 })
 
+test_that("get_pre_execution_packages returns NULL when no approved list exists", {
+  r_path <- tempfile(fileext = ".R")
+  withr::defer(unlink(r_path))
+  writeLines("library(dplyr)", con = r_path)
+
+  withr::local_options(log.rx.approved = tempfile(fileext = ".rds"))
+
+  expect_null(get_pre_execution_packages(r_path))
+})
+
+test_that("get_pre_execution_packages returns NULL when all packages are approved", {
+  r_path <- tempfile(fileext = ".R")
+  withr::defer(unlink(r_path))
+  writeLines("library(dplyr)", con = r_path)
+
+  withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
+
+  expect_null(get_pre_execution_packages(r_path))
+})
+
+test_that("get_pre_execution_packages returns NULL when file has no packages", {
+  r_path <- tempfile(fileext = ".R")
+  withr::defer(unlink(r_path))
+  writeLines("mean(1:10)", con = r_path)
+
+  withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
+
+  expect_null(get_pre_execution_packages(r_path))
+})
+
+test_that("get_pre_execution_packages detects unapproved package from library() call", {
+  r_path <- tempfile(fileext = ".R")
+  withr::defer(unlink(r_path))
+  writeLines("library(withr)", con = r_path)
+
+  withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
+
+  expect_equal(get_pre_execution_packages(r_path), "withr")
+})
+
+test_that("get_pre_execution_packages detects unapproved package from :: namespacing", {
+  r_path <- tempfile(fileext = ".R")
+  withr::defer(unlink(r_path))
+  writeLines("withr::defer(print('hello'))", con = r_path)
+
+  withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
+
+  expect_equal(get_pre_execution_packages(r_path), "withr")
+})
+
+test_that("get_pre_execution_packages detects unapproved package from string-form library() call", {
+  r_path <- tempfile(fileext = ".R")
+  withr::defer(unlink(r_path))
+  writeLines('library("withr")', con = r_path)
+
+  withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
+
+  expect_equal(get_pre_execution_packages(r_path), "withr")
+})
+
+test_that("get_pre_execution_packages detects unapproved package from require() call", {
+  r_path <- tempfile(fileext = ".R")
+  withr::defer(unlink(r_path))
+  writeLines("require(withr)", con = r_path)
+
+  withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
+
+  expect_equal(get_pre_execution_packages(r_path), "withr")
+})
+
+test_that("get_pre_execution_packages detects unapproved package from string-form require() call", {
+  r_path <- tempfile(fileext = ".R")
+  withr::defer(unlink(r_path))
+  writeLines('require("withr")', con = r_path)
+
+  withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
+
+  expect_equal(get_pre_execution_packages(r_path), "withr")
+})
+
+test_that("get_pre_execution_packages returns NULL when require() package is approved", {
+  r_path <- tempfile(fileext = ".R")
+  withr::defer(unlink(r_path))
+  writeLines("require(dplyr)", con = r_path)
+
+  withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
+
+  expect_null(get_pre_execution_packages(r_path))
+})
+
+test_that("get_pre_execution_packages returns NULL when file has syntax error", {
+  r_path <- tempfile(fileext = ".R")
+  withr::defer(unlink(r_path))
+  writeLines("function(", con = r_path)
+
+  withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
+
+  expect_null(get_pre_execution_packages(r_path))
+})
+
+test_that("get_pre_execution_packages returns NULL for multi-line file with all approved packages", {
+  # ex1.R uses library(dplyr) and tidyr::pivot_wider() - both in approved.rds
+  withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
+
+  expect_null(get_pre_execution_packages(test_path("ref", "ex1.R")))
+})
+
+test_that("get_pre_execution_packages detects unapproved package in multi-line file", {
+  # ex7.R uses library(dplyr) and library(purrr) - purrr is not in approved.rds
+  withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
+
+  expect_equal(get_pre_execution_packages(test_path("ref", "ex7.R")), "purrr")
+})
+
 test_that("get_repo_urls returns correct list of repos", {
   original_repos <- options("repos")
   test_repos <- c(

@@ -2,6 +2,12 @@
 
 ## New Features
 
+- Added `error_on_unapproved` parameter to `axecute()` to optionally stop execution
+  if unapproved packages are detected before running the script (#204)
+  - Parses the script's AST to detect packages from `library()`/`require()` calls
+    and `pkg::fun()` namespacing without executing the script
+  - Writes a log with the unapproved packages listed before stopping
+
 ## Updates
 
 - Improved error messaging when a log.rx environment already exists (#276)
