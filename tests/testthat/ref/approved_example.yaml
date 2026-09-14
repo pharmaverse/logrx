@@ -1,0 +1,3 @@
+base: "_all_"
+dplyr: ["mutate", "filter", "select", "summarize", "group_by", "arrange", "%>%"]
+tidyr: ["pivot_wider", "pivot_longer"]

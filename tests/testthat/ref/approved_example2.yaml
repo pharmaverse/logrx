@@ -1,0 +1,13 @@
+package:base:
+- _all_
+package:dplyr:
+- mutate
+- filter
+- select
+- summarize
+- group_by
+- arrange
+- "%>%"
+package:tidyr:
+- pivot_wider
+- pivot_longer

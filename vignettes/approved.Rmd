@@ -76,7 +76,7 @@ approved_pkgs <- list(
 approved_pkgs
 ```
 
-## 2. Build `approved.rds`
+## 2. Build your approved list
 
 Pass the named list through `build_approved()` to build your tibble. We
 create a temp directory to save this for illustration.
@@ -85,24 +85,60 @@ create a temp directory to save this for illustration.
 build_approved(approved_pkgs)
 ```
 
-## 3. Save as `approved.rds`
+## 3. Save as `approved.rds` or `approved.yaml`
 
-You can use the `file` argument in `build_approved()` to save
-`approved.rds` instead of returning the tibble.
+You can use the `file` argument in `build_approved()` to save the
+approved list to a file. Both `.rds` and `.yaml` / `.yml` formats are
+supported.
 
 ```{r}
 dir <- tempdir()
 
+# save as rds
 build_approved(approved_pkgs, file = file.path(dir, "approved.rds"))
+
+# save as yaml
+build_approved(approved_pkgs, file = file.path(dir, "approved.yaml"))
+```
+
+When writing a YAML file, package keys are written with the `package:`
+prefix by default (e.g. `package:base`). Both the prefixed form
+(`package:base`) and the bare form (`base`) are accepted when reading
+the file back, so either style can be used when editing the YAML by
+hand.
+
+For example, both of these are valid YAML approved lists:
+
+```yaml
+# bare package names
+base: "_all_"
+dplyr: ["mutate", "filter", "select", "summarize", "group_by", "arrange"]
+```
+
+```yaml
+# package: prefix
+package:base:
+  - _all_
+package:dplyr:
+  - mutate
+  - filter
+  - select
+  - summarize
+  - group_by
+  - arrange
 ```
 
 ## 4. Update the `logrx.approved` option
 
-Update the `logrx.approved` option to point to your `approved.rds`
-location. We recommend setting this in your `.Rprofile`.
+Update the `logrx.approved` option to point to your approved list file.
+We recommend setting this in your `.Rprofile`.
 
 ```{r}
+# point to rds
 options(log.rx.approved = file.path(dir, "approved.rds"))
+
+# or point to yaml
+options(log.rx.approved = file.path(dir, "approved.yaml"))
 ```
 
 ## 5. You're done. Let's axecute!
