@@ -216,7 +216,8 @@ get_used_functions <- function(file) {
     mutate(function_name = coalesce(
       .data[["SYMBOL_FUNCTION_CALL"]],
       .data[["SPECIAL"]]
-    ))
+    )) %>%
+    mutate(function_name = gsub("^`(.*)`$", "\\1", .data[["function_name"]]))
 
   distinct_use <- get_library(combine_tokens) %>%
     select(all_of(c("function_name", "library"))) %>%

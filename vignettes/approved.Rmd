@@ -26,7 +26,7 @@ and function use within a validated environment.
 
 Following the guidance outlined in [A Risk-Based Approach for Assessing
 R Package Accuracy within a Validated
-Infrastructure](https://www.pharmar.org/white-paper/), packages are
+Infrastructure](https://pharmar.org/white-paper/), packages are
 selected to support use cases, risk is assessed and mitigated, and
 packages are included in your validated environment for use. **Section
 4.3** of this paper nicely outlines the need to trace what is used and
@@ -39,7 +39,7 @@ direct use within the validated environment.
 *4.3. Traceability*
 
 *"One of the core concepts presented [in this
-paper](https://www.pharmar.org/white-paper/) is that Imports are not
+paper](https://pharmar.org/white-paper/) is that Imports are not
 typically loaded by users and need not therefore be directly
 risk-assessed. If adopting this risk-based approach then measures need
 to be taken to ensure that users do not directly load the Package

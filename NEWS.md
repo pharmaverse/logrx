@@ -4,6 +4,9 @@
 
 ## Updates
 
+- Quoted function calls, including replacement functions such as `colnames<-`,
+  are now matched to their source package in used-functions logs (#271).
+
 - Improved error messaging when a log.rx environment already exists (#276)
   - In non-interactive mode, provides clear guidance on how to resolve the issue
   - In interactive mode, offers users the option to automatically remove the existing environment or handle it manually

@@ -136,6 +136,30 @@ test_that("used functions returned correctly when file doesn't contain all token
   expect_identical(get_used_functions(filename), expected)
 })
 
+test_that("backtick-quoted replacement functions are matched to their package", {
+  filename <- tempfile(fileext = ".R")
+  withr::defer(unlink(filename))
+
+  writeLines(
+    text = c(
+      "df <- data.frame(a = 1, b = 2)",
+      "df <- `colnames<-`(df, c('A1', 'B1'))",
+      "colnames(df)"
+    ),
+    con = filename
+  )
+
+  expected <- tibble::tribble(
+    ~function_name, ~library,
+    "data.frame", "package:base",
+    "colnames<-", "package:base",
+    "c", "package:base",
+    "colnames", "package:base"
+  )
+
+  expect_identical(get_used_functions(filename), expected)
+})
+
 test_that("get_library returns correct function when a non-function
           object of same name is available", {
   writeLines('search <- "dummy object"', "dummy.R")
