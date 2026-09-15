@@ -2,6 +2,10 @@
 
 ## New Features
 
+## Bug Fixes
+
+- Fixed package detection failure for backtick-quoted and replacement functions in `get_used_functions()` (#271)
+
 ## Updates
 
 - Improved error messaging when a log.rx environment already exists (#276)

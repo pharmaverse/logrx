@@ -254,6 +254,45 @@ test_that("functions used are returned correctly for rmd files", {
   expect_identical(get_used_functions(tmpfile), expected)
 })
 
+test_that("replacement functions are attributed to the correct package", {
+  # Attach a local environment to the search path that exports labels<-,
+  # replicating the scenario where a package provides a replacement form of a
+  # function that also exists in base (e.g. common::labels<-). This avoids
+  # declaring common as a dependency while still testing the disambiguation.
+  e <- new.env(parent = emptyenv())
+  assign("labels<-", function(x, value) {
+    attr(x, "labels") <- value
+    x
+  }, envir = e)
+  attach(e, name = "package:fakelabels", warn.conflicts = FALSE)
+  withr::defer(detach("package:fakelabels"))
+
+  r_path <- tempfile(fileext = ".R")
+  withr::defer(unlink(r_path))
+
+  writeLines(
+    c(
+      "library(fakelabels)",
+      "df <- data.frame(a = 1, b = 2)",
+      # labels<- exists in fakelabels (on search path). The parser captures the
+      # token as "labels" (the <- is a separate token), so without checking the
+      # namespace for replacement forms, attribution would incorrectly resolve
+      # to base.
+      "labels(df) <- list(a = 'A1', b = 'B1')",
+      # A plain call to labels() (no assignment) should still resolve to base.
+      "labels(df)"
+    ),
+    con = r_path
+  )
+
+  result <- get_used_functions(r_path)
+
+  labels_result <- result[result$function_name == "labels", ]$library
+
+  expect_equal(labels_result[1], "package:fakelabels")
+  expect_equal(labels_result[2], "package:base")
+})
+
 test_that("get_repo_urls returns correct list of repos", {
   original_repos <- options("repos")
   test_repos <- c(
