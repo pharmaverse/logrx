@@ -4,12 +4,19 @@
 
 ## Updates
 
+- Improved error messaging when a log.rx environment already exists (#276)
+  - In non-interactive mode, provides clear guidance on how to resolve the issue
+  - In interactive mode, offers users the option to automatically remove the existing environment or handle it manually
+  - Added comprehensive tests for both interactive and non-interactive scenarios
+
 - Removed .dcf file for old Addin (#280)
 - Reworked string handling to use base R and removed `{stringr}`/`{stringi}` dependencies. (#294)
 
 ## Documentation
 
 - Updated `axecute()` documentation to correctly reflect return behavior (#288)
+
+- Added `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md` (#287)
 
 # logrx 0.4.0
 

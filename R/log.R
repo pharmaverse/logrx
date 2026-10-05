@@ -1,5 +1,70 @@
 ### Functions to initialise, configure, cleanup, and write the log.rx environment
 
+#' Handle existing log.rx environment with user options
+#'
+#' `handle_existing_environment()` provides helpful messaging and options
+#' when a log.rx environment already exists
+#'
+#' @importFrom utils menu
+#'
+#' @return TRUE if environment was handled and can proceed, FALSE otherwise
+#'
+#' @noRd
+#'
+handle_existing_environment <- function() {
+  # Create helpful error message
+  msg <- paste0(
+    "\nA log.rx environment already exists and cannot be used for a new execution.\n\n",
+    "This typically happens when:\n",
+    "  - A previous logrx execution did not complete properly\n",
+    "  - The log.rx environment was not cleaned up after a previous run\n\n",
+    "To resolve this issue, you have the following options:\n"
+  )
+
+  if (interactive()) {
+    # Interactive mode: provide user options
+    msg <- paste0(
+      msg,
+      "  1. Allow logrx to remove the environment and proceed with execution\n",
+      "  2. Manually remove the environment using log_remove() or restart your R session\n"
+    )
+
+    message(msg)
+
+    # Use menu() for interactive selection
+    choice <- menu(
+      choices = c(
+        "Remove environment and proceed",
+        "Cancel and handle manually"
+      ),
+      title = "Please select an option:"
+    )
+
+    if (choice == 1) {
+      # User chose to remove environment and proceed
+      message("Removing existing log.rx environment and proceeding...")
+      log_remove()
+      return(TRUE)
+    } else {
+      # User chose to handle manually or cancelled (choice == 0 or 2)
+      stop(
+        "Execution cancelled. Please use log_remove() to remove the environment or restart your R session.",
+        call. = FALSE
+      )
+    }
+  } else {
+    # Non-interactive mode: provide informative error
+    msg <- paste0(
+      msg,
+      "In non-interactive mode, please ensure the environment is cleared before execution:\n",
+      "  - Use log_remove() to remove the environment programmatically\n",
+      "  - Restart your R session to clear all environments\n",
+      "  - Ensure previous logrx executions complete properly\n"
+    )
+    stop(msg, call. = FALSE)
+  }
+}
+
 #' Initialization of the log.rx environment
 #'
 #' `log_init()` initialises the log.rx environment
@@ -57,10 +122,10 @@ log_config <- function(file = NA,
                        log_name = NA,
                        log_path = NA,
                        extra_info = NA) {
-  # If the log.rx environment is not NULL or empty, warn the user
+  # If the log.rx environment is not NULL or empty, handle it appropriately
   if (!is.null(getOption("log.rx"))) {
     if (!(identical(ls(getOption("log.rx")), character(0)))) {
-      stop("a log.rx environment already exists")
+      handle_existing_environment()
     }
   }
 
