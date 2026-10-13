@@ -43,6 +43,6 @@ Functionality to Read Log Files
 Utility functions
 
 - [`build_approved()`](https://pharmaverse.github.io/logrx/dev/reference/build_approved.md)
-  : Build approved packages and functions tibble
+  : Build approved packages and functions
 - [`approved`](https://pharmaverse.github.io/logrx/dev/reference/approved.md)
   : Approved packages and functions

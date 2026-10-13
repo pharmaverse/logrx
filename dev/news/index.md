@@ -4,6 +4,18 @@
 
 ### New Features
 
+- [`build_approved()`](https://pharmaverse.github.io/logrx/dev/reference/build_approved.md)
+  now supports writing and reading approved lists as YAML files
+  (`.yaml`/`.yml`) in addition to `.rds`
+  ([\#199](https://github.com/pharmaverse/logrx/issues/199))
+  - New `yaml_prefix` argument controls whether package keys use the
+    `package:` prefix
+  - New `yaml_style` argument controls block vs inline formatting for
+    function lists
+  - `"_all_"` is now accepted as an alias for `"All"` to approve all
+    functions in a package
+  - `yaml` has been moved from `Suggests` to `Imports`
+
 ### Updates
 
 - Improved error messaging when a log.rx environment already exists
@@ -23,6 +35,15 @@
   [`axecute()`](https://pharmaverse.github.io/logrx/dev/reference/axecute.md)
   documentation to correctly reflect return behavior
   ([\#288](https://github.com/pharmaverse/logrx/issues/288))
+
+- Updated
+  [`axecute()`](https://pharmaverse.github.io/logrx/dev/reference/axecute.md)
+  documentation to describe behaviour when a log.rx environment already
+  exists
+
+- Updated
+  [`build_approved()`](https://pharmaverse.github.io/logrx/dev/reference/build_approved.md)
+  documentation to reflect YAML support and new arguments
 
 - Added `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md`
   ([\#287](https://github.com/pharmaverse/logrx/issues/287))

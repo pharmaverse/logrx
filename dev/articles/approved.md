@@ -60,7 +60,7 @@ approved_pkgs
 #> [1] "All"
 ```
 
-### 2. Build `approved.rds`
+### 2. Build your approved list
 
 Pass the named list through
 [`build_approved()`](https://pharmaverse.github.io/logrx/dev/reference/build_approved.md)
@@ -85,25 +85,61 @@ build_approved(approved_pkgs)
 #> # ℹ 275 more rows
 ```
 
-### 3. Save as `approved.rds`
+### 3. Save as `approved.rds` or `approved.yaml`
 
 You can use the `file` argument in
 [`build_approved()`](https://pharmaverse.github.io/logrx/dev/reference/build_approved.md)
-to save `approved.rds` instead of returning the tibble.
+to save the approved list to a file. Both `.rds` and `.yaml` / `.yml`
+formats are supported.
 
 ``` r
 dir <- tempdir()
 
+# save as rds
 build_approved(approved_pkgs, file = file.path(dir, "approved.rds"))
+
+# save as yaml
+build_approved(approved_pkgs, file = file.path(dir, "approved.yaml"))
+```
+
+When writing a YAML file, package keys are written with the `package:`
+prefix by default (e.g. `package:base`). Both the prefixed form
+(`package:base`) and the bare form (`base`) are accepted when reading
+the file back, so either style can be used when editing the YAML by
+hand.
+
+For example, both of these are valid YAML approved lists:
+
+``` yaml
+# bare package names
+base: "_all_"
+dplyr: ["mutate", "filter", "select", "summarize", "group_by", "arrange"]
+```
+
+``` yaml
+# package: prefix
+package:base:
+  - _all_
+package:dplyr:
+  - mutate
+  - filter
+  - select
+  - summarize
+  - group_by
+  - arrange
 ```
 
 ### 4. Update the `logrx.approved` option
 
-Update the `logrx.approved` option to point to your `approved.rds`
-location. We recommend setting this in your `.Rprofile`.
+Update the `logrx.approved` option to point to your approved list file.
+We recommend setting this in your `.Rprofile`.
 
 ``` r
+# point to rds
 options(log.rx.approved = file.path(dir, "approved.rds"))
+
+# or point to yaml
+options(log.rx.approved = file.path(dir, "approved.yaml"))
 ```
 
 ### 5. You’re done. Let’s axecute!

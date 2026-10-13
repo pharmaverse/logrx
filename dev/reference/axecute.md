@@ -1,7 +1,6 @@
 # Creation of a log and axecution of a file
 
-`axecute()` creates a log, executes a file, and returns 0 if there are
-no errors or 1 if there are any errors
+`axecute()` executes a file and creates a log
 
 ## Usage
 
@@ -68,7 +67,8 @@ axecute(
 
 ## Value
 
-0 if there are no errors or 1 if there are any errors
+NULL. Function is called for side effects. In non-interactive sessions,
+exits with status 1 if errors occur and `quit_on_error` is TRUE.
 
 ## Handling Existing log.rx Environments
 
@@ -120,12 +120,12 @@ axecute(file.path(dir, "hello.Rmd"))
 #> processing file: hello.Rmd
 #> 1/1
 #> output file: hello.knit.md
-#> /usr/bin/pandoc +RTS -K512m -RTS hello.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output hello.html --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --embed-resources --standalone --variable bs3=TRUE --section-divs --template /home/runner/work/_temp/Library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmpnjXW9J/rmarkdown-str20c712ab2484.html 
+#> /usr/bin/pandoc +RTS -K512m -RTS hello.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output hello.html --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --embed-resources --standalone --variable bs3=TRUE --section-divs --template /home/runner/work/_temp/Library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmprZg6LC/rmarkdown-str20d972347509.html 
 #> 
 #> Output created: hello.html
 #> 
 #> 
-#> processing file: /tmp/RtmpnjXW9J/hello.Rmd
+#> processing file: /tmp/RtmprZg6LC/hello.Rmd
 #> 1/1
-#> output file: /tmp/RtmpnjXW9J/file20c7242cda41.R
+#> output file: /tmp/RtmprZg6LC/file20d95a2c3031.R
 ```

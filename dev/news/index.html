@@ -51,7 +51,17 @@
 <h2 class="pkg-version" data-toc-text="development version" id="logrx-development-version">logrx (development version)<a class="anchor" aria-label="anchor" href="#logrx-development-version"></a></h2>
 <div class="section level3">
 <h3 id="new-features-development-version">New Features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
-</div>
+<ul><li>
+<code><a href="../reference/build_approved.html">build_approved()</a></code> now supports writing and reading approved lists as YAML files (<code>.yaml</code>/<code>.yml</code>) in addition to <code>.rds</code> (<a href="https://github.com/pharmaverse/logrx/issues/199" class="external-link">#199</a>)
+<ul><li>New <code>yaml_prefix</code> argument controls whether package keys use the <code>package:</code> prefix</li>
+<li>New <code>yaml_style</code> argument controls block vs inline formatting for function lists</li>
+<li>
+<code>"_all_"</code> is now accepted as an alias for <code>"All"</code> to approve all functions in a package</li>
+<li>
+<code>yaml</code> has been moved from <code>Suggests</code> to <code>Imports</code>
+</li>
+</ul></li>
+</ul></div>
 <div class="section level3">
 <h3 id="updates-development-version">Updates<a class="anchor" aria-label="anchor" href="#updates-development-version"></a></h3>
 <ul><li>Improved error messaging when a log.rx environment already exists (<a href="https://github.com/pharmaverse/logrx/issues/276" class="external-link">#276</a>)
@@ -64,6 +74,8 @@
 <div class="section level3">
 <h3 id="documentation-development-version">Documentation<a class="anchor" aria-label="anchor" href="#documentation-development-version"></a></h3>
 <ul><li><p>Updated <code><a href="../reference/axecute.html">axecute()</a></code> documentation to correctly reflect return behavior (<a href="https://github.com/pharmaverse/logrx/issues/288" class="external-link">#288</a>)</p></li>
+<li><p>Updated <code><a href="../reference/axecute.html">axecute()</a></code> documentation to describe behaviour when a log.rx environment already exists</p></li>
+<li><p>Updated <code><a href="../reference/build_approved.html">build_approved()</a></code> documentation to reflect YAML support and new arguments</p></li>
 <li><p>Added <code>CONTRIBUTING.md</code> and <code>CODE_OF_CONDUCT.md</code> (<a href="https://github.com/pharmaverse/logrx/issues/287" class="external-link">#287</a>)</p></li>
 </ul></div>
 </div>

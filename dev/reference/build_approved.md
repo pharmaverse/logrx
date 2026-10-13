@@ -1,4 +1,4 @@
-# Build approved packages and functions tibble
+# Build approved packages and functions
 
 A utility function to help you build your approved packages and
 functions list. This can be used by logrx to log unapproved use of
@@ -7,7 +7,12 @@ packages and functions.
 ## Usage
 
 ``` r
-build_approved(pkg_list, file = NULL)
+build_approved(
+  pkg_list,
+  file = NULL,
+  yaml_prefix = TRUE,
+  yaml_style = c("block", "inline")
+)
 ```
 
 ## Arguments
@@ -18,20 +23,38 @@ build_approved(pkg_list, file = NULL)
 
   - Name is the package name
 
-  - Value is a character vector of approved functions or 'All'
+  - Value is a character vector of approved functions, 'All', or '*all*'
 
 - file:
 
-  String. Name of file where the approved tibble will be written to. If
-  not specified, the tibble is returned
+  String. Path where the approved list will be written. If not
+  specified, a tibble is returned.
 
   Default: NULL
 
-  Permitted Files: .RDS
+  Permitted Files: .rds, .yaml, .yml
+
+- yaml_prefix:
+
+  Logical. When writing a yaml file, should package keys be written with
+  the `package:` prefix (e.g. `package:base`)? If `FALSE`, bare names
+  are used (e.g. `base`). Ignored for .rds output.
+
+  Default: TRUE
+
+- yaml_style:
+
+  String. When writing a yaml file, `"block"` writes each function on
+  its own line; `"inline"` writes functions as a flow sequence on one
+  line. Ignored for .rds output.
+
+  Default: `"block"`
 
 ## Value
 
-Tibble with two columns (library, function) and one row per function
+If `file` is NULL, a tibble with two columns (library, function) and one
+row per function. If `file` is provided, the approved list is written to
+the specified file and nothing is returned.
 
 ## Details
 
