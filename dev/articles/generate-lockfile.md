@@ -2,7 +2,6 @@
 
 ``` r
 library(logrx)
-library(stringr)
 library(dplyr)
 library(tidyr)
 library(renv)
@@ -39,7 +38,7 @@ file.
 
 ``` r
 pkgs <- parsedFile$`Used Package and Functions` %>%
-  transmute(package_name = str_extract(library, "(?<=package\\:).+"))
+  transmute(package_name = sub("package:", "", library, fixed = TRUE))
 
 used_pkgs <- parsedFile$`Session Information`$Packages %>%
   filter(package %in% pkgs$package_name)
