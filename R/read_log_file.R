@@ -225,7 +225,7 @@ parse_log <- function(nested_log) {
       }
       parsed_log$`Session Information`$`Packages` <-
         parsed_log$`Session Information`$`Packages` %>%
-        dplyr::rename_with(~ final_names)
+        dplyr::rename_with(~final_names)
     }
 
     parsed_log$`Session Information`$`External software` <-
