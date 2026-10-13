@@ -1,0 +1,4 @@
+# URLs listed here are excluded from urlchecker::url_check() (see the
+# "Ignoring URLs with .urlignore" section of ?urlchecker::url_check).
+# These are known-good links that intermittently fail automated checks.
+https://www.pharmar.org/white-paper/
