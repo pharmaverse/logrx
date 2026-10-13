@@ -2,26 +2,45 @@
 % Please edit documentation in R/utils-approved.R
 \name{build_approved}
 \alias{build_approved}
-\title{Build approved packages and functions tibble}
+\title{Build approved packages and functions}
 \usage{
-build_approved(pkg_list, file = NULL)
+build_approved(
+  pkg_list,
+  file = NULL,
+  yaml_prefix = TRUE,
+  yaml_style = c("block", "inline")
+)
 }
 \arguments{
 \item{pkg_list}{Named list of character vectors:
 \itemize{
 \item Name is the package name
-\item Value is a character vector of approved functions or 'All'
+\item Value is a character vector of approved functions, 'All', or '\emph{all}'
 }}
 
-\item{file}{String. Name of file where the approved tibble will be written
-to. If not specified, the tibble is returned
+\item{file}{String. Path where the approved list will be written.
+If not specified, a tibble is returned.
 
 Default: NULL
 
-Permitted Files: .RDS}
+Permitted Files: .rds, .yaml, .yml}
+
+\item{yaml_prefix}{Logical. When writing a yaml file, should package keys
+be written with the \verb{package:} prefix (e.g. \code{package:base})? If \code{FALSE},
+bare names are used (e.g. \code{base}). Ignored for .rds output.
+
+Default: TRUE}
+
+\item{yaml_style}{String. When writing a yaml file, \code{"block"} writes each
+function on its own line; \code{"inline"} writes functions as a flow sequence
+on one line. Ignored for .rds output.
+
+Default: \code{"block"}}
 }
 \value{
-Tibble with two columns (library, function) and one row per function
+If \code{file} is NULL, a tibble with two columns (library, function) and
+one row per function. If \code{file} is provided, the approved list is written to
+the specified file and nothing is returned.
 }
 \description{
 A utility function to help you build your approved packages and functions
