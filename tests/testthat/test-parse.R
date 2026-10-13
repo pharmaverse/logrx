@@ -55,3 +55,24 @@ test_that("read_log_file will parse a logrx log file and create the necessary ob
   rm(scriptPath, logDir, parsedFile)
   log_remove()
 })
+
+test_that("nest_subsections handles both matched and unmatched subsection headers", {
+  matched_headers <- c("- Session info -------")
+  section_with_header <- list(
+    `Session Information` = c("- Session info -------", " setting value", " foo bar")
+  )
+
+  matched_result <- logrx:::nest_subsections(matched_headers, section_with_header)
+  expect_named(matched_result[[1]], "Session info")
+  expect_identical(
+    matched_result[[1]][["Session info"]],
+    c(" setting value", " foo bar")
+  )
+
+  no_headers <- c("plain text")
+  section_without_header <- list(`Session Information` = c("line one", "line two"))
+  unmatched_result <- logrx:::nest_subsections(no_headers, section_without_header)
+  expect_length(unmatched_result[[1]], 2)
+  expect_identical(unmatched_result[[1]][[1]], "line one")
+  expect_identical(unmatched_result[[1]][[2]], "line two")
+})
