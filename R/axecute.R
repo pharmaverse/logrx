@@ -18,7 +18,9 @@
 #' Defaults to FALSE
 #' @param error_on_unapproved Boolean. Should execution be stopped if unapproved
 #' packages are detected before running the script? Requires an approved list
-#' to be configured via `options(log.rx.approved)`. Defaults to FALSE
+#' to be configured via `options(log.rx.approved)`. Defaults to FALSE.
+#' See the \href{https://pharmaverse.github.io/logrx/articles/approved.html#stopping-execution-on-unapproved-packages}{Logging Unapproved Package and Function Use vignette}
+#' for details on setting up an approved package list.
 #' @param extra_info List. Objects to optionally add on to end of log
 #' in a special extra info section. List printed in YAML format. Optional
 #' @param ... Not used
@@ -107,8 +109,8 @@ axecute <- function(file,
         paste(unapproved_pkgs, collapse = ", ")
       )))
       set_log_element("unapproved_packages_functions", data.frame(
-        library = paste0("package:", unapproved_pkgs),
         function_name = "",
+        library = paste0("package:", unapproved_pkgs),
         stringsAsFactors = FALSE
       ))
       log_write(

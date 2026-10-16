@@ -118,9 +118,9 @@ By default, `axecute()` will log unapproved package use *after* the script runs.
 If you want to prevent execution entirely when unapproved packages are detected,
 use `error_on_unapproved = TRUE`.
 
-This performs a **pre-execution check** by parsing the script's AST to identify
+This performs a **pre-execution check** by parsing the script's AST (Abstract Syntax Tree) to identify
 packages referenced via `library()`, `require()`, or `pkg::fun()` namespacing,
-before any code is run. If any of those packages are not in your `approved.rds`,
+before any code is run. If any of those packages are not in your `approved.rds` or `approved.yml`,
 execution is stopped and a log is written capturing the unapproved packages found.
 
 ```r

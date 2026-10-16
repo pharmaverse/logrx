@@ -259,6 +259,7 @@ test_that("get_pre_execution_packages returns NULL when no approved list exists"
   withr::defer(unlink(r_path))
   writeLines("library(dplyr)", con = r_path)
 
+  # point to a non-existent .rds to simulate no approved list being configured
   withr::local_options(log.rx.approved = tempfile(fileext = ".rds"))
 
   expect_null(get_pre_execution_packages(r_path))
@@ -352,6 +353,26 @@ test_that("get_pre_execution_packages returns NULL when file has syntax error", 
   withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
 
   expect_null(get_pre_execution_packages(r_path))
+})
+
+test_that("get_pre_execution_packages detects multiple unapproved packages", {
+  r_path <- tempfile(fileext = ".R")
+  withr::defer(unlink(r_path))
+  writeLines(c("library(withr)", "library(rlang)"), con = r_path)
+
+  withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
+
+  expect_equal(sort(get_pre_execution_packages(r_path)), c("rlang", "withr"))
+})
+
+test_that("get_pre_execution_packages returns only unapproved packages when mix of approved and unapproved", {
+  r_path <- tempfile(fileext = ".R")
+  withr::defer(unlink(r_path))
+  writeLines(c("library(dplyr)", "library(withr)"), con = r_path)
+
+  withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
+
+  expect_equal(get_pre_execution_packages(r_path), "withr")
 })
 
 test_that("get_pre_execution_packages returns NULL for multi-line file with all approved packages", {
