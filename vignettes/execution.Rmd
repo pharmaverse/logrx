@@ -54,6 +54,27 @@ log_write()
 log_remove()
 ```
 
+### Handling Existing Environments
+
+If a `log.rx` environment already exists when you attempt to run `log_config()` or `axecute()`, `logrx` will provide helpful guidance on how to resolve the issue:
+
+* **In interactive mode**: You will be presented with a menu offering two options:
+  1. Allow `logrx` to automatically remove the existing environment and proceed with execution
+  2. Cancel execution and manually remove the environment using `log_remove()` or by restarting your R session
+
+* **In non-interactive mode**: An error will be raised with clear instructions on how to resolve the issue, including using `log_remove()` to programmatically clear the environment or restarting your R session.
+
+This typically happens when a previous logrx execution did not complete properly or the environment was not cleaned up after a previous run. The interactive options make it easy to recover from this situation without having to restart your R session.
+
+```{r handling-env, eval = FALSE}
+# If an environment exists, manually remove it
+log_remove()
+
+# Then proceed with your execution
+axecute("my_script.R")
+```
+
+
 ## Command Line Execution
 While executing from an R terminal is nice if you have access to one, you can also execute your code using system command line.  This is done using the `Rscript -e` command which executes a file using the registered Rscript executable.  Below are a few examples of how to use the command line to execute a file and create a log as well as how to manipulate the outputs of the execution.  These are likely to be advanced examples for most users.
 

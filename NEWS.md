@@ -5,14 +5,30 @@
 ## Bug Fixes
 
 - Fixed package detection failure for backtick-quoted and replacement functions in `get_used_functions()` (#271)
+- `build_approved()` now supports writing and reading approved lists as YAML files
+  (`.yaml`/`.yml`) in addition to `.rds` (#199)
+  - New `yaml_prefix` argument controls whether package keys use the `package:` prefix
+  - New `yaml_style` argument controls block vs inline formatting for function lists
+  - `"_all_"` is now accepted as an alias for `"All"` to approve all functions in a package
+  - `yaml` has been moved from `Suggests` to `Imports`
 
 ## Updates
 
+- Improved error messaging when a log.rx environment already exists (#276)
+  - In non-interactive mode, provides clear guidance on how to resolve the issue
+  - In interactive mode, offers users the option to automatically remove the existing environment or handle it manually
+  - Added comprehensive tests for both interactive and non-interactive scenarios
+
 - Removed .dcf file for old Addin (#280)
+- Reworked string handling to use base R and removed `{stringr}`/`{stringi}` dependencies. (#294)
 
 ## Documentation
 
 - Updated `axecute()` documentation to correctly reflect return behavior (#288)
+- Updated `axecute()` documentation to describe behaviour when a log.rx environment already exists
+- Updated `build_approved()` documentation to reflect YAML support and new arguments
+
+- Added `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md` (#287)
 
 # logrx 0.4.0
 

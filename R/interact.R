@@ -140,7 +140,6 @@ run_file <- function(file) {
 #' Safely run an R script and record results, outputs, messages, errors, warnings
 #'
 #' @importFrom purrr safely discard
-#' @importFrom stringr str_starts
 #'
 #' @param file File to run
 #'
@@ -150,7 +149,7 @@ run_file <- function(file) {
 #'
 run_safely_loudly <- function(file) {
   ret <- loudly(run_safely(file))
-  set_log_element("messages", discard(ret$messages, ~ str_starts(.x, "Error")))
+  set_log_element("messages", discard(ret$messages, ~ startsWith(.x, "Error")))
   set_log_element("output", ret$output)
   set_log_element("result", ret$result$result)
   set_log_element("warnings", ret$warnings)
