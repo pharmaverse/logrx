@@ -51,7 +51,11 @@
 <h2 class="pkg-version" data-toc-text="development version" id="logrx-development-version">logrx (development version)<a class="anchor" aria-label="anchor" href="#logrx-development-version"></a></h2>
 <div class="section level3">
 <h3 id="new-features-development-version">New Features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
-<ul><li>
+</div>
+<div class="section level3">
+<h3 id="bug-fixes-development-version">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
+<ul><li>Fixed package detection failure for backtick-quoted and replacement functions in <code>get_used_functions()</code> (<a href="https://github.com/pharmaverse/logrx/issues/271" class="external-link">#271</a>)</li>
+<li>
 <code><a href="../reference/build_approved.html">build_approved()</a></code> now supports writing and reading approved lists as YAML files (<code>.yaml</code>/<code>.yml</code>) in addition to <code>.rds</code> (<a href="https://github.com/pharmaverse/logrx/issues/199" class="external-link">#199</a>)
 <ul><li>New <code>yaml_prefix</code> argument controls whether package keys use the <code>package:</code> prefix</li>
 <li>New <code>yaml_style</code> argument controls block vs inline formatting for function lists</li>

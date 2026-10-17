@@ -4,6 +4,11 @@
 
 ### New Features
 
+### Bug Fixes
+
+- Fixed package detection failure for backtick-quoted and replacement
+  functions in `get_used_functions()`
+  ([\#271](https://github.com/pharmaverse/logrx/issues/271))
 - [`build_approved()`](https://pharmaverse.github.io/logrx/dev/reference/build_approved.md)
   now supports writing and reading approved lists as YAML files
   (`.yaml`/`.yml`) in addition to `.rds`
