@@ -46,4 +46,5 @@ tibble
 tidylog
 tidyr
 unintrusive
+backtick
 behaviour
