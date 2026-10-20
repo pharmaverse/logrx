@@ -166,7 +166,8 @@ test_that("write_unapproved_functions formats pre-execution unapproved packages 
   log_remove()
 })
 
-test_that("write_unapproved_functions will return expect results when all packages and functions are approved", {  options("log.rx" = NULL)
+test_that("write_unapproved_functions will return expect results when all packages and functions are approved", {
+  options("log.rx" = NULL)
   log_config("./test-writer.R")
   unapproved_functions <- tibble::tibble(
     function_name = vector(mode = "character"),
