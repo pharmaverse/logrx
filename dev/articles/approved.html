@@ -221,12 +221,37 @@ file.</p>
 </div>
 </div>
 <div class="section level2">
+<h2 id="stopping-execution-on-unapproved-packages">Stopping Execution on Unapproved Packages<a class="anchor" aria-label="anchor" href="#stopping-execution-on-unapproved-packages"></a>
+</h2>
+<p>By default, <code><a href="../reference/axecute.html">axecute()</a></code> will log unapproved package use
+<em>after</em> the script runs. If you want to prevent execution
+entirely when unapproved packages are detected, use
+<code>error_on_unapproved = TRUE</code>.</p>
+<p>This performs a <strong>pre-execution check</strong> by parsing the
+script’s AST (Abstract Syntax Tree) to identify packages referenced via
+<code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code>, <code><a href="https://rdrr.io/r/base/library.html" class="external-link">require()</a></code>, or
+<code>pkg::fun()</code> namespacing, before any code is run. If any of
+those packages are not in your <code>approved.rds</code> or
+<code>approved.yml</code>, execution is stopped and a log is written
+capturing the unapproved packages found.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/axecute.html">axecute</a></span><span class="op">(</span><span class="st">"mpg.R"</span>, error_on_unapproved <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p>This is useful in validated environments where running a script with
+unapproved dependencies is not acceptable, even transiently.</p>
+<blockquote>
+<p><strong>Note:</strong> <code>error_on_unapproved</code> requires the
+<code>log.rx.approved</code> option to be set. If no approved list is
+configured, the pre-execution check is skipped and execution proceeds
+normally.</p>
+</blockquote>
+</div>
+<div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <p>Let’s write a simple script summarizing mean mpg from mtcars. We save
 this as <code>mpg.R</code> in the temporary directory <code>dir</code>
 and <code><a href="../reference/axecute.html">axecute()</a></code> it.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>

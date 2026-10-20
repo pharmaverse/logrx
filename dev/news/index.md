@@ -4,6 +4,16 @@
 
 ### New Features
 
+- Added `error_on_unapproved` parameter to
+  [`axecute()`](https://pharmaverse.github.io/logrx/dev/reference/axecute.md)
+  to optionally stop execution if unapproved packages are detected
+  before running the script
+  ([\#204](https://github.com/pharmaverse/logrx/issues/204))
+  - Parses the script’s AST to detect packages from
+    [`library()`](https://rdrr.io/r/base/library.html)/[`require()`](https://rdrr.io/r/base/library.html)
+    calls and `pkg::fun()` namespacing without executing the script
+  - Writes a log with the unapproved packages listed before stopping
+
 ### Bug Fixes
 
 - Fixed package detection failure for backtick-quoted and replacement

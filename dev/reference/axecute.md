@@ -13,6 +13,7 @@ axecute(
   quit_on_error = TRUE,
   to_report = c("messages", "output", "result"),
   show_repo_url = FALSE,
+  error_on_unapproved = FALSE,
   extra_info = NA,
   ...
 )
@@ -55,6 +56,15 @@ axecute(
 - show_repo_url:
 
   Boolean. Should the repository URLs be reported Defaults to FALSE
+
+- error_on_unapproved:
+
+  Boolean. Should execution be stopped if unapproved packages are
+  detected before running the script? Requires an approved list to be
+  configured via `options(log.rx.approved)`. Defaults to FALSE. See the
+  [Logging Unapproved Package and Function Use
+  vignette](https://pharmaverse.github.io/logrx/articles/approved.html)
+  for details on setting up an approved package list.
 
 - extra_info:
 
@@ -120,12 +130,12 @@ axecute(file.path(dir, "hello.Rmd"))
 #> processing file: hello.Rmd
 #> 1/1
 #> output file: hello.knit.md
-#> /usr/bin/pandoc +RTS -K512m -RTS hello.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output hello.html --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --embed-resources --standalone --variable bs3=TRUE --section-divs --template /home/runner/work/_temp/Library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmplwAEyW/rmarkdown-str214421cac76.html 
+#> /usr/bin/pandoc +RTS -K512m -RTS hello.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output hello.html --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --embed-resources --standalone --variable bs3=TRUE --section-divs --template /home/runner/work/_temp/Library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmpANYUym/rmarkdown-str20113191299f.html 
 #> 
 #> Output created: hello.html
 #> 
 #> 
-#> processing file: /tmp/RtmplwAEyW/hello.Rmd
+#> processing file: /tmp/RtmpANYUym/hello.Rmd
 #> 1/1
-#> output file: /tmp/RtmplwAEyW/file2144fd04c5a.R
+#> output file: /tmp/RtmpANYUym/file201179858a4f.R
 ```

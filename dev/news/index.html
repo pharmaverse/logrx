@@ -51,7 +51,11 @@
 <h2 class="pkg-version" data-toc-text="development version" id="logrx-development-version">logrx (development version)<a class="anchor" aria-label="anchor" href="#logrx-development-version"></a></h2>
 <div class="section level3">
 <h3 id="new-features-development-version">New Features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
-</div>
+<ul><li>Added <code>error_on_unapproved</code> parameter to <code><a href="../reference/axecute.html">axecute()</a></code> to optionally stop execution if unapproved packages are detected before running the script (<a href="https://github.com/pharmaverse/logrx/issues/204" class="external-link">#204</a>)
+<ul><li>Parses the script’s AST to detect packages from <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code>/<code><a href="https://rdrr.io/r/base/library.html" class="external-link">require()</a></code> calls and <code>pkg::fun()</code> namespacing without executing the script</li>
+<li>Writes a log with the unapproved packages listed before stopping</li>
+</ul></li>
+</ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-development-version">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
 <ul><li>Fixed package detection failure for backtick-quoted and replacement functions in <code>get_used_functions()</code> (<a href="https://github.com/pharmaverse/logrx/issues/271" class="external-link">#271</a>)</li>
