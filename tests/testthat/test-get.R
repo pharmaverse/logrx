@@ -387,6 +387,8 @@ test_that("get_pre_execution_packages detects unapproved package in multi-line f
   withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
 
   expect_equal(get_pre_execution_packages(test_path("ref", "ex7.R")), "purrr")
+})
+
 test_that("replacement functions are attributed to the correct package", {
   # Attach a local environment to the search path that exports labels<-,
   # replicating the scenario where a package provides a replacement form of a
