@@ -1,3 +1,60 @@
+test_that("error_on_unapproved stops execution and writes log when unapproved package found", {
+  options("log.rx" = NULL)
+  scriptPath <- tempfile(fileext = ".R")
+  logDir <- tempdir()
+  withr::defer(unlink(scriptPath))
+  writeLines("library(withr)", con = scriptPath)
+
+  withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
+
+  expect_error(
+    axecute(scriptPath, log_name = "log_unapproved", log_path = logDir, error_on_unapproved = TRUE),
+    "Unapproved packages detected prior to execution: withr"
+  )
+
+  con <- file(file.path(logDir, "log_unapproved"), "r")
+  flines <- readLines(con)
+  close(con)
+
+  expect_true(grepl("Unapproved packages detected prior to execution: withr", paste(flines, collapse = ",")))
+  expect_true(grepl("package:withr", paste(flines, collapse = ",")))
+
+  rm(flines, con)
+  log_remove()
+})
+
+test_that("error_on_unapproved allows execution when all packages are approved", {
+  options("log.rx" = NULL)
+  scriptPath <- tempfile(fileext = ".R")
+  logDir <- tempdir()
+  withr::defer(unlink(scriptPath))
+  writeLines("library(dplyr)", con = scriptPath)
+
+  withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
+
+  expect_no_error(
+    axecute(scriptPath, log_name = "log_approved", log_path = logDir, error_on_unapproved = TRUE)
+  )
+
+  log_remove()
+})
+
+test_that("error_on_unapproved = FALSE does not check packages before execution", {
+  options("log.rx" = NULL)
+  scriptPath <- tempfile(fileext = ".R")
+  logDir <- tempdir()
+  withr::defer(unlink(scriptPath))
+  writeLines("library(withr)", con = scriptPath)
+
+  withr::local_options(log.rx.approved = test_path("ref", "approved.rds"))
+
+  expect_no_error(
+    axecute(scriptPath, log_name = "log_no_precheck", log_path = logDir, error_on_unapproved = FALSE)
+  )
+
+  log_remove()
+})
+
 test_that("axecute will run a file and create the necessary log", {
   options("log.rx" = NULL)
   scriptPath <- tempfile()

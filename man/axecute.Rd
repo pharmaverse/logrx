@@ -12,6 +12,7 @@ axecute(
   quit_on_error = TRUE,
   to_report = c("messages", "output", "result"),
   show_repo_url = FALSE,
+  error_on_unapproved = FALSE,
   extra_info = NA,
   ...
 )
@@ -39,6 +40,12 @@ many as necessary:
 
 \item{show_repo_url}{Boolean. Should the repository URLs be reported
 Defaults to FALSE}
+
+\item{error_on_unapproved}{Boolean. Should execution be stopped if unapproved
+packages are detected before running the script? Requires an approved list
+to be configured via \code{options(log.rx.approved)}. Defaults to FALSE.
+See the \href{https://pharmaverse.github.io/logrx/articles/approved.html}{Logging Unapproved Package and Function Use vignette}
+for details on setting up an approved package list.}
 
 \item{extra_info}{List. Objects to optionally add on to end of log
 in a special extra info section. List printed in YAML format. Optional}

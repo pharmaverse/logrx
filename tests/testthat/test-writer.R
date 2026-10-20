@@ -149,6 +149,23 @@ test_that("write_unapproved_functions will return a formatted log of unapproved 
   )
 })
 
+test_that("write_unapproved_functions formats pre-execution unapproved packages with empty function name", {
+  options("log.rx" = NULL)
+  log_config("./test-writer.R")
+  unapproved_functions <- data.frame(
+    function_name = "",
+    library = "package:withr",
+    stringsAsFactors = FALSE
+  )
+  assign("unapproved_packages_functions", unapproved_functions, envir = getOption("log.rx"))
+
+  expect_identical(
+    write_unapproved_functions(),
+    "{package:withr} "
+  )
+  log_remove()
+})
+
 test_that("write_unapproved_functions will return expect results when all packages and functions are approved", {
   options("log.rx" = NULL)
   log_config("./test-writer.R")
