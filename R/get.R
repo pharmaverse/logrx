@@ -182,8 +182,29 @@ get_used_functions <- function(file) {
     )
   }
 
-  tokens <- getParseData(ret$result) %>%
-    filter(.data[["token"]] %in% c("SYMBOL_FUNCTION_CALL", "SPECIAL", "SYMBOL_PACKAGE"))
+  tokens <- getParseData(ret$result)
+
+  # Identify SYMBOL_FUNCTION_CALL tokens used as replacement functions
+  # (e.g. labels(df) <- ...). In the parse tree, LEFT_ASSIGN and its LHS/RHS
+  # exprs are siblings under the same parent. For a replacement call, the LHS
+  # expr (id < LEFT_ASSIGN id, same parent) contains a SYMBOL_FUNCTION_CALL.
+  # For plain assignment (df <- data.frame(...)), the LHS contains a SYMBOL.
+  # We restrict to the LHS expr only to avoid tagging RHS function calls.
+  left_assign_rows <- tokens[tokens$token == "LEFT_ASSIGN", c("id", "parent")]
+  lhs_expr_ids <- unlist(lapply(seq_len(nrow(left_assign_rows)), function(i) {
+    la_id <- left_assign_rows$id[i]
+    la_parent <- left_assign_rows$parent[i]
+    tokens$id[tokens$parent == la_parent & tokens$token == "expr" & tokens$id < la_id]
+  }))
+  lhs_inner_expr <- tokens$id[tokens$parent %in% lhs_expr_ids & tokens$token == "expr"]
+  replacement_ids <- tokens$id[
+    tokens$parent %in% lhs_inner_expr &
+      tokens$token == "SYMBOL_FUNCTION_CALL"
+  ]
+
+  tokens <- tokens %>%
+    filter(.data[["token"]] %in% c("SYMBOL_FUNCTION_CALL", "SPECIAL", "SYMBOL_PACKAGE")) %>%
+    mutate(is_replacement = .data[["id"]] %in% replacement_ids)
 
   if (nrow(tokens) == 0) {
     return(NULL)
@@ -196,11 +217,11 @@ get_used_functions <- function(file) {
       .data[["token"]],
       c("SYMBOL_FUNCTION_CALL", "SPECIAL", "SYMBOL_PACKAGE")
     )) %>%
-    group_by(.data[["line1"]], .data[["parent"]]) %>%
+    group_by(.data[["line1"]], .data[["parent"]], .data[["is_replacement"]]) %>%
     complete(token = .data[["token"]])
 
   wide_tokens <- pivot_wider(filtered_tokens,
-    id_cols = all_of(c("line1", "parent")),
+    id_cols = all_of(c("line1", "parent", "is_replacement")),
     values_from = "text",
     names_from = "token"
   ) %>%
@@ -237,7 +258,7 @@ get_used_functions <- function(file) {
 #' @param df dataframe containing variables `function_name` and `SYMBOL_PACKAGE`
 #' @importFrom dplyr mutate
 #' @importFrom rlang .data
-#' @importFrom purrr map
+#' @importFrom purrr map map2
 #' @importFrom utils lsf.str
 #'
 #' @return tibble that includes `library`
@@ -247,6 +268,17 @@ get_used_functions <- function(file) {
 get_library <- function(df) {
   functions_only <- function(.x) {
     intersect(ls(.x), lsf.str(.x))
+  }
+
+  pkg_namespace_exports <- function(.x) {
+    pkg_name <- sub("^package:", "", .x)
+    if (pkg_name != .x && isNamespaceLoaded(pkg_name)) {
+      getNamespaceExports(pkg_name)
+    } else {
+      # For non-package environments attached to the search path (e.g. in tests),
+      # fall back to ls() so replacement functions like labels<- are visible.
+      tryCatch(ls(as.environment(.x)), error = function(e) character(0))
+    }
   }
 
   # do not search CheckExEnv, this is created while examples are executed
@@ -259,7 +291,15 @@ get_library <- function(df) {
 
   search_lookup <- map(search_environ, functions_only)
   names(search_lookup) <- search_environ
-  df$library <- unlist(map(df$function_name, ~ get_first(., search_lookup)))
+
+  namespace_lookup <- map(search_environ, pkg_namespace_exports)
+  names(namespace_lookup) <- search_environ
+
+  df$library <- unlist(map2(
+    df$function_name,
+    if ("is_replacement" %in% names(df)) df$is_replacement else rep(FALSE, nrow(df)),
+    ~ get_first(.x, search_lookup, namespace_lookup, .y)
+  ))
 
   df %>%
     mutate(library = ifelse(
@@ -270,13 +310,32 @@ get_library <- function(df) {
 }
 
 
-get_first <- function(func, search_lookup) {
+get_first <- function(func, search_lookup, namespace_lookup, is_replacement = FALSE) {
+  # strip backticks so explicit calls like `colnames<-`(x, y) match exported names
+  func <- gsub("`", "", func)
   flag_found <- map(search_lookup, ~ func %in% .)
-  if (any(unlist(flag_found))) {
-    names(flag_found[flag_found == TRUE][1])
-  } else {
-    NA
+  found_any <- any(unlist(flag_found))
+
+  # Only check for a replacement form (func<-) when the token was parsed as a
+  # replacement call (i.e. labels(df) <- ...). Plain calls like labels(df)
+  # should resolve via the normal search path without replacement preference.
+  if (is_replacement) {
+    flag_found_replacement <- map(namespace_lookup, ~ paste0(func, "<-") %in% .)
+    found_any_replacement <- any(unlist(flag_found_replacement))
+
+    if (found_any_replacement) {
+      first_replacement <- which(unlist(flag_found_replacement))[1]
+      first_plain <- if (found_any) which(unlist(flag_found))[1] else Inf
+      if (first_replacement <= first_plain) {
+        return(names(flag_found_replacement[flag_found_replacement == TRUE][1]))
+      }
+    }
   }
+
+  if (!found_any) {
+    return(NA)
+  }
+  names(flag_found[flag_found == TRUE][1])
 }
 
 #' Get unapproved packages and functions used

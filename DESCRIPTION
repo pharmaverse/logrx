@@ -45,13 +45,12 @@ Imports:
     rlang,
     stats,
     tidyr,
-    stringr,
     sessioninfo (>= 1.2),
-    stringi,
     tibble,
     digest,
     lifecycle,
-    methods
+    methods,
+    yaml
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
@@ -67,8 +66,7 @@ Suggests:
     readr,
     rstudioapi,
     tidyselect,
-    renv,
-    yaml
+    renv
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 Depends: 

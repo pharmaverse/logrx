@@ -1,3 +1,35 @@
+test_that("log_write reads approved list from yaml", {
+  fp <- test_path("ref", "ex1.R")
+  log_out <- tempfile(fileext = ".log")
+
+  withr::local_options(list(log.rx.approved = test_path("ref", "approved_example2.yaml")))
+  axecute(fp, log_path = dirname(log_out), log_name = basename(log_out))
+
+  print(readLines(log_out))
+
+  expect_true(any(grepl("No unapproved packages or functions used", readLines(log_out))))
+
+  # Clean up
+  log_remove()
+})
+
+test_that("log_write reads approved list from rds", {
+  fp <- test_path("ref", "ex1.R")
+
+  options("log.rx" = NULL)
+  log_out <- tempfile(fileext = ".log")
+
+  withr::local_options(list(log.rx.approved = test_path("ref", "approved.rds")))
+  axecute(fp, log_path = dirname(log_out), log_name = basename(log_out))
+
+  print(readLines(log_out))
+
+  expect_true(any(grepl("No unapproved packages or functions used", readLines(log_out))))
+
+  # Clean up
+  log_remove()
+})
+
 test_that("log_init creates an empty log environment if one is not available", {
   options("log.rx" = NULL)
   log_init()

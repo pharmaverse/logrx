@@ -347,7 +347,13 @@ log_write <- function(file = NA,
     existing_unapproved <- get_log_element("unapproved_packages_functions")
     # Skip if already populated by the pre-execution path in axecute()
     if (anyNA(existing_unapproved)) {
-      approved_functions <- readRDS(getOption("log.rx.approved"))
+      approved_path <- getOption("log.rx.approved")
+      ext <- tolower(tools::file_ext(approved_path))
+      approved_functions <- if (ext %in% c("yaml", "yml")) {
+        normalize_approved_yaml(yaml::read_yaml(approved_path))
+      } else {
+        readRDS(approved_path)
+      }
       unapproved_functions <- get_unapproved_use(used_functions, approved_functions)
       set_log_element("unapproved_packages_functions", unapproved_functions)
     }
