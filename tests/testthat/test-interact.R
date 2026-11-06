@@ -115,29 +115,36 @@ test_that("setting path name works", {
   log_remove()
 })
 
-test_that("run_safely_loudly works for warnings, errors, messages, and output", {
+test_that("run_safely_loudly captures output, messages, warnings, and errors separately", {
   fp <- test_path("ref", "safely_loudly_test_file.R")
 
   log_config(file = fp)
 
   run_safely_loudly(fp)
 
-  expect_true(!is.null(getOption("log.rx")[["warnings"]]))
-  expect_true(!is.null(getOption("log.rx")[["errors"]]))
-  expect_true(!is.null(getOption("log.rx")[["messages"]]))
-  expect_true(!is.null(getOption("log.rx")[["output"]]))
+  log <- getOption("log.rx")
+  expect_identical(log[["output"]], "[1] \"log print\"\n[1] \"log print 2\"\nlog catlog cat 2")
+  expect_identical(
+    log[["messages"]],
+    c("log inform", "log inform 2", "log message", "log message 2")
+  )
+  expect_identical(log[["warnings"]], c("log warning", "log warning2"))
+  expect_identical(log[["errors"]][["message"]], "log error")
 
   log_remove()
 })
 
-test_that("run_safely_loudly works for result", {
+test_that("run_safely_loudly captures the value returned by the script", {
   fp <- test_path("ref", "safely_loudly_test_file_result.R")
 
   log_config(file = fp)
 
   run_safely_loudly(fp)
 
-  expect_true(!is.null(getOption("log.rx")[["result"]]))
+  expect_equal(
+    getOption("log.rx")[["result"]][["value"]],
+    data.frame(test = c(8, 6, 7, 5, 3, 0, 9))
+  )
 
   log_remove()
 })
