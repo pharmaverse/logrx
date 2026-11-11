@@ -83,9 +83,6 @@ axecute <- function(file,
     lifecycle::deprecate_stop("0.3.0", "axecute(remove_log_object = )", "axecute(include_rds = )")
   }
 
-  # remove log object
-  remove_log_object <- TRUE
-
   # lower everything for consistency and check values
   to_report <- map_chr(to_report, tolower)
   match.arg(to_report, several.ok = TRUE)
@@ -115,7 +112,6 @@ axecute <- function(file,
       ))
       log_write(
         file = file,
-        remove_log_object = TRUE,
         show_repo_url = show_repo_url,
         include_rds = include_rds,
         to_report = character(0),
@@ -138,7 +134,6 @@ axecute <- function(file,
   # write log
   log_write(
     file = file,
-    remove_log_object = remove_log_object,
     show_repo_url = show_repo_url,
     include_rds = include_rds,
     to_report = to_report,

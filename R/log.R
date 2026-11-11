@@ -233,8 +233,9 @@ log_cleanup <- function() {
 #' @param file String. Path to file executed
 #' @param include_rds Boolean. Option to export log object as Rds file.
 #' Defaults to FALSE
-#' @param remove_log_object Boolean. Should the log object be removed after
-#' writing the log file? Defaults to TRUE
+#' @param remove_log_object (Deprecated) Boolean. Should the log object be
+#' removed after writing the log file? Defaults to TRUE.
+#' This argument will be removed after the one-year deprecation period.
 #' @param to_report String vector. Objects to optionally report; additional
 #' information in \code{\link{axecute}}
 #' @param show_repo_url Boolean. Should the repo URLs be reported
@@ -268,6 +269,12 @@ log_write <- function(file = NA,
                       include_rds = FALSE,
                       extra_info = NA,
                       to_report = c("messages", "output", "result")) {
+  if (!missing(remove_log_object)) {
+    lifecycle::deprecate_warn(
+    "0.5.0",
+    "log_write(remove_log_object = )"
+    )
+  }
   # Set end time and run time
   set_log_element("end_time", strftime(Sys.time(), usetz = TRUE))
   set_log_element(

@@ -199,3 +199,44 @@ test_that("log_remove removes a log if one exists", {
   log_remove()
   expect_null(getOption("log.rx"))
 })
+
+test_that("log_write does not warn when remove_log_object is omitted", {
+  options("log.rx" = NULL)
+  fp <- test_path("ref", "ex1.R")
+
+  log_config(fp)
+  logrx:::run_safely_loudly(fp)
+
+  expect_no_warning(log_write(fp))
+  expect_null(getOption("log.rx"))
+})
+
+test_that("log_write warns when remove_log_object is TRUE", {
+  options("log.rx" = NULL)
+  fp <- test_path("ref", "ex1.R")
+
+  log_config(fp)
+  logrx:::run_safely_loudly(fp)
+
+  lifecycle::expect_deprecated(
+    log_write(fp, remove_log_object = TRUE)
+  )
+
+  expect_null(getOption("log.rx"))
+})
+
+test_that("log_write warns when remove_log_object is FALSE", {
+  options("log.rx" = NULL)
+  fp <- test_path("ref", "ex1.R")
+
+  log_config(fp)
+  logrx:::run_safely_loudly(fp)
+
+  lifecycle::expect_deprecated(
+    log_write(fp, remove_log_object = FALSE)
+  )
+
+  expect_type(getOption("log.rx"), "environment")
+
+  log_remove()
+})

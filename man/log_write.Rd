@@ -16,8 +16,9 @@ log_write(
 \arguments{
 \item{file}{String. Path to file executed}
 
-\item{remove_log_object}{Boolean. Should the log object be removed after
-writing the log file? Defaults to TRUE}
+\item{remove_log_object}{(Deprecated) Boolean. Should the log object be
+removed after writing the log file? Defaults to TRUE.
+This argument will be removed after the one-year deprecation period.}
 
 \item{show_repo_url}{Boolean. Should the repo URLs be reported
 Defaults to FALSE}
