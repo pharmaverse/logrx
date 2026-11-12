@@ -2,12 +2,17 @@ test_that("log_write reads approved list from yaml", {
   fp <- test_path("ref", "ex1.R")
   log_out <- tempfile(fileext = ".log")
 
-  withr::local_options(list(log.rx.approved = test_path("ref", "approved_example2.yaml")))
+  withr::local_options(list(
+    log.rx.approved = test_path("ref", "approved_example2.yaml")
+  ))
   axecute(fp, log_path = dirname(log_out), log_name = basename(log_out))
 
   print(readLines(log_out))
 
-  expect_true(any(grepl("No unapproved packages or functions used", readLines(log_out))))
+  expect_true(any(grepl(
+    "No unapproved packages or functions used",
+    readLines(log_out)
+  )))
 
   # Clean up
   log_remove()
@@ -24,7 +29,10 @@ test_that("log_write reads approved list from rds", {
 
   print(readLines(log_out))
 
-  expect_true(any(grepl("No unapproved packages or functions used", readLines(log_out))))
+  expect_true(any(grepl(
+    "No unapproved packages or functions used",
+    readLines(log_out)
+  )))
 
   # Clean up
   log_remove()
@@ -43,16 +51,39 @@ test_that("log_config configures the log and all the necessary elements", {
   expect_setequal(
     names(getOption("log.rx")),
     c(
-      "metadata", "session_info", "warnings", "errors", "messages",
-      "result", "output", "start_time", "end_time", "run_time",
-      "file_name", "file_path", "user", "hash_sum", "masked_functions",
-      "used_packages_functions", "unapproved_packages_functions",
-      "lint_results", "log_name", "log_path", "repo_urls", "extra_info"
+      "metadata",
+      "session_info",
+      "warnings",
+      "errors",
+      "messages",
+      "result",
+      "output",
+      "start_time",
+      "end_time",
+      "run_time",
+      "file_name",
+      "file_path",
+      "user",
+      "hash_sum",
+      "masked_functions",
+      "used_packages_functions",
+      "unapproved_packages_functions",
+      "lint_results",
+      "log_name",
+      "log_path",
+      "repo_urls",
+      "extra_info"
     )
   )
 
-  expect_identical(getOption("log.rx")[["file_path"]], dirname(get_file_path("./test-get.R")))
-  expect_identical(getOption("log.rx")[["file_name"]], basename(get_file_path("./test-get.R")))
+  expect_identical(
+    getOption("log.rx")[["file_path"]],
+    dirname(get_file_path("./test-get.R"))
+  )
+  expect_identical(
+    getOption("log.rx")[["file_name"]],
+    basename(get_file_path("./test-get.R"))
+  )
   expect_identical(getOption("log.rx")[["user"]], Sys.info()[["user"]])
 })
 
@@ -175,11 +206,28 @@ test_that("log_config works after environment is removed interactively", {
       expect_setequal(
         names(getOption("log.rx")),
         c(
-          "metadata", "session_info", "warnings", "errors", "messages",
-          "result", "output", "start_time", "end_time", "run_time",
-          "file_name", "file_path", "user", "hash_sum", "masked_functions",
-          "used_packages_functions", "unapproved_packages_functions",
-          "lint_results", "log_name", "log_path", "repo_urls", "extra_info"
+          "metadata",
+          "session_info",
+          "warnings",
+          "errors",
+          "messages",
+          "result",
+          "output",
+          "start_time",
+          "end_time",
+          "run_time",
+          "file_name",
+          "file_path",
+          "user",
+          "hash_sum",
+          "masked_functions",
+          "used_packages_functions",
+          "unapproved_packages_functions",
+          "lint_results",
+          "log_name",
+          "log_path",
+          "repo_urls",
+          "extra_info"
         )
       )
     },
@@ -200,43 +248,14 @@ test_that("log_remove removes a log if one exists", {
   expect_null(getOption("log.rx"))
 })
 
-test_that("log_write does not warn when remove_log_object is omitted", {
+test_that("log_write removes the log object after writing", {
   options("log.rx" = NULL)
   fp <- test_path("ref", "ex1.R")
 
   log_config(fp)
   logrx:::run_safely_loudly(fp)
 
-  expect_no_warning(log_write(fp))
-  expect_null(getOption("log.rx"))
-})
-
-test_that("log_write warns when remove_log_object is TRUE", {
-  options("log.rx" = NULL)
-  fp <- test_path("ref", "ex1.R")
-
-  log_config(fp)
-  logrx:::run_safely_loudly(fp)
-
-  lifecycle::expect_deprecated(
-    log_write(fp, remove_log_object = TRUE)
-  )
+  log_write(fp)
 
   expect_null(getOption("log.rx"))
-})
-
-test_that("log_write warns when remove_log_object is FALSE", {
-  options("log.rx" = NULL)
-  fp <- test_path("ref", "ex1.R")
-
-  log_config(fp)
-  logrx:::run_safely_loudly(fp)
-
-  lifecycle::expect_deprecated(
-    log_write(fp, remove_log_object = FALSE)
-  )
-
-  expect_type(getOption("log.rx"), "environment")
-
-  log_remove()
 })

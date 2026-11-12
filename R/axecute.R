@@ -68,21 +68,18 @@
 #' close(fileConn)
 #'
 #' axecute(file.path(dir, "hello.Rmd"))
-axecute <- function(file,
-                    log_name = NA,
-                    log_path = NA,
-                    include_rds = FALSE,
-                    quit_on_error = TRUE,
-                    to_report = c("messages", "output", "result"),
-                    show_repo_url = FALSE,
-                    error_on_unapproved = FALSE,
-                    extra_info = NA,
-                    ...) {
-  # deprecations
-  if (methods::hasArg(remove_log_object)) {
-    lifecycle::deprecate_stop("0.3.0", "axecute(remove_log_object = )", "axecute(include_rds = )")
-  }
-
+axecute <- function(
+  file,
+  log_name = NA,
+  log_path = NA,
+  include_rds = FALSE,
+  quit_on_error = TRUE,
+  to_report = c("messages", "output", "result"),
+  show_repo_url = FALSE,
+  error_on_unapproved = FALSE,
+  extra_info = NA,
+  ...
+) {
   # lower everything for consistency and check values
   to_report <- map_chr(to_report, tolower)
   match.arg(to_report, several.ok = TRUE)
@@ -101,15 +98,23 @@ axecute <- function(file,
     if (!is.null(unapproved_pkgs)) {
       set_log_element("hash_sum", digest::sha1(readLines(file, warn = FALSE)))
       set_log_element("session_info", get_session_info())
-      set_log_element("errors", list(message = paste0(
-        "Unapproved packages detected prior to execution: ",
-        paste(unapproved_pkgs, collapse = ", ")
-      )))
-      set_log_element("unapproved_packages_functions", data.frame(
-        function_name = "",
-        library = paste0("package:", unapproved_pkgs),
-        stringsAsFactors = FALSE
-      ))
+      set_log_element(
+        "errors",
+        list(
+          message = paste0(
+            "Unapproved packages detected prior to execution: ",
+            paste(unapproved_pkgs, collapse = ", ")
+          )
+        )
+      )
+      set_log_element(
+        "unapproved_packages_functions",
+        data.frame(
+          function_name = "",
+          library = paste0("package:", unapproved_pkgs),
+          stringsAsFactors = FALSE
+        )
+      )
       log_write(
         file = file,
         show_repo_url = show_repo_url,

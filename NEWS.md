@@ -18,9 +18,7 @@
   - `yaml` has been moved from `Suggests` to `Imports`
 
 ## Updates
-- Deprecated the `remove_log_object` argument in `log_write()` (#298).
-  - The argument retains its current behaviour during the deprecation period.
-  - It is scheduled for removal one year after the release introducing the deprecation.
+- Removed the `remove_log_object` argument from `log_write()` (#298).
 - Improved error messaging when a log.rx environment already exists (#276)
   - In non-interactive mode, provides clear guidance on how to resolve the issue
   - In interactive mode, offers users the option to automatically remove the existing environment or handle it manually
