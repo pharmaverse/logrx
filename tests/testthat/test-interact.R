@@ -126,7 +126,7 @@ test_that("run_safely_loudly captures output, messages, warnings, and errors sep
   expect_identical(log[["output"]], "[1] \"log print\"\n[1] \"log print 2\"\nlog catlog cat 2")
   expect_identical(
     log[["messages"]],
-    c("log inform", "log inform 2", "log message", "log message 2")
+    c("log inform", "log inform 2", "log message\n", "log message 2\n")
   )
   expect_identical(log[["warnings"]], c("log warning", "log warning2"))
   expect_identical(log[["errors"]][["message"]], "log error")
