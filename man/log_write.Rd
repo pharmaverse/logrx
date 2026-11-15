@@ -47,12 +47,6 @@ close(fileConn)
 
 file <- file.path(dir, "hello.R")
 
-# Initialise and configure the log.rx environment
-log_config(file)
-
-# Run the script and record results, outputs, messages, errors, and warnings
-logrx:::run_safely_loudly(file)
-
-# Write the log
-log_write(file)
+# For typical script execution, use axecute() to configure, run, and log the file
+axecute(file)
 }

@@ -92,7 +92,8 @@ approved list to a file. Both `.rds` and `.yaml` / `.yml` formats are
 supported.
 
 ```{r}
-dir <- tempdir()
+dir <- tempfile()
+dir.create(dir)
 
 # save as rds
 build_approved(approved_pkgs, file = file.path(dir, "approved.rds"))
@@ -207,9 +208,8 @@ close(fileConn)
 
 ```{r results='hide', echo = FALSE}
 fp <- file.path(dir, "mpg.R")
-log_config(fp)
-logrx:::run_safely_loudly(fp)
-log_write(fp, remove_log_object = FALSE)
+axecute(fp, log_name = "mpg.log", log_path = dir)
+parsed_log <- read_log_file(file.path(dir, "mpg.log"))
 ```
 
 Here we have the log elements for "Used Package and Functions" and
@@ -218,26 +218,12 @@ Here we have the log elements for "Used Package and Functions" and
 include the base library or tidyr functions in our approved list, so
 this has been logged!
 
-```{r echo=FALSE}
-cleaned_log_vec <- c()
-
-cleaned_log_vec <- c(
-  cleaned_log_vec,
-  write_log_header("Used Package and Functions"),
-  write_used_functions()
-)
-
-cleaned_log_vec <- c(
-  cleaned_log_vec,
-  write_log_header("Unapproved Package and Functions"),
-  write_unapproved_functions()
-)
-cat(cleaned_log_vec, sep = "\n")
+```{r}
+parsed_log$`Used Package and Functions`
+parsed_log$`Unapproved Package and Functions`
 ```
 
 ```{r cleanup, echo = FALSE}
-logrx::log_remove()
-
 unlink(dir, recursive = TRUE)
 ```
 
