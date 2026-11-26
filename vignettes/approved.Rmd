@@ -209,7 +209,15 @@ close(fileConn)
 fp <- file.path(dir, "mpg.R")
 log_config(fp)
 logrx:::run_safely_loudly(fp)
-log_write(fp, remove_log_object = FALSE)
+
+log_file <- file.path(
+  logrx:::get_log_element("log_path"),
+  logrx:::get_log_element("log_name")
+)
+
+log_write(fp)
+
+log_lines <- readLines(log_file, warn = FALSE)
 ```
 
 Here we have the log elements for "Used Package and Functions" and
@@ -219,25 +227,10 @@ include the base library or tidyr functions in our approved list, so
 this has been logged!
 
 ```{r echo=FALSE}
-cleaned_log_vec <- c()
-
-cleaned_log_vec <- c(
-  cleaned_log_vec,
-  write_log_header("Used Package and Functions"),
-  write_used_functions()
-)
-
-cleaned_log_vec <- c(
-  cleaned_log_vec,
-  write_log_header("Unapproved Package and Functions"),
-  write_unapproved_functions()
-)
-cat(cleaned_log_vec, sep = "\n")
+cat(log_lines, sep = "\n")
 ```
 
 ```{r cleanup, echo = FALSE}
-logrx::log_remove()
-
 unlink(dir, recursive = TRUE)
 ```
 

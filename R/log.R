@@ -118,10 +118,12 @@ log_init <- function() {
 #'
 #' # Write the log
 #' log_write(file)
-log_config <- function(file = NA,
-                       log_name = NA,
-                       log_path = NA,
-                       extra_info = NA) {
+log_config <- function(
+  file = NA,
+  log_name = NA,
+  log_path = NA,
+  extra_info = NA
+) {
   # If the log.rx environment is not NULL or empty, handle it appropriately
   if (!is.null(getOption("log.rx"))) {
     if (!(identical(ls(getOption("log.rx")), character(0)))) {
@@ -233,8 +235,6 @@ log_cleanup <- function() {
 #' @param file String. Path to file executed
 #' @param include_rds Boolean. Option to export log object as Rds file.
 #' Defaults to FALSE
-#' @param remove_log_object Boolean. Should the log object be removed after
-#' writing the log file? Defaults to TRUE
 #' @param to_report String vector. Objects to optionally report; additional
 #' information in \code{\link{axecute}}
 #' @param show_repo_url Boolean. Should the repo URLs be reported
@@ -262,12 +262,13 @@ log_cleanup <- function() {
 #'
 #' # Write the log
 #' log_write(file)
-log_write <- function(file = NA,
-                      remove_log_object = TRUE,
-                      show_repo_url = FALSE,
-                      include_rds = FALSE,
-                      extra_info = NA,
-                      to_report = c("messages", "output", "result")) {
+log_write <- function(
+  file = NA,
+  show_repo_url = FALSE,
+  include_rds = FALSE,
+  extra_info = NA,
+  to_report = c("messages", "output", "result")
+) {
   # Set end time and run time
   set_log_element("end_time", strftime(Sys.time(), usetz = TRUE))
   set_log_element(
@@ -305,7 +306,6 @@ log_write <- function(file = NA,
     write_hash_sum()
   )
 
-
   cleaned_log_vec <- c(
     cleaned_log_vec,
     write_log_header("Session Information"),
@@ -340,7 +340,9 @@ log_write <- function(file = NA,
       write_used_functions()
     )
 
-    cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "used_packages_functions"]
+    cleaned_log <- cleaned_log[
+      !(names(cleaned_log)) %in% "used_packages_functions"
+    ]
   }
 
   if (file.exists(getOption("log.rx.approved"))) {
@@ -354,7 +356,10 @@ log_write <- function(file = NA,
       } else {
         readRDS(approved_path)
       }
-      unapproved_functions <- get_unapproved_use(used_functions, approved_functions)
+      unapproved_functions <- get_unapproved_use(
+        used_functions,
+        approved_functions
+      )
       set_log_element("unapproved_packages_functions", unapproved_functions)
     }
 
@@ -364,7 +369,9 @@ log_write <- function(file = NA,
       write_unapproved_functions()
     )
 
-    cleaned_log <- cleaned_log[!(names(cleaned_log)) %in% "unapproved_packages_functions"]
+    cleaned_log <- cleaned_log[
+      !(names(cleaned_log)) %in% "unapproved_packages_functions"
+    ]
   }
 
   if ("lint_results" %in% names(log_cleanup())) {
@@ -433,7 +440,8 @@ log_write <- function(file = NA,
     write_log_element("log_name", "Log name: "),
     write_log_element("log_path", "Log path: ")
   )
-  writeLines(cleaned_log_vec,
+  writeLines(
+    cleaned_log_vec,
     con = file.path(
       get_log_element("log_path"),
       get_log_element("log_name")
@@ -441,9 +449,18 @@ log_write <- function(file = NA,
   )
   if (include_rds) {
     rds_fields <- c(
-      "end_time", "start_time", "run_time", "user", "hash_sum",
-      "log_path", "log_name", "file_path", "file_name",
-      "unapproved_packages_functions", "errors", "warnings",
+      "end_time",
+      "start_time",
+      "run_time",
+      "user",
+      "hash_sum",
+      "log_path",
+      "log_name",
+      "file_path",
+      "file_name",
+      "unapproved_packages_functions",
+      "errors",
+      "warnings",
       "session_info"
     )
     log_options <- as.list(getOption("log.rx"))
@@ -460,18 +477,20 @@ log_write <- function(file = NA,
         }
       }
     )
-    saveRDS(cleaned_log_list,
+    saveRDS(
+      cleaned_log_list,
       file = file.path(
         get_log_element("log_path"),
-        paste0(tools::file_path_sans_ext(
-          get_log_element("log_name")
-        ), ".Rds")
+        paste0(
+          tools::file_path_sans_ext(
+            get_log_element("log_name")
+          ),
+          ".Rds"
+        )
       )
     )
   }
-  if (remove_log_object) {
-    log_remove()
-  }
+  log_remove()
 }
 
 
