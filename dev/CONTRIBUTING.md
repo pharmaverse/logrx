@@ -48,6 +48,21 @@ advice.
   (i.e. just below the first header). Follow the style described in
   <https://style.tidyverse.org/news.html>.
 
+### Version bumps
+
+After a push to `main`, the version-bump workflow creates or updates a
+PR from `automation/version-bump`. Merge that PR to apply the
+development version bump; merging it does not trigger another bump.
+Changes merged while the PR is open are included in the same pending
+bump.
+
+The workflow needs permission to write repository contents and create
+pull requests. If it uses `GITHUB_TOKEN`, the repository or organization
+must allow GitHub Actions to create pull requests. A `REPO_GITHUB_TOKEN`
+secret can instead provide an appropriately scoped token. PR checks
+triggered by `GITHUB_TOKEN` require approval; use a GitHub App or
+personal access token to run them without that approval.
+
 ### Code style
 
 - New code should follow the tidyverse [style
