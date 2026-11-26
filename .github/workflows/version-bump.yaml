@@ -32,11 +32,41 @@ concurrency:
   group: vbump-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
+  check-trigger:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      is-version-bump: ${{ steps.check.outputs.result }}
+    steps:
+      - name: Check whether this push merged a version bump PR
+        id: check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            if (context.eventName !== 'push') return false;
+            const pulls = await github.paginate(
+              github.rest.repos.listPullRequestsAssociatedWithCommit,
+              { ...context.repo, commit_sha: context.sha }
+            );
+            return pulls.some(pr =>
+              pr.merged_at && pr.base.ref === 'main' &&
+              pr.head.ref === 'automation/version-bump' &&
+              pr.head.repo?.full_name === `${context.repo.owner}/${context.repo.repo}`
+            );
+
   vbump:
     name: Bump version ⤴
     runs-on: ubuntu-latest
+    needs: check-trigger
     if: |
+      needs.check-trigger.outputs.is-version-bump != 'true' &&
       !(contains(github.event.commits[0].message, '[skip vbump]') ||
         contains(github.event.head_commit.message, '[skip vbump]')
       )
@@ -46,21 +76,27 @@ jobs:
     steps:
       - name: Setup token 🔑
         id: github-token
+        env:
+          REPO_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
+          DEFAULT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if [ "${{ secrets.REPO_GITHUB_TOKEN }}" == "" ]; then
+          if [ -z "$REPO_TOKEN" ]; then
             echo "REPO_GITHUB_TOKEN is empty. Substituting it with GITHUB_TOKEN."
-            echo "token=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_OUTPUT
+            echo "token=$DEFAULT_TOKEN" >> "$GITHUB_OUTPUT"
           else
             echo "Using REPO_GITHUB_TOKEN."
-            echo "token=${{ secrets.REPO_GITHUB_TOKEN }}" >> $GITHUB_OUTPUT
+            echo "token=$REPO_TOKEN" >> "$GITHUB_OUTPUT"
           fi
         shell: bash
 
       - name: Checkout repo 🛎
         uses: actions/checkout@v4.1.1
         with:
-          ref: ${{ github.ref }}
+          ref: ${{ inputs.vbump-after-release && github.ref || 'main' }}
           token: ${{ steps.github-token.outputs.token }}
+
+      - name: Mark checkout as safe
+        run: git config --global --add safe.directory "$(pwd)"
 
       - name: Bump version in DESCRIPTION 📜
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || inputs.vbump-after-release == true }}
@@ -75,25 +111,24 @@ jobs:
 
       - name: Bump version in NEWS.md 📰
         run: |
+          DESC_VERSION=$(R --slave -e 'cat(paste(desc::desc_get_version()))' | tr -d '\n' | xargs)
+          echo "NEW_PKG_VERSION=${DESC_VERSION}" >> "$GITHUB_ENV"
           if [ -f NEWS.md ]
           then {
-            git config --global --add safe.directory $(pwd)
-            DESC_VERSION=$(R --slave -e 'cat(paste(desc::desc_get_version()))' | tr -d '\n' | xargs)
             NEWS_VERSION=$(awk '/^#+ /{print $3,$4; exit}' NEWS.md | tr -d '\n' | xargs)
             FIRST_NEWS_LINE=$(head -1 NEWS.md)
             if [ "${{ inputs.vbump-after-release }}" == "true" ]; then
               # Add a new section with the released version that will be vbumped below.
-              printf "$FIRST_NEWS_LINE\n\n" | cat - NEWS.md > temp-news.md
+              printf '%s\n\n' "$FIRST_NEWS_LINE" | cat - NEWS.md > temp-news.md
               mv temp-news.md NEWS.md
             fi
             # Replace only the first occurence of $NEWS_VERSION,
             # but only if it's not already set to (development version)
-            if [ $NEWS_VERSION != "(development version)" ]
+            if [ "$NEWS_VERSION" != "(development version)" ]
             then {
               sed -i "0,/$NEWS_VERSION/s/$NEWS_VERSION/$DESC_VERSION/" NEWS.md
             }
             fi
-            echo "NEW_PKG_VERSION=${DESC_VERSION}" >> $GITHUB_ENV
           }
           fi
         shell: bash
@@ -125,31 +160,34 @@ jobs:
       - name: Checkout to main 🛎
         if: ${{ inputs.vbump-after-release == true }}
         run: |
-          git fetch origin main
-          git checkout main
-          git pull origin main
+          git fetch origin main:refs/remotes/origin/main
+          git checkout -B main origin/main
 
       - name: Set file pattern to commit ⚙️
         id: file-pattern
         run: |
           if [[ "${{ inputs.package-subdirectory }}" == "." || "${{ inputs.package-subdirectory }}" == "" ]]; then
-            FILE_PATTERN="NEWS.md DESCRIPTION"
+            PACKAGE_DIR="."
           else
-            FILE_PATTERN="${{ inputs.package-subdirectory }}/NEWS.md ${{ inputs.package-subdirectory }}/DESCRIPTION"
+            PACKAGE_DIR="${{ inputs.package-subdirectory }}"
+          fi
+          FILE_PATTERN="$PACKAGE_DIR/DESCRIPTION"
+          if [[ -f "$PACKAGE_DIR/NEWS.md" ]]; then
+            FILE_PATTERN="$FILE_PATTERN,$PACKAGE_DIR/NEWS.md"
           fi
           if [[ '${{ steps.precommit-config-exists.outputs.files_exists }}' == 'true' ]]; then
-            FILE_PATTERN="$FILE_PATTERN .pre-commit-config.yaml"
+            FILE_PATTERN="$FILE_PATTERN,.pre-commit-config.yaml"
           fi
-          echo "file-pattern=$FILE_PATTERN" >> $GITHUB_OUTPUT
+          echo "file-pattern=$FILE_PATTERN" >> "$GITHUB_OUTPUT"
         shell: bash
 
-      - name: Commit and push changes 📌
+      - name: Create or update version bump PR 📌
         if: ${{ env.NEW_PKG_VERSION }}
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: peter-evans/create-pull-request@v7
         with:
-          commit_message: "[skip actions] Bump version to ${{ env.NEW_PKG_VERSION }}"
-          file_pattern: "${{ steps.file-pattern.outputs.file-pattern }}"
-          commit_user_name: github-actions
-          commit_user_email: >-
-            41898282+github-actions[bot]@users.noreply.github.com
-        continue-on-error: true
+          token: ${{ steps.github-token.outputs.token }}
+          base: main
+          branch: automation/version-bump
+          title: "[skip vbump] Bump version to ${{ env.NEW_PKG_VERSION }}"
+          commit-message: "[skip vbump] Bump version to ${{ env.NEW_PKG_VERSION }}"
+          add-paths: ${{ steps.file-pattern.outputs.file-pattern }}
