@@ -48,8 +48,6 @@ Imports:
     sessioninfo (>= 1.2),
     tibble,
     digest,
-    lifecycle,
-    methods,
     yaml
 Suggests: 
     testthat (>= 3.0.0),
