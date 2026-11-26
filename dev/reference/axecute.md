@@ -63,7 +63,7 @@ axecute(
   detected before running the script? Requires an approved list to be
   configured via `options(log.rx.approved)`. Defaults to FALSE. See the
   [Logging Unapproved Package and Function Use
-  vignette](https://pharmaverse.github.io/logrx/articles/approved.html)
+  vignette](https://pharmaverse.github.io/logrx/articles/approved.html#stopping-execution-on-unapproved-packages)
   for details on setting up an approved package list.
 
 - extra_info:
@@ -130,12 +130,12 @@ axecute(file.path(dir, "hello.Rmd"))
 #> processing file: hello.Rmd
 #> 1/1
 #> output file: hello.knit.md
-#> /usr/bin/pandoc +RTS -K512m -RTS hello.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output hello.html --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/table-classes.lua --embed-resources --standalone --variable bs3=TRUE --section-divs --template /home/runner/work/_temp/Library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/Rtmpb6ApbF/rmarkdown-str21a77012b25b.html 
+#> /usr/bin/pandoc +RTS -K512m -RTS hello.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output hello.html --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/table-classes.lua --embed-resources --standalone --variable bs3=TRUE --section-divs --template /home/runner/work/_temp/Library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmpHH9een/rmarkdown-str21ed4def3938.html 
 #> 
 #> Output created: hello.html
 #> 
 #> 
-#> processing file: /tmp/Rtmpb6ApbF/hello.Rmd
+#> processing file: /tmp/RtmpHH9een/hello.Rmd
 #> 1/1
-#> output file: /tmp/Rtmpb6ApbF/file21a71c16388c.R
+#> output file: /tmp/RtmpHH9een/file21ed4b45c06f.R
 ```

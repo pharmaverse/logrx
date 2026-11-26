@@ -207,6 +207,127 @@ library or tidyr functions in our approved list, so this has been
 logged!
 
     #> --------------------------------------------------------------------------------
+    #> -                                logrx Metadata                                -
+    #> --------------------------------------------------------------------------------
+    #> This log was generated using logrx 0.4.0.9000
+    #> logrx package version: 0.4.0.9000
+    #> logrx build: local
+    #> logrx link to repository: https://github.com/pharmaverse/logrx
+    #> --------------------------------------------------------------------------------
+    #> -                          User and File Information                           -
+    #> --------------------------------------------------------------------------------
+    #> User: runner
+    #> File Name: mpg.R
+    #> File Path: /tmp/RtmpoN9TLH
+    #> File HashSum: 59ba8c053689b13c2aa20b633807cce9e762d5a2
+    #> --------------------------------------------------------------------------------
+    #> -                             Session Information                              -
+    #> --------------------------------------------------------------------------------
+    #> ─ Session info ────────────────────────────────────────────────────────
+    #> setting  value
+    #> version R version 4.6.2 (2026-10-29)
+    #> os Ubuntu 26.04.1 LTS
+    #> system x86_64, linux-gnu
+    #> ui X11
+    #> language en
+    #> collate C.UTF-8
+    #> ctype C.UTF-8
+    #> tz UTC
+    #> date 2026-11-26
+    #> pandoc 3.7.0.2 @ /usr/bin/ (via rmarkdown)
+    #> quarto NA
+    #> 
+    #> ─ Packages ────────────────────────────────────────────────────────────
+    #> package  * version  date
+    #>    (UTC) lib source
+    #> bslib 0.12.0 2026-08-04 [1] RSPM (R 4.6.0)
+    #> cachem 1.1.0 2024-05-16 [1] RSPM (R 4.6.0)
+    #> cli 3.6.6 2026-04-09 [1] RSPM (R 4.6.0)
+    #> desc 1.4.3 2023-12-10 [1] RSPM (R 4.6.0)
+    #> digest 0.6.39 2025-11-19 [1] RSPM (R 4.6.0)
+    #> dplyr * 1.2.1 2026-04-03 [1] RSPM (R 4.6.0)
+    #> evaluate 1.0.5 2025-08-27 [1] RSPM (R 4.6.0)
+    #> fastmap 1.2.0 2024-05-15 [1] RSPM (R 4.6.0)
+    #> fs 2.1.0 2026-04-18 [1] RSPM (R 4.6.0)
+    #> generics 0.1.4 2025-05-09 [1] RSPM (R 4.6.0)
+    #> glue 1.8.1 2026-04-17 [1] RSPM (R 4.6.0)
+    #> htmltools 0.5.9 2025-12-04 [1] RSPM (R 4.6.0)
+    #> jquerylib 0.1.4 2021-04-26 [1] RSPM (R 4.6.0)
+    #> jsonlite 2.0.0 2025-03-27 [1] RSPM (R 4.6.0)
+    #> knitr 1.52 2026-09-06 [1] RSPM (R 4.6.0)
+    #> lifecycle 1.0.5 2026-01-08 [1] RSPM (R 4.6.0)
+    #> logrx * 0.4.0.9000 2026-11-26 [1]
+    #>    local
+    #> magrittr 2.0.5 2026-04-04 [1] RSPM (R 4.6.0)
+    #> otel 0.3.0 2026-11-07 [1] RSPM (R 4.6.0)
+    #> pillar 1.11.1 2025-09-17 [1] RSPM (R 4.6.0)
+    #> pkgconfig 2.0.3 2019-09-22 [1] RSPM (R 4.6.0)
+    #> pkgdown 2.2.1 2026-07-07 [1] RSPM (R 4.6.0)
+    #> purrr 1.2.2 2026-04-10 [1] RSPM (R 4.6.0)
+    #> R6 2.6.1 2025-02-15 [1] RSPM (R 4.6.0)
+    #> ragg 1.5.2 2026-03-23 [1] RSPM (R 4.6.0)
+    #> rlang 1.3.0 2026-07-05 [1] RSPM (R 4.6.0)
+    #> rmarkdown 2.32 2026-09-01 [1] RSPM (R 4.6.0)
+    #> sass 0.5.0 2026-11-20 [1] RSPM (R 4.6.0)
+    #> sessioninfo 1.2.4 2026-06-04 [1] RSPM (R 4.6.0)
+    #> systemfonts 1.3.4 2026-11-21 [1] RSPM (R 4.6.0)
+    #> textshaping 1.1.0 2026-11-20 [1] RSPM (R 4.6.0)
+    #> tibble 3.3.1 2026-01-11 [1] RSPM (R 4.6.0)
+    #> tidyr 1.3.2 2025-12-19 [1] RSPM (R 4.6.0)
+    #> tidyselect 1.2.1 2024-03-11 [1] RSPM (R 4.6.0)
+    #> utf8 1.2.6 2025-06-08 [1] RSPM (R 4.6.0)
+    #> vctrs 0.7.3 2026-04-11 [1] RSPM (R 4.6.0)
+    #> withr 3.0.3 2026-06-19 [1] RSPM (R 4.6.0)
+    #> xfun 0.62 2026-10-16 [1] RSPM (R 4.6.0)
+    #> yaml 2.3.12 2025-12-10 [1] RSPM (R 4.6.0)
+    #> 
+    #>  [1] /home/runner/work/_temp/Library
+    #>  [2] /opt/R/4.6.2/lib/R/library
+    #> * ── Packages attached to the search path.
+    #> 
+    #> ─ External software ───────────────────────────────────────────────────
+    #> setting  value
+    #> cairo 1.18.4
+    #> cairoFT
+    #> pango 1.57.0
+    #> png 1.6.57
+    #> jpeg 8.0
+    #> tiff LIBTIFF, Version 4.7.0
+    #> tcl 8.6
+    #> curl 8.18.0
+    #> zlib 1.3.1
+    #> bzlib 1.0.8, 13-Jul-2019
+    #> xz 5.8.3
+    #> deflate 1.23
+    #> zstd 1.5.7
+    #> PCRE 10.46 2025-08-27
+    #> ICU 78.2
+    #> TRE TRE 0.8.0 R_fixes (BSD)
+    #> iconv glibc 2.43
+    #> readline 8.3
+    #> BLAS /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
+    #> lapack /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.32.so
+    #> lapack_version 3.12.0
+    #> 
+    #> ─ Python configuration ────────────────────────────────────────────────
+    #> Python is not available
+    #> 
+    #> ───────────────────────────────────────────────────────────────────────
+    #> --------------------------------------------------------------------------------
+    #> -                               Masked Functions                               -
+    #> --------------------------------------------------------------------------------
+    #> function `text` from {package:graphics} by .GlobalEnv
+    #> function `dir` from {package:base} by .GlobalEnv
+    #> function `filter` from {package:stats} by package:dplyr
+    #> function `lag` from {package:stats} by package:dplyr
+    #> function `intersect` from {package:base} by package:dplyr
+    #> function `setdiff` from {package:base} by package:dplyr
+    #> function `setequal` from {package:base} by package:dplyr
+    #> function `union` from {package:base} by package:dplyr
+    #> function `plot` from {package:base} by package:graphics
+    #> function `body<-` from {package:base} by package:methods
+    #> function `kronecker` from {package:base} by package:methods
+    #> --------------------------------------------------------------------------------
     #> -                          Used Package and Functions                          -
     #> --------------------------------------------------------------------------------
     #> {package:base} library, mean
@@ -217,6 +338,38 @@ logged!
     #> --------------------------------------------------------------------------------
     #> {package:base} library
     #> {package:tidyr} pivot_wider
+    #> --------------------------------------------------------------------------------
+    #> -                         Program Run Time Information                         -
+    #> --------------------------------------------------------------------------------
+    #> Start time: 2026-11-26 16:21:37 UTC
+    #> End time: 2026-11-26 16:21:38 UTC
+    #> Run time: 1 seconds
+    #> --------------------------------------------------------------------------------
+    #> -                             Errors and Warnings                              -
+    #> --------------------------------------------------------------------------------
+    #> Errors:
+    #>  
+    #> 
+    #> Warnings:
+    #>  
+    #> --------------------------------------------------------------------------------
+    #> -                         Messages, Output, and Result                         -
+    #> --------------------------------------------------------------------------------
+    #> Messages:
+    #>  
+    #> Output:
+    #>  
+    #> 
+    #> Result:
+    #>  # A tibble: 1 × 4
+    #>    label      `4`   `6`   `8`
+    #>    <chr>    <dbl> <dbl> <dbl>
+    #>  1 Mean MPG  26.7  19.7  15.1
+    #> --------------------------------------------------------------------------------
+    #> -                               Log Output File                                -
+    #> --------------------------------------------------------------------------------
+    #> Log name: mpg.log
+    #> Log path: /tmp/RtmpoN9TLH
 
 ## A Few Words of Caution
 

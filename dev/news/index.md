@@ -33,6 +33,9 @@
 
 ### Updates
 
+- Removed the `remove_log_object` argument from
+  [`log_write()`](https://pharmaverse.github.io/logrx/dev/reference/log_write.md)
+  ([\#298](https://github.com/pharmaverse/logrx/issues/298)).
 - Improved error messaging when a log.rx environment already exists
   ([\#276](https://github.com/pharmaverse/logrx/issues/276))
   - In non-interactive mode, provides clear guidance on how to resolve
