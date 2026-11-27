@@ -1,71 +1,54 @@
 Package: logrx
 Title: A Logging Utility Focus on Clinical Trial Programming Workflows
-Version: 0.4.0.9000
-Authors@R: 
-    c(
-    person(given = "Nathan",
-           family = "Kosiba",
-           email = "nhkosiba@gmail.com",
-           role = c("aut", "cre")),
-    person(given = "Thomas",
-           family = "Bermudez",
-           email = "thomas.a.bermudez@gsk.com",
-           role = "aut"),
-    person(given = "Ben", 
-           family = "Straub",
-           email = "ben.x.straub@gsk.com", 
-           role = "aut"),
-    person(given = "Michael",
-           family = "Rimler",
-           email = "michael.s.rimler@gsk.com",
-           role = "aut"),
-    person(given = "Nicholas",
-           family = "Masel",
-           email = "nmasel@its.jnj.com",
-           role = "aut"),
-    person(given = "Sam",
-           family = "Parmar",
-           email = "samir.parmar@pfizer.com",
-           role = "aut"),
-    person(given = "GSK/Atorus JPT",
-           role = c("cph", "fnd"))
-    )
-Description: A utility to facilitate the logging and review of R programs in clinical trial programming workflows.
+Version: 0.4.0.9001
+Authors@R: c(
+    person("Nathan", "Kosiba", , "nhkosiba@gmail.com", role = c("aut", "cre")),
+    person("Thomas", "Bermudez", , "thomas.a.bermudez@gsk.com", role = "aut"),
+    person("Ben", "Straub", , "ben.x.straub@gsk.com", role = "aut"),
+    person("Michael", "Rimler", , "michael.s.rimler@gsk.com", role = "aut"),
+    person("Nicholas", "Masel", , "nmasel@its.jnj.com", role = "aut"),
+    person("Sam", "Parmar", , "samir.parmar@pfizer.com", role = "aut"),
+    person("GSK/Atorus JPT", role = c("cph", "fnd"))
+  )
+Description: A utility to facilitate the logging and review of R programs
+    in clinical trial programming workflows.
 License: MIT + file LICENSE
-URL: https://pharmaverse.github.io/logrx/, https://github.com/pharmaverse/logrx
+URL: https://pharmaverse.github.io/logrx/,
+    https://github.com/pharmaverse/logrx
 BugReports: https://github.com/pharmaverse/logrx/issues
-Encoding: UTF-8
-LazyData: true
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+Depends: 
+    R (>= 4.0.0)
 Imports:
+    digest,
     dplyr (>= 1.0.0),
     magrittr,
     purrr,
     rlang,
-    stats,
-    tidyr,
     sessioninfo (>= 1.2),
+    stats,
     tibble,
-    digest,
+    tidyr,
     yaml
 Suggests: 
-    testthat (>= 3.0.0),
-    knitr,
-    rmarkdown,
-    withr,
     covr,
-    pkgdown,
-    Tplyr,
     haven,
-    lintr (>= 3.1.1),
-    xml2,
     here,
+    knitr,
+    lintr (>= 3.1.1),
+    pkgdown,
     readr,
+    renv,
+    rmarkdown,
     rstudioapi,
+    testthat (>= 3.0.0),
     tidyselect,
-    renv
-VignetteBuilder: knitr
+    Tplyr,
+    withr,
+    xml2
+VignetteBuilder: 
+    knitr
 Config/testthat/edition: 3
-Depends: 
-    R (>= 4.0.0)
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2

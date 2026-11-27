@@ -77,7 +77,7 @@ jobs:
         uses: actions/checkout@v4.1.1
         if: github.event_name != 'pull_request'
         with:
-          ref: ${{ steps.branch-name.outputs.head_ref_branch }}
+          ref: ${{ github.sha }}
           path: ${{ github.event.repository.name }}
           token: ${{ steps.github-token.outputs.token }}
 
@@ -165,10 +165,10 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git config pull.rebase false
-          git pull origin ${{ steps.branch-name.outputs.head_ref_branch }} || true
+          git pull origin ${{ steps.branch-name.outputs.current_branch }} || true
           git add ${{ steps.problem-files.outputs.unstyled-files }}
           git commit -m '[skip style] [skip vbump] Restyle files'
-          git push -v origin HEAD:${{ steps.branch-name.outputs.head_ref_branch }} || \
+          git push -v origin HEAD:${{ steps.branch-name.outputs.current_branch }} || \
             echo "⚠️ Could not push to ${BRANCH_NAME} on $(git remote -v show -n origin | grep Push)"
         shell: bash
         working-directory: ${{ github.event.repository.name }}/${{ inputs.package-subdirectory }}
