@@ -82,7 +82,11 @@ test_that("setting log name works", {
   set_log_name_path(log_name = log_name)
 
   expect_identical(getOption("log.rx")[["log_name"]], log_name)
-  expect_warning(set_log_name_path(log_name = "test_log_name2"))
+  expect_warning(
+    expect_warning(set_log_name_path(log_name = "test_log_name2"), "^log_name already assigned"),
+    "^log_path already assigned"
+  )
+  expect_identical(getOption("log.rx")[["log_name"]], log_name)
 
   log_remove()
 })
@@ -110,7 +114,11 @@ test_that("setting path name works", {
     getOption("log.rx")[["log_path"]],
     log_path
   )
-  expect_warning(set_log_name_path(log_path = "."))
+  expect_warning(
+    expect_warning(set_log_name_path(log_path = "."), "^log_name already assigned"),
+    "^log_path already assigned"
+  )
+  expect_identical(getOption("log.rx")[["log_path"]], log_path)
 
   log_remove()
 })
@@ -120,7 +128,10 @@ test_that("run_safely_loudly works for warnings, errors, messages, and output", 
 
   log_config(file = fp)
 
-  run_safely_loudly(fp)
+  expect_warning(
+    expect_warning(run_safely_loudly(fp), "^log warning$"),
+    "^log warning2$"
+  )
 
   expect_true(!is.null(getOption("log.rx")[["warnings"]]))
   expect_true(!is.null(getOption("log.rx")[["errors"]]))

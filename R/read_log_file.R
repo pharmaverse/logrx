@@ -135,7 +135,6 @@ nest_log <- function(adj_log_txt) {
 #'
 #' @importFrom tibble tibble
 #' @importFrom tidyr separate
-#' @importFrom dplyr rename_with
 #' @importFrom dplyr mutate
 #'
 #' @return list with objects coerced as tibbles
@@ -190,42 +189,46 @@ parse_log <- function(nested_log) {
         fill = "right"
       ) %>%
       dplyr::mutate(dplyr::across(tidyselect::where(is.character), trimws))
+    package_lines <- nested_log$`Session Information`$`Packages`
+    footer <- which(!nzchar(trimws(package_lines)))
+    if (length(footer) > 0) {
+      package_lines <- package_lines[seq_len(footer[1] - 1)]
+    }
+    if (length(package_lines) > 0 && grepl("^\\s*!\\s", package_lines[1], perl = TRUE)) {
+      package_lines <- sub("^\\s*[VPDR]+\\s+", "", package_lines, perl = TRUE)
+    }
+    package_lines <- gsub("\\*", " ", package_lines)
+    package_pattern <- "^\\s*(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(.+?)\\s*$"
+    if (any(!grepl(package_pattern, package_lines[-1], perl = TRUE))) {
+      stop("Malformed package row in session information")
+    }
     parsed_log$`Session Information`$`Packages` <-
-      nested_log$`Session Information`$`Packages` %>%
-      # remove indicator whether the package is attached to the search path
-      gsub("\\*", " ", .) %>%
-      # account for loaded packages due to load_all()
-      gsub(" P ", "   ", ., fixed = TRUE) %>%
-      readr::read_table(skip = 1, col_names = FALSE)
+      package_lines %>%
+      # Preserve spaces in package sources, including version annotations.
+      sub(
+        package_pattern,
+        "\\1\t\\2\t\\3\t\\4\t\\5",
+        .,
+        perl = TRUE
+      ) %>%
+      paste(collapse = "\n") %>%
+      I() %>%
+      readr::read_tsv(
+        skip = 1,
+        col_names = c("package", "version", "date", "lib", "source"),
+        col_types = readr::cols()
+      )
 
-    # handle case where log has 7 columns due to sessioninfo v1.2.2 or earlier
-    if (ncol(parsed_log$`Session Information`$`Packages`) == 7) {
+    sources <- parsed_log$`Session Information`$`Packages`$source
+    legacy_source <- grepl("^\\S+ \\(R \\S+\\)$", sources, perl = TRUE)
+    if (length(sources) > 0 && all(legacy_source)) {
       parsed_log$`Session Information`$`Packages` <-
         parsed_log$`Session Information`$`Packages` %>%
-        dplyr::rename_with(~ c(
-          "package",
-          "version",
-          "date",
-          "lib",
-          "source",
-          "lang",
-          "r_version"
-        )) %>%
+        tidyr::separate("source", into = c("source", "lang", "r_version"), sep = "\\s+") %>%
         dplyr::mutate(
           lang = sub("\\(", "", lang),
           r_version = sub("\\)", "", r_version)
         )
-    } else {
-      standard_names <- c("package", "version", "date", "lib", "source")
-      actual_n <- ncol(parsed_log$`Session Information`$`Packages`)
-      final_names <- if (actual_n <= 5) {
-        standard_names[seq_len(actual_n)]
-      } else {
-        c(standard_names, paste0("extra_", seq_len(actual_n - 5)))
-      }
-      parsed_log$`Session Information`$`Packages` <-
-        parsed_log$`Session Information`$`Packages` %>%
-        dplyr::rename_with(~final_names)
     }
 
     parsed_log$`Session Information`$`External software` <-

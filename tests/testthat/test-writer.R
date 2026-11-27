@@ -203,7 +203,10 @@ test_that("write_output will return a formatted log output element", {
 
   log_config(file = fp)
 
-  run_safely_loudly(fp)
+  expect_warning(
+    expect_warning(run_safely_loudly(fp), "^log warning$"),
+    "^log warning2$"
+  )
 
   expect_identical(write_output(), "Output:\n\t[1] \"log print\"\n\t[1] \"log print 2\"\n\tlog catlog cat 2")
 
@@ -215,7 +218,10 @@ test_that("write_messages will return a formatted log messages element", {
 
   log_config(file = fp)
 
-  run_safely_loudly(fp)
+  expect_warning(
+    expect_warning(run_safely_loudly(fp), "^log warning$"),
+    "^log warning2$"
+  )
 
   expect_identical(write_messages(), "Messages:\n\tlog inform\n\tlog inform 2\n\tlog message\n\tlog message 2")
 
