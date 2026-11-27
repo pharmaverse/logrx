@@ -169,7 +169,7 @@ jobs:
             git pull origin "$BRANCH_NAME" || true
           fi
           git add ${{ steps.problem-files.outputs.unstyled-files }}
-          git commit -m '[skip style] [skip vbump] Restyle files'
+          git commit -m '[skip style] Restyle files'
           if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
             git push -v --force-with-lease="refs/heads/$BRANCH_NAME:$HEAD_SHA" \
               origin "HEAD:refs/heads/$BRANCH_NAME"
