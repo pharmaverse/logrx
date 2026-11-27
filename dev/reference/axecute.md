@@ -130,12 +130,12 @@ axecute(file.path(dir, "hello.Rmd"))
 #> processing file: hello.Rmd
 #> 1/1
 #> output file: hello.knit.md
-#> /usr/bin/pandoc +RTS -K512m -RTS hello.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output hello.html --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/table-classes.lua --embed-resources --standalone --variable bs3=TRUE --section-divs --template /home/runner/work/_temp/Library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/Rtmpd4PAQE/rmarkdown-str222222c3d73f.html 
+#> /usr/bin/pandoc +RTS -K512m -RTS hello.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output hello.html --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/latex-div.lua --lua-filter /home/runner/work/_temp/Library/rmarkdown/rmarkdown/lua/table-classes.lua --embed-resources --standalone --variable bs3=TRUE --section-divs --template /home/runner/work/_temp/Library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable theme=bootstrap --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /tmp/RtmpAEpkAP/rmarkdown-str21ec27193664.html 
 #> 
 #> Output created: hello.html
 #> 
 #> 
-#> processing file: /tmp/Rtmpd4PAQE/hello.Rmd
+#> processing file: /tmp/RtmpAEpkAP/hello.Rmd
 #> 1/1
-#> output file: /tmp/Rtmpd4PAQE/file222253e0ed41.R
+#> output file: /tmp/RtmpAEpkAP/file21ec6573890f.R
 ```

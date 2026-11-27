@@ -209,8 +209,8 @@ logged!
     #> --------------------------------------------------------------------------------
     #> -                                logrx Metadata                                -
     #> --------------------------------------------------------------------------------
-    #> This log was generated using logrx 0.4.0.9000
-    #> logrx package version: 0.4.0.9000
+    #> This log was generated using logrx 0.4.0.9001
+    #> logrx package version: 0.4.0.9001
     #> logrx build: local
     #> logrx link to repository: https://github.com/pharmaverse/logrx
     #> --------------------------------------------------------------------------------
@@ -218,7 +218,7 @@ logged!
     #> --------------------------------------------------------------------------------
     #> User: runner
     #> File Name: mpg.R
-    #> File Path: /tmp/RtmpfRppPn
+    #> File Path: /tmp/RtmpTHBWp6
     #> File HashSum: 59ba8c053689b13c2aa20b633807cce9e762d5a2
     #> --------------------------------------------------------------------------------
     #> -                             Session Information                              -
@@ -233,7 +233,7 @@ logged!
     #> collate C.UTF-8
     #> ctype C.UTF-8
     #> tz UTC
-    #> date 2026-11-26
+    #> date 2026-11-27
     #> pandoc 3.7.0.2 @ /usr/bin/ (via rmarkdown)
     #> quarto NA
     #> 
@@ -256,7 +256,7 @@ logged!
     #> jsonlite 2.0.0 2025-03-27 [1] RSPM (R 4.6.0)
     #> knitr 1.52 2026-09-06 [1] RSPM (R 4.6.0)
     #> lifecycle 1.0.5 2026-01-08 [1] RSPM (R 4.6.0)
-    #> logrx * 0.4.0.9000 2026-11-26 [1]
+    #> logrx * 0.4.0.9001 2026-11-27 [1]
     #>    local
     #> magrittr 2.0.5 2026-04-04 [1] RSPM (R 4.6.0)
     #> otel 0.3.0 2026-11-07 [1] RSPM (R 4.6.0)
@@ -341,8 +341,8 @@ logged!
     #> --------------------------------------------------------------------------------
     #> -                         Program Run Time Information                         -
     #> --------------------------------------------------------------------------------
-    #> Start time: 2026-11-26 16:53:37 UTC
-    #> End time: 2026-11-26 16:53:37 UTC
+    #> Start time: 2026-11-27 17:56:18 UTC
+    #> End time: 2026-11-27 17:56:18 UTC
     #> Run time: 0 seconds
     #> --------------------------------------------------------------------------------
     #> -                             Errors and Warnings                              -
@@ -369,7 +369,7 @@ logged!
     #> -                               Log Output File                                -
     #> --------------------------------------------------------------------------------
     #> Log name: mpg.log
-    #> Log path: /tmp/RtmpfRppPn
+    #> Log path: /tmp/RtmpTHBWp6
 
 ## A Few Words of Caution
 
