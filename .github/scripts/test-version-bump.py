@@ -9,6 +9,27 @@ WORKFLOW = Path(__file__).resolve().parents[1] / "workflows" / "version-bump.yam
 
 
 class VersionBumpTest(unittest.TestCase):
+    def test_checkout_token_requires_explicit_opt_in(self):
+        token = subprocess.run(
+            ["ruby", "-ryaml", "-e",
+             'puts YAML.load_file(ARGV[0])["jobs"]["vbump"]["steps"].first["with"]["token"]',
+             str(WORKFLOW)],
+            check=True, capture_output=True, text=True
+        ).stdout.strip()
+        self.assertEqual(
+            token,
+            "${{ (inputs.use-repo-github-token || vars.VBUMP_USE_REPO_GITHUB_TOKEN == 'true')"
+            " && secrets.REPO_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}",
+        )
+        input_config = subprocess.run(
+            ["ruby", "-ryaml", "-e",
+             'p YAML.load_file(ARGV[0])[true]["workflow_call"]["inputs"]["use-repo-github-token"]',
+             str(WORKFLOW)],
+            check=True, capture_output=True, text=True
+        ).stdout.strip()
+        self.assertIn('"default"=>false', input_config)
+        self.assertIn('"type"=>"boolean"', input_config)
+
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)

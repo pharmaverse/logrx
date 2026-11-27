@@ -23,6 +23,11 @@ on:
         required: false
         default: false
         type: boolean
+      use-repo-github-token:
+        description: Use REPO_GITHUB_TOKEN instead of GITHUB_TOKEN
+        required: false
+        default: false
+        type: boolean
       vbump-after-release:
         description: Bump from the release ref after a release
         required: false
@@ -54,7 +59,7 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-          token: ${{ secrets.REPO_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
+          token: ${{ (inputs.use-repo-github-token || vars.VBUMP_USE_REPO_GITHUB_TOKEN == 'true') && secrets.REPO_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Set up pre-commit
         if: ${{ !inputs.disable-precommit-autoupdate && hashFiles('.pre-commit-config.yaml') != '' }}
