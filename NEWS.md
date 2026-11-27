@@ -9,6 +9,8 @@
   
 ## Bug Fixes
 
+- Fixed `read_log_file()` treating session information footnotes as package
+  records and misreading package rows marked with `P`.
 - Fixed package detection failure for backtick-quoted and replacement functions in `get_used_functions()` (#271)
 - `build_approved()` now supports writing and reading approved lists as YAML files
   (`.yaml`/`.yml`) in addition to `.rds` (#199)
