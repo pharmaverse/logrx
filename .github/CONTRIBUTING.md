@@ -43,10 +43,14 @@ manually on `main` with **Start the next development version after a release**
 selected. This starts the next development version and retains the release
 notes under their own heading.
 
-The workflow needs a token with contents write access that can push to the
-protected `main` branch. If the default `GITHUB_TOKEN` cannot bypass branch
-protection, an administrator must configure an appropriate bot token as the
-`REPO_GITHUB_TOKEN` repository secret and grant that bot bypass permission.
+The workflow uses `GITHUB_TOKEN` with contents write access by default. If it
+cannot push to `main` due to branch protection, an administrator must configure
+an appropriate bot token as the `REPO_GITHUB_TOKEN` repository secret, grant
+that bot bypass permission, and set the repository variable
+`VBUMP_USE_REPO_GITHUB_TOKEN` to `true`. Callers of the reusable workflow can
+instead pass the secret and set the `use-repo-github-token` input to `true`.
+Pushes made with `GITHUB_TOKEN` do not trigger other push workflows; use the
+bot token option if those workflows must run on the bump commit.
 The workflow's own bump commits are ignored to prevent a loop.
 
 ### Code style
