@@ -168,7 +168,8 @@ illustration.</p>
 <code>.rds</code> and <code>.yaml</code> / <code>.yml</code> formats are
 supported.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="va">dir</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># save as rds</span></span>
 <span><span class="fu"><a href="../reference/build_approved.html">build_approved</a></span><span class="op">(</span><span class="va">approved_pkgs</span>, file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="st">"approved.rds"</span><span class="op">)</span><span class="op">)</span></span>
@@ -270,170 +271,20 @@ and <code><a href="../reference/axecute.html">axecute()</a></code> it.</p>
 <code>pivot_wider</code> from <code>package:tidyr</code>. We did not
 include the base library or tidyr functions in our approved list, so
 this has been logged!</p>
-<pre><code><span><span class="co">#&gt; --------------------------------------------------------------------------------</span></span>
-<span><span class="co">#&gt; -                                logrx Metadata                                -</span></span>
-<span><span class="co">#&gt; --------------------------------------------------------------------------------</span></span>
-<span><span class="co">#&gt; This log was generated using logrx 0.4.0.9001</span></span>
-<span><span class="co">#&gt; logrx package version: 0.4.0.9001</span></span>
-<span><span class="co">#&gt; logrx build: local</span></span>
-<span><span class="co">#&gt; logrx link to repository: https://github.com/pharmaverse/logrx</span></span>
-<span><span class="co">#&gt; --------------------------------------------------------------------------------</span></span>
-<span><span class="co">#&gt; -                          User and File Information                           -</span></span>
-<span><span class="co">#&gt; --------------------------------------------------------------------------------</span></span>
-<span><span class="co">#&gt; User: runner</span></span>
-<span><span class="co">#&gt; File Name: mpg.R</span></span>
-<span><span class="co">#&gt; File Path: /tmp/RtmpTHBWp6</span></span>
-<span><span class="co">#&gt; File HashSum: 59ba8c053689b13c2aa20b633807cce9e762d5a2</span></span>
-<span><span class="co">#&gt; --------------------------------------------------------------------------------</span></span>
-<span><span class="co">#&gt; -                             Session Information                              -</span></span>
-<span><span class="co">#&gt; --------------------------------------------------------------------------------</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; </span><span style="color: #555555; font-weight: bold; font-style: italic;">setting </span><span style="font-weight: bold;"> </span><span style="color: #555555; font-weight: bold; font-style: italic;">value</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; version R version 4.6.2 (2026-10-29)</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; os Ubuntu 26.04.1 LTS</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; system x86_64, linux-gnu</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; ui X11</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; language en</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; collate C.UTF-8</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; ctype C.UTF-8</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; tz UTC</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; date 2026-11-27</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; pandoc 3.7.0.2 @ /usr/bin/ (via rmarkdown)</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; quarto NA</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; </span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; </span><span style="color: #00BBBB; font-weight: bold;">─ Packages ────────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; </span><span style="color: #555555; font-weight: bold; font-style: italic;">package </span><span style="font-weight: bold;"> </span><span style="color: #555555; font-weight: bold; font-style: italic;">*</span><span style="font-weight: bold;"> </span><span style="color: #555555; font-weight: bold; font-style: italic;">version </span><span style="font-weight: bold;"> </span><span style="color: #555555; font-weight: bold; font-style: italic;">date</span></span></span>
-<span><span class="co"><span style="color: #555555; font-weight: bold; font-style: italic;">#&gt;    (UTC)</span><span style="font-weight: bold;"> </span><span style="color: #555555; font-weight: bold; font-style: italic;">lib</span><span style="font-weight: bold;"> </span><span style="color: #555555; font-weight: bold; font-style: italic;">source</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; bslib 0.12.0 </span><span style="color: #555555; font-weight: bold;">2026-08-04</span><span style="font-weight: bold;"> </span><span style="color: #555555; font-weight: bold;">[1]</span><span style="font-weight: bold;"> </span><span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; cachem 1.1.0 <span style="color: #555555;">2024-05-16</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; cli 3.6.6 <span style="color: #555555;">2026-04-09</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; desc 1.4.3 <span style="color: #555555;">2023-12-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; digest 0.6.39 <span style="color: #555555;">2025-11-19</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; dplyr * 1.2.1 <span style="color: #555555;">2026-04-03</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; evaluate 1.0.5 <span style="color: #555555;">2025-08-27</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; fastmap 1.2.0 <span style="color: #555555;">2024-05-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; fs 2.1.0 <span style="color: #555555;">2026-04-18</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; generics 0.1.4 <span style="color: #555555;">2025-05-09</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; glue 1.8.1 <span style="color: #555555;">2026-04-17</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; htmltools 0.5.9 <span style="color: #555555;">2025-12-04</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; jquerylib 0.1.4 <span style="color: #555555;">2021-04-26</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; jsonlite 2.0.0 <span style="color: #555555;">2025-03-27</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; knitr 1.52 <span style="color: #555555;">2026-09-06</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; lifecycle 1.0.5 <span style="color: #555555;">2026-01-08</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; logrx * <span style="color: #BB00BB; font-weight: bold;">0.4.0.9001</span> <span style="color: #555555;">2026-11-27</span> <span style="color: #555555;">[1]</span></span></span>
-<span><span class="co">#&gt;    <span style="color: #BB00BB; font-weight: bold;">local</span></span></span>
-<span><span class="co">#&gt; magrittr 2.0.5 <span style="color: #555555;">2026-04-04</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; otel 0.3.0 <span style="color: #555555;">2026-11-07</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; pillar 1.11.1 <span style="color: #555555;">2025-09-17</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; pkgconfig 2.0.3 <span style="color: #555555;">2019-09-22</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; pkgdown 2.2.1 <span style="color: #555555;">2026-07-07</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; purrr 1.2.2 <span style="color: #555555;">2026-04-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; R6 2.6.1 <span style="color: #555555;">2025-02-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; ragg 1.5.2 <span style="color: #555555;">2026-03-23</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; rlang 1.3.0 <span style="color: #555555;">2026-07-05</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; rmarkdown 2.32 <span style="color: #555555;">2026-09-01</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; sass 0.5.0 <span style="color: #555555;">2026-11-20</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; sessioninfo 1.2.4 <span style="color: #555555;">2026-06-04</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; systemfonts 1.3.4 <span style="color: #555555;">2026-11-21</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; textshaping 1.1.0 <span style="color: #555555;">2026-11-20</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; tibble 3.3.1 <span style="color: #555555;">2026-01-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; tidyr 1.3.2 <span style="color: #555555;">2025-12-19</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; tidyselect 1.2.1 <span style="color: #555555;">2024-03-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; utf8 1.2.6 <span style="color: #555555;">2025-06-08</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; vctrs 0.7.3 <span style="color: #555555;">2026-04-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; withr 3.0.3 <span style="color: #555555;">2026-06-19</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; xfun 0.62 <span style="color: #555555;">2026-10-16</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
-<span><span class="co">#&gt; yaml 2.3.12 <span style="color: #555555;">2025-12-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM (R 4.6.0)</span></span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">parsed_log</span><span class="op">$</span><span class="va">`Used Package and Functions`</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 2</span></span></span>
+<span><span class="co">#&gt;   library       function_names                  </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> package:base  library, mean                   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> package:dplyr %&gt;%, group_by, summarize, mutate</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> package:tidyr pivot_wider</span></span>
+<span><span class="va">parsed_log</span><span class="op">$</span><span class="va">`Unapproved Package and Functions`</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; [1] "{package:base} library"</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="color: #555555;"> [1] /home/runner/work/_temp/Library</span></span></span>
-<span><span class="co">#&gt; <span style="color: #555555;"> [2] /opt/R/4.6.2/lib/R/library</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BBBBBB; background-color: #BB0000;">*</span> ── Packages attached to the search path.</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ External software ───────────────────────────────────────────────────</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; </span><span style="color: #555555; font-weight: bold; font-style: italic;">setting </span><span style="font-weight: bold;"> </span><span style="color: #555555; font-weight: bold; font-style: italic;">value</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; cairo 1.18.4</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; cairoFT</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; pango 1.57.0</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; png 1.6.57</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; jpeg 8.0</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; tiff LIBTIFF, Version 4.7.0</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; tcl 8.6</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; curl 8.18.0</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; zlib 1.3.1</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; bzlib 1.0.8, 13-Jul-2019</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; xz 5.8.3</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; deflate 1.23</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; zstd 1.5.7</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; PCRE 10.46 2025-08-27</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; ICU 78.2</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; TRE TRE 0.8.0 R_fixes (BSD)</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; iconv glibc 2.43</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; readline 8.3</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; BLAS /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; lapack /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.32.so</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; lapack_version 3.12.0</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; </span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; </span><span style="color: #00BBBB; font-weight: bold;">─ Python configuration ────────────────────────────────────────────────</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; Python is not available</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; </span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; ───────────────────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; --------------------------------------------------------------------------------</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; -                               Masked Functions                               -</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; --------------------------------------------------------------------------------</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; function `text` from {package:graphics} by .GlobalEnv</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; function `dir` from {package:base} by .GlobalEnv</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; function `filter` from {package:stats} by package:dplyr</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; function `lag` from {package:stats} by package:dplyr</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; function `intersect` from {package:base} by package:dplyr</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; function `setdiff` from {package:base} by package:dplyr</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; function `setequal` from {package:base} by package:dplyr</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; function `union` from {package:base} by package:dplyr</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; function `plot` from {package:base} by package:graphics</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; function `body&lt;-` from {package:base} by package:methods</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; function `kronecker` from {package:base} by package:methods</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; --------------------------------------------------------------------------------</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; -                          Used Package and Functions                          -</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; --------------------------------------------------------------------------------</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; {package:base} library, mean</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; {package:dplyr} %&gt;%, group_by, summarize, mutate</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; {package:tidyr} pivot_wider</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; --------------------------------------------------------------------------------</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; -                       Unapproved Package and Functions                       -</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; --------------------------------------------------------------------------------</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; {package:base} library</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; {package:tidyr} pivot_wider</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; --------------------------------------------------------------------------------</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; -                         Program Run Time Information                         -</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; --------------------------------------------------------------------------------</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; Start time: 2026-11-27 17:56:18 UTC</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; End time: 2026-11-27 17:56:18 UTC</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; Run time: 0 seconds</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; --------------------------------------------------------------------------------</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; -                             Errors and Warnings                              -</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; --------------------------------------------------------------------------------</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; Errors:</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt;  </span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; </span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; Warnings:</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt;  </span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; --------------------------------------------------------------------------------</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; -                         Messages, Output, and Result                         -</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; --------------------------------------------------------------------------------</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; Messages:</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt;  </span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; Output:</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt;  </span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; </span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt; Result:</span></span></span>
-<span><span class="co"><span style="color: #00BBBB; font-weight: bold;">#&gt;  </span><span style="color: #949494; font-weight: bold;"># A tibble: 1 × 4</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt;    label      `4`   `6`   `8`</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt;    </span><span style="color: #949494; font-weight: bold; font-style: italic;">&lt;chr&gt;</span><span style="font-weight: bold;">    </span><span style="color: #949494; font-weight: bold; font-style: italic;">&lt;dbl&gt;</span><span style="font-weight: bold;"> </span><span style="color: #949494; font-weight: bold; font-style: italic;">&lt;dbl&gt;</span><span style="font-weight: bold;"> </span><span style="color: #949494; font-weight: bold; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt;  </span><span style="color: #BCBCBC; font-weight: bold;">1</span><span style="font-weight: bold;"> Mean MPG  26.7  19.7  15.1</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; --------------------------------------------------------------------------------</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; -                               Log Output File                                -</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; --------------------------------------------------------------------------------</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; Log name: mpg.log</span></span></span>
-<span><span class="co"><span style="font-weight: bold;">#&gt; Log path: /tmp/RtmpTHBWp6</span></span></span></code></pre>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; [1] "{package:tidyr} pivot_wider"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="a-few-words-of-caution">A Few Words of Caution<a class="anchor" aria-label="anchor" href="#a-few-words-of-caution"></a>

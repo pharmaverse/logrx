@@ -32,14 +32,15 @@ axecute("my_script.R")
 
 ### `log_*()` functions
 
-The `log_*()` family of functions are the core of `logrx` and are used
-internally to configure, write, and remove the log and other objects.
-While these are exported functions of the package, they are intended to
-be used in special cases where
+The `log_*()` family of functions are used internally to configure,
+write, and remove the log and other objects. While these functions are
+exported, they are intended for special cases where
 [`axecute()`](https://pharmaverse.github.io/logrx/dev/reference/axecute.md)
-will not work.
+will not work. For typical script execution, use
+[`axecute()`](https://pharmaverse.github.io/logrx/dev/reference/axecute.md)
+to configure the log, run the script, and write the log in one call.
 
-Use the `log_*()` functions to do the following:
+The main functions are:
 
 - [`log_init()`](https://pharmaverse.github.io/logrx/dev/reference/log_init.md)
   to create the environment `log.rx`
@@ -48,22 +49,16 @@ Use the `log_*()` functions to do the following:
   to add the core elements of the log to the environment, and basic
   elements that are available at the time of configuration
 
-- `run_safely_loudly()` to execute the program code, and capture errors,
-  warnings, messages, output, and result. This must be passed an
-  executable R file to run and create the log elements from
-
 - [`log_write()`](https://pharmaverse.github.io/logrx/dev/reference/log_write.md)
   to generate and format the log
 
 - [`log_remove()`](https://pharmaverse.github.io/logrx/dev/reference/log_remove.md)
   to remove the `log.rx` environment created by code execution
 
-``` r
-log_config("my_script.R")
-run_safely_loudly("my_script.R")
-log_write()
-log_remove()
-```
+The script execution step in
+[`axecute()`](https://pharmaverse.github.io/logrx/dev/reference/axecute.md)
+is handled internally; its execution helper is not part of the public
+API.
 
 #### Handling Existing Environments
 

@@ -16,6 +16,10 @@
 
 ### Bug Fixes
 
+- Fixed
+  [`read_log_file()`](https://pharmaverse.github.io/logrx/dev/reference/read_log_file.md)
+  treating session information footnotes as package records and
+  misreading package rows marked with `P`.
 - Fixed package detection failure for backtick-quoted and replacement
   functions in `get_used_functions()`
   ([\#271](https://github.com/pharmaverse/logrx/issues/271))

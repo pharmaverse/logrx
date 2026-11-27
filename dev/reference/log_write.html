@@ -109,15 +109,9 @@ information in <code><a href="axecute.html">axecute</a></code></p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="st">"hello.R"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Initialise and configure the log.rx environment</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="log_config.html">log_config</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Run the script and record results, outputs, messages, errors, and warnings</span></span></span>
-<span class="r-in"><span><span class="fu">logrx</span><span class="fu">:::</span><span class="fu">run_safely_loudly</span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># For typical script execution, use axecute() to configure, run, and log the file</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="axecute.html">axecute</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Hello, Timberperson!"</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Write the log</span></span></span>
-<span class="r-in"><span><span class="fu">log_write</span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
