@@ -16,7 +16,7 @@ on:
     secrets:
       REPO_GITHUB_TOKEN:
         description: Token with write access to the repository
-        required: false
+        required: true
     inputs:
       disable-precommit-autoupdate:
         description: Disable precommit autoupdate
@@ -24,7 +24,7 @@ on:
         default: false
         type: boolean
       use-repo-github-token:
-        description: Use REPO_GITHUB_TOKEN instead of GITHUB_TOKEN
+        description: Deprecated; REPO_GITHUB_TOKEN is always used
         required: false
         default: false
         type: boolean
@@ -54,12 +54,21 @@ jobs:
     container:
       image: docker.io/rocker/tidyverse:latest
     steps:
+      - name: Verify repository token is configured
+        env:
+          REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
+        run: |
+          if [[ -z "$REPO_GITHUB_TOKEN" ]]; then
+            echo "::error::REPO_GITHUB_TOKEN must be configured; refusing to use GITHUB_TOKEN."
+            exit 1
+          fi
+
       - name: Checkout main
         uses: actions/checkout@v4.1.1
         with:
           ref: main
           fetch-depth: 0
-          token: ${{ (inputs.use-repo-github-token || vars.VBUMP_USE_REPO_GITHUB_TOKEN == 'true') && secrets.REPO_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.REPO_GITHUB_TOKEN }}
 
       - name: Set up pre-commit
         if: ${{ !inputs.disable-precommit-autoupdate && hashFiles('.pre-commit-config.yaml') != '' }}
