@@ -32,17 +32,22 @@ See our guide on [how to create a great issue](https://code-review.tidyverse.org
 
 ### Version bumps
 
-After a push to `main`, the version-bump workflow creates or updates a PR from
-`automation/version-bump`. Merge that PR to apply the development version bump;
-merging it does not trigger another bump. Changes merged while the PR is open
-are included in the same pending bump.
+After a push or PR merge to `main`, the version-bump workflow commits the next
+development version directly to `DESCRIPTION`. Opening or updating a PR does
+not change the version on `main`. The workflow can also be run manually.
 
-The workflow needs permission to write repository contents and create pull
-requests. If it uses `GITHUB_TOKEN`, the repository or organization must allow
-GitHub Actions to create pull requests. A `REPO_GITHUB_TOKEN` secret can instead
-provide an appropriately scoped token. PR checks triggered by `GITHUB_TOKEN`
-require approval; use a GitHub App or personal access token to run them without
-that approval.
+For a package release, include `[skip vbump]` in the commit message pushed to
+`main` (for a merge or squash merge, include it in the final merge commit
+message). This preserves the release version. After releasing, run the workflow
+manually on `main` with **Start the next development version after a release**
+selected. This starts the next development version and retains the release
+notes under their own heading.
+
+The workflow needs a token with contents write access that can push to the
+protected `main` branch. If the default `GITHUB_TOKEN` cannot bypass branch
+protection, an administrator must configure an appropriate bot token as the
+`REPO_GITHUB_TOKEN` repository secret and grant that bot bypass permission.
+The workflow's own bump commits are ignored to prevent a loop.
 
 ### Code style
 
