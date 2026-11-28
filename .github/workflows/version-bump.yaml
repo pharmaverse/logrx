@@ -1,173 +1,41 @@
 ---
-name: Version bump ⬆
+name: Version bump
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
-    inputs:
-      after-release:
-        description: Start the next development version after a release
-        required: false
-        default: false
-        type: boolean
-  workflow_call:
-    secrets:
-      REPO_GITHUB_TOKEN:
-        description: Token with write access to the repository
-        required: true
-    inputs:
-      disable-precommit-autoupdate:
-        description: Disable precommit autoupdate
-        required: false
-        default: false
-        type: boolean
-      use-repo-github-token:
-        description: Deprecated; REPO_GITHUB_TOKEN is always used
-        required: false
-        default: false
-        type: boolean
-      vbump-after-release:
-        description: Bump from the release ref after a release
-        required: false
-        default: false
-        type: boolean
-      package-subdirectory:
-        description: Subdirectory containing the R package
-        required: false
-        type: string
-        default: "."
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   vbump:
     name: Bump development version
     if: >-
-      github.event_name != 'push' ||
-      (!contains(github.event.head_commit.message, '[skip vbump]') &&
-       !(github.event.head_commit.author.email == '41898282+github-actions[bot]@users.noreply.github.com' &&
-         startsWith(github.event.head_commit.message, 'Bump development version to ')))
+      !contains(github.event.head_commit.message, '[skip vbump]') &&
+      !contains(github.event.head_commit.message, '[automated vbump]')
     runs-on: ubuntu-latest
     container:
       image: docker.io/rocker/tidyverse:latest
     steps:
-      - name: Verify repository token is configured
-        env:
-          REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
-        run: |
-          if [[ -z "$REPO_GITHUB_TOKEN" ]]; then
-            echo "::error::REPO_GITHUB_TOKEN must be configured; refusing to use GITHUB_TOKEN."
-            exit 1
-          fi
+      - name: Create app token
+        id: app-token
+        # v2.2.2
+        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349
+        with:
+          app-id: ${{ vars.VERSION_BUMP_APP_ID }}
+          private-key: ${{ secrets.VERSION_BUMP_APP_PRIVATE_KEY }}
+          permission-contents: write
 
       - name: Checkout main
         uses: actions/checkout@v4.1.1
         with:
           ref: main
           fetch-depth: 0
-          token: ${{ secrets.REPO_GITHUB_TOKEN }}
-
-      - name: Set up pre-commit
-        if: ${{ !inputs.disable-precommit-autoupdate && hashFiles('.pre-commit-config.yaml') != '' }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install pre-commit
-        if: ${{ !inputs.disable-precommit-autoupdate && hashFiles('.pre-commit-config.yaml') != '' }}
-        run: python -m pip -q install pre-commit
+          token: ${{ steps.app-token.outputs.token }}
 
       - name: Bump and push development version
-        shell: bash
         env:
-          PACKAGE_DIR: ${{ inputs.package-subdirectory || '.' }}
-          VBUMP_AFTER_RELEASE: ${{ inputs.vbump-after-release || inputs.after-release }}
-          RELEASE_REF: ${{ github.ref }}
-          DISABLE_PRECOMMIT_AUTOUPDATE: ${{ inputs.disable-precommit-autoupdate }}
-          PUSH_SHA: ${{ github.event_name == 'push' && github.sha || '' }}
-        run: |
-          set -euo pipefail
-          git config --global --add safe.directory "$PWD"
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          package_dir=${PACKAGE_DIR:-.}
-          after_release=${VBUMP_AFTER_RELEASE:-false}
-          release_version=
-          if [[ "$after_release" == "true" ]]; then
-            git fetch origin "$RELEASE_REF"
-            release_description=$(mktemp)
-            trap 'rm -f "$release_description"' EXIT
-            git show "FETCH_HEAD:$package_dir/DESCRIPTION" > "$release_description"
-            release_version=$(Rscript -e 'cat(as.character(desc::desc_get_version(file = commandArgs(TRUE)[1])))' "$release_description")
-          fi
-
-          for attempt in {1..10}; do
-            git fetch origin main
-            git checkout -B main FETCH_HEAD
-            base=$(git rev-parse HEAD)
-
-            if [[ -n "${PUSH_SHA:-}" ]]; then
-              if ! git merge-base --is-ancestor "$PUSH_SHA" "$base"; then
-                echo "The triggering push is no longer in main's history; refusing to bump." >&2
-                exit 1
-              fi
-              if [[ -n $(git log --format=%H --fixed-strings --grep='[skip vbump]' "$PUSH_SHA..$base") ]]; then
-                echo "A release skip was pushed after this event; not changing its version."
-                exit 0
-              fi
-            fi
-
-            if [[ "$after_release" == "true" ]]; then
-              current_version=$(cd "$package_dir" && Rscript -e 'cat(as.character(desc::desc_get_version()))')
-              if [[ "$current_version" != "$release_version" ]]; then
-                echo "Main's version ($current_version) differs from the release ($release_version); refusing to overwrite it." >&2
-                exit 1
-              fi
-            fi
-
-            (
-              cd "$package_dir"
-              Rscript -e 'desc::desc_bump_version("dev", normalize = TRUE); if (desc::desc_has_fields("Date")) desc::desc_set("Date", Sys.Date())'
-              version=$(Rscript -e 'cat(as.character(desc::desc_get_version()))')
-              if [[ -f NEWS.md ]]; then
-                NEWS_VERSION=$(awk '/^#+ /{print $3,$4; exit}' NEWS.md | xargs)
-                if [[ "$after_release" == "true" ]]; then
-                  first_line=$(head -1 NEWS.md)
-                  news_file=$(mktemp)
-                  printf '%s\n\n' "$first_line" | cat - NEWS.md > "$news_file"
-                  mv "$news_file" NEWS.md
-                fi
-                if [[ -n "$NEWS_VERSION" && "$NEWS_VERSION" != "(development version)" ]]; then
-                  sed -i "0,/$NEWS_VERSION/s/$NEWS_VERSION/$version/" NEWS.md
-                fi
-              fi
-            )
-            version=$(cd "$package_dir" && Rscript -e 'cat(as.character(desc::desc_get_version()))')
-            git add "$package_dir/DESCRIPTION"
-            if [[ -f "$package_dir/NEWS.md" ]]; then
-              git add "$package_dir/NEWS.md"
-            fi
-            if [[ "${DISABLE_PRECOMMIT_AUTOUPDATE:-false}" != "true" && -f .pre-commit-config.yaml ]]; then
-              pre-commit autoupdate
-              git add .pre-commit-config.yaml
-            fi
-            git commit -m "Bump development version to $version"
-
-            if git push origin HEAD:refs/heads/main; then
-              exit 0
-            fi
-
-            git fetch origin main
-            if [[ $(git rev-parse FETCH_HEAD) == "$base" ]]; then
-              echo "Push failed without a concurrent change to main; check token and branch protection permissions." >&2
-              exit 1
-            fi
-            echo "Main changed during the bump; retrying against its latest version."
-          done
-
-          echo "Could not push the version bump after 10 attempts." >&2
-          exit 1
+          PUSH_SHA: ${{ github.sha }}
+        run: bash .github/scripts/version-bump.sh

@@ -32,26 +32,30 @@ See our guide on [how to create a great issue](https://code-review.tidyverse.org
 
 ### Version bumps
 
-After a push or PR merge to `main`, the version-bump workflow commits the next
-development version directly to `DESCRIPTION`. Opening or updating a PR does
-not change the version on `main`. The workflow can also be run manually.
+After each push or PR merge to `main`, the version-bump workflow commits the
+next development version directly to `DESCRIPTION`, regardless of which files
+changed. Opening or updating a PR does not change the version on `main`.
+The workflow only changes `DESCRIPTION`; it does not update `NEWS.md` or
+pre-commit dependencies. It runs once per push, so a push containing multiple
+commits receives one bump. GitHub does not start push workflows for commits
+pushed using the built-in `GITHUB_TOKEN`.
 
 For a package release, include `[skip vbump]` in the commit message pushed to
 `main` (for a merge or squash merge, include it in the final merge commit
-message). This preserves the release version. After releasing, run the workflow
-manually on `main` with **Start the next development version after a release**
-selected. This starts the next development version and retains the release
-notes under their own heading.
+message). This preserves the release version. The next non-skipped push starts
+a new development version. A delayed bump from before a skip is also suppressed
+to avoid changing a release version. Update release notes separately.
 
-The workflow uses `GITHUB_TOKEN` with contents write access by default. If it
-cannot push to `main` due to branch protection, an administrator must configure
-an appropriate bot token as the `REPO_GITHUB_TOKEN` repository secret, grant
-that bot bypass permission, and set the repository variable
-`VBUMP_USE_REPO_GITHUB_TOKEN` to `true`. Callers of the reusable workflow can
-instead pass the secret and set the `use-repo-github-token` input to `true`.
-Pushes made with `GITHUB_TOKEN` do not trigger other push workflows; use the
-bot token option if those workflows must run on the bump commit.
-The workflow's own bump commits are ignored to prevent a loop.
+The workflow uses an organization-owned GitHub App, rather than a personal
+token. An administrator must install an app with repository **Contents: read
+and write** permission, add its app ID as the `VERSION_BUMP_APP_ID` repository
+variable, and add its private key as the `VERSION_BUMP_APP_PRIVATE_KEY`
+repository secret. Grant the app **always** bypass access to every rule or
+branch protection that prevents direct updates to `main`. The built-in
+`GITHUB_TOKEN` cannot bypass the current protections. If a bump fails, rerun
+its failed workflow after fixing the app's permissions; successful reruns do
+not bump the same push twice. App-token pushes can trigger other workflows;
+the bump workflow ignores its own commits to prevent a loop.
 
 ### Code style
 
