@@ -12,7 +12,7 @@ test_that("read_log_file will parse a logrx log file and create the necessary ob
   axecute(scriptPath, log_name = "log_out_parse", log_path = logDir)
 
   # check that the log file can be parsed
-  parsedFile <- read_log_file(filePath)
+  expect_warning(parsedFile <- read_log_file(filePath), NA)
 
   expect_length(parsedFile, 9)
   expect_named(
@@ -54,6 +54,53 @@ test_that("read_log_file will parse a logrx log file and create the necessary ob
   # remove all the stuff we added
   rm(scriptPath, logDir, parsedFile)
   log_remove()
+})
+
+test_that("package parsing excludes session information footnotes", {
+  skip_if_not_installed("readr")
+  package_lines <- c(
+    "! package * version date (UTC) lib source",
+    "P dplyr * 1.2.1 2026-04-03 [?] RSPM",
+    "  readr 2.2.0 2026-02-19 [1] RSPM",
+    "R logrx * 0.4.0 <NA> [?] <NA>",
+    "VP example 1.0 2026-01-01 [1] CRAN (R 4.3.2)",
+    "",
+    "[1] /path/to/library",
+    "[2] /another/library",
+    "",
+    "* -- Packages attached to the search path.",
+    "P -- Loaded and on-disk path mismatch."
+  )
+  nested_log <- list(`Session Information` = list(
+    `Session info` = c("setting value", "os Linux"),
+    Packages = package_lines,
+    `External software` = c("setting value", "zlib 1.3")
+  ))
+
+  expect_warning(parsed <- logrx:::parse_log(nested_log), NA)
+  packages <- parsed$`Session Information`$Packages
+  expect_named(packages, c("package", "version", "date", "lib", "source"))
+  expect_equal(packages$package, c("dplyr", "readr", "logrx", "example"))
+  expect_equal(packages$version, c("1.2.1", "2.2.0", "0.4.0", "1.0"))
+  expect_equal(packages$lib, c("[?]", "[1]", "[?]", "[1]"))
+  expect_equal(packages$source, c("RSPM", "RSPM", "<NA>", "CRAN (R 4.3.2)"))
+
+  nested_log$`Session Information`$Packages <- c(
+    "package * version date (UTC) lib source",
+    "dplyr * 1.1.4 2023-11-17 [1] CRAN (R 4.3.2)"
+  )
+  expect_warning(parsed <- logrx:::parse_log(nested_log), NA)
+  packages <- parsed$`Session Information`$Packages
+  expect_named(packages, c("package", "version", "date", "lib", "source", "lang", "r_version"))
+  expect_equal(packages$source, "CRAN")
+  expect_equal(packages$lang, "R")
+  expect_equal(packages$r_version, "4.3.2")
+
+  nested_log$`Session Information`$Packages <- c(
+    "package * version date (UTC) lib source",
+    "malformed package row"
+  )
+  expect_error(logrx:::parse_log(nested_log), "Malformed package row")
 })
 
 test_that("nest_subsections handles both matched and unmatched subsection headers", {

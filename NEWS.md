@@ -1,7 +1,6 @@
 # logrx (development version)
 
 ## New Features
-
 - Added `error_on_unapproved` parameter to `axecute()` to optionally stop execution
   if unapproved packages are detected before running the script (#204)
   - Parses the script's AST to detect packages from `library()`/`require()` calls
@@ -10,6 +9,8 @@
   
 ## Bug Fixes
 
+- Fixed `read_log_file()` treating session information footnotes as package
+  records and misreading package rows marked with `P`.
 - Fixed package detection failure for backtick-quoted and replacement functions in `get_used_functions()` (#271)
 - `build_approved()` now supports writing and reading approved lists as YAML files
   (`.yaml`/`.yml`) in addition to `.rds` (#199)
@@ -19,7 +20,7 @@
   - `yaml` has been moved from `Suggests` to `Imports`
 
 ## Updates
-
+- Removed the `remove_log_object` argument from `log_write()` (#298).
 - Improved error messaging when a log.rx environment already exists (#276)
   - In non-interactive mode, provides clear guidance on how to resolve the issue
   - In interactive mode, offers users the option to automatically remove the existing environment or handle it manually

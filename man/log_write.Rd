@@ -6,7 +6,6 @@
 \usage{
 log_write(
   file = NA,
-  remove_log_object = TRUE,
   show_repo_url = FALSE,
   include_rds = FALSE,
   extra_info = NA,
@@ -15,9 +14,6 @@ log_write(
 }
 \arguments{
 \item{file}{String. Path to file executed}
-
-\item{remove_log_object}{Boolean. Should the log object be removed after
-writing the log file? Defaults to TRUE}
 
 \item{show_repo_url}{Boolean. Should the repo URLs be reported
 Defaults to FALSE}
@@ -47,12 +43,6 @@ close(fileConn)
 
 file <- file.path(dir, "hello.R")
 
-# Initialise and configure the log.rx environment
-log_config(file)
-
-# Run the script and record results, outputs, messages, errors, and warnings
-logrx:::run_safely_loudly(file)
-
-# Write the log
-log_write(file)
+# For typical script execution, use axecute() to configure, run, and log the file
+axecute(file)
 }
