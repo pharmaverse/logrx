@@ -23,13 +23,13 @@ Source:
 
 Kosiba N, Bermudez T, Straub B, Rimler M, Masel N, Parmar S (2026).
 *logrx: A Logging Utility Focus on Clinical Trial Programming
-Workflows*. R package version 0.4.0.9001,
+Workflows*. R package version 0.4.0.9002,
 <https://pharmaverse.github.io/logrx/>.
 
     @Manual{,
       title = {logrx: A Logging Utility Focus on Clinical Trial Programming Workflows},
       author = {Nathan Kosiba and Thomas Bermudez and Ben Straub and Michael Rimler and Nicholas Masel and Sam Parmar},
       year = {2026},
-      note = {R package version 0.4.0.9001},
+      note = {R package version 0.4.0.9002},
       url = {https://pharmaverse.github.io/logrx/},
     }
