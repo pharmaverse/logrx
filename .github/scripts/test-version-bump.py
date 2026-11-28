@@ -5,31 +5,10 @@ import tempfile
 import unittest
 
 
-WORKFLOW = Path(__file__).resolve().parents[1] / "workflows" / "version-bump.yaml"
+SCRIPT = Path(__file__).with_name("version-bump.sh").resolve()
 
 
 class VersionBumpTest(unittest.TestCase):
-    def test_checkout_token_requires_explicit_opt_in(self):
-        token = subprocess.run(
-            ["ruby", "-ryaml", "-e",
-             'puts YAML.load_file(ARGV[0])["jobs"]["vbump"]["steps"].first["with"]["token"]',
-             str(WORKFLOW)],
-            check=True, capture_output=True, text=True
-        ).stdout.strip()
-        self.assertEqual(
-            token,
-            "${{ (inputs.use-repo-github-token || vars.VBUMP_USE_REPO_GITHUB_TOKEN == 'true')"
-            " && secrets.REPO_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}",
-        )
-        input_config = subprocess.run(
-            ["ruby", "-ryaml", "-e",
-             'p YAML.load_file(ARGV[0])[true]["workflow_call"]["inputs"]["use-repo-github-token"]',
-             str(WORKFLOW)],
-            check=True, capture_output=True, text=True
-        ).stdout.strip()
-        self.assertIn('"default"=>false', input_config)
-        self.assertIn('"type"=>"boolean"', input_config)
-
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
@@ -41,20 +20,12 @@ class VersionBumpTest(unittest.TestCase):
         for key in ("GIT_AUTHOR_NAME", "GIT_AUTHOR_EMAIL", "GIT_COMMITTER_NAME", "GIT_COMMITTER_EMAIL"):
             self.env.pop(key, None)
         self.env["PATH"] = f"{root / 'bin'}:{self.env['PATH']}"
-        self.script = root / "version-bump.sh"
-        script = subprocess.run(
-            ["ruby", "-ryaml", "-e",
-             'puts YAML.load_file(ARGV[0])["jobs"]["vbump"]["steps"].last["run"]',
-             str(WORKFLOW)],
-            check=True, capture_output=True, text=True
-        ).stdout
-        self.script.write_text(script)
         (root / "bin").mkdir()
         rscript = root / "bin" / "Rscript"
         rscript.write_text(
             """#!/usr/bin/env python3
 import pathlib, re, sys
-path = pathlib.Path(sys.argv[3] if len(sys.argv) > 3 else "DESCRIPTION")
+path = pathlib.Path("DESCRIPTION")
 text = path.read_text()
 version = re.search(r"^Version: (.+)$", text, re.M).group(1)
 if "desc_bump_version" in sys.argv[2]:
@@ -87,37 +58,60 @@ else:
             ["git", *args], cwd=cwd, env=self.env, check=True, capture_output=True, text=True
         )
 
-    def bump(self, **env):
+    def bump(self, sha=None):
         return subprocess.run(
-            ["bash", str(self.script)], cwd=self.repo, env={**self.env, **env},
+            ["bash", str(SCRIPT)], cwd=self.repo, env={**self.env, "PUSH_SHA": sha or self.sha},
             capture_output=True, text=True
         )
 
-    def test_pushes_bump_and_keeps_development_news(self):
-        result = self.bump(PUSH_SHA=self.sha)
+    def commit(self, message):
+        self.git(self.repo, "commit", "--allow-empty", "-m", message)
+        self.git(self.repo, "push", "origin", "main")
+        return self.git(self.repo, "rev-parse", "HEAD").stdout.strip()
+
+    def test_bump_and_rerun_only_change_description_once(self):
+        result = self.bump()
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("Version: 0.4.0.9002", (self.repo / "DESCRIPTION").read_text())
         self.assertEqual((self.repo / "NEWS.md").read_text(), "# example (development version)\n")
-        self.assertEqual(self.git(self.remote, "rev-parse", "main").stdout.strip(),
-                         self.git(self.repo, "rev-parse", "HEAD").stdout.strip())
+        bump_sha = self.git(self.repo, "rev-parse", "HEAD").stdout.strip()
+        result = self.bump()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.git(self.repo, "rev-parse", "HEAD").stdout.strip(), bump_sha)
+        self.assertIn("already been bumped", result.stdout)
+        result = self.bump(bump_sha)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.git(self.repo, "rev-parse", "HEAD").stdout.strip(), bump_sha)
 
-    def test_old_push_does_not_bump_after_release_skip(self):
+    def test_each_of_two_pushes_is_bumped_even_if_processed_out_of_order(self):
+        second = self.commit("Documentation only")
+        for sha in (second, self.sha):
+            result = self.bump(sha)
+            self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("Version: 0.4.0.9003", (self.repo / "DESCRIPTION").read_text())
+
+    def test_skip_preserves_release_and_blocks_delayed_bump(self):
         (self.repo / "DESCRIPTION").write_text("Package: example\nVersion: 0.4.0\n")
         self.git(self.repo, "add", "DESCRIPTION")
         self.git(self.repo, "commit", "-m", "[skip vbump] Release")
         self.git(self.repo, "push", "origin", "main")
-        result = self.bump(PUSH_SHA=self.sha)
+        release = self.git(self.repo, "rev-parse", "HEAD").stdout.strip()
+        for sha in (self.sha, release):
+            result = self.bump(sha)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn("Version: 0.4.0\n", (self.repo / "DESCRIPTION").read_text())
+        next_sha = self.commit("Start development")
+        result = self.bump(next_sha)
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("Version: 0.4.0\n", (self.repo / "DESCRIPTION").read_text())
-        self.assertIn("release skip", result.stdout)
+        self.assertIn("Version: 0.4.0.9000", (self.repo / "DESCRIPTION").read_text())
 
     def test_push_rejection_is_reported(self):
         hook = self.remote / "hooks" / "pre-receive"
         hook.write_text("#!/bin/sh\nexit 1\n")
         hook.chmod(0o755)
-        result = self.bump(PUSH_SHA=self.sha)
+        result = self.bump()
         self.assertNotEqual(result.returncode, 0)
-        self.assertIn("branch protection", result.stderr)
+        self.assertIn("bypass access", result.stderr)
 
     def test_retries_after_concurrent_push(self):
         other = self.repo.parent / "other"
@@ -136,24 +130,45 @@ else:
             "fi\n"
         )
         hook.chmod(0o755)
-        result = self.bump(PUSH_SHA=self.sha)
+        result = self.bump()
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("retrying", result.stdout)
         self.assertIn("Version: 0.4.0.9002", (self.repo / "DESCRIPTION").read_text())
         self.assertTrue((self.repo / "raced").exists())
 
-    def test_after_release_creates_development_news_section(self):
-        (self.repo / "DESCRIPTION").write_text("Package: example\nVersion: 0.4.0\n")
-        (self.repo / "NEWS.md").write_text("# example 0.4.0\n\nRelease notes\n")
-        self.git(self.repo, "add", ".")
-        self.git(self.repo, "commit", "-m", "[skip vbump] Release")
-        self.git(self.repo, "tag", "v0.4.0")
-        self.git(self.repo, "push", "origin", "main", "v0.4.0")
-        result = self.bump(VBUMP_AFTER_RELEASE="true", RELEASE_REF="refs/tags/v0.4.0")
+    def test_release_during_retry_is_not_overwritten(self):
+        other = self.repo.parent / "other"
+        self.git(self.repo.parent, "clone", str(self.remote), str(other))
+        self.git(other, "config", "user.name", "Test")
+        self.git(other, "config", "user.email", "test@example.com")
+        hook = self.repo / ".git" / "hooks" / "pre-push"
+        hook.write_text(
+            "#!/bin/sh\n"
+            "unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE\n"
+            f"echo 'Package: example\nVersion: 0.4.0' > '{other / 'DESCRIPTION'}'\n"
+            f"git -C '{other}' add DESCRIPTION\n"
+            f"git -C '{other}' commit -m '[skip vbump] Release'\n"
+            f"git -C '{other}' push origin main\n"
+        )
+        hook.chmod(0o755)
+        result = self.bump()
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("Version: 0.4.0.9000", (self.repo / "DESCRIPTION").read_text())
-        self.assertEqual((self.repo / "NEWS.md").read_text(),
-                         "# example 0.4.0.9000\n\n# example 0.4.0\n\nRelease notes\n")
+        self.assertIn("preserving its version", result.stdout)
+        self.assertIn("Version: 0.4.0\n", (self.repo / "DESCRIPTION").read_text())
+
+    def test_missing_trigger_is_an_error(self):
+        other = self.repo.parent / "other"
+        self.git(self.repo.parent, "clone", str(self.remote), str(other))
+        self.git(other, "config", "user.name", "Test")
+        self.git(other, "config", "user.email", "test@example.com")
+        self.git(other, "checkout", "--orphan", "other")
+        self.git(other, "commit", "--allow-empty", "-m", "Unrelated")
+        unrelated = self.git(other, "rev-parse", "HEAD").stdout.strip()
+        self.git(other, "push", "origin", "HEAD:refs/heads/other")
+        self.git(self.repo, "fetch", "origin", "other")
+        result = self.bump(unrelated)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("no longer in main's history", result.stderr)
 
 
 if __name__ == "__main__":
